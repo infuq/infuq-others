@@ -1,8 +1,13 @@
 import os
 
-def download():
-    os.system("you-get https://www.bilibili.com/video/BV1Ft4y1B7dv?p=16&spm_id_from=pageDriver")
+'''
+pip install you-get
+'''
+
+def download(url):
+    os.system("you-get --playlist %s" % (url))
     
 
 if __name__ == '__main__':
-    download()
+    url = "https://www.bilibili.com/video/BV1mi4y1T7KY?from=search&seid=16625093456813847926"
+    download(url)
