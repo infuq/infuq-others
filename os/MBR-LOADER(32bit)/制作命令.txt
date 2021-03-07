@@ -1,0 +1,10 @@
+cmd> diskpart
+diskpart> create vdisk file=D:\shared\MBR-LOADER(32bit)\os.vhd maximum=10 type=fixed
+
+D:\shared\tools\nasm-2.15.05\nasm.exe mbr.asm -f bin -o mbr.bin
+	
+D:\shared\tools\nasm-2.15.05\nasm.exe loader.asm -f bin -o loader.bin
+	
+D:\shared\tools\dd.exe if=mbr.bin of=os.vhd bs=512 count=1
+D:\shared\tools\dd.exe if=loader.bin of=os.vhd bs=512 count=4 seek=2
+
