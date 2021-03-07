@@ -21,6 +21,7 @@ class MyIterator(Iterator):
         try:
             result = self.score[self.index]
         except IndexError:
+            # import
             raise StopIteration
         self.index = self.index + 1
         return result        
