@@ -9,7 +9,6 @@ if __name__ == '__main__':
     for row,value in util:
         print(row, value)
 
-
     util = ReadExcelUtil('D:/Repository/others/python/2.xls')
     for row,value in util:
         print(row, value)        
