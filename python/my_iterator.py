@@ -1,8 +1,13 @@
 # /usr/env/python
 
-from collections.abc import Iterator
+'''
+迭代器
+'''
 
-class Student():
+from collections.abc import Iterator
+from collections.abc import Iterable
+
+class Student(Iterable):
 
     def __init__(self, score):
         self.score = score
