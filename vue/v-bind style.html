@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <style>
+        .active {
+            color: red
+        }
+    </style>
+
+</head>
+<body>
+    <div id="app">        
+        <h2 v-bind:style="{fontSize: '50px'}">{{message}}</h2>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hi Vue'
+            },
+            methods: {
+            }
+        })    
+
+    </script>
+</body>
+</html>
