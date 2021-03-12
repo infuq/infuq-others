@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="en"/>
+    <title>v-on</title>
+
+</head>
+<body>
+    <div id="app">        
+        <button @click="btnClick(123, $event)">按钮</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hi Vue',
+                isActive: true,
+                isLine: false
+            },
+            methods: {
+                btnClick(arg, event) {
+                    console.log(arg, event)
+                },
+            }
+        })    
+
+    </script>
+</body>
+</html>
