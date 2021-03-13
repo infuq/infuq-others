@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="en"/>
+    <title>选中变色</title>
+    <style>
+        .active {
+            color: red
+        }
+    </style>
+</head>
+<body>
+    <div id="app">        
+        <ul>
+            <li v-for="(item, index) in movies" 
+                :class="{active: currentIndex==index}" 
+                @click="liClick(index)">{{ item }}</li>
+        </ul>
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                movies: ['电影1', '电影2', '电影3', '电影4'],
+                currentIndex: 0
+            },
+            methods: {
+                liClick(index) {
+                    this.currentIndex = index
+                },
+            }
+        })    
+
+    </script>
+</body>
+</html>
