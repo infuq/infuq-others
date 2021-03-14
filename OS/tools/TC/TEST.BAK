@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <string.h>
+#define p printf
+#define s scanf
+
+char word[5][10] = {"AA","BB","CC","DD","EE" };
+
+
+main()
+{
+
+
+char remove[10];
+int ne=5;
+int i,j;
+clrscr();
+
+p("AA BB CC DD EE");
+
+
+do{
+p("\nEnter Word:");
+
+
+
+s("%s",&remove);
+
+
+for( i= 0 ; i<ne;i++)
+{
+  if(stricmp(remove,word[i]) == 0)
+  {
+
+   for ( j = i  ; j < ne  ; j++ )
+      { strcpy(word[j], word[j+1]);
+      }
+  ne--;
+   };
+}
+
+for(i = 0; i <ne;i++)
+{
+ p("%s ",word[i]);
+}
+
+}while(ne != 0);
+p("Finish");
+getch();
+}
+
+
+
