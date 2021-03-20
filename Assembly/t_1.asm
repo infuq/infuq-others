@@ -4,7 +4,8 @@ assume cs:codeseg,ds:dataseg,ss:stackseg
 
 ;
 stackseg segment stack
-	dw	0,0,0,0,0,0,0,0
+	; dw	0,0,0,0,0,0,0,0
+	dw 8 dup (0)
 stackseg ends
 
 ;
