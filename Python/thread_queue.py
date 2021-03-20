@@ -1,5 +1,9 @@
 #! /usr/bin/env python
 
+'''
+线程通信
+'''
+
 import queue
 import threading
 from queue import Queue
@@ -26,7 +30,7 @@ class Put(threading.Thread):
         self.count = 20
 
     def run(self):
-        while True and self.count > 0:
+        while self.count > 0:
             time.sleep(2)
             self.queue.put(random.randint(1,10))
             self.count = self.count - 1
