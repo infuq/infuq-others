@@ -18,9 +18,9 @@ class Add(threading.Thread):
     def run(self):
         global count
         for i in range(1000000):
-            lock.acquire()
+            self.lock.acquire()
             count += 1
-            lock.release()
+            self.lock.release()
 
 class Desc(threading.Thread):
     def __init__(self, name, lock):
@@ -31,12 +31,12 @@ class Desc(threading.Thread):
         global count
         for i in range(1000000):
             # 加锁 可重入
-            lock.acquire()
-            lock.acquire()
+            self.lock.acquire()
+            self.lock.acquire()
             count -= 1
             # 释放锁 加锁几次则释放锁几次
-            lock.release()
-            lock.release()
+            self.lock.release()
+            self.lock.release()
 
 
 if __name__ == '__main__':
