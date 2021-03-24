@@ -2,6 +2,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "Launch ListNodeExample",
+            "request": "launch",
+            "mainClass": "ListNodeExample",
+            "projectName": "infuq-others_916724df"
+        },
+        {
             "name": "Python",
             "type": "python",
             "request": "launch",
