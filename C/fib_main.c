@@ -1,12 +1,15 @@
 #include<stdio.h>
 
-'''
-斐波那契数列
-'''
 
+// 斐波那契数列
+
+int count = 0;
 
 int fib(int n)
 {
+
+    count + 1;
+
     if (n == 0)
         return 0;
     if (n == 1)

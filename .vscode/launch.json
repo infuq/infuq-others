@@ -3,6 +3,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch FirstUniqueCharacter",
+            "request": "launch",
+            "mainClass": "FirstUniqueCharacter",
+            "projectName": "infuq-others_916724df"
+        },
+        {
+            "type": "java",
+            "name": "Launch Main_1",
+            "request": "launch",
+            "mainClass": "Main_1",
+            "projectName": "infuq-others_916724df"
+        },
+        {
+            "type": "java",
             "name": "Launch ListNodeExample",
             "request": "launch",
             "mainClass": "ListNodeExample",
