@@ -6,7 +6,7 @@ public class FirstUniqueCharacter {
 
     public static void main(String[] args) {
 
-        String data = "AGFHOGHIRFEAOFD";
+        String data = "AGFHOGHIRFEAOIIFD";
 
         HashMap<Character, Integer> map = new HashMap<Character, Integer>();
 

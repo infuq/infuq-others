@@ -19,6 +19,7 @@ match -> <class 're.Match'>
 
 import re
 
+
 def invoke_1():
     matcher = re.search(r'(?P<value>Py[^ ]*n)', 'this is a py PythoN language Python', re.I)
     print(type(matcher))# <class 're.Match'>
@@ -52,6 +53,7 @@ def invoke_2():
     print(result)
     print(result[1])
 
+
 def invoke_3():
     data = '2021-03-21'
     result = re.sub(r'(\d{4})-(\d{2})-(\d{2})', r'\2/\3/\1', data)
@@ -60,8 +62,8 @@ def invoke_3():
     # x = re.sub(r'(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})', r'\g<month>/\g<day>/\g<year>', data)
     # x = re.sub(r'x', r'n', data)
 
-
     score = 'asd67.57'
+
     def func(matcher):
         v = matcher.group('value')
         if '7' == v:
@@ -78,6 +80,7 @@ def invoke_5():
     result = re.findall(r'Py[^ ]*n', language, re.IGNORECASE)
     print(type(result))# <class 'list'>
     print(result)
+
 
 if __name__ == '__main__':
     invoke_4()

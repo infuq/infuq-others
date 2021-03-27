@@ -8,6 +8,7 @@ import re
 import os
 import sys
 
+
 def rename():
     files = os.listdir('./')
     for file in files:
