@@ -38,26 +38,27 @@ class Server(object):
         client, addr = key.data[1].accept()  # client, addr = self.server.accept()
         print('接收客户端{}连接...'.format(addr))
         client.setblocking(False)
-        # 注册读写事件
-        self.selector.register(client.fileno(), EVENT_READ | EVENT_WRITE,  (self.read_write, client))
+        # 注册读事件
+        self.selector.register(client.fileno(), EVENT_READ,  (self.read_write, client))
 
     def read_write(self, key, mask):
         if mask & EVENT_READ:  # 读事件
             self.recv(key)
         if mask & EVENT_WRITE:  # 写事件
-            self.send(key)
+            self.send(key, '\r\nHello, Python\r\n')
 
     def recv(self, key):
         client = key.data[1]
         data = client.recv(1024)
         self.decoder.decode(data)
-        self.selector.modify(client.fileno(), EVENT_READ | EVENT_WRITE,  (self.read_write, client))
 
-    def send(self, key):
+        self.send(key, '\r\nHello, World\r\n')
+
+    def send(self, key, msg):
         client = key.data[1]
         # print('发送数据...')
-        client.send(b'\r\nHello Python\r\n')
-        self.selector.modify(client.fileno(), EVENT_READ,  (self.read_write, client))
+        d = client.send(str(msg).encode())
+        print(d)
 
     def loop(self):
         while True:
