@@ -18,12 +18,16 @@ gdt:
 	dd	0x00c0920b
 
 lgdt_value:
-	dw $-gdt-1	;高16位表示表的最后一个字节的偏移（表的大小-1） 
-	dd gdt		;低32位表示起始位置（GDT的物理地址）
+	; GDTR寄存器
+	dw $-gdt-1	;高16位表示表的最后一个字节的偏移(表的大小-1)
+						;dw 表示定义2个字节
 
-SELECTOR_CODE	equ	0x0001<<3
-SELECTOR_DATA	equ	0x0002<<3
-SELECTOR_VIDEO	equ	0x0003<<3
+	dd gdt		 	;低32位表示起始位置(GDT的物理地址)
+						;dd 表示定义4个字节
+
+SELECTOR_CODE	equ	0x0001<<3	;SELECTOR_CODE = 8
+SELECTOR_DATA	equ	0x0002<<3	;SELECTOR_DATA = 16
+SELECTOR_VIDEO	equ	0x0003<<3 	;SELECTOR_VIDEO = 24
 
 protect_mode:
 ;进入32位
