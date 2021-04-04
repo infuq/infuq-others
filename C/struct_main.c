@@ -3,7 +3,8 @@
 typedef struct stu
 {
     struct stu *next;
-    // Stu *next;   // Error   
+    // Stu *next;   // Error
+    // struct stu next; // Error
     int age;
 } Stu;
 

@@ -18,8 +18,8 @@ gdt:
 	dd	0x00c0920b
 
 lgdt_value:
-	dw $-gdt-1	;高16位表示表的最后一个字节的偏移（表的大小-1） 
-	dd gdt			;低32位表示起始位置（GDT的物理地址）
+	dw $-gdt-1	;高16位表示表的最后一个字节的偏移(表的大小-1)
+	dd gdt			;低32位表示起始位置(GDT的物理地址)
 
 SELECTOR_CODE	equ	0x0001<<3
 SELECTOR_DATA	equ	0x0002<<3
@@ -68,11 +68,11 @@ mov byte [gs:0xc0],')'
 
 
 
-;创建页表并初始化（页目录和页表）
+;创建页表并初始化(页目录和页表)
 PAGE_DIR_TABLE_POS equ 0x100000
 call setup_page
 
-;重新加载 gdt，因为已经变成了虚拟地址方式
+;重新加载 gdt,因为已经变成了虚拟地址方式
 sgdt [lgdt_value]
 mov ebx,[lgdt_value+2]
 or dword [ebx+0x18+4],0xc0000000
@@ -109,7 +109,7 @@ setup_page:
 	inc esi
 	loop .clear_page_dir
 	
-;开始创建页目录项（PDE）
+;开始创建页目录项(PDE)
 .create_pde:
 	mov eax,PAGE_DIR_TABLE_POS
 	add eax,0x1000; 此时eax为第一个页表的位置及属性
@@ -120,7 +120,7 @@ setup_page:
 	sub eax,0x1000
 	mov [PAGE_DIR_TABLE_POS+4*1023],eax
 
-;开始创建页表项（PTE）
+;开始创建页表项(PTE)
 	mov ecx,256
 	mov esi,0
 	mov edx,111b
@@ -130,7 +130,7 @@ setup_page:
 	inc esi
 	loop .create_pte
 	
-;创建内核其他页表的页目录项（PDE）
+;创建内核其他页表的页目录项(PDE)
 	mov eax,PAGE_DIR_TABLE_POS
 	add eax,0x2000
 	or eax,111b
