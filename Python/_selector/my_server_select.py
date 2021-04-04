@@ -4,6 +4,7 @@ import socket
 from selectors import DefaultSelector, EVENT_READ, EVENT_WRITE
 
 
+# 解码 (参照Netty思路)
 class DecoderHandler(object):
 
     def __init__(self):
@@ -17,6 +18,7 @@ class DecoderHandler(object):
             self.data = self.data[5:]
 
 
+# 服务端
 class Server(object):
 
     def __init__(self):
@@ -29,7 +31,7 @@ class Server(object):
         self.server.bind(self.address)
         self.server.listen(50)
         self.server.setblocking(False)
-        # 注册ACCEPT事件
+        # 注册ACCEPT事件 和 回调函数
         self.selector.register(self.server.fileno(), EVENT_READ, (self.connected, self.server))
         self.loop()
 
@@ -38,7 +40,7 @@ class Server(object):
         client, addr = key.data[1].accept()  # client, addr = self.server.accept()
         print('接收客户端{}连接...'.format(addr))
         client.setblocking(False)
-        # 注册读事件
+        # 注册读事件 和 回调函数
         self.selector.register(client.fileno(), EVENT_READ,  (self.read_write, client))
 
     def read_write(self, key, mask):
@@ -51,7 +53,6 @@ class Server(object):
         client = key.data[1]
         data = client.recv(1024)
         self.decoder.decode(data)
-
         self.send(key, '\r\nHello, World\r\n')
 
     def send(self, key, msg):
@@ -60,6 +61,7 @@ class Server(object):
         d = client.send(str(msg).encode())
         print(d)
 
+    # 事件循环
     def loop(self):
         while True:
             # print('执行select...')

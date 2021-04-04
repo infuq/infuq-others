@@ -1,15 +1,15 @@
 #! /usr/bin/env python
 
-'''
+"""
 文件重命名
-'''
+"""
 
 import re
 import os
 import sys
 
 
-def rename():
+def batch_rename():
     files = os.listdir('./')
     for file in files:
         if not os.path.isfile(file):
@@ -21,4 +21,4 @@ def rename():
 
 
 if __name__ == '__main__':
-    rename()
+    batch_rename()
