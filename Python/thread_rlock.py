@@ -2,7 +2,7 @@
 
 '''
 通过Lock实现线程同步
-不可重入
+可重入
 '''
 
 import threading
