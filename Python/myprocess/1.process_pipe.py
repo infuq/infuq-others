@@ -2,6 +2,10 @@
 
 """
 进程通信 管道
+
+1. 管道只能适用于两个进程, 而Queue可以适用多个进程
+2. 管道性能高于Queue
+
 """
 
 import multiprocessing
