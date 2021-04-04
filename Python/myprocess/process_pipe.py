@@ -7,12 +7,12 @@
 import multiprocessing
 
 
-def send(conn, data):
-    conn.send([data])
+def send(pipe, data):
+    pipe.send([data])
 
 
-def recv(con):
-    print(con.recv())
+def recv(pipe):
+    print(pipe.recv())
 
 
 def main():

@@ -1,12 +1,13 @@
 #! /usr/bin/env python
 
-'''
+"""
 条件变量
-'''
+"""
 
 import time
 import threading
 from threading import Condition
+
 
 class AThread(threading.Thread):
 
@@ -30,8 +31,6 @@ class AThread(threading.Thread):
 
             print("{}: 只愿君心似我心".format(self.name))
             self.cond.notify()
-
-
 
 
 class BThread(threading.Thread):

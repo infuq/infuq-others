@@ -1,9 +1,9 @@
 #! /usr/bin/env python
 
-'''
+"""
 通过Lock实现线程同步
 不可重入
-'''
+"""
 
 import threading
 from threading import Lock

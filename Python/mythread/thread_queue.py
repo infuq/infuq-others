@@ -1,14 +1,15 @@
 #! /usr/bin/env python
 
-'''
+"""
 线程通信
-'''
+"""
 
 import queue
 import threading
 from queue import Queue
 import time
 import random
+
 
 class Get(threading.Thread):
 

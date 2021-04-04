@@ -16,8 +16,7 @@ class MyProcess(multiprocessing.Process):
 
 
 if __name__ == '__main__':
+    process = MyProcess('My_Process')
+    process.start()
 
-    for i in range(3):
-        process = MyProcess('My_%s' % (i))
-        process.start()
 

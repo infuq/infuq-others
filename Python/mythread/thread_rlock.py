@@ -1,14 +1,15 @@
 #! /usr/bin/env python
 
-'''
+"""
 通过Lock实现线程同步
 可重入
-'''
+"""
 
 import threading
 from threading import RLock
 
 count = 0
+
 
 class Add(threading.Thread):
     def __init__(self, name, lock):
@@ -21,6 +22,7 @@ class Add(threading.Thread):
             self.lock.acquire()
             count += 1
             self.lock.release()
+
 
 class Desc(threading.Thread):
     def __init__(self, name, lock):

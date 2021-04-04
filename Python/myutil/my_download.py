@@ -1,8 +1,11 @@
+#! /usr/bin/env python
+
 import os
 
 '''
 pip install you-get
 '''
+
 
 def download(url):
     os.system("you-get --playlist %s" % (url))

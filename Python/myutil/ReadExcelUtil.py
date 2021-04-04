@@ -1,8 +1,11 @@
+#! /usr/bin/env python
+
 import openpyxl
 import os
 import xlrd
 from collections.abc import Iterable
 from collections.abc import Iterator
+
 
 class ReadExcelUtil(Iterable):
 
@@ -20,7 +23,6 @@ class ReadExcelUtil(Iterable):
             self.sheetnames = self.workbook._sheet_names# Sheet1 Sheet2 Sheet3...
             # self.sheet = self.workbook[0]# 根据下标默认读取第一个Sheet
             self.sheet = self.workbook[self.sheetnames[0]]# 根据名称默认读取第一个Sheet
-
 
     def __iter__(self):
         if self.suffix == 'xlsx':

@@ -1,8 +1,8 @@
 #! /usr/bin/env python
 
-'''
+"""
 Semaphore的使用
-'''
+"""
 
 from threading import Semaphore
 import threading
