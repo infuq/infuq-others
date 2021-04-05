@@ -1,10 +1,15 @@
 #! /usr/bin/env python
 
+"""
+事件循环 + IO多路复用 + 回调
+"""
+
+
 import socket
 from selectors import DefaultSelector, EVENT_READ, EVENT_WRITE
 
 
-# 解码 (参照Netty思路)
+# 解码器 (参照Netty思路)
 class DecoderHandler(object):
 
     def __init__(self):
@@ -41,6 +46,7 @@ class Server(object):
         print('接收客户端{}连接...'.format(addr))
         client.setblocking(False)
         # 注册读事件 和 回调函数
+        # 只要读缓冲区中有数据那么就会触发读事件 即便一次性没有读取完数据 那么也会继续触发读事件  [水平触发]
         self.selector.register(client.fileno(), EVENT_READ,  (self.read_write, client))
 
     def read_write(self, key, mask):
@@ -58,8 +64,9 @@ class Server(object):
     def send(self, key, msg):
         client = key.data[1]
         # print('发送数据...')
+        # 返回发送成功的字节数
         d = client.send(str(msg).encode())
-        print(d)
+        # print(d)
 
     # 事件循环
     def loop(self):
