@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch SelectWakeUp",
+            "request": "launch",
+            "mainClass": "SelectWakeUp",
+            "projectName": "infuq-others_916724df"
+        },
+        {
+            "type": "java",
             "name": "Launch FirstUniqueCharacter",
             "request": "launch",
             "mainClass": "FirstUniqueCharacter",
