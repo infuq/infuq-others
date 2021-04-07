@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cygdrive/d/Repository/infuq-others/C/C/_enum.c
+stdio.h
+-
+
+/cygdrive/d/Repository/infuq-others/C/C/_struct_1.c
+stdio.h
+-
+
+/cygdrive/d/Repository/infuq-others/C/C/_struct_2.c
+stdio.h
+-
+
+/cygdrive/d/Repository/infuq-others/C/C/_struct_3.c
+stdio.h
+-
+
+/cygdrive/d/Repository/infuq-others/C/C/_struct_4.c
+stdio.h
+-
+
+/cygdrive/d/Repository/infuq-others/C/C/_struct_align_1.c
+stdio.h
+-
+
+/cygdrive/d/Repository/infuq-others/C/C/_struct_align_2.c
+stdio.h
+-
+
+/cygdrive/d/Repository/infuq-others/C/C/_union.c
+stdio.h
+-
+
