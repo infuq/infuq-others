@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "C/_array.h"
-#include "C/_other.h"
-#include "C/_pipe.h"
+#include "_array.h"
+#include "_other.h"
+#include "_pipe.h"
 
 int main()
 {
