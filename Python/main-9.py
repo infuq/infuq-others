@@ -11,19 +11,25 @@ print(r'\\无需转义\\')
 
 name=input('please input your name:')
 print(name)
+
+# True  False  and  or  not
 print(True)
 print(False)
 print(True and True)
 print(True and False)
 print(True or False)
 print(not False)
-print(10 / 3) # 3.3333333333333335
-print(10 // 3) # 3
-print(10 % 3) # 1
+
+
+print(10 / 3) # 3.3333333333333335   除
+print(10 // 3) # 3  整除
+print(10 % 3) # 1   取余
 print(ord('A')) # 65
 print(ord('中')) # 20013
 print(chr(67))  # C
 print('\u4e2d\u6587') # 中文
+
+
 print('汉字'.encode('UTF-8'))
 print('ABC'.encode('ASCII'))
 print(b'\xe6\xb1\x89\xe5\xad\x97'.decode('UTF-8'))
