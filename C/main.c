@@ -12,7 +12,9 @@ int main()
 
 //    printf("%d\n", _fib(3));
 
-    _pipe();
+    // _pipe();
+
+    system("cmd");
 
     return 0;
 }
