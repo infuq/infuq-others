@@ -11,6 +11,7 @@
 int main(int argc, const char *argv[])
 {
 
+	/*
 	while (1)
 	{
 		sleep(1);
@@ -28,11 +29,11 @@ int main(int argc, const char *argv[])
 		//printf("缓冲区满缓冲区满缓冲区满缓冲区满缓冲区满缓冲区满---缓冲区满缓冲区满缓冲区满缓冲区满缓冲区满");
 		
 		
-		printf("正常退出");
 
 	}
+	*/
 	
-	
+	printf("正常退出");
 
 	return 0;
 
