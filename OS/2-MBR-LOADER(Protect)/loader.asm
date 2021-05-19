@@ -20,10 +20,10 @@ gdt:
 
 lgdt_value:
 	; GDTR寄存器
-	dw $-gdt-1	;高16位表示表的最后一个字节的偏移(表的大小-1)
+	dw $-gdt-1	;低16位表示表的最后一个字节的偏移(表的大小-1)
 						;dw 表示定义2个字节
 
-	dd gdt		 	;低32位表示起始位置(GDT的物理地址)
+	dd gdt		 	;高32位表示起始位置(GDT的物理地址)
 						;dd 表示定义4个字节
 
 SELECTOR_CODE	equ	0x0001<<3	;SELECTOR_CODE = 8
