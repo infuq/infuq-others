@@ -8,15 +8,15 @@ gdt:
 ;0描述符
 	dd	0x00000000
 	dd	0x00000000
-;1描述符(4GB代码段描述符)
-	dd	0x0000ffff
-	dd	0x00cf9800
-;2描述符(4GB数据段描述符)
-	dd	0x0000ffff
-	dd	0x00cf9200
-;3描述符(28Kb的视频段描述符)
-	dd	0x80000007
-	dd	0x00c0920b
+;1描述符(4GB代码段描述符) 段基址=0x0 段界限单位=4K 段界限=0xfffff 段范围=4K * 0xfffff = 4GB
+	dd	0x0000ffff ; 低32位 00000000 00000000 11111111 11111111
+	dd	0x00cf9800 ; 高32位 00000000 11001111 10011000 00000000
+;2描述符(4GB数据段描述符) 段基址=0x0 段界限单位=4K 段界限=0xfffff  段范围=4K * 0xfffff = 4GB
+	dd	0x0000ffff ; 低32位 00000000 00000000 11111111 11111111
+	dd	0x00cf9200 ; 高32位 00000000 11001111 10010010 00000000
+;3描述符(28Kb的视频段描述符) 段基址=0x000b8000 段界限单位=4K 段界限=0x00007 段范围=4K * 0x00007 = 28Kb
+	dd	0x80000007 ; 低32位 10000000 00000000 00000000 00000111
+	dd	0x00c0920b ; 高32位 00000000 11000000 10010010 00001010
 
 lgdt_value:
 	; GDTR寄存器
@@ -26,22 +26,25 @@ lgdt_value:
 	dd gdt		 	;高32位表示起始位置(GDT的物理地址)
 						;dd 表示定义4个字节
 
-SELECTOR_CODE	equ	0x0001<<3	;SELECTOR_CODE = 8
-SELECTOR_DATA	equ	0x0002<<3	;SELECTOR_DATA = 16
-SELECTOR_VIDEO	equ	0x0003<<3 	;SELECTOR_VIDEO = 24
+SELECTOR_CODE	equ	0x0001<<3	;SELECTOR_CODE = 8      每个描述符占用8字节,第0个描述符不使用,则代码段的描述符(即第1个描述符)需偏移8个字节
+SELECTOR_DATA	equ	0x0002<<3	;SELECTOR_DATA = 16    每个描述符占用8字节,第0个描述符不使用,则数据段的描述符(即第2个描述符)需偏移16个字节
+SELECTOR_VIDEO	equ	0x0003<<3 	;SELECTOR_VIDEO = 24    每个描述符占用8字节,第0个描述符不使用,则显存段的描述符(即第3个描述符)需偏移24个字节
 
 protect_mode:
 ;进入32位
+	; 加载GDT
 	lgdt [lgdt_value]
+	; 打开A20
 	in al,0x92
 	or al,0000_0010b
 	out 0x92,al
 	cli
+	; cr0第0位置1
 	mov eax,cr0
-	or eax,1
+	or eax,0x00000001
 	mov cr0,eax
 	
-	jmp dword SELECTOR_CODE:main
+	jmp dword SELECTOR_CODE:main ; 刷新流水线
 	
 [bits 32]
 ;正式进入32位
