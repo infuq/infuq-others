@@ -36,7 +36,9 @@ SECTION MBR vstart=0x7c00
     mov byte [gs:0x08], 'A'
     mov byte [gs:0x09], 0xA4
 
+	; LOADER_START_SECTOR equ 0x2
     mov eax, LOADER_START_SECTOR
+	; LOADER_BASE_ADDR equ 0x900
     mov bx, LOADER_BASE_ADDR
     
     ; 读取4个扇区
@@ -47,8 +49,8 @@ SECTION MBR vstart=0x7c00
     jmp LOADER_BASE_ADDR
 
 ;-----------------------------------------------------------
-; 读取磁盘的n个扇区，用于加载loader
-; eax保存从硬盘读取到的数据的保存地址，ebx为起始扇区，cx为读取的扇区数
+; 读取磁盘的n个扇区,用于加载loader
+; eax保存从硬盘读取到的数据的保存地址, ebx为起始扇区, cx为读取的扇区数
 rd_disk_m_16:
 ;-----------------------------------------------------------
 

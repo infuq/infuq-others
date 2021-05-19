@@ -1,4 +1,5 @@
 %include "boot.inc"
+; LOADER_BASE_ADDR equ 0x900
 SECTION LOADER vstart=LOADER_BASE_ADDR
 
 jmp protect_mode

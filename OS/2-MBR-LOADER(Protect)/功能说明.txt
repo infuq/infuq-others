@@ -1,1 +1,1 @@
-MBR加载LOADER(进入保护模式)
+MBR加载LOADER(进入保护模式-分段机制)
