@@ -1,10 +1,10 @@
 cmd> diskpart
 diskpart> create vdisk file=D:\Repository\others\os\MBR-LOADER(Protect)\os.vhd maximum=10 type=fixed
 
-D:\Repository\others\os\tools\nasm-2.15.05\nasm.exe mbr.asm -f bin -o mbr.bin
+D:\Repository\infuq-others\OS\tools\nasm-2.15.05\nasm.exe mbr.asm -f bin -o mbr.bin
 	
-D:\Repository\others\os\tools\nasm-2.15.05\nasm.exe loader.asm -f bin -o loader.bin
+D:\Repository\infuq-others\OS\tools\nasm-2.15.05\nasm.exe loader.asm -f bin -o loader.bin
 	
-D:\Repository\others\os\tools\dd.exe if=mbr.bin of=os.vhd bs=512 count=1
-D:\Repository\others\os\tools\dd.exe if=loader.bin of=os.vhd bs=512 count=4 seek=2
+D:\Repository\infuq-others\OS\tools\dd.exe if=mbr.bin of=os.vhd bs=512 count=1
+D:\Repository\infuq-others\OS\tools\dd.exe if=loader.bin of=os.vhd bs=512 count=4 seek=2
 
