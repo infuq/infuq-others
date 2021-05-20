@@ -76,27 +76,28 @@ mov byte [gs:0xc0],')'
 
 
 ; 1.创建页表并初始化(页目录和页表)
-PAGE_DIR_TABLE_POS equ 0x100000
+PAGE_DIR_TABLE_POS equ 0x10000000 ; 页目录表放在物理地址0x10000000处
 call setup_page
 
-;重新加载 gdt,因为已经变成了虚拟地址方式
+; 2.重新设置DGT并重新加载
 sgdt [lgdt_value]
 mov ebx,[lgdt_value+2]
 or dword [ebx+0x18+4],0xc0000000
 add dword [lgdt_value+2],0xc0000000
 add esp,0xc0000000
 
-; 2.页目录表起始地址存入 cr3 寄存器
+lgdt [lgdt_value]
+
+; 3.页目录表起始地址存入 cr3 寄存器
 mov eax,PAGE_DIR_TABLE_POS
 mov cr3,eax
 
-; 3.cr0第31位(PG)置1
+; 4.cr0第31位(PG)置1
 mov eax,cr0
 or eax,0x80000000
 mov cr0,eax
 
-;重新加载 gdt
-lgdt [lgdt_value]
+
 
 
 ; 保护模式(分页机制)下打印
@@ -114,31 +115,31 @@ jmp $
 
 setup_page:
 ;先把页目录占用的空间逐字清零
-	mov ecx,4096
+	mov ecx,4096 ; 1024项 每项4字节 1024 * 4 = 4096
 	mov esi,0
 .clear_page_dir:
 	mov byte [PAGE_DIR_TABLE_POS+esi],0
 	inc esi
-	loop .clear_page_dir
+	loop .clear_page_dir ; 每循环一次, ecx - 1
 	
 ;开始创建页目录项(PDE)
 .create_pde:
 	mov eax,PAGE_DIR_TABLE_POS
-	add eax,0x1000; 此时eax为第一个页表的位置及属性
-	mov ebx,eax
-	or eax,111b
+	add eax,0x1000
+	mov ebx,eax ; ebx = 0x10001000 作为第一个页表的位置及属性
+	or eax,111b  ; 0x10001007
 	mov [PAGE_DIR_TABLE_POS],eax
 	mov [PAGE_DIR_TABLE_POS+0xc00],eax
 	sub eax,0x1000
 	mov [PAGE_DIR_TABLE_POS+4*1023],eax
 
-;开始创建页表项(PTE)
+;开始创建第一个页表的页表项(PTE)   每个页表有1024个页表项,此处只创建256个页表项(对应低端1M内存)
 	mov ecx,256
 	mov esi,0
 	mov edx,111b
 .create_pte:
-	mov [ebx+esi*4],edx
-	add edx,4096
+	mov [ebx+esi*4],edx ; ebx = 0x10001000 作为第一个页表的位置及属性
+	add edx,0x1000
 	inc esi
 	loop .create_pte
 	
