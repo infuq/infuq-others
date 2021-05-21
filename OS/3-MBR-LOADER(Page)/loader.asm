@@ -106,6 +106,9 @@ mov byte [gs:0x1e4],'G'
 mov byte [gs:0x1e6],'E'
 mov byte [gs:0x1ea],'O'
 mov byte [gs:0x1ec],'N'
+mov byte [gs:0x1ee],'.'
+mov byte [gs:0x1f0],'.'
+mov byte [gs:0x1f2],'.'
 
 jmp $
 
