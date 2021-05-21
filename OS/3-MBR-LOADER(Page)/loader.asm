@@ -79,7 +79,16 @@ mov byte [gs:0xc0],')'
 PAGE_DIR_TABLE_POS equ 0x10000000 ; 页目录表放在物理地址0x10000000处
 call setup_page
 
-; 2.重新设置DGT并重新加载
+; 2.页目录表起始地址存入 cr3 寄存器
+mov eax,PAGE_DIR_TABLE_POS
+mov cr3,eax
+
+; 3.cr0第31位(PG)置1
+mov eax,cr0
+or eax,0x80000000
+mov cr0,eax
+
+; 4.重新设置DGT并重新加载
 sgdt [lgdt_value]
 mov ebx,[lgdt_value+2]
 or dword [ebx+0x18+4],0xc0000000
@@ -87,16 +96,6 @@ add dword [lgdt_value+2],0xc0000000
 add esp,0xc0000000
 
 lgdt [lgdt_value]
-
-; 3.页目录表起始地址存入 cr3 寄存器
-mov eax,PAGE_DIR_TABLE_POS
-mov cr3,eax
-
-; 4.cr0第31位(PG)置1
-mov eax,cr0
-or eax,0x80000000
-mov cr0,eax
-
 
 
 
