@@ -18,7 +18,7 @@ gdt:
 	dd	0x80000007 ; 低32位 10000000 00000000 00000000 00000111
 	dd	0x00c0920b ; 高32位 00000000 11000000 10010010 00001010
 
-lgdt_value:
+gdt_ptr:
 	dw $-gdt-1	;低16位表示表的最后一个字节的偏移(表的大小-1)
 	dd gdt			;高32位表示起始位置(GDT的物理地址)
 
@@ -31,7 +31,7 @@ SELECTOR_VIDEO	equ	0x0003<<3 	;SELECTOR_VIDEO = 24    每个描述符占用8字�
 protect_mode:
 ;进入32位
 	; 1.加载GDT
-	lgdt [lgdt_value]
+	lgdt [gdt_ptr]
 	; 2.打开A20
 	in al,0x92
 	or al,0000_0010b
@@ -89,13 +89,13 @@ or eax,0x80000000
 mov cr0,eax
 
 ; 4.重新设置DGT并重新加载
-sgdt [lgdt_value]
-mov ebx,[lgdt_value+2]
+sgdt [gdt_ptr]
+mov ebx,[gdt_ptr+2]
 or dword [ebx+0x18+4],0xc0000000
-add dword [lgdt_value+2],0xc0000000
+add dword [gdt_ptr+2],0xc0000000
 add esp,0xc0000000
 
-lgdt [lgdt_value]
+lgdt [gdt_ptr]
 
 
 
