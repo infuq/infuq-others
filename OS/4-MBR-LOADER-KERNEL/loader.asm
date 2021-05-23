@@ -32,14 +32,12 @@ SELECTOR_VIDEO	equ	0x0003<<3 	;SELECTOR_VIDEO = 24    每个描述符占用8字�
 ;进入32位
 protect_mode:
 	; 1.加载GDT
-	;lgdt [gdt_ptr]
+	lgdt [gdt_ptr]
 	; 2.打开A20
 	in al,0x92
 	or al,0000_0010b
 	out 0x92,al
-	;cli
-	
-	lgdt [gdt_ptr]
+	cli
 	
 	; 3.cr0第0位置1
 	mov eax,cr0
@@ -102,7 +100,6 @@ main:
 	mov eax,PAGE_DIR_TABLE_POS ; PAGE_DIR_TABLE_POS equ 0x10000000 ; 页目录表放在物理地址0x10000000处
 	mov cr3,eax
 
-	mov byte [gs:0xc6],'C'
 
 	; 3.cr0第31位(PG)置1
 	mov eax,cr0
@@ -112,7 +109,6 @@ main:
 	
 	lgdt [gdt_ptr]
 
-	mov byte [gs:0xc2],'X'
 
 	; 保护模式(分页机制)下打印
 	mov byte [gs:0x1e0],'P'
@@ -129,12 +125,12 @@ main:
 	
 
 	
-    ;call kernel_init
+    	call kernel_init
     
 	
 	
-	;mov esp, 0xc009f000
-    ;jmp KERNEL_ENTRY_POINT
+	mov esp, 0xc009f000
+    	jmp KERNEL_ENTRY_POINT
 
 
 
