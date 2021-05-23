@@ -122,15 +122,10 @@ main:
 	mov byte [gs:0x1f2],'.'
 
 
-	
-
-	
-    	call kernel_init
+    call kernel_init
     
-	
-	
 	mov esp, 0xc009f000
-    	jmp KERNEL_ENTRY_POINT
+    jmp KERNEL_ENTRY_POINT
 
 
 
@@ -185,6 +180,7 @@ setup_page:
 	
 	
 
+; 加载内核
 ; 保护模式的硬盘读取函数
 rd_disk_m_32:
 
@@ -238,6 +234,9 @@ rd_disk_m_32:
     add ebx, 2
     loop .go_on_read
     ret
+
+
+
 
 kernel_init:
     xor eax, eax
