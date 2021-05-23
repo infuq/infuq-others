@@ -1,7 +1,9 @@
-megs: 2048
+megs: 128
 
-romimage: file=/usr/local/share/bochs/BIOS-bochs-latest
-vgaromimage: file=/usr/local/share/bochs/VGABIOS-lgpl-latest
+#romimage: file=/usr/local/share/bochs/BIOS-bochs-latest
+romimage: file=$BXSHARE/BIOS-bochs-latest
+#vgaromimage: file=/usr/local/share/bochs/VGABIOS-lgpl-latest
+vgaromimage: file=$BXSHARE/VGABIOS-lgpl-latest
 
 ata0-master: type=disk, path="infuq-os.img", mode=flat
 boot: disk

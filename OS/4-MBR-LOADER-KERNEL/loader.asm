@@ -32,13 +32,14 @@ SELECTOR_VIDEO	equ	0x0003<<3 	;SELECTOR_VIDEO = 24    每个描述符占用8字�
 ;进入32位
 protect_mode:
 	; 1.加载GDT
-	lgdt [gdt_ptr]
+	;lgdt [gdt_ptr]
 	; 2.打开A20
 	in al,0x92
 	or al,0000_0010b
 	out 0x92,al
-	cli
+	;cli
 	
+	lgdt [gdt_ptr]
 	
 	; 3.cr0第0位置1
 	mov eax,cr0
@@ -83,9 +84,6 @@ main:
 	mov ecx, 200        		; 读入的扇区数
 	call rd_disk_m_32
 
-
-
-
 	
 
 	; 1.创建页表并初始化(页目录和页表)
@@ -99,16 +97,18 @@ main:
 	add dword [gdt_ptr+2], 0xc0000000
 	add esp,0xc0000000
 
-
 	
 	; 2.页目录表起始地址存入 cr3 寄存器
 	mov eax,PAGE_DIR_TABLE_POS ; PAGE_DIR_TABLE_POS equ 0x10000000 ; 页目录表放在物理地址0x10000000处
 	mov cr3,eax
 
+	mov byte [gs:0xc6],'C'
+
 	; 3.cr0第31位(PG)置1
 	mov eax,cr0
 	or eax,0x80000000
 	mov cr0,eax
+
 	
 	lgdt [gdt_ptr]
 
