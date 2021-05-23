@@ -1,24 +1,21 @@
-cmd> diskpart
-diskpart> create vdisk file=D:\Repository\infuq-others\OS\4-MBR-LOADER-KERNEL\infuq-os.vhd maximum=10 type=fixed
-
-apt-get install gcc-multilib
-apt-get install nasm
 
 以下命令在Linux环境下执行
 nasm -I ./include/ mbr.asm -f bin -o mbr.bin
 nasm -I ./include/ loader.asm -f bin -o loader.bin
-nasm ./lib/kernel/print.asm -f elf -o print.o		如果生成64bit格式,则 nasm ./lib/kernel/print.asm -f elf64 -o print.o
+nasm ./lib/kernel/print.asm -f elf -o print.o
+gcc -I ./lib/kernel/ -c -o main.o main.c
+ld -Ttext 0xc0001500 -e main -o kernel.bin main.o print.o
+
+dd if=mbr.bin of=infuq-os.img bs=512 count=1 conv=notrunc
+dd if=loader.bin of=infuq-os.img bs=512 count=4 seek=2  conv=notrunc
+dd if=kernel.bin of=infuq-os.img bs=512 count=200 seek=9  conv=notrunc
+
+
+
+
+
+
+附录
+nasm ./lib/kernel/print.asm -f elf64 -o print.o
 gcc -m32 -I ./lib/kernel/ -c -o main.o main.c
 ld -m elf_i386 -Ttext 0xc0001500 -e main -o kernel.bin main.o print.o
-
-D:\Repository\infuq-others\OS\tools\dd.exe if=mbr.bin of=infuq-os.vhd bs=512 count=1
-D:\Repository\infuq-others\OS\tools\dd.exe if=loader.bin of=infuq-os.vhd bs=512 count=4 seek=2
-D:\Repository\infuq-others\OS\tools\dd.exe if=kernel.bin of=infuq-os.vhd bs=512 count=200 seek=9
-
-
-
-
-D:\Repository\infuq-others\OS\tools\dd.exe if=mbr.bin of=infuq-os.img bs=512 count=1 conv=notrunc
-D:\Repository\infuq-others\OS\tools\dd.exe if=loader.bin of=infuq-os.img bs=512 count=4 seek=2  conv=notrunc
-D:\Repository\infuq-others\OS\tools\dd.exe if=kernel.bin of=infuq-os.img bs=512 count=200 seek=9  conv=notrunc
-
