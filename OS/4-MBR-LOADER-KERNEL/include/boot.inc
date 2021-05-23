@@ -10,6 +10,7 @@ KERNEL_ENTRY_POINT equ 0xc0001500
 
 ;-------------   页表配置   ----------------
 PAGE_DIR_TABLE_POS equ 0x10000000
+;PAGE_DIR_TABLE_POS equ 0x10000
 
 ;--------------   gdt描述符属性  -----------
 DESC_G_4K   equ	  1_00000000000000000000000b   

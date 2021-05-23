@@ -78,10 +78,10 @@ main:
 
 
 	; 加载kernel
-	;mov eax, KERNEL_START_SECTOR        			; kernel.bin所在的扇区号 0x9
-	;mov ebx, KERNEL_BIN_BASE_ADDR    				; 写入的内存地址 0x70000
-	;mov ecx, 200        		; 读入的扇区数
-	;call rd_disk_m_32
+	mov eax, KERNEL_START_SECTOR        			; kernel.bin所在的扇区号 0x9
+	mov ebx, KERNEL_BIN_BASE_ADDR    				; 写入的内存地址 0x70000
+	mov ecx, 200        		; 读入的扇区数
+	call rd_disk_m_32
 
 
 
@@ -112,6 +112,7 @@ main:
 	
 	lgdt [gdt_ptr]
 
+	mov byte [gs:0xc2],'X'
 
 	; 保护模式(分页机制)下打印
 	mov byte [gs:0x1e0],'P'
