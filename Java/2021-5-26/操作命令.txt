@@ -1,0 +1,8 @@
+JDK1.8
+
+
+
+javac -d . -classpath ".:./*"  Example.java
+
+java -XX:+UseCompressedClassPointers -classpath ".:./*" Example > layout-1.txt
+java -XX:-UseCompressedClassPointers -classpath ".:./*" Example > layout-2.txt
