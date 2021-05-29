@@ -24,3 +24,29 @@ int main()
 
     return 0;
 }
+
+/*
+输出结果
+
+0x7ffffa60cb60
+0x7ffffa60cb64
+
+0x7ffffa60cb60
+0x7ffffa60cb70
+
+0x7ffffa60cb60
+0x7ffffa60cb90
+
+0x7ffffa60cb60
+0x7ffffa60cb90
+
+*/
+
+
+
+
+
+
+
+
+
