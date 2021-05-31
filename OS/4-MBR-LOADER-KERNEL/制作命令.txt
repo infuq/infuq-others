@@ -4,7 +4,7 @@
 [root@infuq /] bximage
 
 4.制作操作系统
-以下命令在Ubuntu16-32bit环境下执行
+建议在Ubuntu16-32bit环境下执行
 nasm -I ./include/ mbr.asm -f bin -o mbr.bin
 nasm -I ./include/ loader.asm -f bin -o loader.bin
 nasm ./lib/kernel/print.asm -f elf -o print.o

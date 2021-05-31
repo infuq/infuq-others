@@ -1,0 +1,39 @@
+1.安装bochs
+2.配置bochsrc文件
+3.制作镜像
+[root@infuq /] bximage
+
+4.制作操作系统
+建议在Ubuntu16-32bit环境下执行
+nasm -I ./include/ mbr.asm -f bin -o mbr.bin
+nasm -I ./include/ loader.asm -f bin -o loader.bin
+nasm ./lib/kernel/print.asm -f elf -o print.o
+nasm ./kernel/kernel.asm -f elf -o kernel.o
+
+gcc -m32 -I ./lib/kernel/ -c -fno-builtin -fno-stack-protector -o main.o kernel/main.c
+gcc -m32 -I ./lib/kernel/ -c -fno-builtin -fno-stack-protector -o interrupt.o kernel/interrupt.c
+gcc -m32 -I ./lib/kernel/ -c -fno-builtin -fno-stack-protector -o init.o kernel/init.c
+
+ld -m elf_i386 -Ttext 0xc0001500 -e main -o kernel.bin main.o print.o init.o interrupt.o kernel.o
+
+dd if=mbr.bin of=infuq-os.img bs=512 count=1 conv=notrunc
+dd if=loader.bin of=infuq-os.img bs=512 count=4 seek=2  conv=notrunc
+dd if=kernel.bin of=infuq-os.img bs=512 count=200 seek=9  conv=notrunc
+
+5.运行
+[root@infuq /] bochs -f bochsrc
+
+
+附录
+1.查看目标文件格式
+file main.o
+
+2.
+[nasm生成64位目标文件]
+nasm ./lib/kernel/print.asm -f elf64 -o print.o
+
+[gcc生成32位目标文件]
+gcc -m32 -I ./lib/kernel/ -c -o main.o main.c
+
+[ld链接32位目标文件]
+ld -m elf_i386 -Ttext 0xc0001500 -e main -o kernel.bin main.o print.o
