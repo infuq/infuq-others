@@ -27,7 +27,7 @@ static void make_idt_desc(struct gate_desc *p_gdesc, uint8_t attr, intr_handler 
 static struct gate_desc idt[IDT_DESC_CNT];
 // 用于保存异常名
 char *intr_name[IDT_DESC_CNT];
-// 定义中断处理程序数组,在kernel.asm中定义的intrXXentry。只是中断处理程序的入口,最终调用idt_table中的处理程序
+// 定义中断处理程序数组,在kernel.asm中定义的intrXXentry. 只是中断处理程序的入口,最终调用idt_table中的处理程序
 intr_handler idt_table[IDT_DESC_CNT];
 // 声明引用定义在kernel.asm中的中断处理函数入口数组
 extern intr_handler intr_entry_table[IDT_DESC_CNT];
@@ -86,8 +86,7 @@ static void general_intr_handler(uint8_t vec_nr)
     return;
   }
 
-  dis_count = dis_count - 1;
-  if (dis_count < 0)
+  if (dis_count-- < 0)
   {
     return;
   }

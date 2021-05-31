@@ -100,18 +100,18 @@ put_char:
 					  ; 若超出屏幕字符数大小(2000)则换行处理
  .is_line_feed:				  ; 是换行符LF(\n)
  .is_carriage_return:			  ; 是回车符CR(\r)
-					  ; 如果是CR(\r),只要把光标移到行首就行了。
+					  ; 如果是CR(\r),只要把光标移到行首就行了.
    xor dx, dx				  ; dx是被除数的高16位,清0.
    mov ax, bx				  ; ax是被除数的低16位.
    mov si, 80				  ; 由于是效仿linux,linux中\n便表示下一行的行首,所以本系统中,
-   div si				  ; 把\n和\r都处理为linux中\n的意思,也就是下一行的行首。
+   div si				  ; 把\n和\r都处理为linux中\n的意思,也就是下一行的行首.
    sub bx, dx				  ; 光标值减去除80的余数便是取整
 					  ; 以上4行处理\r的代码
 
  .is_carriage_return_end:                 ; 回车符CR处理结束
    add bx, 80
    cmp bx, 2000
- .is_line_feed_end:			  ; 若是LF(\n),将光标移+80便可。  
+ .is_line_feed_end:			  ; 若是LF(\n),将光标移+80便可.  
    jl .set_cursor
 
 ;屏幕行范围是0~24,滚屏的原理是将屏幕的1~24行搬运到0~23行,再将第24行用空格填充
@@ -204,10 +204,10 @@ put_int:
 
 ;将32位数字按照16进制的形式从低位到高位逐个处理,共处理8个16进制数字
 .16based_4bits:			       ; 每4位二进制是16进制数字的1位,遍历每一位16进制数字
-   and edx, 0x0000000F		       ; 解析16进制数字的每一位。and与操作后,edx只有低4位有效
+   and edx, 0x0000000F		       ; 解析16进制数字的每一位.and与操作后,edx只有低4位有效
    cmp edx, 9			       ; 数字0～9和a~f需要分别处理成对应的字符
    jg .is_A2F 
-   add edx, '0'			       ; ascii码是8位大小。add求和操作后,edx低8位有效。
+   add edx, '0'			       ; ascii码是8位大小.add求和操作后,edx低8位有效.
    jmp .store
 .is_A2F:
    sub edx, 10			       ; A~F 减去10 所得到的差,再加上字符A的ascii码,便是A~F对应的ascii码
