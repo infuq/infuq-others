@@ -8,9 +8,10 @@ section .data
 global intr_entry_table
 intr_entry_table:
 
+
 %macro VECTOR 2
     section .text
-    intr%1entry:
+    intr%1entry:    ; 中断处理程序入口地址
         %2
         push ds
         push es
@@ -24,11 +25,11 @@ intr_entry_table:
         out 0x20,al
         
         push %1
-        call [idt_table + %1*4]
+        call [idt_table + %1*4] ; 调用实际中断处理程序
         jmp intr_exit
         
     section .data
-        dd intr%1entry
+        dd intr%1entry ; 将中断处理程序入口地址写入intr_entry_table中
 %endmacro
 
 section .text
@@ -43,6 +44,8 @@ intr_exit:
     add esp,4
     iretd
 
+
+; 33个中断
 VECTOR 0X00,ZERO
 VECTOR 0X01,ZERO
 VECTOR 0X02,ZERO

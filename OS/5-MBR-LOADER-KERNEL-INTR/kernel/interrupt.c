@@ -9,13 +9,13 @@
 #define PIC_S_CTRL 0xa0 //从片[控制]端口
 #define PIC_S_DATA 0xa1 //从片[数据]端口
 
-#define IDT_DESC_CNT 0x21    //目前总共支持的中断数
+#define IDT_DESC_CNT 0x21    //目前总共支持的中断数(33个)
 
-// 中断门描述符结构体
+// 中断门描述符结构体(8个字节). 此结构与中断门描述符格式一一对应
 struct gate_desc
 {
   uint16_t func_offset_low_word;
-  uint16_t selector;
+  uint16_t selector; // 选择子
   uint8_t  dcount;
   uint8_t  attribute;
   uint16_t func_offset_high_word;
@@ -27,7 +27,8 @@ static void make_idt_desc(struct gate_desc *p_gdesc, uint8_t attr, intr_handler 
 static struct gate_desc idt[IDT_DESC_CNT];
 // 用于保存异常名
 char *intr_name[IDT_DESC_CNT];
-// 定义中断处理程序数组,在kernel.asm中定义的intrXXentry. 只是中断处理程序的入口,最终调用idt_table中的处理程序
+// 定义中断处理程序数组,在kernel.asm中定义的intrXXentry. 
+// 只是中断处理程序的入口,最终调用idt_table中的处理程序
 intr_handler idt_table[IDT_DESC_CNT];
 // 声明引用定义在kernel.asm中的中断处理函数入口数组
 extern intr_handler intr_entry_table[IDT_DESC_CNT];
@@ -64,19 +65,20 @@ static void make_idt_desc(struct gate_desc *p_gdesc, uint8_t attr, intr_handler 
   p_gdesc->func_offset_high_word = ((uint32_t)function & 0xFFFF0000) >> 16;
 }
 
-// 初始化中断描述符表
+// 初始化中断(门)描述符表
 static void idt_desc_init(void)
 {
   int i;
   for (i = 0; i < IDT_DESC_CNT; i++)
   {
+    // intr_entry_table数组在kernel.asm中已经初始化完成
     make_idt_desc(&idt[i], IDT_DESC_ATTR_DPL0, intr_entry_table[i]);
   }
   put_str("      idt_desc_init done\n");
 }
 
 
-static int dis_count = 6;
+static int cur_handle_count = 0;
 
 // 通用的中断处理函数,一般用在异常出现时的处理
 static void general_intr_handler(uint8_t vec_nr)
@@ -86,7 +88,7 @@ static void general_intr_handler(uint8_t vec_nr)
     return;
   }
 
-  if (dis_count-- < 0)
+  if (cur_handle_count++ > 4) // 最多打印4次
   {
     return;
   }
@@ -134,8 +136,8 @@ void idt_init()
 {
   put_str("   idt_init start\n");
   
-  idt_desc_init();      // 初始化中断描述符表
-  exception_init();     // 初始化通用中断处理函数
+  idt_desc_init();      // 初始化中断描述符表. 即初始化idt数组
+  exception_init();     // 初始化通用中断处理函数. 即初始化idt_table数组
   pic_init();           // 初始化8259A
     
   // 加载idt
