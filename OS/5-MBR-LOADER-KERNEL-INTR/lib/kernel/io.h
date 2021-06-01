@@ -18,7 +18,7 @@ static inline void outb(uint16_t port, uint8_t data)
     /*********************************************************
     对端口指定N 表示0～255, d 表示用dx 存储端口号,
     %b0 表示对应al,%w1 表示对应dx */
-    asm volatile ( "outb %b0, %w1" : : "a" (data), "Nd" (port));
+    asm volatile ("outb %b0, %w1" : : "a" (data), "Nd" (port));
     /******************************************************/
 }
 
