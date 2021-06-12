@@ -9,7 +9,6 @@ public class Book {
 
     private final Recycler.Handle<Book> recyclerHandle;
 
-
     Book(Recycler.Handle<Book> recyclerHandle) {
         this.recyclerHandle = recyclerHandle;
     }
@@ -18,10 +17,8 @@ public class Book {
         this.name = name;
     }
 
-
     void recycle() {
         recyclerHandle.recycle(this);
     }
-
 
 }
