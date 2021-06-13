@@ -1,0 +1,1 @@
+MBR加载LOADER加载KERNEL加载中断以及内存管理
