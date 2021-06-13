@@ -24,14 +24,13 @@ struct gate_desc
 // 静态函数声明,非必须
 static void make_idt_desc(struct gate_desc *p_gdesc, uint8_t attr, intr_handler function);
 // 中断门描述符表的数组
-static struct gate_desc idt[IDT_DESC_CNT];
+static struct gate_desc idt[IDT_DESC_CNT]; // IDT_DESC_CNT = 33
 // 用于保存异常名
 char *intr_name[IDT_DESC_CNT];
-// 定义中断处理程序数组,在kernel.asm中定义的intrXXentry. 
-// 只是中断处理程序的入口,最终调用idt_table中的处理程序
+// 定义中断处理程序数组,在kernel.asm中定义的intrXXentry只是中断处理程序的入口,最终调用idt_table中的处理程序
 intr_handler idt_table[IDT_DESC_CNT];
 // 声明引用定义在kernel.asm中的中断处理函数入口数组
-extern intr_handler intr_entry_table[IDT_DESC_CNT];
+extern intr_handler intr_entry_table[IDT_DESC_CNT]; // IDT_DESC_CNT = 33
 
 // 初始化可编程中断控制器 8259A
 static void pic_init(void)
