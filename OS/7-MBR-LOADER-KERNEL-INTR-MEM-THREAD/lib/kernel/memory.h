@@ -2,6 +2,7 @@
 #define __KERNEL_MEMORY_H
 #include "stdint.h"
 #include "bitmap.h"
+#include "list.h"
 
 enum pool_flags
 {
@@ -22,6 +23,23 @@ struct virtual_addr
     struct bitmap vaddr_bitmap;
     uint32_t vaddr_start;
 };
+
+#define DESC_CNT 7
+
+/* 内存块 */
+struct mem_block
+{
+   struct list_elem free_elem;
+};
+
+/* 内存块描述符 */
+struct mem_block_desc
+{
+   uint32_t block_size;      // 内存块大小
+   uint32_t blocks_per_arena;    // 本arena中可容纳此mem_block的数量.
+   struct list free_list;    // 目前可用的mem_block链表
+};
+
 
 extern struct pool kernel_pool, user_pool;
 void mem_init(void);

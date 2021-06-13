@@ -9,7 +9,10 @@
 #define PIC_S_CTRL 0xa0 //从片[控制]端口
 #define PIC_S_DATA 0xa1 //从片[数据]端口
 
-#define IDT_DESC_CNT 0x21    //目前总共支持的中断数(33个)
+#define IDT_DESC_CNT 0x81    //目前总共支持的中断数(129个)
+
+#define EFLAGS_IF   0x00000200       // eflags寄存器中的if位为1
+#define GET_EFLAGS(EFLAG_VAR) asm volatile("pushfl; popl %0" : "=g" (EFLAG_VAR))
 
 // 中断门描述符结构体(8个字节). 此结构与中断门描述符格式一一对应
 struct gate_desc
@@ -24,13 +27,13 @@ struct gate_desc
 // 静态函数声明,非必须
 static void make_idt_desc(struct gate_desc *p_gdesc, uint8_t attr, intr_handler function);
 // 中断门描述符表的数组
-static struct gate_desc idt[IDT_DESC_CNT]; // IDT_DESC_CNT = 33
+static struct gate_desc idt[IDT_DESC_CNT];
 // 用于保存异常名
 char *intr_name[IDT_DESC_CNT];
 // 定义中断处理程序数组,在kernel.asm中定义的intrXXentry只是中断处理程序的入口,最终调用idt_table中的处理程序
 intr_handler idt_table[IDT_DESC_CNT];
 // 声明引用定义在kernel.asm中的中断处理函数入口数组
-extern intr_handler intr_entry_table[IDT_DESC_CNT]; // IDT_DESC_CNT = 33
+extern intr_handler intr_entry_table[IDT_DESC_CNT];
 
 // 初始化可编程中断控制器 8259A
 static void pic_init(void)
@@ -77,7 +80,6 @@ static void idt_desc_init(void)
 }
 
 
-static int cur_handle_count = 1;
 
 // 通用的中断处理函数,一般用在异常出现时的处理
 static void general_intr_handler(uint8_t vec_nr)
@@ -88,14 +90,27 @@ static void general_intr_handler(uint8_t vec_nr)
   }
 
 
-  if (cur_handle_count++ > 3) // 最多打印3次
+  set_cursor(0);
+  int cursor_pos = 0;
+  while (cursor_pos < 320)
   {
-    return;
+    put_char(' ');
+    cursor_pos++;
   }
-
-  put_str("int vector:0x");
-  put_int(vec_nr);
-  put_str("\n");
+  
+  set_cursor(0);
+  put_str("--- exception message begin ---\n");
+  set_cursor(88);
+  put_str(intr_name[vec_nr]);
+  if (vec_nr == 14) // PageFault
+  {
+    int page_fault_vaddr = 0;
+    asm ("movl %%cr2, %0" : "=r" (page_fault_vaddr));
+    put_str("\npage fault addr = 0x");
+    put_int(page_fault_vaddr);
+  }
+  put_str("\n--- exception message end ---\n");
+  while(1);
   
 }
 
@@ -132,6 +147,61 @@ static void exception_init(void)
 }
 
 
+/* 开中断并返回开中断前的状态*/
+enum intr_status intr_enable()
+{
+  enum intr_status old_status;
+
+  if (INTR_ON == intr_get_status())
+  {
+    old_status = INTR_ON;
+    return old_status;
+  }
+  else
+  {
+    old_status = INTR_OFF;
+    asm volatile("sti");     // 开中断,sti指令将IF位置1
+    return old_status;
+  }
+
+}
+
+
+/* 关中断,并且返回关中断前的状态 */
+enum intr_status intr_disable()
+{   
+  enum intr_status old_status;
+  
+  if (INTR_ON == intr_get_status())
+  {
+    old_status = INTR_ON;
+    asm volatile("cli" : : : "memory"); // 关中断,cli指令将IF位置0
+    return old_status;
+  }
+  else
+  {
+    old_status = INTR_OFF;
+    return old_status;
+  }
+
+}
+
+
+/* 将中断状态设置为status */
+enum intr_status intr_set_status(enum intr_status status)
+{
+  return status & INTR_ON ? intr_enable() : intr_disable();
+}
+
+/* 获取当前中断状态 */
+enum intr_status intr_get_status()
+{
+  uint32_t eflags = 0; 
+  GET_EFLAGS(eflags);
+  return (EFLAGS_IF & eflags) ? INTR_ON : INTR_OFF;
+}
+
+
 // 完成有关中断到所有初始化工作
 void idt_init()
 {
@@ -147,3 +217,13 @@ void idt_init()
   
   put_str("   idt_init done\n");
 }
+
+
+
+ 
+// 注册中断处理函数
+void register_handler(uint8_t vector_no, intr_handler function)
+{
+  idt_table[vector_no] = function;
+}
+
