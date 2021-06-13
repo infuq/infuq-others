@@ -13,4 +13,5 @@ void init_all()
 
 	// 内存管理
 	mem_init();
+	
 }

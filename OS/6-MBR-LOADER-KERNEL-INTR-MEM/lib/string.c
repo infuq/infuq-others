@@ -25,7 +25,7 @@ void memcpy(void *dst_, const void *src_, uint32_t size)
 }
 
 /* 连续比较以地址a_和地址b_开头的size个字节,若相等则返回0,若a_大于b_返回+1,否则返回-1 */
-int memcmp(const void* a_, const void* b_, uint32_t size)
+int memcmp(const void *a_, const void *b_, uint32_t size)
 {
    const char *a = a_;
    const char *b = b_;
@@ -48,7 +48,7 @@ int memcmp(const void* a_, const void* b_, uint32_t size)
 char *strcpy(char *dst_, const char *src_)
 {
    assert(dst_ != NULL && src_ != NULL);
-   char* r = dst_;		       // 用来返回目的字符串起始地址
+   char *r = dst_;		       // 用来返回目的字符串起始地址
    while((*dst_++ = *src_++));
    return r;
 }
@@ -57,8 +57,8 @@ char *strcpy(char *dst_, const char *src_)
 uint32_t strlen(const char *str)
 {
    assert(str != NULL);
-   const char* p = str;
-   while(*p++);
+   const char *p = str;
+   while (*p++);
    return (p - str - 1);
 }
 
@@ -78,7 +78,7 @@ int8_t strcmp (const char *a, const char *b)
 }
 
 /* 从左到右查找字符串str中首次出现字符ch的地址(不是下标,是地址) */
-char* strchr(const char* str, const uint8_t ch)
+char *strchr(const char *str, const uint8_t ch)
 {
    assert(str != NULL);
    while (*str != 0)
@@ -93,10 +93,10 @@ char* strchr(const char* str, const uint8_t ch)
 }
 
 /* 从后往前查找字符串str中首次出现字符ch的地址(不是下标,是地址) */
-char* strrchr(const char* str, const uint8_t ch)
+char *strrchr(const char *str, const uint8_t ch)
 {
    assert(str != NULL);
-   const char* last_char = NULL;
+   const char *last_char = NULL;
    /* 从头到尾遍历一次,若存在ch字符,last_char总是该字符最后一次出现在串中的地址(不是下标,是地址)*/
    while (*str != 0)
    {      
@@ -110,7 +110,7 @@ char* strrchr(const char* str, const uint8_t ch)
 }
 
 /* 将字符串src_拼接到dst_后,将回拼接的串地址 */
-char* strcat(char* dst_, const char* src_)
+char *strcat(char *dst_, const char *src_)
 {
    assert(dst_ != NULL && src_ != NULL);
    char *str = dst_;
@@ -121,11 +121,11 @@ char* strcat(char* dst_, const char* src_)
 }
 
 /* 在字符串str中查找指定字符ch出现的次数 */
-uint32_t strchrs(const char* str, uint8_t ch)
+uint32_t strchrs(const char *str, uint8_t ch)
 {
    assert(str != NULL);
    uint32_t ch_cnt = 0;
-   const char* p = str;
+   const char *p = str;
    while(*p != 0)
    {      
       if (*p == ch)

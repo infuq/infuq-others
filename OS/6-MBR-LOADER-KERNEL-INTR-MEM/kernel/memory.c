@@ -54,23 +54,23 @@ static void *vaddr_get(enum pool_flags pf, uint32_t pg_cnt)
 
 
 // 得到虚拟地址vaddr对应的pte指针
-uint32_t* pte_ptr(uint32_t vaddr)
+uint32_t *pte_ptr(uint32_t vaddr)
 {
-  uint32_t* pte = (uint32_t*)(0xffc00000 + ((vaddr & 0xffc00000) >> 10) + PTE_IDX(vaddr) * 4);
+  uint32_t *pte = (uint32_t*)(0xffc00000 + ((vaddr & 0xffc00000) >> 10) + PTE_IDX(vaddr) * 4);
   return pte;
 }
 
 
 // 得到虚拟地址vaddr对应的pde指针
-uint32_t* pde_ptr(uint32_t vaddr)
+uint32_t *pde_ptr(uint32_t vaddr)
 {
-  uint32_t* pde = (uint32_t*)((0xfffff000) + PDE_IDX(vaddr) * 4);
+  uint32_t *pde = (uint32_t*)((0xfffff000) + PDE_IDX(vaddr) * 4);
   return pde;
 }
 
 
 // 在m_pool指向的物理内存池中分配1个物理页
-static void* palloc(struct pool* m_pool)
+static void *palloc(struct pool *m_pool)
 {
   // 找到一个物理页
   int bit_idx = bitmap_scan(&m_pool->pool_bitmap, 1);
@@ -86,12 +86,12 @@ static void* palloc(struct pool* m_pool)
 }
 
 // 页表中添加虚拟地址_vaddr与物理地址_page_phyaddr的映射
-static void page_table_add(void* _vaddr, void* _page_phyaddr)
+static void page_table_add(void *_vaddr, void *_page_phyaddr)
 {
   uint32_t vaddr = (uint32_t)_vaddr;
   uint32_t page_phyaddr = (uint32_t)_page_phyaddr;
-  uint32_t* pde = pde_ptr(vaddr);
-  uint32_t* pte = pte_ptr(vaddr);
+  uint32_t *pde = pde_ptr(vaddr);
+  uint32_t *pte = pte_ptr(vaddr);
   
   // 判断页目录项的p位,为1表示该表已存在
   if (*pde & 0x00000001)
@@ -188,14 +188,14 @@ static void mem_pool_init(uint32_t all_mem)
   
 
   // 输出内存池信息
-  put_str("      kernel_pool_bitmap_start: ");
+  put_str("      [ kernel-pool-bitmap-start: ");
   put_int((int)kernel_pool.pool_bitmap.bits);
-  put_str("      kernel_pool_phy_addr_start: "); 
+  put_str("      kernel-pool-phy-addr-start: "); 
   put_int(kernel_pool.phy_addr_start); 
-  // put_str("\n"); 
-  put_str("      user_pool_bitmap_start: "); 
+  put_str("\n");
+  put_str("      [ user-pool-bitmap-start  : "); 
   put_int((int)user_pool.pool_bitmap.bits);
-  put_str("        user_pool_phy_addr_start: "); 
+  put_str("      user-pool-phy-addr-start  : "); 
   put_int(user_pool.phy_addr_start); 
   put_str("\n");
   
