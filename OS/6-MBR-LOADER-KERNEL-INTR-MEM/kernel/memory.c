@@ -188,15 +188,19 @@ static void mem_pool_init(uint32_t all_mem)
   
 
   // 输出内存池信息
-  put_str("      [ kernel-pool-bitmap-start: ");
+  put_str("      [ kernel-pool-bitmap-start: 0x");
   put_int((int)kernel_pool.pool_bitmap.bits);
-  put_str("      kernel-pool-phy-addr-start: "); 
-  put_int(kernel_pool.phy_addr_start); 
   put_str("\n");
-  put_str("      [ user-pool-bitmap-start  : "); 
+  put_str("      kernel-pool-phy-addr-start: 0x00"); 
+  put_int(kernel_pool.phy_addr_start); 
+  put_str(" ]");
+  put_str("\n");
+  put_str("      [ user-pool-bitmap-start  : 0x"); 
   put_int((int)user_pool.pool_bitmap.bits);
-  put_str("      user-pool-phy-addr-start  : "); 
+  put_str("\n");
+  put_str("      user-pool-phy-addr-start  : 0x0"); 
   put_int(user_pool.phy_addr_start); 
+  put_str(" ]");
   put_str("\n");
   
   

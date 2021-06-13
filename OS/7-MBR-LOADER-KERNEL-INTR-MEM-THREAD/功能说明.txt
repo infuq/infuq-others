@@ -1,0 +1,1 @@
+MBR加载LOADER加载KERNEL加载中断 -> 内存管理 -> 线程
