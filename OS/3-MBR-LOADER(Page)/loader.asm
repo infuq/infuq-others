@@ -20,7 +20,7 @@ gdt:
 
 ; lgdt_value占6个字节 
 gdt_ptr:
-	dw $-gdt-1	;低16位表示表的最后一个字节的偏移(表的大小-1)
+	dw $-gdt-1		;低16位表示表的最后一个字节的偏移(表的大小-1)
 	dd gdt			;高32位表示起始位置(GDT的物理地址)
 
 
@@ -77,9 +77,11 @@ mov byte [gs:0xbe],'D'
 mov byte [gs:0xc0],')'
 
 
+; 以上代码中,段基址+偏移地址 得到的是物理地址.
+
 
 ; 1.创建页表并初始化(页目录和页表)
-PAGE_DIR_TABLE_POS equ 0x100000 ; 页目录表放在物理地址0x100000处
+PAGE_DIR_TABLE_POS equ 0x100000 		; 页目录表放在物理地址0x100000处
 call setup_page
 
 ; 2.页目录表起始地址存入 cr3 寄存器
@@ -119,8 +121,8 @@ jmp $
 
 
 setup_page:
-;先把页目录占用的空间逐字清零
-	mov ecx,4096 ; 1024项 每项4字节 1024 * 4 = 4096
+;先把页目录占用的空间(4K)逐字清零
+	mov ecx,4096 		; 1024项 每项4字节 1024 * 4 = 4096
 	mov esi,0
 .clear_page_dir:
 	mov byte [PAGE_DIR_TABLE_POS+esi],0
@@ -131,32 +133,32 @@ setup_page:
 .create_pde:
 	mov eax,PAGE_DIR_TABLE_POS
 	add eax,0x1000
-	mov ebx,eax ; ebx = 0x10001000 作为第一个页表的位置及属性
-	or eax,111b  ; 0x10001007
+	mov ebx,eax 		; ebx = 0x101000 作为第一个页表的位置及属性
+	or eax,111b  		; 0x101007
 	mov [PAGE_DIR_TABLE_POS],eax
-	mov [PAGE_DIR_TABLE_POS+0xc00],eax
+	mov [PAGE_DIR_TABLE_POS + 0xc00],eax                   0xc00 = 12 * 16^2 = 3072 , 每项4字节 , 则 3072 / 4 = 768
 	sub eax,0x1000
-	mov [PAGE_DIR_TABLE_POS+4*1023],eax
+	mov [PAGE_DIR_TABLE_POS + 4 * 1023],eax
 
 ;开始创建第一个页表的页表项(PTE)   每个页表有1024个页表项,此处只创建256个页表项(对应低端1M内存)
 	mov ecx,256
 	mov esi,0
 	mov edx,111b
 .create_pte:
-	mov [ebx+esi*4],edx ; ebx = 0x10001000 作为第一个页表的位置及属性
+	mov [ebx + esi*4],edx 		; ebx = 0x101000 作为第一个页表的位置及属性
 	add edx,0x1000
 	inc esi
 	loop .create_pte
 	
-;创建内核其他页表的页目录项(PDE)
+;创建内核其他页表的页目录项(PDE)       此段具体含义可以参考infuq-others\OS\创建页目录和页表.png 第一张图
 	mov eax,PAGE_DIR_TABLE_POS
 	add eax,0x2000
 	or eax,111b
 	mov ebx,PAGE_DIR_TABLE_POS
-	mov ecx,254
+	mov ecx,254               ; 共循环 1022 - 768 = 254 次
 	mov esi,769
 .create_kernel_pde:
-	mov [ebx+esi*4],eax
+	mov [ebx + esi*4],eax
 	inc esi
 	add eax,0x1000
 	loop .create_kernel_pde
