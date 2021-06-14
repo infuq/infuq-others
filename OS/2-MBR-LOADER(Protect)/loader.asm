@@ -1,9 +1,8 @@
 %include "boot.inc"
-; LOADER_BASE_ADDR equ 0x900
-SECTION LOADER vstart=LOADER_BASE_ADDR
+SECTION LOADER vstart=0x900
 
-jmp protect_mode
 
+; gdt占32个字节
 gdt:
 ;0描述符
 	dd	0x00000000
@@ -18,6 +17,7 @@ gdt:
 	dd	0x80000007 ; 低32位 10000000 00000000 00000000 00000111
 	dd	0x00c0920b ; 高32位 00000000 11000000 10010010 00001010
 
+; lgdt_value占6个字节 
 lgdt_value:
 	; GDTR寄存器
 	dw $-gdt-1	;低16位表示表的最后一个字节的偏移(表的大小-1)
@@ -26,9 +26,14 @@ lgdt_value:
 	dd gdt		 	;高32位表示起始位置(GDT的物理地址)
 						;dd 表示定义4个字节
 
+; 不占字节
 SELECTOR_CODE	equ	0x0001<<3	;SELECTOR_CODE = 8      每个描述符占用8字节,第0个描述符不使用,则代码段的描述符(即第1个描述符)需偏移8个字节
 SELECTOR_DATA	equ	0x0002<<3	;SELECTOR_DATA = 16    每个描述符占用8字节,第0个描述符不使用,则数据段的描述符(即第2个描述符)需偏移16个字节
 SELECTOR_VIDEO	equ	0x0003<<3 	;SELECTOR_VIDEO = 24    每个描述符占用8字节,第0个描述符不使用,则显存段的描述符(即第3个描述符)需偏移24个字节
+
+
+; 以上共计 = 32 + 6 = 38 = 0x26 , 所以protect_mode的地址 = 0x900 + 0x26 = 0x926
+
 
 protect_mode:
 ;进入32位
@@ -49,6 +54,7 @@ protect_mode:
 [bits 32]
 ;正式进入32位
 main:
+; 使用选择子初始化各段寄存器
 mov ax,SELECTOR_DATA
 mov ds,ax
 mov es,ax

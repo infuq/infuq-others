@@ -30,4 +30,6 @@ void lock_release(struct lock* plock);
 
 void console_put_str(char *str);
 
+void console_init();
+
 #endif

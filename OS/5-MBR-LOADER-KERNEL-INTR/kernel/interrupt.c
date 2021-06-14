@@ -58,7 +58,7 @@ static void pic_init(void)
 static void make_idt_desc(struct gate_desc *p_gdesc, uint8_t attr, intr_handler function)
 {
   p_gdesc->func_offset_low_word = (uint32_t)function & 0x0000FFFF;
-  p_gdesc->selector = SELECTOR_K_CODE;
+  p_gdesc->selector = SELECTOR_K_CODE; // 指向GDT中第1个段描述符(内核代码段)
   p_gdesc->dcount = 0;
   p_gdesc->attribute = attr;
   p_gdesc->func_offset_high_word = ((uint32_t)function & 0xFFFF0000) >> 16;
