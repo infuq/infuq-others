@@ -1,16 +1,3 @@
-cmd> diskpart
-diskpart> create vdisk file=D:\Repository\infuq-others\OS\2-MBR-LOADER(Protect)\infuq-os.vhd maximum=10 type=fixed
-
-D:\Repository\infuq-others\OS\tools\nasm-2.15.05\nasm.exe mbr.asm -f bin -o mbr.bin
-	
-D:\Repository\infuq-others\OS\tools\nasm-2.15.05\nasm.exe loader.asm -f bin -o loader.bin
-	
-D:\Repository\infuq-others\OS\tools\dd.exe if=mbr.bin of=infuq-os.vhd bs=512 count=1
-D:\Repository\infuq-others\OS\tools\dd.exe if=loader.bin of=infuq-os.vhd bs=512 count=4 seek=2
-
-
-
-
 1.安装bochs
 2.配置bochsrc文件
 3.制作镜像

@@ -38,7 +38,7 @@ SECTION MBR vstart=0x7c00
     call rd_disk_m_16
 
     ; 直接跳到loader的起始代码执行
-    jmp LOADER_BASE_ADDR
+    jmp LOADER_BASE_ADDR + 0x26
 
 ;-----------------------------------------------------------
 ; 读取磁盘的n个扇区,用于加载loader

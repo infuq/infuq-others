@@ -33,8 +33,6 @@ SELECTOR_VIDEO	equ	0x0003<<3 	;SELECTOR_VIDEO = 24    每个描述符占用8字�
 
 
 ; 以上共计 = 32 + 6 = 38 = 0x26 , 所以protect_mode的地址 = 0x900 + 0x26 = 0x926
-
-
 protect_mode:
 ;进入32位
 	; 加载GDT

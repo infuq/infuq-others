@@ -2,8 +2,7 @@
 ; LOADER_BASE_ADDR equ 0x900
 SECTION LOADER vstart=LOADER_BASE_ADDR
 
-jmp protect_mode
-
+; gdt占32个字节
 gdt:
 ;0描述符
 	dd	0x00000000
@@ -18,16 +17,20 @@ gdt:
 	dd	0x80000007 ; 低32位 10000000 00000000 00000000 00000111
 	dd	0x00c0920b ; 高32位 00000000 11000000 10010010 00001010
 
+
+; lgdt_value占6个字节 
 gdt_ptr:
 	dw $-gdt-1	;低16位表示表的最后一个字节的偏移(表的大小-1)
 	dd gdt			;高32位表示起始位置(GDT的物理地址)
 
 
+; 不占字节
 SELECTOR_CODE	equ	0x0001<<3	;SELECTOR_CODE = 8      每个描述符占用8字节,第0个描述符不使用,则代码段的描述符(即第1个描述符)需偏移8个字节
 SELECTOR_DATA	equ	0x0002<<3	;SELECTOR_DATA = 16    每个描述符占用8字节,第0个描述符不使用,则数据段的描述符(即第2个描述符)需偏移16个字节
 SELECTOR_VIDEO	equ	0x0003<<3 	;SELECTOR_VIDEO = 24    每个描述符占用8字节,第0个描述符不使用,则显存段的描述符(即第3个描述符)需偏移24个字节
 
 
+; 以上共计 = 32 + 6 = 38 = 0x26 , 所以protect_mode的地址 = 0x900 + 0x26 = 0x926
 protect_mode:
 ;进入32位
 	; 1.加载GDT
@@ -76,7 +79,7 @@ mov byte [gs:0xc0],')'
 
 
 ; 1.创建页表并初始化(页目录和页表)
-PAGE_DIR_TABLE_POS equ 0x10000000 ; 页目录表放在物理地址0x10000000处
+PAGE_DIR_TABLE_POS equ 0x100000 ; 页目录表放在物理地址0x100000处
 call setup_page
 
 ; 2.页目录表起始地址存入 cr3 寄存器
