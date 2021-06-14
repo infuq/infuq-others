@@ -45,7 +45,7 @@ SECTION MBR vstart=0x7c00
     mov cx, 4
     call rd_disk_m_16
 
-    ; 直接跳到loader的起始代码执行
+    ; 直接跳到loader的(起始代码+0x26)位置处执行
     jmp LOADER_BASE_ADDR + 0x26
 
 ;-----------------------------------------------------------

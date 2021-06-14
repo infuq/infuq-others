@@ -2,7 +2,6 @@
 ; LOADER_BASE_ADDR equ 0x900
 SECTION LOADER vstart=0x900
 
-jmp protect_mode
 
 gdt:
 ;0描述符

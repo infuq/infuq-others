@@ -5,10 +5,10 @@
 
 4.制作操作系统
 建议在Ubuntu16-32bit环境下执行
-nasm -I ./include/ mbr.asm -f bin -o out/mbr.bin
-nasm -I ./include/ loader.asm -f bin -o out/loader.bin
-nasm ./lib/kernel/print.asm -f elf -o out/print.o
-nasm ./kernel/kernel.asm -f elf -o out/kernel.o
+nasm -I boot/include/ boot/mbr.asm -f bin -o out/mbr.bin
+nasm -I boot/include/ boot/loader.asm -f bin -o out/loader.bin
+nasm lib/kernel/print.asm -f elf -o out/print.o
+nasm kernel/kernel.asm -f elf -o out/kernel.o
 
 
 gcc -m32 -I ./lib/ -I ./lib/kernel -I ./lib/user -c -fno-builtin -fno-stack-protector -o out/string.o lib/string.c

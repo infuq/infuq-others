@@ -1,10 +1,21 @@
-cmd> diskpart
-diskpart> create vdisk file=D:\Repository\infuq-others\OS\1-MBR-LOADER\infuq-os.vhd maximum=10 type=fixed
+1.安装bochs
+2.配置bochsrc文件
+3.制作镜像
+[root@infuq /] bximage
 
-D:\Repository\infuq-others\OS\tools\nasm-2.15.05\nasm.exe mbr.asm -f bin -o mbr.bin
-	
-D:\Repository\infuq-others\OS\tools\nasm-2.15.05\nasm.exe loader.asm -f bin -o loader.bin
-	
-D:\Repository\infuq-others\OS\tools\dd.exe if=mbr.bin of=infuq-os.vhd bs=512 count=1
-D:\Repository\infuq-others\OS\tools\dd.exe if=loader.bin of=infuq-os.vhd bs=512 count=1 seek=2
+4.制作操作系统
+建议在Ubuntu16-32bit环境下执行
+nasm mbr.asm -f bin -o out/mbr.bin
+nasm loader.asm -f bin -o out/loader.bin
+
+
+dd if=out/mbr.bin of=infuq-os.img bs=512 count=1 conv=notrunc
+dd if=out/loader.bin of=infuq-os.img bs=512 count=4 seek=2  conv=notrunc
+
+
+5.运行
+[root@infuq /] bochs -f bochsrc
+切记:不要在Windows平台模拟运行.
+
+
 

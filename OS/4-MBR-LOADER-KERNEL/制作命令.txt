@@ -5,15 +5,16 @@
 
 4.制作操作系统
 建议在Ubuntu16-32bit环境下执行
-nasm -I ./include/ mbr.asm -f bin -o mbr.bin
-nasm -I ./include/ loader.asm -f bin -o loader.bin
-nasm ./lib/kernel/print.asm -f elf -o print.o
-gcc -I ./lib/kernel/ -c -o main.o main.c
-ld -Ttext 0xc0001500 -e main -o kernel.bin main.o print.o
+nasm -I boot/include/ boot/mbr.asm -f bin -o out/mbr.bin
+nasm -I boot/include/ boot/loader.asm -f bin -o out/loader.bin
+nasm lib/kernel/print.asm -f elf -o out/print.o
+gcc -m32 -I lib/kernel/ -c -o out/main.o kernel/main.c
 
-dd if=mbr.bin of=infuq-os.img bs=512 count=1 conv=notrunc
-dd if=loader.bin of=infuq-os.img bs=512 count=4 seek=2  conv=notrunc
-dd if=kernel.bin of=infuq-os.img bs=512 count=200 seek=9  conv=notrunc
+ld -m elf_i386 -Ttext 0xc0001500 -e main -o out/kernel.bin out/main.o out/print.o
+
+dd if=out/mbr.bin of=infuq-os.img bs=512 count=1 conv=notrunc
+dd if=out/loader.bin of=infuq-os.img bs=512 count=4 seek=2  conv=notrunc
+dd if=out/kernel.bin of=infuq-os.img bs=512 count=200 seek=9  conv=notrunc
 
 5.运行
 [root@infuq /] bochs -f bochsrc

@@ -2,8 +2,7 @@
 ; LOADER_BASE_ADDR equ 0x900
 SECTION LOADER vstart=0x900
 
-jmp protect_mode
-
+; 32个字节
 GDT_BASE:
 	;0描述符
 	dd	0x00000000
@@ -21,21 +20,26 @@ VIDEO_DESC:
 	dd	0x80000007 ; 低32位 10000000 00000000 00000000 00000111
 	dd	0x00c0920b ; 高32位 00000000 11000000 10010010 00001010
 
+
+; 480个字节
+times 60 dq 0   ; 此处预留60个描述符的空位
+
+
 GDT_SIZE equ $ - GDT_BASE
 GDT_LIMIT equ GDT_SIZE -1
 
-times 60 dq 0   ; 此处预留60个描述符的空位
 
 SELECTOR_CODE	equ	0x0001<<3	;SELECTOR_CODE = 8      每个描述符占用8字节,第0个描述符不使用,则代码段的描述符(即第1个描述符)需偏移8个字节
 SELECTOR_DATA	equ	0x0002<<3	;SELECTOR_DATA = 16    每个描述符占用8字节,第0个描述符不使用,则数据段的描述符(即第2个描述符)需偏移16个字节
 SELECTOR_VIDEO	equ	0x0003<<3 	;SELECTOR_VIDEO = 24    每个描述符占用8字节,第0个描述符不使用,则显存段的描述符(即第3个描述符)需偏移24个字节
 
-
+; 6个字节
 gdt_ptr:
 	dw GDT_LIMIT	;低16位表示表的最后一个字节的偏移(表的大小-1)
 	dd GDT_BASE			;高32位表示起始位置(GDT的物理地址)
 
 
+; 32 + 480 + 6 = 518 = 0x206 个字节
 
 ;进入32位
 protect_mode:
