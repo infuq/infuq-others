@@ -1,0 +1,31 @@
+1.安装bochs
+2.配置bochsrc文件
+3.制作镜像
+[root@infuq /] bximage
+
+4.制作操作系统
+建议在Ubuntu16-32bit环境下执行
+
+参考makefile
+
+5.运行
+[root@infuq /] bochs -f bochsrc
+切记:不要在Windows平台模拟运行.
+
+
+
+
+
+附录
+1.查看目标文件格式
+file main.o
+
+2.
+[nasm生成64位目标文件]
+nasm ./lib/kernel/print.asm -f elf64 -o out/print.o
+
+[gcc生成32位目标文件]
+gcc -m32 -I ./lib/kernel/ -c -o out/main.o main.c
+
+[ld链接32位目标文件]
+ld -m elf_i386 -Ttext 0xc0001500 -e main -o out/kernel.bin out/main.o out/print.o

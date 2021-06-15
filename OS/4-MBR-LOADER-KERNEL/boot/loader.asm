@@ -14,7 +14,7 @@ gdt:
 	dd	0x00cf9200 ; 高32位 00000000 11001111 10010010 00000000
 ;3描述符(28Kb的视频段描述符) 段基址=0x000b8000 段界限单位=4K 段界限=0x00007 段范围=4K * 0x00007 = 28Kb
 	dd	0x80000007 ; 低32位 10000000 00000000 00000000 00000111
-	dd	0x00c0920b ; 高32位 00000000 11000000 10010010 00001010
+	dd	0x00c0920b ; 高32位 00000000 11000000 10010010 00001011
 
 gdt_ptr:
 	dw $-gdt-1	;低16位表示表的最后一个字节的偏移(表的大小-1)
@@ -77,7 +77,7 @@ main:
 	; 加载kernel
 	mov eax, KERNEL_START_SECTOR        			; kernel.bin所在的扇区号 0x9
 	mov ebx, KERNEL_BIN_BASE_ADDR    				; 写入的内存地址 0x70000
-	mov ecx, 200        		; 读入的扇区数
+	mov ecx, 200        							; 读入的扇区数
 	call rd_disk_m_32
 
 	
@@ -88,14 +88,14 @@ main:
 
 	; 4.重新设置DGT并重新加载
 	sgdt [gdt_ptr]
-	mov ebx, [gdt_ptr+2]
-	or dword [ebx+0x18+4], 0xc0000000
-	add dword [gdt_ptr+2], 0xc0000000
+	mov ebx, [gdt_ptr + 2]
+	or dword [ebx + 0x18 + 4], 0xc0000000
+	add dword [gdt_ptr + 2], 0xc0000000
 	add esp,0xc0000000
 
 	
 	; 2.页目录表起始地址存入 cr3 寄存器
-	mov eax,PAGE_DIR_TABLE_POS ; PAGE_DIR_TABLE_POS equ 0x100000 ; 页目录表放在物理地址0x100000处
+	mov eax,PAGE_DIR_TABLE_POS 				; PAGE_DIR_TABLE_POS equ 0x100000 ; 页目录表放在物理地址0x100000处
 	mov cr3,eax
 
 
@@ -137,7 +137,7 @@ setup_page:
 	mov ecx,4096 ; 1024项 每项4字节 1024 * 4 = 4096
 	mov esi,0
 .clear_page_dir:
-	mov byte [PAGE_DIR_TABLE_POS+esi],0
+	mov byte [PAGE_DIR_TABLE_POS + esi],0
 	inc esi
 	loop .clear_page_dir ; 每循环一次, ecx - 1
 	
@@ -145,19 +145,19 @@ setup_page:
 .create_pde:
 	mov eax,PAGE_DIR_TABLE_POS
 	add eax,0x1000
-	mov ebx,eax ; ebx = 0x100010 作为第一个页表的位置及属性
-	or eax,111b  ; 0x10001007
-	mov [PAGE_DIR_TABLE_POS],eax
-	mov [PAGE_DIR_TABLE_POS+0xc00],eax
+	mov ebx,eax ; ebx = 0x101000 作为第一个页表的位置及属性
+	or eax,111b  ; 0x101007
+	mov [PAGE_DIR_TABLE_POS + 0x0],eax
+	mov [PAGE_DIR_TABLE_POS + 0xc00],eax
 	sub eax,0x1000
-	mov [PAGE_DIR_TABLE_POS+4*1023],eax
+	mov [PAGE_DIR_TABLE_POS + 4 * 1023],eax
 
 ;开始创建第一个页表的页表项(PTE)   每个页表有1024个页表项,此处只创建256个页表项(对应低端1M内存)
 	mov ecx,256
 	mov esi,0
 	mov edx,111b
 .create_pte:
-	mov [ebx+esi*4],edx ; ebx = 0x100010 作为第一个页表的位置及属性
+	mov [ebx + esi * 4],edx 		; ebx = 0x101000 作为第一个页表的位置及属性
 	add edx,0x1000
 	inc esi
 	loop .create_pte
@@ -170,7 +170,7 @@ setup_page:
 	mov ecx,254
 	mov esi,769
 .create_kernel_pde:
-	mov [ebx+esi*4],eax
+	mov [ebx + esi * 4],eax
 	inc esi
 	add eax,0x1000
 	loop .create_kernel_pde

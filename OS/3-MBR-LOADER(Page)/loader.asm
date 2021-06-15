@@ -15,7 +15,7 @@ gdt:
 	dd	0x00cf9200 ; 高32位 00000000 11001111 10010010 00000000
 ;3描述符(28Kb的视频段描述符) 段基址=0x000b8000 段界限单位=4K 段界限=0x00007 段范围=4K * 0x00007 = 28Kb
 	dd	0x80000007 ; 低32位 10000000 00000000 00000000 00000111
-	dd	0x00c0920b ; 高32位 00000000 11000000 10010010 00001010
+	dd	0x00c0920b ; 高32位 00000000 11000000 10010010 00001011
 
 
 ; lgdt_value占6个字节 
@@ -35,11 +35,13 @@ protect_mode:
 ;进入32位
 	; 1.加载GDT
 	lgdt [gdt_ptr]
+
 	; 2.打开A20
 	in al,0x92
 	or al,0000_0010b
 	out 0x92,al
 	cli
+
 	; 3.cr0第0位置1
 	mov eax,cr0
 	or eax,0x00000001
@@ -94,11 +96,12 @@ or eax,0x80000000
 mov cr0,eax
 
 ; 4.重新设置DGT并重新加载
-sgdt [gdt_ptr]
-mov ebx,[gdt_ptr+2]
-or dword [ebx+0x18+4],0xc0000000
-add dword [gdt_ptr+2],0xc0000000
-add esp,0xc0000000
+sgdt [gdt_ptr]       
+mov ebx,[gdt_ptr + 2]              			 ; gdt_ptr + 2个字节 表示得到GDT的起始物理地址, 即ebx存储GDT的起始物理地址
+or dword [ebx + 0x18 + 4],0xc0000000         ; ebx + 0x18(24个字节) 表示得到视频段的起始地址. 
+											 ; 再加4个字节,则表示取最高32位,       0xc00 指向第768项
+add dword [gdt_ptr + 2],0xc0000000			 ; GDTR寄存器中存储的是虚拟地址		
+add esp,0xc0000000							 ; 栈
 
 lgdt [gdt_ptr]
 
@@ -125,18 +128,19 @@ setup_page:
 	mov ecx,4096 		; 1024项 每项4字节 1024 * 4 = 4096
 	mov esi,0
 .clear_page_dir:
-	mov byte [PAGE_DIR_TABLE_POS+esi],0
+	mov byte [PAGE_DIR_TABLE_POS + esi],0
 	inc esi
 	loop .clear_page_dir ; 每循环一次, ecx - 1
 	
 ;开始创建页目录项(PDE)
 .create_pde:
-	mov eax,PAGE_DIR_TABLE_POS
+	mov eax,PAGE_DIR_TABLE_POS    ; 0x100000
 	add eax,0x1000
 	mov ebx,eax 		; ebx = 0x101000 作为第一个页表的位置及属性
-	or eax,111b  		; 0x101007
-	mov [PAGE_DIR_TABLE_POS],eax
-	mov [PAGE_DIR_TABLE_POS + 0xc00],eax                   0xc00 = 12 * 16^2 = 3072 , 每项4字节 , 则 3072 / 4 = 768
+	;or eax,111b  		; 0x101007
+	add eax,0x00000007
+	mov [PAGE_DIR_TABLE_POS + 0x0],eax
+	mov [PAGE_DIR_TABLE_POS + 0xc00],eax                   ; 0xc00 = 12 * 16^2 = 3072 , 每项4字节 , 则 3072 / 4 = 768
 	sub eax,0x1000
 	mov [PAGE_DIR_TABLE_POS + 4 * 1023],eax
 
@@ -150,15 +154,15 @@ setup_page:
 	inc esi
 	loop .create_pte
 	
-;创建内核其他页表的页目录项(PDE)       此段具体含义可以参考infuq-others\OS\创建页目录和页表.png 第一张图
+;创建内核其他页表(769-1022项)的页目录项(PDE)       此段具体含义可以参考infuq-others\OS\创建页目录和页表.png 第一张图
 	mov eax,PAGE_DIR_TABLE_POS
-	add eax,0x2000
+	add eax,0x2000                ; 指向第2个页表
 	or eax,111b
 	mov ebx,PAGE_DIR_TABLE_POS
 	mov ecx,254               ; 共循环 1022 - 768 = 254 次
 	mov esi,769
 .create_kernel_pde:
-	mov [ebx + esi*4],eax
+	mov [ebx + esi * 4],eax
 	inc esi
 	add eax,0x1000
 	loop .create_kernel_pde
