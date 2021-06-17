@@ -231,10 +231,10 @@ static void mem_pool_init(uint32_t all_mem)
 
 
     // 考虑内存对齐
-    put_str("      kernel_pool vaddr =  0x");
+    put_str("      kernel_pool vaddr  = 0x");
     put_int((uint32_t)(void *)&kernel_pool);
     put_str("\n");
-    put_str("      user_pool vaddr =    0x");
+    put_str("      user_pool vaddr    = 0x");
     put_int((uint32_t)(void *)&user_pool);
     put_str("\n");
     put_str("      kernel_vaddr vaddr = 0x");
@@ -242,7 +242,7 @@ static void mem_pool_init(uint32_t all_mem)
     put_str("\n");
 
 
-    put_str("   memory_init done\n");
+    put_str("   memory_init done\n\n");
 
 }
   
