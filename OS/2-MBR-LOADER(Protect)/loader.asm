@@ -50,30 +50,30 @@ protect_mode:
 [bits 32]
 ;正式进入32位
 main:
-; 使用选择子初始化各段寄存器
-mov ax,SELECTOR_DATA
-mov ds,ax
-mov es,ax
-mov ss,ax
-mov esp,LOADER_STACK_TOP
-mov ax,SELECTOR_VIDEO
-mov gs,ax
+	; 使用选择子初始化各段寄存器
+	mov ax,SELECTOR_DATA
+	mov ds,ax
+	mov es,ax
+	mov ss,ax
+	mov esp,LOADER_STACK_TOP
+	mov ax,SELECTOR_VIDEO
+	mov gs,ax
 
-mov byte [gs:0xa0],'P'
-mov byte [gs:0xa2],'r'
-mov byte [gs:0xa4],'o'
-mov byte [gs:0xa6],'t'
-mov byte [gs:0xa8],'e'
-mov byte [gs:0xaa],'c'
-mov byte [gs:0xac],'t'
-mov byte [gs:0xb0],'O'
-mov byte [gs:0xb2],'N'
-mov byte [gs:0xb4],'('
-mov byte [gs:0xb6],'3'
-mov byte [gs:0xb8],'2'
-mov byte [gs:0xba],'M'
-mov byte [gs:0xbc],'O'
-mov byte [gs:0xbe],'D'
-mov byte [gs:0xc0],')'
+	mov byte [gs:0xa0],'P'
+	mov byte [gs:0xa2],'r'
+	mov byte [gs:0xa4],'o'
+	mov byte [gs:0xa6],'t'
+	mov byte [gs:0xa8],'e'
+	mov byte [gs:0xaa],'c'
+	mov byte [gs:0xac],'t'
+	mov byte [gs:0xb0],'O'
+	mov byte [gs:0xb2],'N'
+	mov byte [gs:0xb4],'('
+	mov byte [gs:0xb6],'3'
+	mov byte [gs:0xb8],'2'
+	mov byte [gs:0xba],'M'
+	mov byte [gs:0xbc],'O'
+	mov byte [gs:0xbe],'D'
+	mov byte [gs:0xc0],')'
 
 jmp $

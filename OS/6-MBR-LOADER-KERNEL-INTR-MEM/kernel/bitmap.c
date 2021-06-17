@@ -52,7 +52,7 @@ int bitmap_scan(struct bitmap *btmp, uint32_t cnt)
         return bit_idx_start;
     }
 
-    // 需要多于1位,还得继续判断
+    // if cnt >1,还得继续判断
     uint32_t bit_left = (btmp->btmp_bytes_len * 8 - bit_idx_start);
     uint32_t next_bit = bit_idx_start + 1;
     uint32_t count = 1; // 已找到的空闲位
@@ -78,6 +78,7 @@ int bitmap_scan(struct bitmap *btmp, uint32_t cnt)
 
         next_bit++;
     }
+    
     return bit_idx_start;
 }
 

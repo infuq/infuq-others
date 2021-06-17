@@ -6,7 +6,7 @@ int main(void)
 	put_str("invoke main[kernel init]\n");
 
 	init_all();
-	asm volatile("sti");
+	asm volatile("sti"); //开中断
 
 	while(1);
 	return 0;

@@ -24,7 +24,7 @@ section .data
                     out 0x20,al
                     
                     push %1
-                    call [idt_table + %1*4] ; 调用实际中断处理程序
+                    call [idt_table + %1 * 4] ; 调用实际中断处理程序
                     jmp intr_exit
                 
             section .data

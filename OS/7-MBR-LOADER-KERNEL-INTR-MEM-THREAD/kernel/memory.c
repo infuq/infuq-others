@@ -205,7 +205,7 @@ static void mem_pool_init(uint32_t all_mem)
   
   
 
-  // 将位图直0
+  // 将位图置0
   bitmap_init(&kernel_pool.pool_bitmap);
   bitmap_init(&user_pool.pool_bitmap);
   

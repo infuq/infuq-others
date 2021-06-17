@@ -9,7 +9,7 @@ void idt_init(void);
  * INTR_ON值为1,表示开中断 */
 enum intr_status // 中断状态
 {
-    INTR_OFF,             // 中断关闭
+    INTR_OFF,               // 中断关闭
     INTR_ON                 // 中断打开
 };
 
@@ -18,5 +18,6 @@ enum intr_status intr_set_status(enum intr_status);
 enum intr_status intr_enable(void);
 enum intr_status intr_disable(void);
 void register_handler(uint8_t vector_no, intr_handler function);
+
 #endif
 

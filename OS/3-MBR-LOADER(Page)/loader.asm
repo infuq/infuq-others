@@ -52,73 +52,75 @@ protect_mode:
 [bits 32]
 ;正式进入32位
 main:
-mov ax,SELECTOR_DATA
-mov ds,ax
-mov es,ax
-mov ss,ax
-mov esp,LOADER_STACK_TOP
-mov ax,SELECTOR_VIDEO
-mov gs,ax
+	mov ax,SELECTOR_DATA
+	mov ds,ax
+	mov es,ax
+	mov ss,ax
+	mov esp,LOADER_STACK_TOP
+	mov ax,SELECTOR_VIDEO
+	mov gs,ax
 
-; 保护模式(分段机制)下打印
-mov byte [gs:0xa0],'P'
-mov byte [gs:0xa2],'r'
-mov byte [gs:0xa4],'o'
-mov byte [gs:0xa6],'t'
-mov byte [gs:0xa8],'e'
-mov byte [gs:0xaa],'c'
-mov byte [gs:0xac],'t'
-mov byte [gs:0xb0],'O'
-mov byte [gs:0xb2],'N'
-mov byte [gs:0xb4],'('
-mov byte [gs:0xb6],'3'
-mov byte [gs:0xb8],'2'
-mov byte [gs:0xba],'M'
-mov byte [gs:0xbc],'O'
-mov byte [gs:0xbe],'D'
-mov byte [gs:0xc0],')'
-
-
-; 以上代码中,段基址+偏移地址 得到的是物理地址.
+	; 保护模式(分段机制)下打印
+	mov byte [gs:0xa0],'P'
+	mov byte [gs:0xa2],'r'
+	mov byte [gs:0xa4],'o'
+	mov byte [gs:0xa6],'t'
+	mov byte [gs:0xa8],'e'
+	mov byte [gs:0xaa],'c'
+	mov byte [gs:0xac],'t'
+	mov byte [gs:0xb0],'O'
+	mov byte [gs:0xb2],'N'
+	mov byte [gs:0xb4],'('
+	mov byte [gs:0xb6],'3'
+	mov byte [gs:0xb8],'2'
+	mov byte [gs:0xba],'M'
+	mov byte [gs:0xbc],'O'
+	mov byte [gs:0xbe],'D'
+	mov byte [gs:0xc0],')'
 
 
-; 1.创建页表并初始化(页目录和页表)
-PAGE_DIR_TABLE_POS equ 0x100000 		; 页目录表放在物理地址0x100000处
-call setup_page
-
-; 2.页目录表起始地址存入 cr3 寄存器
-mov eax,PAGE_DIR_TABLE_POS
-mov cr3,eax
-
-; 3.cr0第31位(PG)置1
-mov eax,cr0
-or eax,0x80000000
-mov cr0,eax
-
-; 4.重新设置DGT并重新加载
-sgdt [gdt_ptr]       
-mov ebx,[gdt_ptr + 2]              			 ; gdt_ptr + 2个字节 表示得到GDT的起始物理地址, 即ebx存储GDT的起始物理地址
-or dword [ebx + 0x18 + 4],0xc0000000         ; ebx + 0x18(24个字节) 表示得到视频段的起始地址. 
-											 ; 再加4个字节,则表示取最高32位,       0xc00 指向第768项
-add dword [gdt_ptr + 2],0xc0000000			 ; GDTR寄存器中存储的是虚拟地址		
-add esp,0xc0000000							 ; 栈
-
-lgdt [gdt_ptr]
+	; 以上代码中,段基址+偏移地址 得到的是物理地址.
 
 
+	; 1.创建页表并初始化(页目录和页表)
+	PAGE_DIR_TABLE_POS equ 0x100000 		; 页目录表放在物理地址0x100000处
+	call setup_page
 
-; 保护模式(分页机制)下打印
-mov byte [gs:0x1e0],'P'
-mov byte [gs:0x1e2],'A'
-mov byte [gs:0x1e4],'G'
-mov byte [gs:0x1e6],'E'
-mov byte [gs:0x1ea],'O'
-mov byte [gs:0x1ec],'N'
-mov byte [gs:0x1ee],'.'
-mov byte [gs:0x1f0],'.'
-mov byte [gs:0x1f2],'.'
+	; 2.页目录表起始地址存入 cr3 寄存器
+	mov eax,PAGE_DIR_TABLE_POS
+	mov cr3,eax
 
-jmp $
+	; 3.cr0第31位(PG)置1
+	mov eax,cr0
+	or eax,0x80000000
+	mov cr0,eax
+
+	; 4.重新设置DGT并重新加载
+	sgdt [gdt_ptr]       
+	mov ebx,[gdt_ptr + 2]              			 ; gdt_ptr + 2个字节 表示得到GDT的起始物理地址, 即ebx存储GDT的起始物理地址
+	or dword [ebx + 0x18 + 4],0xc0000000         ; ebx + 0x18(24个字节) 表示得到视频段的起始地址. 
+												 ; 再加4个字节,则表示取最高32位,       0xc00 指向第768项
+	add dword [gdt_ptr + 2],0xc0000000			 ; GDTR寄存器中存储的是虚拟地址		
+	add esp,0xc0000000							 ; 栈
+
+	lgdt [gdt_ptr]
+
+
+	jmp dword SELECTOR_CODE:main0 ; 刷新流水线
+
+main0:
+	; 保护模式(分页机制)下打印
+	mov byte [gs:0x1e0],'P'
+	mov byte [gs:0x1e2],'A'
+	mov byte [gs:0x1e4],'G'
+	mov byte [gs:0x1e6],'E'
+	mov byte [gs:0x1ea],'O'
+	mov byte [gs:0x1ec],'N'
+	mov byte [gs:0x1ee],'.'
+	mov byte [gs:0x1f0],'.'
+	mov byte [gs:0x1f2],'.'
+
+	jmp $
 
 
 
@@ -149,7 +151,7 @@ setup_page:
 	mov esi,0
 	mov edx,111b
 .create_pte:
-	mov [ebx + esi*4],edx 		; ebx = 0x101000 作为第一个页表的位置及属性
+	mov [ebx + esi * 4],edx 		; ebx = 0x101000 作为第一个页表的位置及属性
 	add edx,0x1000
 	inc esi
 	loop .create_pte

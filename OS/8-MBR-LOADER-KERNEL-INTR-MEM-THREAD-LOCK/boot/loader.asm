@@ -54,7 +54,7 @@ protect_mode:
 	; 3.cr0第0位置1
 	mov eax,cr0
 	or eax,0x00000001
-	mov cr0,eax	
+	mov cr0,eax
 	
 	jmp dword SELECTOR_CODE:main ; 刷新流水线
 	
@@ -100,20 +100,20 @@ main:
 	call setup_page
 	
 
-	; 4.重新设置DGT并重新加载
+	; 2.重新设置DGT并重新加载
 	sgdt [gdt_ptr]
 	mov ebx, [gdt_ptr + 2]
-	or dword [ebx+0x18 + 4], 0xc0000000
+	or dword [ebx + 0x18 + 4], 0xc0000000
 	add dword [gdt_ptr + 2], 0xc0000000
 	add esp,0xc0000000
 
 	
-	; 2.页目录表起始地址存入 cr3 寄存器
+	; 3.页目录表起始地址存入 cr3 寄存器
 	mov eax,PAGE_DIR_TABLE_POS ; PAGE_DIR_TABLE_POS equ 0x100000 ; 页目录表放在物理地址0x100000处
 	mov cr3,eax
 
 
-	; 3.cr0第31位(PG)置1
+	; 4.cr0第31位(PG)置1
 	mov eax,cr0
 	or eax,0x80000000
 	mov cr0,eax
@@ -121,7 +121,8 @@ main:
 	
 	lgdt [gdt_ptr]
 
-
+	jmp dword SELECTOR_CODE:main0 ; 刷新流水线
+main0:
 	; 保护模式(分页机制)下打印
 	mov byte [gs:0x1e0],'P'
 	mov byte [gs:0x1e2],'A'
@@ -134,14 +135,12 @@ main:
 	mov byte [gs:0x1f2],'.'
 
 
+	; 内核镜像
     call kernel_init
     
 	mov esp, 0xc009f000
-    jmp KERNEL_ENTRY_POINT
+    jmp KERNEL_ENTRY_POINT ; 0xc0001500
 
-
-
-	jmp $
 
 
 

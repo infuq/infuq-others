@@ -1,0 +1,29 @@
+
+---
+
+
+info tss
+info gdt
+info idt
+info flags
+creg         CR0,CR2,CR3,...
+r	查看通用寄存器,eflags
+sreg	查看段寄存器,gdt...
+
+查看物理地址0x100000中的数据
+xp 0x100000
+
+
+
+---
+
+gcc -c -o main.o main.c
+ld main.o -Ttext 0xc0001500 -e main -o kernel.bin
+readelf -S main.o
+readelf -a kernel.bin
+
+
+
+
+
+
