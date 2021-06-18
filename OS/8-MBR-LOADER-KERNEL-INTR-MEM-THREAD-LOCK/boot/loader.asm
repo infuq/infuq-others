@@ -35,7 +35,7 @@ SELECTOR_VIDEO	equ	0x0003<<3 	;SELECTOR_VIDEO = 24    每个描述符占用8字�
 
 ; 6个字节
 gdt_ptr:
-	dw GDT_LIMIT	;低16位表示表的最后一个字节的偏移(表的大小-1)
+	dw GDT_LIMIT		;低16位表示表的最后一个字节的偏移(表的大小-1)
 	dd GDT_BASE			;高32位表示起始位置(GDT的物理地址)
 
 
@@ -65,7 +65,7 @@ main:
 	mov ds,ax
 	mov es,ax
 	mov ss,ax
-	mov esp,LOADER_STACK_TOP
+	mov esp,LOADER_STACK_TOP   ; 栈所在位置0x900
 	mov ax,SELECTOR_VIDEO
 	mov gs,ax
 
@@ -105,7 +105,8 @@ main:
 	mov ebx, [gdt_ptr + 2]
 	or dword [ebx + 0x18 + 4], 0xc0000000
 	add dword [gdt_ptr + 2], 0xc0000000
-	add esp,0xc0000000
+
+	add esp,0xc0000000   ; 栈所在位置0xc0000900
 
 	
 	; 3.页目录表起始地址存入 cr3 寄存器
@@ -136,10 +137,10 @@ main0:
 
 
 	; 内核镜像
-    call kernel_init
+    call kernel_init        ; 栈所在位置0xc0000900
     
-	mov esp, 0xc009f000
-    jmp KERNEL_ENTRY_POINT ; 0xc0001500
+	mov esp, 0xc009f000     ; 将内核栈的位置移动到0xc009f000处
+    jmp KERNEL_ENTRY_POINT  ; 0xc0001500
 
 
 
