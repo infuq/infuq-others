@@ -4,6 +4,7 @@
 #include "thread.h"
 #include "interrupt.h"
 #include "sync.h"
+#include "console.h"
 
 void k_thread_a(void *);
 void k_thread_b(void *);

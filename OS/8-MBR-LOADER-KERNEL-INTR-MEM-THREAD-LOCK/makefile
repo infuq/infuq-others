@@ -20,9 +20,10 @@ kernel.bin: $(kernelfiles)
 	gcc -m32 -I ./lib/kernel/ -I ./thread -c -fno-builtin -fno-stack-protector -o out/sync.o thread/sync.c
 	gcc -m32 -I ./lib/kernel/ -I ./thread -c -fno-builtin -fno-stack-protector -o out/thread.o thread/thread.c
 	gcc -m32 -I ./lib/kernel/ -I ./thread -I ./device -c -fno-builtin -fno-stack-protector -o out/timer.o device/timer.c
-	gcc -m32 -I ./lib/kernel/ -I ./thread -c -fno-builtin -fno-stack-protector -o out/main.o kernel/main.c
+	gcc -m32 -I ./lib/kernel/ -I ./thread -I ./device -c -fno-builtin -fno-stack-protector -o out/console.o device/console.c
+	gcc -m32 -I ./lib/kernel/ -I ./device -I ./thread -c -fno-builtin -fno-stack-protector -o out/main.o kernel/main.c
 
-	ld -m elf_i386 -Ttext 0xc0001500 -e main -o out/kernel.bin out/main.o out/print.o out/init.o out/interrupt.o out/kernel.o out/bitmap.o out/memory.o out/string.o out/sync.o out/thread.o out/switch.o out/list.o out/timer.o
+	ld -m elf_i386 -Ttext 0xc0001500 -e main -o out/kernel.bin out/main.o out/print.o out/init.o out/interrupt.o out/kernel.o out/bitmap.o out/memory.o out/string.o out/sync.o out/thread.o out/switch.o out/list.o out/timer.o out/console.o
 
 
 all: boot.bin kernel.bin
