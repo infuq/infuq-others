@@ -49,7 +49,7 @@ static void *vaddr_get(enum pool_flags pf, uint32_t pg_cnt)
         // 用户内存池
     }
 
-    return (void*)vaddr_start;
+    return (void *)vaddr_start;
 }
 
 

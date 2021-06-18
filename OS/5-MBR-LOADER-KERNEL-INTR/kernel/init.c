@@ -8,4 +8,5 @@ void init_all()
 	put_str("invoke init_all\n");
 	
 	idt_init();
+	
 }
