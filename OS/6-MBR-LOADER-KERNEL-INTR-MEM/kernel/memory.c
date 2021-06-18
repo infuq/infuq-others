@@ -48,7 +48,7 @@ static void *vaddr_get(enum pool_flags pf, uint32_t pg_cnt)
     }
     else { }  // 用户内存池 
 
-    return (void*)vaddr_start;
+    return (void *)vaddr_start;
 
 }
 
@@ -79,11 +79,13 @@ static void *palloc(struct pool *m_pool)
         return NULL;
     }
 
-    // 将此位置1将
+    // 将此位置1
     bitmap_set(&m_pool->pool_bitmap, bit_idx, 1);
-    uint32_t page_phyaddr = ((bit_idx * PG_SIZE) + m_pool->phy_addr_start);
-    return (void*)page_phyaddr;
+    // uint32_t page_phyaddr = ((bit_idx * PG_SIZE) + m_pool->phy_addr_start);
+    uint32_t page_phyaddr = m_pool->phy_addr_start + bit_idx * PG_SIZE;
+    return (void *)page_phyaddr;
 }
+
 
 // 页表中添加虚拟地址_vaddr与物理地址_page_phyaddr的映射
 static void page_table_add(void *_vaddr, void *_page_phyaddr)
@@ -96,7 +98,8 @@ static void page_table_add(void *_vaddr, void *_page_phyaddr)
     // 判断页目录项的p位,为1表示该表已存在
     if (*pde & 0x00000001)
     {  
-        if(!(*pte & 0x00000001)) {
+        if(!(*pte & 0x00000001))
+        {
             *pte = (page_phyaddr | PG_US_U | PG_RW_W | PG_P_1);
         }
         else
@@ -114,6 +117,8 @@ static void page_table_add(void *_vaddr, void *_page_phyaddr)
     }
 }
 
+
+
 // 分配pg_cnt个页空间,成功返回起始虚拟地址,失败返回NULL.
 void *malloc_page(enum pool_flags pf, uint32_t pg_cnt)
 {
@@ -130,7 +135,8 @@ void *malloc_page(enum pool_flags pf, uint32_t pg_cnt)
     struct pool *mem_pool = pf & PF_KERNEL ? &kernel_pool : &user_pool;
 
     // 虚拟地址和物理地址逐个映射
-    while (cnt-- > 0) {
+    while (cnt-- > 0)
+    {
         void *page_phyaddr = palloc(mem_pool);
         if (page_phyaddr == NULL)
         {

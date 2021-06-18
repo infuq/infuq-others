@@ -21,7 +21,7 @@ struct task_struct *running_thread()
 {
     uint32_t esp;
     asm ("mov %%esp, %0" : "=g" (esp));
-    // 返回esp整数部分,即pcb起始地址
+    // 返回esp整数部分,即PCB起始地址
     return (struct task_struct*)(esp & 0xfffff000);
 }
 
@@ -143,7 +143,8 @@ void schedule()
 
 
 /* 初始化线程环境 */
-void thread_init(void) {
+void thread_init(void)
+{
     put_str("\nthread_init start\n");
 
     list_init(&thread_ready_list);
