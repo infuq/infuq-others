@@ -11,6 +11,8 @@ section .data
         %macro VECTOR 2     ; VECTOR表示宏名, 2表示参数个数
             section .text
                 intr%1entry:    ; 中断处理程序入口地址
+
+                    ; 会被压入到0xc009f000位置的中断栈,在这之前,CPU已经压入了一些其他寄存器内容
                     %2
                     push ds
                     push es
@@ -46,6 +48,8 @@ section .text
 
 ; 33个中断
 ; 调用宏VECTOR
+; 对于参数是ZERO的宏调用,它们对应的中断不包括错误码,因此需要手动压入错误码
+; 对于参数是ERROR_CODE的宏调用,它们对应的中断包括错误码,错误码是由CPU自动压入栈,不需要手动再压入.
 VECTOR 0x00,ZERO
 VECTOR 0x01,ZERO
 VECTOR 0x02,ZERO

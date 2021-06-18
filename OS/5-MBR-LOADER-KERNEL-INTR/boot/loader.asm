@@ -123,7 +123,7 @@ main0:
 
     call kernel_init
     
-	mov esp, 0xc009f000
+	mov esp, 0xc009f000      ; 中断栈的栈顶,起始位置
     jmp KERNEL_ENTRY_POINT   ; 0xc0001500
 
 

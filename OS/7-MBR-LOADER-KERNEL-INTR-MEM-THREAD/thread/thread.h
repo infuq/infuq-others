@@ -8,7 +8,7 @@
 #define TASK_NAME_LEN 16
 #define MAX_FILES_OPEN_PER_PROC 8
 /* 自定义通用函数类型,它将在很多线程函数中做为形参类型 */
-typedef void thread_func(void*);
+typedef void thread_func(void *);
 typedef int16_t pid_t;
 
 
@@ -30,7 +30,7 @@ enum task_status
 * 此结构用于中断发生时保护程序(线程或进程)的上下文环境:
 * 进程或线程被外部中断或软中断打断时,会按照此结构压入上下文
 * 寄存器,  intr_exit中的出栈操作是此结构的逆操作
-* 此栈在线程自己的内核栈中位置固定,所在页的最顶端
+* 此栈在线程自己的内核栈中位置固定(所在页的最顶端).
 ********************************************/
 struct intr_stack
 {
@@ -47,7 +47,7 @@ struct intr_stack
     uint32_t fs;
     uint32_t es;
     uint32_t ds;
-    // 以下由 cpu 从低特权级进入高特权级时压入
+    // 以下由 CPU 从低特权级进入高特权级时压入
     uint32_t err_code;
     void (*eip) (void);
     uint32_t cs;
@@ -70,10 +70,10 @@ struct thread_stack
     uint32_t edi;
     uint32_t esi;
 
-    // 线程第一次执行时,eip指向待调用的函数kernel_thread 其它时候,eip是指向switch_to的返回地址
+    // 线程第一次执行时,eip指向待调用的函数kernel_thread, 其它时候,eip指向switch_to的返回地址
     void (*eip) (thread_func *func, void *func_arg);
     
-    /*****   以下仅供第一次被调度上cpu时使用   ****/
+    /*****   以下仅供第一次被调度上CPU时使用   ****/
     // 参数unused_ret只为占位置充数为返回地址
     void (*unused_retaddr);
     thread_func *function; // 由kernel_thread所调用的函数名
@@ -81,7 +81,7 @@ struct thread_stack
 };
 
 
-// 进程或线程的 pcb 程序控制块
+// 进程或线程的 PCB 程序控制块
 struct task_struct
 {
     uint32_t    *self_kstack;
@@ -90,7 +90,7 @@ struct task_struct
     char        name[TASK_NAME_LEN];
     uint8_t     priority;
     uint8_t     ticks; // 每次在处理器上执行的时间嘀嗒数
-    uint32_t    elapsed_ticks; // 此任务自上cpu运行后至今占用了多少cpu嘀嗒数
+    uint32_t    elapsed_ticks; // 此任务自上CPU运行后至今占用了多少CPU嘀嗒数
     struct list_elem general_tag; // 线程在一般的队列中的结点
     struct list_elem all_list_tag; // 线程队列thread_all_list中的结点
     uint32_t    *pgdir; // 进程自己页表的虚拟地址
@@ -98,7 +98,7 @@ struct task_struct
     struct      mem_block_desc u_block_desc[DESC_CNT]; // 用户进程内存块描述符
     int32_t     fd_table[MAX_FILES_OPEN_PER_PROC]; // 已打开文件数组
     uint32_t    cwd_inode_nr; // 进程所在的工作目录的inode编号
-    pid_t       parent_pid; // 父进程pid
+    pid_t       parent_pid; // 父进程PID
     int8_t      exit_status; // 进程结束时自己调用exit传入的参数
     uint32_t    stack_magic; // 用这串数字做栈的边界标记,用于检测栈的溢出
 };

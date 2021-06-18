@@ -11,6 +11,7 @@ section .data
         %macro VECTOR 2     ; VECTOR表示宏名, 2表示参数个数
             section .text
                 intr%1entry:    ; 中断处理程序入口地址
+                    ; 压入中断栈
                     %2
                     push ds
                     push es

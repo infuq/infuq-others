@@ -150,7 +150,7 @@ void *malloc_page(enum pool_flags pf, uint32_t pg_cnt)
 }
 
 
-// 从内核物理内存池中申请1页内存,成功返回虚拟地址,失败NULL.
+// 从内核物理内存池中申请1页内存,成功返回虚拟地址,失败返回NULL.
 void *get_kernel_pages(uint32_t pg_cnt)
 {
     void *vaddr = malloc_page(PF_KERNEL, pg_cnt);

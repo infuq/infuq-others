@@ -219,8 +219,6 @@ void idt_init()
 }
 
 
-
- 
 // 注册中断处理函数
 void register_handler(uint8_t vector_no, intr_handler function)
 {

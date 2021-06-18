@@ -23,6 +23,7 @@ int main(void)
 
     struct task_struct *thread1 = thread_start("k_thread_1", 10, k_thread_1, "[thread_1 ]");
     struct task_struct *thread2 = thread_start("k_thread_2", 16, k_thread_2, "[thread_2 ]");
+    // 打印PCB地址
     put_str("thread1 vaddr = 0x");
     put_int((uint32_t)(void *)thread1);
     put_str("\n");
