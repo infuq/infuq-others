@@ -29,7 +29,7 @@ static void frequency_set(uint8_t counter_port, uint8_t counter_no, uint8_t rwl,
 
 
 // 时钟的中断处理函数
-static void intr_timer_handler(void)
+static void intr_timer_handler()
 {
     struct task_struct *cur_thread = running_thread();
     cur_thread->elapsed_ticks++;

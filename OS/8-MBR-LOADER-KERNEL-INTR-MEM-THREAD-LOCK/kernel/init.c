@@ -18,9 +18,11 @@ void init_all()
 	// 内存管理
 	mem_init();
 
+	// 初始化全局控制台锁
 	console_init();
 
-	thread_init();
+	// 初始化main线程
+	main_thread_init();
    
    	timer_init();
 	

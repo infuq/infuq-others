@@ -6,8 +6,9 @@
 #include "sync.h"
 #include "console.h"
 
-void k_thread_a(void *);
-void k_thread_b(void *);
+
+void k_thread_1(void *);
+void k_thread_2(void *);
 
 
 int main(void)
@@ -16,8 +17,7 @@ int main(void)
 
 	init_all();
 
-	// 允许中断发生                  cli表示禁止中断发生
-	// asm volatile("sti");
+	
 
 	void *addr = get_kernel_pages(3);
 	put_str("\nget_kernel_pages start vaddr = 0x");
@@ -25,22 +25,30 @@ int main(void)
     put_str("\n\n");
 
 
-    thread_start("k_thread_a", 31, k_thread_a, "TA   ");
-    thread_start("k_thread_b", 8, k_thread_b, "TB   ");
+    struct task_struct *thread1 = thread_start("k_thread_1", 10, k_thread_1, "[thread_1 ]");
+    struct task_struct *thread2 = thread_start("k_thread_2", 16, k_thread_2, "[thread_2 ]");
+    // 打印PCB地址
+    put_str("thread1 vaddr = 0x");
+    put_int((uint32_t)(void *)thread1);
+    put_str("\n");
+    put_str("thread2 vaddr = 0x");
+    put_int((uint32_t)(void *)thread2);
+    put_str("\n\n");
 
     intr_enable();
 
+    
 
 	while (1)
 	{
-		console_put_str("main ");
+		console_put_str("[thread_main ]");
 	}
 
 	return 0;
 }
 
 
-void k_thread_a(void *arg)
+void k_thread_1(void *arg)
 {
 	char *pArg = arg;
 	while (1)
@@ -48,7 +56,7 @@ void k_thread_a(void *arg)
 		console_put_str(pArg);
 	}
 }
-void k_thread_b(void *arg)
+void k_thread_2(void *arg)
 {
 	char *pArg = arg;
 	while (1)

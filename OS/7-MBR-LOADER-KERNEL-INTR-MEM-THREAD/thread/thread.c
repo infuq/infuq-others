@@ -10,9 +10,9 @@
 #define PG_SIZE 4096
 
 
-struct task_struct *main_thread; // 主线程 PCB
-struct list thread_ready_list; // 就绪队列
-struct list thread_all_list; // 所有任务队列
+struct task_struct *main_thread;    // 主线程 PCB
+struct list thread_ready_list;      // 就绪队列
+struct list thread_all_list;        // 所有任务队列
 static struct list_elem *thread_tag; // 用于保存队列中的线程结点
 extern void switch_to(struct task_struct *cur, struct task_struct *next);
 
@@ -90,7 +90,7 @@ struct task_struct *thread_start(char *name, int prio, thread_func function, voi
 }
 
 
-static void make_main_thread(void)
+static void make_main_thread()
 {
     main_thread = running_thread();
     init_thread(main_thread, "main", 31);

@@ -13,8 +13,6 @@ typedef int16_t pid_t;
 
 
 
-
-
 // 进程或线程的状态
 enum task_status
 {
@@ -25,6 +23,7 @@ enum task_status
     TASK_HANGING,
     TASK_DIED
 };
+
 
 /***********   中断栈intr_stack   ***********
 * 此结构用于中断发生时保护程序(线程或进程)的上下文环境:
@@ -47,9 +46,11 @@ struct intr_stack
     uint32_t fs;
     uint32_t es;
     uint32_t ds;
-    // 以下由 cpu 从低特权级进入高特权级时压入
+
+
+    // 以下由 CPU 从低特权级进入高特权级时压入
     uint32_t err_code;
-    void (*eip) (void);
+    void (*eip)(void);
     uint32_t cs;
     uint32_t eflags;
     void *esp;
@@ -106,7 +107,7 @@ struct task_struct
 struct task_struct *thread_start(char *name, int prio, thread_func function, void *func_arg);
 
 
-void thread_init(void);
+void main_thread_init();
 
 struct task_struct *running_thread();
 
