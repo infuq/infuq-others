@@ -1,6 +1,8 @@
 #include "ioqueue.h"
 #include "interrupt.h"
 #include "global.h"
+#include "debug.h"
+
 
 #define NULL ((void *)0)
 
@@ -23,7 +25,7 @@ static int32_t next_pos(int32_t pos)
 /* 判断队列是否已满 */
 bool ioq_full(struct ioqueue *ioq)
 {
-
+    ASSERT(intr_get_status() == INTR_OFF);
     return(next_pos( ioq->head ) == ioq->tail);
 }
 
@@ -31,7 +33,7 @@ bool ioq_full(struct ioqueue *ioq)
 /* 判断队列是否已空 */
 bool ioq_empty(struct ioqueue *ioq)
 {
-
+    ASSERT(intr_get_status() == INTR_OFF);
     return(ioq->head == ioq->tail);
 }
 
@@ -40,6 +42,7 @@ bool ioq_empty(struct ioqueue *ioq)
 static void ioq_wait(struct task_struct **waiter)
 {
 
+    ASSERT(*waiter == NULL && waiter != NULL);
     *waiter = running_thread();
     thread_block( TASK_BLOCKED );
 }
@@ -48,7 +51,7 @@ static void ioq_wait(struct task_struct **waiter)
 /* 唤醒waiter */
 static void wakeup(struct task_struct **waiter)
 {
-
+    ASSERT(*waiter == NULL);
     thread_unblock( *waiter );
     *waiter = NULL;
 }
@@ -57,11 +60,12 @@ static void wakeup(struct task_struct **waiter)
 /* 消费者从ioq队列中获取一个字符 */
 char ioq_getchar(struct ioqueue *ioq)
 {
+    ASSERT(intr_get_status() == INTR_OFF);
 
-/* 若缓冲区(队列)为空,把消费者ioq->consumer记为当前线程自己,
- * 目的是将来生产者往缓冲区里装商品后,生产者知道唤醒哪个消费者,
- * 也就是唤醒当前线程自己*/
-    while ( ioq_empty( ioq ) )
+    /* 若缓冲区(队列)为空,把消费者ioq->consumer记为当前线程自己,
+     * 目的是将来生产者往缓冲区里装商品后,生产者知道唤醒哪个消费者,
+     * 也就是唤醒当前线程自己*/
+    while (ioq_empty(ioq))
     {
         lock_acquire( &ioq->lock );
         ioq_wait( &ioq->consumer );
@@ -84,10 +88,12 @@ char ioq_getchar(struct ioqueue *ioq)
 void ioq_putchar(struct ioqueue *ioq, char byte)
 {
 
-/* 若缓冲区(队列)已经满了,把生产者ioq->producer记为自己,
- * 为的是当缓冲区里的东西被消费者取完后让消费者知道唤醒哪个生产者,
- * 也就是唤醒当前线程自己*/
-    while ( ioq_full( ioq ) )
+    ASSERT(intr_get_status() == INTR_OFF);
+
+    /* 若缓冲区(队列)已经满了,把生产者ioq->producer记为自己,
+     * 为的是当缓冲区里的东西被消费者取完后让消费者知道唤醒哪个生产者,
+     * 也就是唤醒当前线程自己*/
+    while (ioq_full(ioq))
     {
         lock_acquire( &ioq->lock );
         ioq_wait( &ioq->producer );

@@ -8,7 +8,6 @@
 #include "ioqueue.h"
 #include "keyboard.h"
 
-
 void k_thread_1(void *);
 void k_thread_2(void *);
 
@@ -50,21 +49,24 @@ int main(void)
 }
 
 
+
 void k_thread_1(void *arg)
 {
 
 	char *pArg = arg;
-	
-	enum intr_status old_status = intr_disable();
-	if (!ioq_empty(&kbd_buf))
+	while (1)
 	{
-		console_put_str(pArg);
-		char byte = ioq_getchar(&kbd_buf);
-		console_put_char(byte);
-		console_put_str("\n");
+		enum intr_status old_status = intr_disable();
+		if (!ioq_empty(&kbd_buf))
+		{
+			console_put_str(pArg);
+			char byte = ioq_getchar(&kbd_buf);
+			console_put_char(byte);
+			console_put_str("\n");
+		}
+		intr_set_status(old_status);
 	}
-	intr_set_status(old_status);
-
+	
 
 }
 
@@ -74,15 +76,18 @@ void k_thread_2(void *arg)
 
 	char *pArg = arg;
 	
-	enum intr_status old_status = intr_disable();
-	if (!ioq_empty(&kbd_buf))
+	while (1)
 	{
-		console_put_str(pArg);
-		char byte = ioq_getchar(&kbd_buf);
-		console_put_char(byte);
-		console_put_str("\n");
+		enum intr_status old_status = intr_disable();
+		if (!ioq_empty(&kbd_buf))
+		{
+			console_put_str(pArg);
+			char byte = ioq_getchar(&kbd_buf);
+			console_put_char(byte);
+			console_put_str("\n");
+		}
+		intr_set_status(old_status);
 	}
-	intr_set_status(old_status);
 
 
 }

@@ -7,6 +7,7 @@
 
 #define KBD_BUF_PORT 0x60       /* 键盘buffer寄存器端口号为0x60 */
 
+
 /* 用转义字符定义部分控制字符 */
 #define esc     '\033'  /* 八进制表示字符,也可以用十六进制'\x1b' */
 #define backspace   '\b'
@@ -44,68 +45,68 @@ static bool ctrl_status, shift_status, alt_status, caps_lock_status, ext_scancod
 
 /* 以通码make_code为索引的二维数组 */
 static char keymap[][2] = {
-/* 扫描码   未与shift组合  与shift组合*/
-/* ---------------------------------- */
-/* 0x00 */ { 0,          0          },
-/* 0x01 */ { esc,        esc        },
-/* 0x02 */ { '1',        '!'        },
-/* 0x03 */ { '2',        '@'        },
-/* 0x04 */ { '3',        '#'        },
-/* 0x05 */ { '4',        '$'        },
-/* 0x06 */ { '5',        '%'        },
-/* 0x07 */ { '6',        '^'        },
-/* 0x08 */ { '7',        '&'        },
-/* 0x09 */ { '8',        '*'        },
-/* 0x0A */ { '9',        '('        },
-/* 0x0B */ { '0',        ')'        },
-/* 0x0C */ { '-',        '_'        },
-/* 0x0D */ { '=',        '+'        },
-/* 0x0E */ { backspace,      backspace      },
-/* 0x0F */ { tab,        tab        },
-/* 0x10 */ { 'q',        'Q'        },
-/* 0x11 */ { 'w',        'W'        },
-/* 0x12 */ { 'e',        'E'        },
-/* 0x13 */ { 'r',        'R'        },
-/* 0x14 */ { 't',        'T'        },
-/* 0x15 */ { 'y',        'Y'        },
-/* 0x16 */ { 'u',        'U'        },
-/* 0x17 */ { 'i',        'I'        },
-/* 0x18 */ { 'o',        'O'        },
-/* 0x19 */ { 'p',        'P'        },
-/* 0x1A */ { '[',        '{'        },
-/* 0x1B */ { ']',        '}'        },
-/* 0x1C */ { enter,      enter      },
-/* 0x1D */ { ctrl_l_char,    ctrl_l_char    },
-/* 0x1E */ { 'a',        'A'        },
-/* 0x1F */ { 's',        'S'        },
-/* 0x20 */ { 'd',        'D'        },
-/* 0x21 */ { 'f',        'F'        },
-/* 0x22 */ { 'g',        'G'        },
-/* 0x23 */ { 'h',        'H'        },
-/* 0x24 */ { 'j',        'J'        },
-/* 0x25 */ { 'k',        'K'        },
-/* 0x26 */ { 'l',        'L'        },
-/* 0x27 */ { ';',        ':'        },
-/* 0x28 */ { '\'',       '"'        },
-/* 0x29 */ { '`',        '~'        },
-/* 0x2A */ { shift_l_char,   shift_l_char   },
-/* 0x2B */ { '\\',       '|'        },
-/* 0x2C */ { 'z',        'Z'        },
-/* 0x2D */ { 'x',        'X'        },
-/* 0x2E */ { 'c',        'C'        },
-/* 0x2F */ { 'v',        'V'        },
-/* 0x30 */ { 'b',        'B'        },
-/* 0x31 */ { 'n',        'N'        },
-/* 0x32 */ { 'm',        'M'        },
-/* 0x33 */ { ',',        '<'        },
-/* 0x34 */ { '.',        '>'        },
-/* 0x35 */ { '/',        '?'        },
-/* 0x36 */ { shift_r_char,   shift_r_char   },
-/* 0x37 */ { '*',        '*'        },
-/* 0x38 */ { alt_l_char,     alt_l_char     },
-/* 0x39 */ { ' ',        ' '        },
-/* 0x3A */ { caps_lock_char, caps_lock_char }
-/*其它按键暂不处理*/
+    /* 扫描码   未与shift组合  与shift组合*/
+    /* ---------------------------------- */
+    /* 0x00 */ { 0,          0          },
+    /* 0x01 */ { esc,        esc        },
+    /* 0x02 */ { '1',        '!'        },
+    /* 0x03 */ { '2',        '@'        },
+    /* 0x04 */ { '3',        '#'        },
+    /* 0x05 */ { '4',        '$'        },
+    /* 0x06 */ { '5',        '%'        },
+    /* 0x07 */ { '6',        '^'        },
+    /* 0x08 */ { '7',        '&'        },
+    /* 0x09 */ { '8',        '*'        },
+    /* 0x0A */ { '9',        '('        },
+    /* 0x0B */ { '0',        ')'        },
+    /* 0x0C */ { '-',        '_'        },
+    /* 0x0D */ { '=',        '+'        },
+    /* 0x0E */ { backspace,      backspace      },
+    /* 0x0F */ { tab,        tab        },
+    /* 0x10 */ { 'q',        'Q'        },
+    /* 0x11 */ { 'w',        'W'        },
+    /* 0x12 */ { 'e',        'E'        },
+    /* 0x13 */ { 'r',        'R'        },
+    /* 0x14 */ { 't',        'T'        },
+    /* 0x15 */ { 'y',        'Y'        },
+    /* 0x16 */ { 'u',        'U'        },
+    /* 0x17 */ { 'i',        'I'        },
+    /* 0x18 */ { 'o',        'O'        },
+    /* 0x19 */ { 'p',        'P'        },
+    /* 0x1A */ { '[',        '{'        },
+    /* 0x1B */ { ']',        '}'        },
+    /* 0x1C */ { enter,      enter      },
+    /* 0x1D */ { ctrl_l_char,    ctrl_l_char    },
+    /* 0x1E */ { 'a',        'A'        },
+    /* 0x1F */ { 's',        'S'        },
+    /* 0x20 */ { 'd',        'D'        },
+    /* 0x21 */ { 'f',        'F'        },
+    /* 0x22 */ { 'g',        'G'        },
+    /* 0x23 */ { 'h',        'H'        },
+    /* 0x24 */ { 'j',        'J'        },
+    /* 0x25 */ { 'k',        'K'        },
+    /* 0x26 */ { 'l',        'L'        },
+    /* 0x27 */ { ';',        ':'        },
+    /* 0x28 */ { '\'',       '"'        },
+    /* 0x29 */ { '`',        '~'        },
+    /* 0x2A */ { shift_l_char,   shift_l_char   },
+    /* 0x2B */ { '\\',       '|'        },
+    /* 0x2C */ { 'z',        'Z'        },
+    /* 0x2D */ { 'x',        'X'        },
+    /* 0x2E */ { 'c',        'C'        },
+    /* 0x2F */ { 'v',        'V'        },
+    /* 0x30 */ { 'b',        'B'        },
+    /* 0x31 */ { 'n',        'N'        },
+    /* 0x32 */ { 'm',        'M'        },
+    /* 0x33 */ { ',',        '<'        },
+    /* 0x34 */ { '.',        '>'        },
+    /* 0x35 */ { '/',        '?'        },
+    /* 0x36 */ { shift_r_char,   shift_r_char   },
+    /* 0x37 */ { '*',        '*'        },
+    /* 0x38 */ { alt_l_char,     alt_l_char     },
+    /* 0x39 */ { ' ',        ' '        },
+    /* 0x3A */ { caps_lock_char, caps_lock_char }
+    /*其它按键暂不处理*/
 };
 
 /* 键盘中断处理程序 */
@@ -198,20 +199,18 @@ static void intr_keyboard_handler()
         if ( cur_char )
         {
             /*****************  快捷键ctrl+l和ctrl+u的处理 *********************
-             * 下面是把ctrl+l和ctrl+u这两种组合键产生的字符置为:
-             * cur_char的asc码-字符a的asc码, 此差值比较小,
-             * 属于asc码表中不可见的字符部分.故不会产生可见字符.
-             * 我们在shell中将ascii值为l-a和u-a的分别处理为清屏和删除输入的快捷键*/
-            if ( (ctrl_down_last && cur_char == 'l') || (ctrl_down_last && cur_char == 'u') )
-            {
+              * 下面是把ctrl+l和ctrl+u这两种组合键产生的字符置为:
+              * cur_char的asc码-字符a的asc码, 此差值比较小,
+              * 属于asc码表中不可见的字符部分.故不会产生可见字符.
+              * 我们在shell中将ascii值为l-a和u-a的分别处理为清屏和删除输入的快捷键*/
+            if ((ctrl_down_last && cur_char == 'l') || (ctrl_down_last && cur_char == 'u')) {
                 cur_char -= 'a';
             }
-            /****************************************************************/
 
 
             /* 若kbd_buf中未满并且待加入的cur_char不为0,
              * 则将其加入到缓冲区kbd_buf中 */
-            if ( !ioq_full( &kbd_buf ) )
+            if (!ioq_full( &kbd_buf ))
             {
                 ioq_putchar( &kbd_buf, cur_char );
             }
@@ -222,13 +221,16 @@ static void intr_keyboard_handler()
         if ( scancode == ctrl_l_make || scancode == ctrl_r_make )
         {
             ctrl_status = true;
-        } else if ( scancode == shift_l_make || scancode == shift_r_make )
+        }
+        else if ( scancode == shift_l_make || scancode == shift_r_make )
         {
             shift_status = true;
-        } else if ( scancode == alt_l_make || scancode == alt_r_make )
+        }
+        else if ( scancode == alt_l_make || scancode == alt_r_make )
         {
             alt_status = true;
-        } else if ( scancode == caps_lock_make )
+        }
+        else if ( scancode == caps_lock_make )
         {
             /* 不管之前是否有按下caps_lock键,当再次按下时则状态取反,
              * 即:已经开启时,再按下同样的键是关闭。关闭时按下表示开启。*/
@@ -237,11 +239,8 @@ static void intr_keyboard_handler()
     }
     else
     {
-        put_str( "unknown key\n" );
+        put_str("unknown key\n");
     }
-
-
-
 }
 
 

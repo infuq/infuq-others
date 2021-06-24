@@ -11,8 +11,4 @@ boot: disk
 
 mouse: enabled=0
 
-#keyboard:keymap=/usr/local/share/bochs/keymaps/x11-pc-us.map
-
-keyboard:keymap=/usr/local/share/bochs/keymaps/x11-pc-fr.map
-#keyboard:keymap=/usr/local/share/bochs/keymaps/x11-pc-de.map
-#keyboard:keymap=/usr/local/share/bochs/keymaps/x11-pc-es.map
+keyboard:keymap=/usr/local/share/bochs/keymaps/x11-pc-us.map

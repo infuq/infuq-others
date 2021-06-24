@@ -13,6 +13,7 @@ kernel.bin: $(kernelfiles)
 	nasm thread/switch.asm -f elf -o out/switch.o
 	gcc -m32 -I ./lib/ -I ./lib/kernel -I ./lib/user -c -fno-builtin -fno-stack-protector -o out/string.o lib/string.c
 	gcc -m32 -I ./lib/ -I ./lib/kernel -I ./lib/user -c -fno-builtin -fno-stack-protector -o out/list.o lib/kernel/list.c
+	gcc -m32 -I ./lib/kernel/ -c -fno-builtin -fno-stack-protector -o out/debug.o kernel/debug.c
 	gcc -m32 -I ./lib/kernel/ -c -fno-builtin -fno-stack-protector -o out/interrupt.o kernel/interrupt.c
 	gcc -m32 -I ./lib/kernel/ -I ./device -I ./thread -c -fno-builtin -fno-stack-protector -o out/init.o kernel/init.c
 	gcc -m32 -I ./lib/kernel/ -c -fno-builtin -fno-stack-protector -o out/bitmap.o lib/kernel/bitmap.c
@@ -21,13 +22,11 @@ kernel.bin: $(kernelfiles)
 	gcc -m32 -I ./lib/kernel/ -I ./thread -c -fno-builtin -fno-stack-protector -o out/thread.o thread/thread.c
 	gcc -m32 -I ./lib/kernel/ -I ./thread -I ./device -c -fno-builtin -fno-stack-protector -o out/timer.o device/timer.c
 	gcc -m32 -I ./lib/kernel/ -I ./thread -I ./device -c -fno-builtin -fno-stack-protector -o out/console.o device/console.c
-
 	gcc -m32 -I ./lib/kernel/ -I ./thread -I ./device -c -fno-builtin -fno-stack-protector -o out/keyboard.o device/keyboard.c
-	gcc -m32 -I ./lib/kernel/ -I ./thread -I ./device -c -fno-builtin -fno-stack-protector -o out/ioqueue.o device/ioqueue.c
-
+	gcc -m32 -I ./lib/kernel/ -I ./thread -I ./device -I ./kernel -c -fno-builtin -fno-stack-protector -o out/ioqueue.o device/ioqueue.c
 	gcc -m32 -I ./lib/kernel/ -I ./device -I ./thread -c -fno-builtin -fno-stack-protector -o out/main.o kernel/main.c
 
-	ld -m elf_i386 -Ttext 0xc0001500 -e main -o out/kernel.bin out/main.o out/print.o out/init.o out/interrupt.o out/kernel.o out/bitmap.o out/memory.o out/string.o out/sync.o out/thread.o out/switch.o out/list.o out/timer.o out/console.o out/ioqueue.o out/keyboard.o
+	ld -m elf_i386 -Ttext 0xc0001500 -e main -o out/kernel.bin out/main.o out/print.o out/init.o out/interrupt.o out/kernel.o out/bitmap.o out/memory.o out/string.o out/sync.o out/thread.o out/switch.o out/list.o out/timer.o out/console.o out/debug.o out/keyboard.o out/ioqueue.o
 
 
 all: boot.bin kernel.bin

@@ -36,7 +36,7 @@ intr_handler idt_table[IDT_DESC_CNT];
 extern intr_handler intr_entry_table[IDT_DESC_CNT];
 
 // 初始化可编程中断控制器 8259A
-static void pic_init()
+static void pic_init(void)
 {
     /*初始化主片 */
     outb (PIC_M_CTRL, 0x11); // ICW1: 边沿触发,级联8259, 需要ICW4
@@ -50,10 +50,10 @@ static void pic_init()
     outb (PIC_S_DATA, 0x02); // ICW3: 设置从片连接到主片的IR2 引脚
     outb (PIC_S_DATA, 0x01); // ICW4: 8086 模式, 正常EOI
 
-    outb (PIC_M_DATA, 0xfe);
-    outb (PIC_S_DATA, 0xff);
 
-    /* 接受时钟中断和键盘中断 */
+
+
+    /*打开主片上IR0,也就是目前只接受时钟产生的中断 */
     outb (PIC_M_DATA, 0xfc);
     outb (PIC_S_DATA, 0xff);
 
@@ -71,7 +71,7 @@ static void make_idt_desc(struct gate_desc *p_gdesc, uint8_t attr, intr_handler 
 }
 
 // 初始化中断(门)描述符表
-static void idt_desc_init()
+static void idt_desc_init(void)
 {
     int i;
     for (i = 0; i < IDT_DESC_CNT; i++)
@@ -118,7 +118,7 @@ static void general_intr_handler(uint8_t vec_nr)
 }
 
 // 完成一般中断处理函数注册及异常名称注册
-static void exception_init()
+static void exception_init(void)
 {
     int i;
     for (i = 0; i < IDT_DESC_CNT; i++)
@@ -205,14 +205,6 @@ enum intr_status intr_get_status()
 }
 
 
- 
-// 注册中断处理函数
-void register_handler(uint8_t vector_no, intr_handler function)
-{
-    idt_table[vector_no] = function;
-}
-
-
 // 完成有关中断到所有初始化工作
 void idt_init()
 {
@@ -231,5 +223,10 @@ void idt_init()
 
 
 
-
+ 
+// 注册中断处理函数
+void register_handler(uint8_t vector_no, intr_handler function)
+{
+    idt_table[vector_no] = function;
+}
 
