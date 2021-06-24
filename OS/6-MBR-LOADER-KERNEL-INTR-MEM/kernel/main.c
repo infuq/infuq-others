@@ -2,7 +2,7 @@
 #include "init.h"
 #include "memory.h"
 
-int main(void)
+int main()
 {
 	put_str("invoke main[kernel init]\n");
 
@@ -19,4 +19,6 @@ int main(void)
 	while(1);
 	
 	return 0;
+
+	
 }
