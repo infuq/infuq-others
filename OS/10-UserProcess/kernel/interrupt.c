@@ -11,8 +11,10 @@
 
 #define IDT_DESC_CNT 0x81    //目前总共支持的中断数(129个)
 
-#define EFLAGS_IF   0x00000200       // eflags寄存器中的if位为1
+#define EFLAGS_IF   0x00000200       // eflags寄存器中的IF位为1
 #define GET_EFLAGS(EFLAG_VAR) asm volatile("pushfl; popl %0" : "=g" (EFLAG_VAR))
+
+
 
 // 中断门描述符结构体(8个字节). 此结构与中断门描述符格式一一对应
 struct gate_desc
@@ -36,7 +38,7 @@ intr_handler idt_table[IDT_DESC_CNT];
 extern intr_handler intr_entry_table[IDT_DESC_CNT];
 
 // 初始化可编程中断控制器 8259A
-static void pic_init(void)
+static void pic_init()
 {
     /*初始化主片 */
     outb (PIC_M_CTRL, 0x11); // ICW1: 边沿触发,级联8259, 需要ICW4
@@ -70,7 +72,7 @@ static void make_idt_desc(struct gate_desc *p_gdesc, uint8_t attr, intr_handler 
 }
 
 // 初始化中断(门)描述符表
-static void idt_desc_init(void)
+static void idt_desc_init()
 {
     int i;
     for (i = 0; i < IDT_DESC_CNT; i++)
@@ -86,6 +88,7 @@ static void idt_desc_init(void)
 // 通用的中断处理函数,一般用在异常出现时的处理
 static void general_intr_handler(uint8_t vec_nr)
 {
+
     if(vec_nr == 0x27 || vec_nr == 0x2f)
     {
         return;
@@ -116,8 +119,9 @@ static void general_intr_handler(uint8_t vec_nr)
   
 }
 
+
 // 完成一般中断处理函数注册及异常名称注册
-static void exception_init(void)
+static void exception_init()
 {
     int i;
     for (i = 0; i < IDT_DESC_CNT; i++)
@@ -149,42 +153,37 @@ static void exception_init(void)
 }
 
 
-/* 开中断并返回开中断前的状态*/
+/* 开中断,并返回开中断前的状态*/
 enum intr_status intr_enable()
 {
-    enum intr_status old_status;
-
+    
     if (INTR_ON == intr_get_status())
     {
-        old_status = INTR_ON;
-        return old_status;
+        return INTR_ON;
     }
     else
     {
-        old_status = INTR_OFF;
         asm volatile("sti");     // 开中断,sti指令将IF位置1
-        return old_status;
+        return INTR_OFF;
     }
 
 }
 
 
-/* 关中断,并且返回关中断前的状态 */
+/* 关中断,并返回关中断前的状态 */
 enum intr_status intr_disable()
-{   
-    enum intr_status old_status;
+{
 
     if (INTR_ON == intr_get_status())
     {
-        old_status = INTR_ON;
         asm volatile("cli" : : : "memory"); // 关中断,cli指令将IF位置0
-        return old_status;
+        return INTR_ON;
     }
     else
     {
-        old_status = INTR_OFF;
-        return old_status;
+        return INTR_OFF;
     }
+
 
 }
 
@@ -207,6 +206,7 @@ enum intr_status intr_get_status()
 // 完成有关中断到所有初始化工作
 void idt_init()
 {
+    
     put_str("   idt_init start\n");
 
     idt_desc_init();      // 初始化中断描述符表. 即初始化idt数组
@@ -218,6 +218,7 @@ void idt_init()
     asm volatile("lidt %0" : : "m" (idt_operand));
 
     put_str("   idt_init done\n");
+
 }
 
 
