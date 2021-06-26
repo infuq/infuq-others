@@ -9,6 +9,6 @@
 #define USER_VADDR_START 0x8048000
 
 void process_execute(void *func, char *name);
-void process_activate(struct task_struct *p_thread);
+void process_activate(struct task_struct *pthread);
 
 #endif

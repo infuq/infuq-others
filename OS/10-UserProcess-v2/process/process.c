@@ -47,7 +47,7 @@ static void start_process(void *func)
 
 
 /* 激活页表 */
-static void page_dir_activate(struct task_struct *p_thread)
+static void page_dir_activate(struct task_struct *pthread)
 {
     /********************************************************
     * 执行此函数时,当前任务可能是线程
@@ -57,9 +57,9 @@ static void page_dir_activate(struct task_struct *p_thread)
 
     /* 若为内核线程,需要重新填充页表为0x100000 */
     uint32_t pagedir_phy_addr = 0x100000;   /* 默认为内核的页目录物理地址,也就是内核线程所用的页目录表 */
-    if (p_thread->pgdir != NULL)          /* 用户态进程有自己的页目录表 */
+    if (pthread->pgdir != NULL)          /* 用户态进程有自己的页目录表 */
     {
-        pagedir_phy_addr = addr_v2p((uint32_t) p_thread->pgdir);
+        pagedir_phy_addr = addr_v2p((uint32_t) pthread->pgdir);
     }
 
     /* 更新页目录寄存器cr3,使新页表生效 */
@@ -68,18 +68,19 @@ static void page_dir_activate(struct task_struct *p_thread)
 
 
 /* 激活线程或进程的页表,更新tss中的esp0为进程的特权级0的栈 */
-void process_activate(struct task_struct *p_thread)
+void process_activate(struct task_struct *pthread)
 {
-    ASSERT(p_thread != NULL);
+    ASSERT(pthread != NULL);
+
     /* 激活该进程或线程的页表 */
-    page_dir_activate(p_thread);
+    page_dir_activate(pthread);
 
     /* 内核线程特权级本身就是0,处理器进入中断时并不会从tss中获取0特权级栈地址,故不需要更新esp0 */
-    if (p_thread->pgdir != NULL)
+    if (pthread->pgdir != NULL)
     {
         /* 更新该进程的esp0,用于此进程被中断时保留上下文 */
         // 比如A进程被中断时,CPU通过tss.esp0找到栈顶,从而保存上下文到A进程的栈中.
-        update_tss_esp(p_thread);
+        update_tss_esp(pthread);
     }
 
 }
@@ -116,11 +117,12 @@ static uint32_t *create_page_dir()
 /* 创建用户进程虚拟地址位图 */
 static void create_user_vaddr_bitmap(struct task_struct *user_process)
 {
-    user_process->userprog_vaddr.vaddr_start = USER_VADDR_START; // 0x8048000
+    user_process->user_vaddr.vaddr_start = USER_VADDR_START; // 0x8048000
     uint32_t bitmap_pg_cnt = DIV_ROUND_UP( (0xc0000000 - USER_VADDR_START) / PG_SIZE / 8, PG_SIZE );
-    user_process->userprog_vaddr.vaddr_bitmap.bits     = get_kernel_pages( bitmap_pg_cnt );
-    user_process->userprog_vaddr.vaddr_bitmap.btmp_bytes_len   = (0xc0000000 - USER_VADDR_START) / PG_SIZE / 8;
-    bitmap_init(&user_process->userprog_vaddr.vaddr_bitmap);
+    // 存放位图bitmap的起始地址
+    user_process->user_vaddr.vaddr_bitmap.bits     = get_kernel_pages( bitmap_pg_cnt );
+    user_process->user_vaddr.vaddr_bitmap.btmp_bytes_len   = (0xc0000000 - USER_VADDR_START) / PG_SIZE / 8;
+    bitmap_init(&user_process->user_vaddr.vaddr_bitmap);
 }
 
 

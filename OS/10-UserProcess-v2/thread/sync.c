@@ -72,9 +72,7 @@ void lock_acquire(struct lock *plock)
         plock->holder_repeat_nr = 1;
     }
     else
-    {
         plock->holder_repeat_nr++;
-    }
 }
 
 /* 释放锁plock */

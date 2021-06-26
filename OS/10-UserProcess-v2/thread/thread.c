@@ -50,6 +50,8 @@ void thread_create(struct task_struct *pthread, thread_func function, void *func
     
     // 线程栈空间
     pthread->self_kstack -= sizeof(struct thread_stack);
+
+    // 初始化线程栈
     struct thread_stack *kthread_stack = (struct thread_stack *)pthread->self_kstack;
     kthread_stack->eip = kernel_thread;
     kthread_stack->function = function;
@@ -65,13 +67,9 @@ void init_thread(struct task_struct *pthread, char *name, int priority)
     strcpy(pthread->name, name);
     
     if (pthread == main_thread)
-    {
         pthread->status = TASK_RUNNING;
-    }
     else
-    {
         pthread->status = TASK_READY;
-    }
 
     pthread->priority = priority;
     // 线程在内核态下使用的栈顶地址
