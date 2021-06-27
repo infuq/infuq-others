@@ -35,6 +35,8 @@ static void intr_timer_handler()
 
     struct task_struct *cur_thread = running_thread();
 
+    ASSERT(cur_thread->stack_magic == 0x19900210);
+
     cur_thread->elapsed_ticks++;
     ticks++;
     

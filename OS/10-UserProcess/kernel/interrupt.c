@@ -9,7 +9,7 @@
 #define PIC_S_CTRL 0xa0 //从片[控制]端口
 #define PIC_S_DATA 0xa1 //从片[数据]端口
 
-#define IDT_DESC_CNT 0x81    //目前总共支持的中断数(129个)
+#define IDT_DESC_CNT 0x30    //目前总共支持的中断数(48个)
 
 #define EFLAGS_IF   0x00000200       // eflags寄存器中的IF位为1
 #define GET_EFLAGS(EFLAG_VAR) asm volatile("pushfl; popl %0" : "=g" (EFLAG_VAR))
@@ -54,8 +54,8 @@ static void pic_init()
 
 
 
-    /* 接受时钟中断和键盘中断 */
-    outb (PIC_M_DATA, 0xfc);
+    /* 接受时钟中断 */ // 键盘中断未打开
+    outb (PIC_M_DATA, 0xfe);
     outb (PIC_S_DATA, 0xff);
 
 

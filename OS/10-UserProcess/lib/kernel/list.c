@@ -2,7 +2,6 @@
 #include "interrupt.h"
 
 
-#define NULL ((void*)0)
 
 /* 初始化双向链表list */
 void list_init (struct list *list)

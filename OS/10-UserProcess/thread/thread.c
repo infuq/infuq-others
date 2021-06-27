@@ -10,8 +10,6 @@
 #include "debug.h"
 #include "console.h"
 
-#define PG_SIZE 4096
-
 
 struct task_struct *main_thread;    // 主线程 PCB
 struct list thread_ready_list;      // 就绪队列
@@ -33,14 +31,8 @@ struct task_struct *running_thread()
 static void kernel_thread(thread_func *func, void *arg)
 {
 
-
-    struct task_struct *cur = running_thread();
-    put_str(cur->name);
-    
     /* 执行func之前要开中断,避免后面的时钟中断被屏蔽,而无法调度其它线程 */
     intr_enable();
-
-    
 
     func(arg);
 

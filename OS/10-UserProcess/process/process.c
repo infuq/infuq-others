@@ -17,8 +17,6 @@ extern void intr_exit();
 void start_process(void *func)
 {
 
-    put_str("xxxx");
-
     void            *function  = func;
     struct task_struct  *cur       = running_thread();
     
