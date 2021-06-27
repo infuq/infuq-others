@@ -86,21 +86,20 @@ struct thread_stack
 struct task_struct
 {
     uint32_t    *self_kstack;
-    pid_t       pid;
+
     enum        task_status status;
-    char        name[TASK_NAME_LEN];
+    char        name[16];
     uint8_t     priority;
+    
     uint8_t     ticks;                              // 每次在处理器上执行的时间嘀嗒数
     uint32_t    elapsed_ticks;                      // 此任务自上cpu运行后至今占用了多少cpu嘀嗒数
+    
     struct list_elem general_tag;                   // 线程在一般的队列中的结点
     struct list_elem all_list_tag;                  // 线程队列thread_all_list中的结点
+    
     uint32_t    *pgdir;                             // 进程自己页表的虚拟地址
-    struct      virtual_addr userprog_vaddr;        // 用户进程的虚拟地址
-    struct      mem_block_desc u_block_desc[DESC_CNT];  // 用户进程内存块描述符
-    int32_t     fd_table[MAX_FILES_OPEN_PER_PROC];      // 已打开文件数组
-    uint32_t    cwd_inode_nr;                       // 进程所在的工作目录的inode编号
-    pid_t       parent_pid;                         // 父进程pid
-    int8_t      exit_status;                        // 进程结束时自己调用exit传入的参数
+    struct      virtual_addr user_vaddr;            // 用户进程的虚拟地址
+    
     uint32_t    stack_magic;                        // 用这串数字做栈的边界标记,用于检测栈的溢出
 };
 
@@ -111,30 +110,15 @@ extern struct list thread_ready_list;
 extern struct list thread_all_list;
 
 
-
-
-struct task_struct *thread_start(char *name, int prio, thread_func function, void *func_arg);
-
-
+void thread_create(struct task_struct *pthread, thread_func function, void *func_arg);
+void init_thread(struct task_struct *pthread, char *name, int priority);
+struct task_struct *thread_start(char *name, int priority, thread_func function, void *func_arg);
 void main_thread_init();
 struct task_struct *running_thread();
 void schedule();
 
 void thread_block(enum task_status stat);
 void thread_unblock(struct task_struct *pthread);
-
-
-void thread_create(struct task_struct *pthread, thread_func function, void *func_arg);
-void init_thread(struct task_struct *pthread, char* name, int prio);
-
-void thread_init();
-
-void thread_yield();
-pid_t fork_pid();
-void sys_ps();
-void thread_exit(struct task_struct *thread_over, bool need_schedule);
-struct task_struct *pid2thread(int32_t pid);
-void release_pid(pid_t pid);
 
 
 

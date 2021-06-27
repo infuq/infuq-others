@@ -58,6 +58,7 @@ static void pic_init()
     outb (PIC_M_DATA, 0xfc);
     outb (PIC_S_DATA, 0xff);
 
+
     put_str("      pic_init done\n");
 }
 

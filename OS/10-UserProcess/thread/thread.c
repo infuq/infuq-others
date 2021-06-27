@@ -8,6 +8,7 @@
 #include "interrupt.h"
 #include "process.h"
 #include "debug.h"
+#include "console.h"
 
 #define PG_SIZE 4096
 
@@ -31,12 +32,16 @@ struct task_struct *running_thread()
 // 由 kernel_thread 去执行 func(arg)
 static void kernel_thread(thread_func *func, void *arg)
 {
-    put_str("*************");
 
-    /* 执行func前要开中断,避免后面的时钟中断被屏蔽,而无法调度其它线程 */
-    enum intr_status status = intr_enable();
 
-    put_str("***");
+    struct task_struct *cur = running_thread();
+    put_str(cur->name);
+    
+    /* 执行func之前要开中断,避免后面的时钟中断被屏蔽,而无法调度其它线程 */
+    intr_enable();
+
+    
+
     func(arg);
 
 }
@@ -65,18 +70,14 @@ void init_thread(struct task_struct *pthread, char *name, int priority)
     strcpy(pthread->name, name);
     
     if (pthread == main_thread)
-    {
         pthread->status = TASK_RUNNING;
-    }
     else
-    {
         pthread->status = TASK_READY;
-    }
 
-    pthread->priority = priority;
+    
     // 线程在内核态下使用的栈顶地址
     pthread->self_kstack        = (uint32_t*)((uint32_t)pthread + PG_SIZE);
-    
+    pthread->priority           = priority;
     pthread->ticks              = priority;
     pthread->elapsed_ticks      = 0;
     pthread->pgdir              = NULL;
@@ -132,6 +133,7 @@ void schedule()
 
     if (cur->status == TASK_RUNNING) // 若此线程只是CPU时间片到了,将其加入到就绪队列尾
     {
+
         ASSERT(!elem_find(&thread_ready_list, &cur->general_tag));
         list_append(&thread_ready_list, &cur->general_tag);
         cur->ticks = cur->priority;     // 重新将当前线程的ticks再重置为其priority;
@@ -148,7 +150,8 @@ void schedule()
     struct task_struct *next = elem2entry(struct task_struct, general_tag, thread_tag);
     next->status = TASK_RUNNING;
 
-   
+    
+
     // 激活任务页表等
     process_activate(next);
 

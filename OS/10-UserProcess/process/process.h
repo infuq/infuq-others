@@ -1,10 +1,10 @@
-#ifndef __USERPROG_PROCESS_H 
-#define __USERPROG_PROCESS_H
+#ifndef __USER_PROCESS_H 
+#define __USER_PROCESS_H
 
 #include "thread.h"
 #include "stdint.h"
 
-#define default_prio 31
+#define default_prio 3
 #define USER_STACK3_VADDR  (0xc0000000 - 0x1000)
 #define USER_VADDR_START 0x8048000
 

@@ -51,7 +51,7 @@ static void *vaddr_get(enum pool_flags pf, uint32_t pg_cnt)
     {
         
         struct task_struct *cur = running_thread();
-        bit_idx_start  = bitmap_scan(&cur->userprog_vaddr.vaddr_bitmap, pg_cnt);
+        bit_idx_start  = bitmap_scan(&cur->user_vaddr.vaddr_bitmap, pg_cnt);
         if (bit_idx_start == -1)
         {
             return NULL;
@@ -59,9 +59,9 @@ static void *vaddr_get(enum pool_flags pf, uint32_t pg_cnt)
 
         while(cnt < pg_cnt)
         {
-            bitmap_set(&cur->userprog_vaddr.vaddr_bitmap, bit_idx_start + cnt++, 1);
+            bitmap_set(&cur->user_vaddr.vaddr_bitmap, bit_idx_start + cnt++, 1);
         }
-        vaddr_start = cur->userprog_vaddr.vaddr_start + bit_idx_start * PG_SIZE;
+        vaddr_start = cur->user_vaddr.vaddr_start + bit_idx_start * PG_SIZE;
 
         /* (0xc0000000 - PG_SIZE)做为用户3级栈已经在start_process被分配 */
         ASSERT((uint32_t)vaddr_start < (0xc0000000 - PG_SIZE));
@@ -210,10 +210,10 @@ void *get_a_page(enum pool_flags pf, uint32_t vaddr)
     /* 若当前是用户进程申请用户内存,就修改用户进程自己的虚拟地址位图 */
     if (cur->pgdir != NULL && pf == PF_USER)
     {
-        bit_idx = (vaddr - cur->userprog_vaddr.vaddr_start) / PG_SIZE;
+        bit_idx = (vaddr - cur->user_vaddr.vaddr_start) / PG_SIZE;
         ASSERT(bit_idx >= 0);
         /* 将虚拟地址对应的位图置1 */
-        bitmap_set(&cur->userprog_vaddr.vaddr_bitmap, bit_idx, 1);
+        bitmap_set(&cur->user_vaddr.vaddr_bitmap, bit_idx, 1);
 
     }
     /* 如果是内核线程申请内核内存,就修改kernel_vaddr. */

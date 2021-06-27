@@ -21,13 +21,14 @@ void init_all()
 	// 内存管理
 	mem_init();
 
-	// 初始化全局控制台锁
-	console_init();
-
+	
 	// 初始化main线程
 	main_thread_init();
    
    	timer_init();
+
+   	// 初始化全局控制台锁
+	console_init();
 
    	// 键盘初始化
    	keyboard_init();

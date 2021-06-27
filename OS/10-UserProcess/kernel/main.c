@@ -33,8 +33,8 @@ int main()
     put_str("\n\n");
 
 
-    // struct task_struct *thread1 = thread_start("k_thread_1", 10, k_thread_1, "[thread_1 ]");
-    // struct task_struct *thread2 = thread_start("k_thread_2", 16, k_thread_2, "[thread_2 ]");
+    // struct task_struct *thread1 = thread_start("k_thread_1", 10, k_thread_1, "[k_thread_1 ]");
+    // struct task_struct *thread2 = thread_start("k_thread_2", 16, k_thread_2, "[k_thread_2 ]");
     // // 打印PCB地址
     // put_str("thread1 vaddr = 0x");
     // put_int((uint32_t)(void *)thread1);
@@ -46,16 +46,16 @@ int main()
     
 
     process_execute(u_process_1, "[u_process_1 ]");
-    // process_execute(u_process_2, "[u_process_2 ]");
+    process_execute(u_process_2, "[u_process_2 ]");
 
-	enum intr_status status = intr_enable();
+	intr_enable();
     
 
-	while (1)
+	while (1);/*
 	{
 		console_put_str("[thread_main ]");
 	}
-
+*/
 	return 0;
 }
 
@@ -63,7 +63,6 @@ void u_process_1()
 {
 	while (1)
 	{
-		put_str("x");
 		var_1++;
 	}
 }

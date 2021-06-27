@@ -17,12 +17,11 @@ extern void intr_exit();
 void start_process(void *func)
 {
 
-    
+    put_str("xxxx");
 
     void            *function  = func;
     struct task_struct  *cur       = running_thread();
-    put_str(cur->name);
-
+    
 
     // 进程在调用thread_create的时候,已经将栈指针指向了thread_stack的最低处.
     // 因此此处 '跨过' thread_stack空间, 让栈指针指向intr_stack的最低处.
@@ -116,11 +115,11 @@ uint32_t *create_page_dir()
 /* 创建用户进程虚拟地址位图 */
 void create_user_vaddr_bitmap(struct task_struct *user_process)
 {
-    user_process->userprog_vaddr.vaddr_start = USER_VADDR_START; // 0x8048000
+    user_process->user_vaddr.vaddr_start = USER_VADDR_START; // 0x8048000
     uint32_t bitmap_pg_cnt = DIV_ROUND_UP( (0xc0000000 - USER_VADDR_START) / PG_SIZE / 8, PG_SIZE );
-    user_process->userprog_vaddr.vaddr_bitmap.bits     = get_kernel_pages( bitmap_pg_cnt );
-    user_process->userprog_vaddr.vaddr_bitmap.btmp_bytes_len   = (0xc0000000 - USER_VADDR_START) / PG_SIZE / 8;
-    bitmap_init(&user_process->userprog_vaddr.vaddr_bitmap);
+    user_process->user_vaddr.vaddr_bitmap.bits     = get_kernel_pages( bitmap_pg_cnt );
+    user_process->user_vaddr.vaddr_bitmap.btmp_bytes_len   = (0xc0000000 - USER_VADDR_START) / PG_SIZE / 8;
+    bitmap_init(&user_process->user_vaddr.vaddr_bitmap);
 }
 
 

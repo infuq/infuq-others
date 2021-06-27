@@ -3,6 +3,7 @@
 #include "print.h"
 #include "thread.h"
 #include "interrupt.h"
+#include "console.h"
 
 #define IRQ0_FREQUENCY 100 
 #define INPUT_FREQUENCY 1193180 
@@ -37,14 +38,11 @@ static void intr_timer_handler()
     cur_thread->elapsed_ticks++;
     ticks++;
     
+
     if (cur_thread->ticks == 0)
-    {
         schedule();
-    }
     else
-    {
         cur_thread->ticks--;
-    }
 
 }
 

@@ -13,13 +13,13 @@ kernel.bin: $(kernelfiles)
 	nasm thread/switch.asm -f elf -o out/switch.o
 	gcc -m32 -I ./lib/ -I ./lib/kernel -I ./lib/user -c -fno-builtin -fno-stack-protector -o out/string.o lib/string.c
 	gcc -m32 -I ./lib/ -I ./lib/kernel -I ./lib/user -c -fno-builtin -fno-stack-protector -o out/list.o lib/kernel/list.c
-	gcc -m32 -I ./lib/kernel/ -c -fno-builtin -fno-stack-protector -o out/debug.o kernel/debug.c
+	gcc -m32 -I ./lib/kernel/ -c -fno-builtin -fno-stack-protector -o out/debug.o lib/kernel/debug.c
 	gcc -m32 -I ./lib/kernel/ -c -fno-builtin -fno-stack-protector -o out/interrupt.o kernel/interrupt.c
 	gcc -m32 -I ./lib/kernel/ -I ./device -I ./thread -I ./process -c -fno-builtin -fno-stack-protector -o out/init.o kernel/init.c
 	gcc -m32 -I ./lib/kernel/ -c -fno-builtin -fno-stack-protector -o out/bitmap.o lib/kernel/bitmap.c
 	gcc -m32 -I ./lib/kernel/ -I ./thread -I ./kernel -c -fno-builtin -fno-stack-protector -o out/memory.o kernel/memory.c
 	gcc -m32 -I ./lib/kernel/ -I ./thread -c -fno-builtin -fno-stack-protector -o out/sync.o thread/sync.c
-	gcc -m32 -I ./lib/kernel/ -I ./thread -I ./process -I ./kernel -c -fno-builtin -fno-stack-protector -o out/thread.o thread/thread.c
+	gcc -m32 -I ./lib/kernel/ -I ./thread -I ./process -I ./kernel -I ./device -c -fno-builtin -fno-stack-protector -o out/thread.o thread/thread.c
 	gcc -m32 -I ./lib/kernel/ -I ./thread -I ./device -c -fno-builtin -fno-stack-protector -o out/timer.o device/timer.c
 	gcc -m32 -I ./lib/kernel/ -I ./thread -I ./device -c -fno-builtin -fno-stack-protector -o out/console.o device/console.c
 	gcc -m32 -I ./lib/kernel/ -I ./thread -I ./device -c -fno-builtin -fno-stack-protector -o out/keyboard.o device/keyboard.c

@@ -68,6 +68,7 @@ void tss_init()
     put_str("tss_init start\n");
     uint32_t tss_size = sizeof(tss);
     memset(&tss, 0, tss_size);
+    
     tss.ss0     = SELECTOR_K_STACK;
     tss.io_base = tss_size;
 
@@ -82,8 +83,10 @@ void tss_init()
 
     /* GDT 16位的limit 32位的段基址 */
     uint64_t gdt_operand = ( (8 * 7 - 1) | ( (uint64_t) (uint32_t) 0xc0000900 << 16) ); /* 7个描述符大小 */
+    
     asm volatile ("lgdt %0" : : "m" (gdt_operand) );
     asm volatile ("ltr %w0" : : "r" (SELECTOR_TSS) );
+    
     put_str("tss_init and ltr done\n");
 
 
