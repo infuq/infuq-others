@@ -4,7 +4,6 @@
 #include "memory.h"
 #include "timer.h"
 #include "thread.h"
-#include "sync.h"
 #include "console.h"
 #include "keyboard.h"
 #include "tss.h"
@@ -15,25 +14,21 @@ void init_all()
 {
 	put_str("invoke init_all\n");
 	
-	// 中断
-	idt_init();
-
-	// 内存管理
-	mem_init();
-
 	
-	// 初始化main线程
-	main_thread_init();
+	idt_init();				// 中断
+
+	mem_init();				// 内存管理
+	
+	main_thread_init();		// 初始化main线程
    
    	timer_init();
 
-   	// 初始化全局控制台锁
-	console_init();
+	console_init();			// 初始化全局控制台锁
+   	
+   	keyboard_init();		// 键盘初始化
+   	
+   	tss_init();				// TSS初始化
 
-   	// 键盘初始化
-   	keyboard_init();
 
-   	// TSS初始化
-   	tss_init();
 	
 }

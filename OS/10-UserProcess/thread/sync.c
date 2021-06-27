@@ -5,9 +5,6 @@
 #include "print.h"
 #include "thread.h"
 
-
-#define NULL ((void *)0)
-
 /* 初始化信号量 */
 void sema_init(struct semaphore *psema, uint8_t value)
 {

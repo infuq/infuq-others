@@ -33,15 +33,15 @@ int main()
     put_str("\n\n");
 
 
-    // struct task_struct *thread1 = thread_start("k_thread_1", 10, k_thread_1, "[k_thread_1 ]");
-    // struct task_struct *thread2 = thread_start("k_thread_2", 16, k_thread_2, "[k_thread_2 ]");
-    // // 打印PCB地址
-    // put_str("thread1 vaddr = 0x");
-    // put_int((uint32_t)(void *)thread1);
-    // put_str("\n");
-    // put_str("thread2 vaddr = 0x");
-    // put_int((uint32_t)(void *)thread2);
-    // put_str("\n\n");
+    struct task_struct *thread1 = thread_start("k_thread_1", 10, k_thread_1, "[k_thread_1 ]");
+    struct task_struct *thread2 = thread_start("k_thread_2", 16, k_thread_2, "[k_thread_2 ]");
+    // 打印PCB地址
+    put_str("thread1 vaddr = 0x");
+    put_int((uint32_t)(void *)thread1);
+    put_str("\n");
+    put_str("thread2 vaddr = 0x");
+    put_int((uint32_t)(void *)thread2);
+    put_str("\n\n");
 
     
 
@@ -51,11 +51,8 @@ int main()
 	intr_enable();
     
 
-	while (1);/*
-	{
-		console_put_str("[thread_main ]");
-	}
-*/
+	while (1);
+
 	return 0;
 }
 

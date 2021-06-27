@@ -4,8 +4,6 @@
 #include "debug.h"
 
 
-#define NULL ((void *)0)
-
 /* 初始化io队列ioq */
 void ioqueue_init(struct ioqueue *ioq)
 {
