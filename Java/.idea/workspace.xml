@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e353faa-635d-4518-8dbc-e2f8f52b4394" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/example/recycler/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/example/recycler/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-x/target/classes/com/infuq/example/recycler/Main$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-x/target/classes/com/infuq/example/recycler/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-x/target/classes/com/infuq/example/recycler/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OS/3-MBR-LOADER(Page)/制作-启动流程(简图).png" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/dubbo/spi/Computer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/dubbo/spi/DELLComputer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/dubbo/spi/HPComputer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/dubbo/spi/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infuq-x/src/main/resources/META-INF/services/com.infuq.dubbo.spi.Computer" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-x/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-x/pom.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/infuq-x/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,87 +18,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/infuq-x/src/main/resources/META-INF/services/com.infuq.dubbo.spi.Computer">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-line="1" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/dubbo/spi/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="10" column="80" selection-start-line="10" selection-start-column="80" selection-end-line="10" selection-end-column="80" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/example/recycler/Main.java">
+        <entry file="jar://$MAVEN_REPOSITORY$/com/alibaba/dubbo/2.6.6/dubbo-2.6.6-sources.jar!/com/alibaba/dubbo/common/extension/ExtensionLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="30" column="31" lean-forward="true" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/example/recycler/Book.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.63.Final/netty-all-4.1.63.Final-sources.jar!/io/netty/util/Recycler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="688" column="21" selection-start-line="688" selection-start-column="21" selection-end-line="688" selection-end-column="21" />
-              <folding>
-                <element signature="e#6140#6141#0" expanded="true" />
-                <element signature="e#6193#6194#0" expanded="true" />
-                <element signature="e#6245#6246#0" expanded="true" />
-                <element signature="e#6315#6316#0" expanded="true" />
-                <element signature="e#29144#29145#0" expanded="true" />
-                <element signature="e#29201#29202#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/example/recycler/ThreadUseMoreRecycler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="32" column="39" selection-start-line="32" selection-start-column="39" selection-end-line="32" selection-end-column="39" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://D:/Soft/Java/jdk1.8.0_251/src.zip!/java/lang/ref/Reference.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4237">
-              <caret line="252" column="13" selection-start-line="252" selection-start-column="13" selection-end-line="252" selection-end-column="13" />
-              <folding>
-                <element signature="e#9341#9342#0" expanded="true" />
-                <element signature="e#9377#9378#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.63.Final/netty-all-4.1.63.Final-sources.jar!/io/netty/buffer/PooledDirectByteBuf.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="29" column="83" selection-start-line="29" selection-start-column="83" selection-end-line="29" selection-end-column="83" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.63.Final/netty-all-4.1.63.Final-sources.jar!/io/netty/util/internal/ObjectPool.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1121">
-              <caret line="73" column="31" selection-start-line="73" selection-start-column="31" selection-end-line="73" selection-end-column="31" />
-              <folding>
-                <element signature="e#2701#2702#0" expanded="true" />
-                <element signature="e#2746#2747#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="114">
+              <caret line="110" column="9" lean-forward="true" selection-start-line="110" selection-start-column="9" selection-end-line="110" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -106,6 +50,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -113,6 +58,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>RECYCLER</find>
+      <find>dubbo</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -125,14 +71,30 @@
         <option value="$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/com/infuq/tmp/SelectWakeUp.java" />
         <option value="$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/tmp/SelectWakeUp.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/infuq-x/pom.xml" />
         <option value="$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/example/recycler/ThreadUseMoreRecycler.java" />
         <option value="$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/example/recycler/Main.java" />
         <option value="$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/example/recycler/Book.java" />
+        <option value="$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/spring/MyConfig.java" />
+        <option value="$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/spring/Computer.java" />
+        <option value="$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/spring/Example.java" />
+        <option value="$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/spring/Book.java" />
+        <option value="$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/spring/MyInstantiationAwareBeanPostProcessor.java" />
+        <option value="$PROJECT_DIR$/infuq-x/pom.xml" />
+        <option value="$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/dubbo/spi/HPComputer.java" />
+        <option value="$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/dubbo/spi/DellComputer.java" />
+        <option value="$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/dubbo/spi/DELLComputer.java" />
+        <option value="$PROJECT_DIR$/infuq-x/src/main/resources/META-INF/services/com.infuq.dubbo.spi.Computer" />
+        <option value="$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/dubbo/spi/Main.java" />
+        <option value="$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/dubbo/spi/Computer.java" />
       </list>
     </option>
   </component>
   <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="alwaysUpdateSnapshots" value="true" />
+      </MavenGeneralSettings>
+    </option>
     <option name="importingSettings">
       <MavenImportingSettings>
         <option name="importAutomatically" value="true" />
@@ -146,9 +108,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="285" />
-    <option name="width" value="1941" />
-    <option name="height" value="1056" />
+    <option name="x" value="-3" />
+    <option name="y" value="21" />
+    <option name="width" value="1890" />
+    <option name="height" value="960" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -156,7 +119,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -207,13 +169,31 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="infuq" type="462c0819:PsiDirectoryNode" />
-              <item name="recycler" type="462c0819:PsiDirectoryNode" />
+              <item name="spi" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Java" type="462c0819:PsiDirectoryNode" />
+              <item name="infuq-x" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Java" type="462c0819:PsiDirectoryNode" />
+              <item name="infuq-x" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -223,7 +203,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/com/infuq/tmp" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -233,9 +213,11 @@
       <recent name="com.infuq.tmp" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.infuq.dubbo.spi" />
       <recent name="com.infuq.example.recycler" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Repository\infuq-others\Java\infuq-x\src\main\resources" />
       <recent name="D:\Repository\infuq-others\Java" />
     </key>
   </component>
@@ -252,12 +234,25 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.infuq.example.recycler.Main" />
+    <configuration name="Example" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.infuq.spring.Example" />
       <module name="infuq-x" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.infuq.example.recycler.*" />
+          <option name="PATTERN" value="com.infuq.spring.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.infuq.dubbo.spi.Main" />
+      <module name="infuq-x" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.infuq.dubbo.spi.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -278,9 +273,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Example" />
+      <item itemvalue="Application.ThreadUseMoreRecycler" />
+      <item itemvalue="Application.Main" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Example" />
         <item itemvalue="Application.ThreadUseMoreRecycler" />
       </list>
     </recent_temporary>
@@ -300,28 +301,47 @@
       <workItem from="1622601298874" duration="3452000" />
       <workItem from="1623236954934" duration="6664000" />
       <workItem from="1623396684614" duration="399000" />
+      <workItem from="1628446267632" duration="1867000" />
+      <workItem from="1629730910247" duration="3995000" />
     </task>
+    <task id="LOCAL-00001" summary="...">
+      <created>1628447484646</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1628447484646</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22886000" />
+    <option name="totallyTimeSpent" value="28748000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22150365" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22958772" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3285968" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.5097691" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4995958" weight="0.39964476" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.37300178" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4995958" weight="0.4777975" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3285968" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.634103" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
@@ -329,7 +349,7 @@
       <window_info anchor="bottom" id="Messages" order="11" weight="0.3285968" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
-      <window_info anchor="bottom" id="Version Control" order="14" />
+      <window_info anchor="bottom" id="Version Control" order="14" weight="0.41030195" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -346,8 +366,67 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="..." />
+    <option name="LAST_COMMIT_MESSAGE" value="..." />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="392" height="378" key="Git.Branch.Popup" />
+    <state width="392" height="378" key="Git.Branch.Popup/1920.1080" />
+    <state width="392" height="378" key="Git.Branch.Popup@1920.1080@144dpi" />
+  </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>this</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>getBeanPostProcessorCache().instantiationAware</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>Thread.getThreads()</expression-string>
         <language-id>JAVA</language-id>
@@ -409,13 +488,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infuq-x/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/Soft/Java/jdk1.8.0_251/src.zip!/java/util/concurrent/TimeUnit.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -451,10 +523,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/example/recycler/Book.java">
+    <entry file="file://$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/example/recycler/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+        <state relative-caret-position="228">
+          <caret line="30" column="31" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.63.Final/netty-all-4.1.63.Final-sources.jar!/io/netty/util/Recycler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12103">
+          <caret line="688" column="21" selection-start-line="688" selection-start-column="21" selection-end-line="688" selection-end-column="21" />
+          <folding>
+            <element signature="e#6140#6141#0" expanded="true" />
+            <element signature="e#6193#6194#0" expanded="true" />
+            <element signature="e#6245#6246#0" expanded="true" />
+            <element signature="e#6315#6316#0" expanded="true" />
+            <element signature="e#29144#29145#0" expanded="true" />
+            <element signature="e#29201#29202#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -487,24 +577,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.63.Final/netty-all-4.1.63.Final-sources.jar!/io/netty/util/Recycler.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.3.1/spring-context-5.3.1-sources.jar!/org/springframework/context/annotation/ComponentScan.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="688" column="21" selection-start-line="688" selection-start-column="21" selection-end-line="688" selection-end-column="21" />
+        <state relative-caret-position="178">
+          <caret line="58" column="18" selection-start-line="58" selection-start-column="18" selection-end-line="58" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/spring/MyConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
           <folding>
-            <element signature="e#6140#6141#0" expanded="true" />
-            <element signature="e#6193#6194#0" expanded="true" />
-            <element signature="e#6245#6246#0" expanded="true" />
-            <element signature="e#6315#6316#0" expanded="true" />
-            <element signature="e#29144#29145#0" expanded="true" />
-            <element signature="e#29201#29202#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/spring/Computer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="5" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.3.1/spring-context-5.3.1-sources.jar!/org/springframework/context/support/AbstractApplicationContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9538">
+          <caret line="612" selection-start-line="612" selection-end-line="612" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/5.3.1/spring-beans-5.3.1-sources.jar!/org/springframework/beans/factory/support/DefaultListableBeanFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15960">
+          <caret line="943" column="25" selection-start-line="943" selection-start-column="25" selection-end-line="943" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/5.3.1/spring-beans-5.3.1-sources.jar!/org/springframework/beans/factory/support/AbstractBeanFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4788">
+          <caret line="334" column="38" selection-start-line="334" selection-start-column="38" selection-end-line="334" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/5.3.1/spring-beans-5.3.1-sources.jar!/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8227">
+          <caret line="521" selection-start-line="521" selection-end-line="521" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/spring/Book.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/spring/Example.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="40" lean-forward="true" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-x/src/main/resources/log4j2.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.3.1/spring-context-5.3.1-sources.jar!/org/springframework/context/annotation/AnnotationConfigApplicationContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1292">
+          <caret line="92" column="9" lean-forward="true" selection-start-line="92" selection-start-column="9" selection-end-line="92" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/example/recycler/ThreadUseMoreRecycler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
+        <state relative-caret-position="380">
           <caret line="32" column="39" selection-start-line="32" selection-start-column="39" selection-end-line="32" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -512,13 +666,117 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/example/recycler/Main.java">
+    <entry file="file://$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/spring/MyInstantiationAwareBeanPostProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="30" column="31" lean-forward="true" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
+        <state relative-caret-position="380">
+          <caret line="20" column="5" selection-start-line="11" selection-start-column="4" selection-end-line="20" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/example/recycler/Book.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2021-5-26/操作命令.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2021-5-26/layout-1.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-x/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="119" column="17" lean-forward="true" selection-start-line="115" selection-start-column="4" selection-end-line="119" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/com.infuq.dubbo.spi.DELLComputer">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>com.infuq.dubbo.spi.DELLComputer</OriginalElement>
+          <nodes>
+            <node x="93.0" y="0.0">com.infuq.dubbo.spi.Computer</node>
+            <node x="0.0" y="104.0">com.infuq.dubbo.spi.HPComputer</node>
+            <node x="186.0" y="104.0">com.infuq.dubbo.spi.DELLComputer</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="com.infuq.dubbo.spi.DELLComputer" target="com.infuq.dubbo.spi.Computer">
+              <point x="0.0" y="-27.0" />
+              <point x="269.0" y="79.0" />
+              <point x="217.5" y="79.0" />
+              <point x="41.5" y="27.0" />
+            </edge>
+            <edge source="com.infuq.dubbo.spi.HPComputer" target="com.infuq.dubbo.spi.Computer">
+              <point x="0.0" y="-27.0" />
+              <point x="83.0" y="79.0" />
+              <point x="134.5" y="79.0" />
+              <point x="-41.5" y="27.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.0" x="-117.0" y="82.5" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Methods</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/dubbo/spi/Computer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/dubbo/spi/DELLComputer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" selection-start-line="2" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/dubbo/spi/HPComputer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-x/src/main/resources/META-INF/services/com.infuq.dubbo.spi.Computer">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="1" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-x/src/main/java/com/infuq/dubbo/spi/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="80" selection-start-line="10" selection-start-column="80" selection-end-line="10" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/alibaba/dubbo/2.6.6/dubbo-2.6.6.jar!/com/alibaba/dubbo/common/extension/ExtensionLoader.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="67" column="41" selection-start-line="67" selection-start-column="41" selection-end-line="67" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/alibaba/dubbo/2.6.6/dubbo-2.6.6-sources.jar!/com/alibaba/dubbo/common/extension/ExtensionLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="110" column="9" lean-forward="true" selection-start-line="110" selection-start-column="9" selection-end-line="110" selection-end-column="9" />
         </state>
       </provider>
     </entry>
