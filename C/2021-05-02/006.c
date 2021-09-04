@@ -21,10 +21,12 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
-	write(fd, "www.infuq.com", 13);
+    lseek(fd, 0, SEEK_SET);
 
-    // 从文件尾部向后扩展15个字节
-	lseek(fd, 15, SEEK_END);
+//	write(fd, "www.infuq.com", 13);
+
+    // 从文件尾部向后扩展100G个字节
+	lseek(fd, 107374182400, SEEK_END);
 	write(fd, "v", 1);
 
 

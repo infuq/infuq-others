@@ -86,14 +86,15 @@ int main( void )
 
 
 	int	ret = -1;
-	char	buf[BUFSIZ];
+    int BUFSIZE = 16;
+	char	buf[BUFSIZE];
 
 	while ( 1 )
 	{
-		bzero( buf, BUFSIZ );
+		bzero( buf, BUFSIZE );
 		do
 		{
-			ret = read( fd, buf, BUFSIZ - 1 );
+			ret = read( fd, buf, BUFSIZE - 1 );
 		}
 		while ( ret < 0 && EINTR == errno );
 		if ( ret < 0 )
