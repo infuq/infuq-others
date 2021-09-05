@@ -16,6 +16,7 @@ int main(int argc, const char *argv[])
 	{
 		sleep(1);
 		
+        // printf函数属于行缓冲
 		//printf("行缓冲");
 		
 		//1. \n
