@@ -1,16 +1,16 @@
 import socket
 
-ADDRESS = ('172.23.7.103', 2181)
+ADDRESS = ('127.0.0.1', 8081)
 
 
 def connect():
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client.bind(('10.31.23.101', 11560))
+    client.bind(('127.0.0.1', 8082))
     client.connect(ADDRESS)
 
     while True:
         msg = input("> ").strip()
-
+        
         # 防止发送空字节
         if not msg:
             continue
