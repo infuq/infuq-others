@@ -8,7 +8,7 @@ def start():
     # 实例化一个socket对象
     # AF_INET表示使用IP协议
     # SOCK_STREAM表示使用TCP协议
-    server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     
     server.bind(ADDRESS)
     server.listen(5)
