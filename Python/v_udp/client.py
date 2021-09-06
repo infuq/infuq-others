@@ -8,7 +8,7 @@ if __name__ == '__main__':
 
         data = 'start...'
         
-        for i in range(1, 10):
+        for i in range(1, 10000):
                 data = data + "gen data"
 
         client.send(data.encode('utf-8'))
