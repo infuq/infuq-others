@@ -6,10 +6,8 @@ if __name__ == '__main__':
         client = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
         client.connect(('127.0.0.1', 8083))
 
-        data = 'start...'
-        
-        for i in range(1, 10000):
-                data = data + "gen data"
+        for i in range(1, 1502):
+                data = data + "v"
 
         client.send(data.encode('utf-8'))
 

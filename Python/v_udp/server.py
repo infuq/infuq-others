@@ -12,7 +12,7 @@ def start():
     print('Server start success...')
     
     while True:
-        buf = server.recvfrom(1024 * 1000)
+        buf = server.recvfrom(1500)
 
 
 if __name__ == '__main__':
