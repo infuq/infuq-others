@@ -9,6 +9,15 @@ public class Main{
         
         Logger.getLogger("com.infuq.tmp.Main").info("Java");
 
+        for (;;) {
+            try {
+                Thread.sleep(1000_15);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+
     }
 
 
