@@ -53,7 +53,7 @@ int main(int argc, char **argv)
             printf("accept fail...\n");
             return -1;
         }
-/*
+
         int ret = recv(fd, buffer, BUFFER_SIZE, 0);
         if (ret < 0)
         {
@@ -64,9 +64,9 @@ int main(int argc, char **argv)
             printf(" %d", buffer[i]);
         }
 
-  */    
+      
         printf("\n");
-//        close(fd);
+        close(fd);
         //break;
     }
     close(lfd);
