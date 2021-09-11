@@ -3,6 +3,29 @@
   <component name="ChangeListManager">
     <list default="true" id="412dc033-a39a-4b98-b7a0-5fce07de7138" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/META-INF/services/com.infuq.dubbo.spi.Computer" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dubbo/spi/Computer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dubbo/spi/DELLComputer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dubbo/spi/HPComputer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dubbo/spi/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/example/recycler/Book.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/example/recycler/Main$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/example/recycler/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/example/recycler/ThreadUseMoreRecycler$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/example/recycler/ThreadUseMoreRecycler$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/example/recycler/ThreadUseMoreRecycler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/spring/Book.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/spring/Computer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/spring/Example.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/spring/MyConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/spring/MyInstantiationAwareBeanPostProcessor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/FirstUniqueCharacter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/ListNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/ListNodeExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/SelectWakeUp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/util/CommonUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/log4j2.properties" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/infuq-v/target/" />
@@ -14,16 +37,53 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
+            <state relative-caret-position="76">
+              <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/SelectWakeUp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/Attach.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="97">
+              <caret line="7" column="21" lean-forward="true" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://D:/Soft/Java/jdk-12.0.2/lib/src.zip!/jdk.attach/sun/tools/attach/HotSpotVirtualMachine.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="292">
+              <caret line="264" column="37" selection-start-line="264" selection-start-column="23" selection-end-line="264" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -42,6 +102,7 @@
         <option value="$PROJECT_DIR$/infuq-v/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/Main.java" />
+        <option value="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/Attach.java" />
       </list>
     </option>
   </component>
@@ -53,10 +114,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1937" />
-    <option name="height" value="1037" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -64,6 +125,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -121,7 +183,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -252,6 +313,9 @@
       <workItem from="1630819791814" duration="1610000" />
       <workItem from="1630851024138" duration="843000" />
       <workItem from="1631186784788" duration="1297000" />
+      <workItem from="1631237324277" duration="22000" />
+      <workItem from="1631282239912" duration="639000" />
+      <workItem from="1631370447711" duration="841000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <created>1630818292091</created>
@@ -264,13 +328,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4189000" />
+    <option name="totallyTimeSpent" value="5691000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4973357" visible="true" weight="0.23605497" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4973357" visible="true" weight="0.24818109" />
       <window_info id="Structure" order="1" sideWeight="0.5026643" side_tool="true" weight="0.25788197" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -374,8 +438,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        <state relative-caret-position="76">
+          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/SelectWakeUp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Soft/Java/jdk-12.0.2/lib/src.zip!/jdk.attach/sun/tools/attach/HotSpotVirtualMachine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="264" column="37" selection-start-line="264" selection-start-column="23" selection-end-line="264" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/Attach.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="7" column="21" lean-forward="true" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
