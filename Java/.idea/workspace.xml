@@ -1,32 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="412dc033-a39a-4b98-b7a0-5fce07de7138" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/META-INF/services/com.infuq.dubbo.spi.Computer" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dubbo/spi/Computer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dubbo/spi/DELLComputer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dubbo/spi/HPComputer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dubbo/spi/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/example/recycler/Book.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/example/recycler/Main$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/example/recycler/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/example/recycler/ThreadUseMoreRecycler$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/example/recycler/ThreadUseMoreRecycler$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/example/recycler/ThreadUseMoreRecycler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/spring/Book.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/spring/Computer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/spring/Example.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/spring/MyConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/spring/MyInstantiationAwareBeanPostProcessor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/FirstUniqueCharacter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/ListNode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/ListNodeExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/SelectWakeUp.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/util/CommonUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/log4j2.properties" beforeDir="false" />
-    </list>
+    <list default="true" id="412dc033-a39a-4b98-b7a0-5fce07de7138" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/infuq-v/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -58,8 +33,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/Attach.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="97">
-              <caret line="7" column="21" lean-forward="true" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+            <state relative-caret-position="78">
+              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -315,7 +290,7 @@
       <workItem from="1631186784788" duration="1297000" />
       <workItem from="1631237324277" duration="22000" />
       <workItem from="1631282239912" duration="639000" />
-      <workItem from="1631370447711" duration="841000" />
+      <workItem from="1631370447711" duration="957000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <created>1630818292091</created>
@@ -324,15 +299,21 @@
       <option name="project" value="LOCAL" />
       <updated>1630818292091</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="...">
+      <created>1631375025558</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1631375025558</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5691000" />
+    <option name="totallyTimeSpent" value="5807000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4973357" visible="true" weight="0.24818109" />
       <window_info id="Structure" order="1" sideWeight="0.5026643" side_tool="true" weight="0.25788197" />
@@ -459,8 +440,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/Attach.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="7" column="21" lean-forward="true" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+        <state relative-caret-position="78">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
