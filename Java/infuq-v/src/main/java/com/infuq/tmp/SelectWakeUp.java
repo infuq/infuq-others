@@ -1,9 +1,12 @@
 package com.infuq.tmp;
 
 
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
 import java.nio.channels.Selector;
 import java.lang.RuntimeException;
 import java.lang.Thread;
+import java.nio.channels.ServerSocketChannel;
 
 public class SelectWakeUp {
 
@@ -20,6 +23,21 @@ public class SelectWakeUp {
         } catch (Exception x) {
             throw new RuntimeException(x);
         }
+
+
+
+
+
+        ServerSocketChannel serverSocketChannel;
+
+        Selector selector = Selector.open();
+        serverSocketChannel = ServerSocketChannel.open();
+
+        ServerSocket serverSocket = serverSocketChannel.socket();
+
+
+
+
     }
 
 }
