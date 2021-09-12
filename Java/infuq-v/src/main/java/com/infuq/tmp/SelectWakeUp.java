@@ -1,42 +1,43 @@
 package com.infuq.tmp;
 
 
-import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.nio.channels.Selector;
-import java.lang.RuntimeException;
-import java.lang.Thread;
+
 import java.nio.channels.ServerSocketChannel;
 
 public class SelectWakeUp {
 
-    private static final int MAXSIZE=5;
 
-    public static final void main(String argc[]) {
-        Selector [] sels = new Selector[ MAXSIZE];
-        try {
-            for ( int i = 0 ;i< MAXSIZE ;++i ) {
-                sels[i] = Selector.open();
-                //sels[i].close();
-            }
-            Thread.sleep(3000000);
-        } catch (Exception x) {
-            throw new RuntimeException(x);
-        }
-
-
-
-
+    public static void main(String[] args) throws Exception {
 
         ServerSocketChannel serverSocketChannel;
 
         Selector selector = Selector.open();
         serverSocketChannel = ServerSocketChannel.open();
 
-        ServerSocket serverSocket = serverSocketChannel.socket();
+        ServerSocket socket = serverSocketChannel.socket();
+//        socket.bind(new InetSocketAddress("127.0.0.1", 8080), 64);
+//        serverSocketChannel.configureBlocking(false);
+//        serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
+/*
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    System.out.print("Thread[" + Thread.currentThread().getName() + "]invoke select\r\n");
+                    int readyChannels = selector.select();
+                } catch (Exception x) {
+                    x.printStackTrace();
+                }
+                System.out.print("Success...\r\n");
+            }
+        }.start();
+*/
+        Thread.sleep(5_60_000);
+        System.out.print("Thread[" + Thread.currentThread().getName() + "]invoke wakeup\r\n");
 
-
-
+//        selector.wakeup();
 
     }
 

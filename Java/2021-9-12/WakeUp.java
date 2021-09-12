@@ -2,6 +2,7 @@ import java.net.InetSocketAddress;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
+import java.net.ServerSocket;
 
 public class WakeUp {
 
@@ -12,7 +13,8 @@ public class WakeUp {
         Selector selector = Selector.open();
         serverSocketChannel = ServerSocketChannel.open();
 
-        serverSocketChannel.socket().bind(new InetSocketAddress("127.0.0.1", 8080), 64);
+        ServerSocket socket = serverSocketChannel.socket();
+        socket.bind(new InetSocketAddress("127.0.0.1", 8080), 64);
         serverSocketChannel.configureBlocking(false);
         serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
 
@@ -29,10 +31,10 @@ public class WakeUp {
             }
         }.start();
 
-        Thread.sleep(5_60_000);
-        System.out.print("Thread[" + Thread.currentThread().getName() + "]invoke wakeup\r\n");
+//        Thread.sleep(5_60_000);
+//        System.out.print("Thread[" + Thread.currentThread().getName() + "]invoke wakeup\r\n");
 
-        selector.wakeup();
+//        selector.wakeup();
 
     }
 }
