@@ -11,10 +11,10 @@ public class SelectWakeUp {
 
     public static void main(String[] args) throws Exception {
 
-        ServerSocketChannel serverSocketChannel;
+
 
         Selector selector = Selector.open();
-        serverSocketChannel = ServerSocketChannel.open();
+        ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
 
         ServerSocket socket = serverSocketChannel.socket();
 //        socket.bind(new InetSocketAddress("127.0.0.1", 8080), 64);
