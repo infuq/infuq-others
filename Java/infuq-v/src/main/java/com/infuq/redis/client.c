@@ -33,8 +33,8 @@ int main(int argc, char **argv)
     // 发送命令
     write(fd, "*3\r\n", 4);
     write(fd, "$3\r\nSET\r\n", 9);
-    write(fd, "$2\r\nk7\r\n", 8);
-    write(fd, "$2\r\nv7\r\n", 8);
+    write(fd, "$2\r\nk9\r\n", 8);
+    write(fd, "$2\r\nv9\r\n", 8);
 
     // 读取返回值
     char buf[1024];

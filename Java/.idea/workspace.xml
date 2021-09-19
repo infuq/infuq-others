@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="412dc033-a39a-4b98-b7a0-5fce07de7138" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/redis/ClientInHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/redis/RedisOfNetty.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/redis/RedisOfSocket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/redis/client.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/SelectWakeUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/SelectWakeUp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/redis/client" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/redis/client" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/redis/client.c" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/redis/client.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/redis/ClientInHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/redis/ClientInHandler.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/infuq-v/target/" />
@@ -18,28 +16,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/redis/RedisOfNetty.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/redis/RedisOfSocket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="30" column="41" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
+            <state relative-caret-position="451">
+              <caret line="46" selection-start-line="46" selection-end-line="46" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#767#1255#0" expanded="true" />
-                <element signature="e#1254#1255#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/redis/ClientInHandler.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/redis/RedisOfNetty.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+            <state relative-caret-position="646">
+              <caret line="41" selection-start-line="1" selection-end-line="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/redis/ClientInHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19">
+              <caret line="1" selection-start-line="1" selection-end-line="51" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/redis/client.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="684">
+              <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -76,9 +93,9 @@
         <option value="$PROJECT_DIR$/2021-9-12/WakeUp.java" />
         <option value="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/SelectWakeUp.java" />
         <option value="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/redis/RedisOfSocket.java" />
-        <option value="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/redis/client.c" />
         <option value="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/redis/RedisOfNetty.java" />
         <option value="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/redis/ClientInHandler.java" />
+        <option value="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/redis/client.c" />
       </list>
     </option>
   </component>
@@ -90,10 +107,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="30" />
-    <option name="y" value="60" />
-    <option name="width" value="1890" />
-    <option name="height" value="960" />
+    <option name="x" value="2236" />
+    <option name="y" value="171" />
+    <option name="width" value="1260" />
+    <option name="height" value="640" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -191,7 +208,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.RedisOfNetty">
+  <component name="RunManager" selected="Application.RedisOfSocket">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.infuq.tmp.Main" />
       <module name="infuq-v" />
@@ -321,8 +338,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.RedisOfNetty" />
         <item itemvalue="Application.RedisOfSocket" />
+        <item itemvalue="Application.RedisOfNetty" />
         <item itemvalue="Application.SelectWakeUp" />
         <item itemvalue="Application.WakeUpv2" />
         <item itemvalue="Application.Main" />
@@ -352,7 +369,8 @@
       <workItem from="1631496944626" duration="22000" />
       <workItem from="1631536650553" duration="2224000" />
       <workItem from="1631583331598" duration="32000" />
-      <workItem from="1631707851869" duration="2228000" />
+      <workItem from="1631707851869" duration="5532000" />
+      <workItem from="1631756056483" duration="59000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <created>1630818292091</created>
@@ -372,13 +390,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15400000" />
+    <option name="totallyTimeSpent" value="18763000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4973357" visible="true" weight="0.24656427" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4973357" visible="true" weight="0.17697228" />
       <window_info id="Structure" order="1" sideWeight="0.5026643" side_tool="true" weight="0.25788197" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -457,18 +475,6 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="..." />
     <option name="LAST_COMMIT_MESSAGE" value="..." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/redis/ClientInHandler.java</url>
-          <line>15</line>
-          <properties />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spring/Example.java">
@@ -705,13 +711,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/redis/client.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/infuq-v/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
@@ -719,10 +718,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://D:/Soft/Java/jdk1.8.0_251/src.zip!/java/nio/charset/Charset.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="603" column="26" selection-start-line="603" selection-start-column="26" selection-end-line="603" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.63.Final/netty-all-4.1.63.Final-sources.jar!/io/netty/handler/codec/string/StringEncoder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="76" column="37" selection-start-line="76" selection-start-column="37" selection-end-line="76" selection-end-column="37" />
+          <folding>
+            <element signature="e#2080#2081#0" expanded="true" />
+            <element signature="e#2126#2127#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.63.Final/netty-all-4.1.63.Final-sources.jar!/io/netty/buffer/ByteBufUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="1098" column="92" selection-start-line="1098" selection-start-column="89" selection-end-line="1098" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/redis/RedisOfSocket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="14" column="28" selection-start-line="13" selection-start-column="8" selection-end-line="14" selection-end-column="28" />
+        <state relative-caret-position="451">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -731,23 +755,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/redis/RedisOfNetty.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="30" column="41" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
+        <state relative-caret-position="646">
+          <caret line="41" selection-start-line="1" selection-end-line="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#767#1255#0" expanded="true" />
-            <element signature="e#1254#1255#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/redis/ClientInHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+        <state relative-caret-position="19">
+          <caret line="1" selection-start-line="1" selection-end-line="51" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/redis/client.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
         </state>
       </provider>
     </entry>
