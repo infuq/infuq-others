@@ -1,6 +1,9 @@
 {
     "files.associations": {
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "in.h": "c",
+        "epoll.h": "c",
+        "fcntl.h": "c"
     },
     "python.pythonPath": "D:\\Soft\\Python38\\python.exe"
 }
