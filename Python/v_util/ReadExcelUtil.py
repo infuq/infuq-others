@@ -1,5 +1,9 @@
 #! /usr/bin/env python
 
+'''
+读取xlsx或xls文件
+'''
+
 import openpyxl
 import os
 import xlrd
