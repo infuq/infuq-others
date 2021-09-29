@@ -35,7 +35,7 @@ class ReadExcelUtil(Iterable):
             return ReadXlsIterator(self.sheet)
 
 
-# 迭代器
+# 迭代器 xlsx
 class ReadXlsxIterator(Iterator):
 
     def __init__(self, sheet):
@@ -60,7 +60,7 @@ class ReadXlsxIterator(Iterator):
         raise StopIteration
 
 
-# 迭代器
+# 迭代器 xls
 class ReadXlsIterator(Iterator):
 
     def __init__(self, sheet):

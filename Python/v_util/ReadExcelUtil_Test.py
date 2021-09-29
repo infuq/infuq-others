@@ -3,16 +3,27 @@
 """
 读取Excel工具
 """
-
+import re
 from ReadExcelUtil import ReadExcelUtil
 
 
 if __name__ == '__main__':
 
-    util = ReadExcelUtil('D:/Repository/others/python/1.xlsx')
-    for row,value in util:
-        print(row, value)
+    if 1 < 0:
+        file = r'D:\Repository\infuq-others\Python\resources\data_test.xls'
+        file = re.sub(r"\\", '/', file) # \ -> /
+        rows = ReadExcelUtil(file)
+        for row,value in rows:
+            print(row, value, value[2])
 
-    util = ReadExcelUtil('D:/Repository/others/python/2.xls')
-    for row,value in util:
-        print(row, value)        
+    if 1 < 0:
+        file = r'D:\Repository\infuq-others\Python\resources/data_test_2.xlsx'
+        file = re.sub(r"\\", '/', file)
+        rows = ReadExcelUtil(file)
+        for row,value in rows:
+            print(row, value)
+
+    
+    file = r'D:\Repository\infuq-others\Python\resources/data_test_2.xlsx'
+    print(file.replace('\\', '/'))
+
