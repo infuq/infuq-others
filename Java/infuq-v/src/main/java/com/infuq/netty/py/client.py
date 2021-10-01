@@ -2,7 +2,6 @@
 # -*- coding:utf-8 -*-
 
 from socket import *
-import pickle
 import struct
 import json
 
@@ -29,8 +28,6 @@ if __name__ == '__main__':
     client.connect(('127.0.0.1', 8082))
 
     book = Book('杭州', 2021)
-
-    # data = pickle.dumps(dict(seria))
 
     data = json.dumps(dict(book)) # data是字符串类型
     body = bytes(data, 'utf-8') # data是字节类型
