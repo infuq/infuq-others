@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 
 """
-线程通信
+线程通信 生产者-消费者
 """
 
 import queue

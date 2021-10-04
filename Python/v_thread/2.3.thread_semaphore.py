@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 
 """
-Semaphore的使用
+信号量Semaphore的使用
 """
 
 from threading import Semaphore

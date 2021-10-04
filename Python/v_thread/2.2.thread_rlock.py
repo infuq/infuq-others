@@ -18,7 +18,7 @@ class Add(threading.Thread):
 
     def run(self):
         global count
-        for i in range(1000000):
+        for _ in range(1000000):
             self.lock.acquire()
             count += 1
             self.lock.release()
@@ -31,7 +31,7 @@ class Desc(threading.Thread):
 
     def run(self):
         global count
-        for i in range(1000000):
+        for _ in range(1000000):
             # 加锁 可重入
             self.lock.acquire()
             self.lock.acquire()
