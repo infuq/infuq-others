@@ -1,0 +1,2 @@
+hp=com.infuq.dubbo.spi.HPComputer
+dell=com.infuq.dubbo.spi.DELLComputer

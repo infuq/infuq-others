@@ -9,8 +9,8 @@ public class Example {
         int[] arr = new int[7];
         System.out.println(ClassLayout.parseInstance(arr).toPrintable());
 
-        Object obj = new Object();
-        System.out.println(ClassLayout.parseInstance(obj).toPrintable());
+//        Object obj = new Object();
+//        System.out.println(ClassLayout.parseInstance(obj).toPrintable());
 
     }
 
