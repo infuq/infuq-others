@@ -5,7 +5,7 @@ res = {'result': 'this is a test'}
 host = ('127.0.0.1', 8080)
 
 
-class Resquest(BaseHTTPRequestHandler):
+class Request(BaseHTTPRequestHandler):
 
     def do_GET(self):
         # 解析请求参数
@@ -23,6 +23,6 @@ class Resquest(BaseHTTPRequestHandler):
 
 
 if __name__ == '__main__':
-    server = HTTPServer(host, Resquest)
+    server = HTTPServer(host, Request)
     print("Starting server, listen at: %s:%s" % host)
     server.serve_forever()
