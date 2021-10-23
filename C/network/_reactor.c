@@ -16,6 +16,7 @@
 #define SERVER_PORT			8000
 
 typedef int NCALLBACK(int ,int, void*);
+int lfd;
 
 struct struct_event {
     int fd;
@@ -43,6 +44,8 @@ int accept_cb(int fd, int events, void *arg);
 
 
 void struct_event_set(struct struct_event *ev, int fd, NCALLBACK callback, void *arg) {
+
+    printf("fd=[%d]添加到reactor.events数组中所在的地址=%p\n", fd, ev);
 
     ev->fd = fd;
     ev->callback = callback;
@@ -204,7 +207,7 @@ int accept_cb(int fd, int events, void *arg) {
 // 创建监听套接字
 int init_sock(short port) {
 
-    int lfd = socket(AF_INET, SOCK_STREAM, 0);
+    lfd = socket(AF_INET, SOCK_STREAM, 0);
     fcntl(lfd, F_SETFL, O_NONBLOCK);
 
     struct sockaddr_in server_addr;
@@ -280,7 +283,7 @@ int reactor_run(struct struct_reactor *reactor) {
     while (1) {
 
         long now = time(NULL);
-        for (i = 0;i < 100;i ++, checkpos ++) {
+        for (i = 0; i < 100; i++, checkpos++) {
             if (checkpos == MAX_EPOLL_EVENTS) {
                 checkpos = 0;
             }
@@ -292,6 +295,10 @@ int reactor_run(struct struct_reactor *reactor) {
             long duration = now - reactor->events[checkpos].last_active;
 
             if (duration >= 60) {
+                if (reactor->events[checkpos].fd == lfd) {
+                    continue;
+                }
+
                 close(reactor->events[checkpos].fd);
                 printf("[fd=%d] timeout\n", reactor->events[checkpos].fd);
                 struct_event_del(reactor->epfd, &reactor->events[checkpos]);
@@ -305,16 +312,20 @@ int reactor_run(struct struct_reactor *reactor) {
             continue;
         }
 
-        for (i = 0;i < nready;i ++) {
+        for (i = 0; i < nready; i++) {
 
             struct struct_event *ev = (struct struct_event*)events[i].data.ptr;
+            printf("触发可读写的fd=[%d]在reactor.events数组中所在的地址=%p\n", ev->fd, ev);
 
+            ev->callback(ev->fd, events[i].events, ev->arg);
+            /*
             if ((events[i].events & EPOLLIN) && (ev->events & EPOLLIN)) {
                 ev->callback(ev->fd, events[i].events, ev->arg);
             }
             if ((events[i].events & EPOLLOUT) && (ev->events & EPOLLOUT)) {
                 ev->callback(ev->fd, events[i].events, ev->arg);
             }
+            */
 
         }
 
