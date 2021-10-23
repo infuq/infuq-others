@@ -1,9 +1,10 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "_array.h"
 #include "_other.h"
 #include "_pipe.h"
 
-int main()
+int main(int argc, char **argv)
 {
 
 //    _array();

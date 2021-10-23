@@ -9,7 +9,7 @@
 #include <pthread.h>
 
 
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
 
 	struct stat statbuf;

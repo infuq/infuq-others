@@ -3,7 +3,7 @@
 enum Color
 {
     // 常量
-            RED,
+    RED,
     GREEN,
     BLUE
 };
@@ -11,7 +11,7 @@ enum Color
 enum Sex
 {
     // 常量
-            MALE = 3,
+    MALE = 3,
     FEMALE = 2
 };
 

@@ -6,7 +6,7 @@ union Un
     int year;
 };
 
-int main(int argc, char *argv)
+int main(int argc, char **argv)
 {
 
     union Un un;
