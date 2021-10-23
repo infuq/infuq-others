@@ -9,7 +9,6 @@
 #include <unistd.h>
 #include <errno.h>
 #include <time.h>
-#include <afxres.h>
 
 
 #define BUFFER_LENGTH		4096
