@@ -13,7 +13,7 @@
 
 #define BUFFER_LENGTH		4096
 #define MAX_EPOLL_EVENTS	1024
-#define SERVER_PORT			8888
+#define SERVER_PORT			8000
 
 typedef int NCALLBACK(int ,int, void*);
 
