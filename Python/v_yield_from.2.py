@@ -13,7 +13,7 @@ class Student(object):
         yield 2
 
     def __next__(self):
-        print('n')
+        return self
 
 
 def caller():
@@ -26,5 +26,5 @@ def caller():
 if __name__ == '__main__':
     caller = caller()
     caller.send(None)
-    print(caller.send(5))
+    # print(caller.send(5))
 

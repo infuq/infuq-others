@@ -110,11 +110,16 @@ def loop():
 
 
 if __name__ == "__main__":
-    import time
-    start = time.time()
-    for url in urls_todo:
-        crawler = Crawler(url)
-        coro = crawler.fetch()
-        Task(coro)
-    loop()
-    print(time.time() - start)
+
+    if -1:
+        pass
+    else:
+
+        import time
+        start = time.time()
+        for url in urls_todo:
+            crawler = Crawler(url)
+            coro = crawler.fetch()
+            Task(coro)
+        loop()
+        print(time.time() - start)

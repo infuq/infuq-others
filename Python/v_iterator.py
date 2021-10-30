@@ -1,11 +1,12 @@
 #! /usr/bin/env python
 
-'''
+"""
 迭代器
-'''
+"""
 
 from collections.abc import Iterator
 from collections.abc import Iterable
+
 
 class Student(Iterable):
 
@@ -28,11 +29,11 @@ class MyIterator(Iterator):
         except IndexError:
             raise StopIteration
         self.index = self.index + 1
-        return result        
+        return result
+
 
 if __name__ == '__main__':
     
     stu = Student([89, 75, 92, 69])
     for item in stu:
         print(item)
-
