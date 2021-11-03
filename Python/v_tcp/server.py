@@ -1,8 +1,11 @@
+#! /usr/bin/env python
+# -*- coding:utf-8 -*-
 
 # from socket import *
 import socket
 
-ADDRESS = ('127.0.0.1', 8083)
+ADDRESS = ('127.0.0.1', 8081)
+
 
 def start():
     # 实例化一个socket对象

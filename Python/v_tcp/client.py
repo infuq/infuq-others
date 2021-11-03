@@ -1,3 +1,6 @@
+#! /usr/bin/env python
+# -*- coding:utf-8 -*-
+
 import socket
 
 ADDRESS = ('127.0.0.1', 8081)
@@ -5,7 +8,7 @@ ADDRESS = ('127.0.0.1', 8081)
 
 def connect():
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client.bind(('127.0.0.1', 8082))
+    client.bind(('127.0.0.1', 8081))
     client.connect(ADDRESS)
 
     while True:

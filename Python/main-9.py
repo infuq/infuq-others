@@ -9,7 +9,7 @@ print('i\'am "OK"')
 print(r'\\无需转义\\')
 
 
-name=input('please input your name:')
+name = input('please input your name:')
 print(name)
 
 # True  False  and  or  not

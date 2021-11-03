@@ -31,7 +31,7 @@ class MatchFile:
                 continue
 
             if self.enable_suffix and file.endswith(self.suffix):
-                # 例如file_name=server.py
+                # 例如file_name=MyHTTPServer.py
                 file_name = os.path.basename(file)
                 if self.keyword in file_name:
                     print(file)

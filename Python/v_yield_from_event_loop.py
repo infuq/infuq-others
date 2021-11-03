@@ -1,12 +1,13 @@
 #! /usr/bin/env python
+# -*- coding:utf-8 -*-
 
 import socket
 from selectors import DefaultSelector, EVENT_READ, EVENT_WRITE
 
-'''
+"""
 原文地址
 https://www.cnblogs.com/olivertian/p/11444480.html
-'''
+"""
 
 selector = DefaultSelector()
 stopped = False
