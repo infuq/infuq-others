@@ -2,11 +2,11 @@ package com.infuq.dubbo.spi;
 
 import com.alibaba.dubbo.common.URL;
 
-public class HPWrapperComputer implements Computer {
+public class WrapperComputer implements Computer {
 
     private Computer computer;
 
-    public HPWrapperComputer(Computer computer) {
+    public WrapperComputer(Computer computer) {
         this.computer = computer;
     }
 
