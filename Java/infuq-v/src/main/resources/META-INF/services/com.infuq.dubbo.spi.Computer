@@ -1,2 +1,3 @@
-hp=com.infuq.dubbo.spi.HPComputer
-dell=com.infuq.dubbo.spi.DELLComputer
+dell=com.infuq.dubbo.spi.DellComputer
+hp1,hp2=com.infuq.dubbo.spi.HPComputer
+com.infuq.dubbo.spi.HPWrapperComputer

@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="412dc033-a39a-4b98-b7a0-5fce07de7138" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/ObjClassLayout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2021-5-26/Example.java" beforeDir="false" afterPath="$PROJECT_DIR$/2021-5-26/Example.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/Computer$Adaptive.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/DellComputer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/Example.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/HPWrapperComputer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/Computer.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/Computer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/DELLComputer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/HPComputer.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/HPComputer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/resources/META-INF/services/com.infuq.dubbo.spi.Computer" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/resources/META-INF/services/com.infuq.dubbo.spi.Computer" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/infuq-v/target/" />
@@ -14,12 +21,63 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/ObjClassLayout.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="209">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/infuq-v/src/main/resources/META-INF/services/com.infuq.dubbo.spi.Computer">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="38">
+              <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/HPWrapperComputer.java">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/Computer$Adaptive.java">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/Example.java">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/HPComputer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="38">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/Computer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/DellComputer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="38">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -64,6 +122,8 @@
         <option value="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/netty/py/ServerHandler.java" />
         <option value="$PROJECT_DIR$/2021-5-26/Example.java" />
         <option value="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/ObjClassLayout.java" />
+        <option value="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/DellComputer.java" />
+        <option value="$PROJECT_DIR$/infuq-v/src/main/resources/META-INF/services/com.infuq.dubbo.spi.Computer" />
       </list>
     </option>
   </component>
@@ -75,8 +135,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-12" />
-    <option name="y" value="-12" />
+    <option name="x" value="190" />
+    <option name="y" value="412" />
     <option name="width" value="1944" />
     <option name="height" value="1044" />
   </component>
@@ -87,7 +147,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -138,12 +197,40 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="infuq" type="462c0819:PsiDirectoryNode" />
+              <item name="spi" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infuq-java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Java" type="462c0819:PsiDirectoryNode" />
+              <item name="infuq-v" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="infuq" type="462c0819:PsiDirectoryNode" />
               <item name="tmp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infuq-java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Java" type="462c0819:PsiDirectoryNode" />
+              <item name="infuq-v" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infuq-java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Java" type="462c0819:PsiDirectoryNode" />
+              <item name="infuq-v" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -161,6 +248,7 @@
       <recent name="com.infuq.redis" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Repository\infuq-others\Java\infuq-v\src\main\java\com\infuq\dubbo\spi" />
       <recent name="D:\Repository\infuq-others\Java\infuq-v\src\main\java\com\infuq\netty\py" />
       <recent name="D:\Repository\infuq-others\Java\infuq-v\src\main\java\com\infuq\wakeup" />
     </key>
@@ -335,6 +423,9 @@
       <workItem from="1631756056483" duration="59000" />
       <workItem from="1633080457616" duration="827000" />
       <workItem from="1633354038079" duration="5173000" />
+      <workItem from="1635938698252" duration="9000" />
+      <workItem from="1636084785613" duration="7000" />
+      <workItem from="1636205791077" duration="243000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <created>1630818292091</created>
@@ -354,13 +445,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24763000" />
+    <option name="totallyTimeSpent" value="25022000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
+    <frame x="127" y="275" width="1296" height="696" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4973357" weight="0.22150365" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4973357" visible="true" weight="0.2996769" />
       <window_info id="Structure" order="1" sideWeight="0.5026643" side_tool="true" weight="0.25788197" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -441,74 +531,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="..." />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Soft/Java/jdk-12.0.2/lib/src.zip!/jdk.attach/sun/tools/attach/HotSpotVirtualMachine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4275">
-          <caret line="264" column="37" selection-start-line="264" selection-start-column="23" selection-end-line="264" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Soft/Java/jdk-12.0.2/lib/src.zip!/java.base/sun/nio/ch/ServerSocketAdaptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="53" column="42" selection-start-line="53" selection-start-column="42" selection-end-line="53" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Soft/Java/jdk-12.0.2/lib/src.zip!/java.base/sun/nio/ch/Net.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7220">
-          <caret line="436" column="32" selection-start-line="436" selection-start-column="32" selection-end-line="436" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Soft/Java/jdk-12.0.2/lib/src.zip!/java.base/sun/nio/ch/IOUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6859">
-          <caret line="386" column="33" selection-start-line="386" selection-start-column="33" selection-end-line="386" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Soft/Java/jdk-12.0.2/lib/src.zip!/java.base/java/nio/channels/ServerSocketChannel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1159">
-          <caret line="90" column="13" selection-start-line="90" selection-start-column="13" selection-end-line="90" selection-end-column="13" />
-          <folding>
-            <element signature="e#2423#2424#0" expanded="true" />
-            <element signature="e#2454#2455#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Soft/Java/jdk-12.0.2/lib/src.zip!/java.base/java/nio/channels/spi/AbstractSelectableChannel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1026">
-          <caret line="85" column="14" selection-start-line="85" selection-start-column="14" selection-end-line="85" selection-end-column="14" />
-          <folding>
-            <element signature="e#2302#2303#0" expanded="true" />
-            <element signature="e#2342#2343#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Soft/Java/jdk-12.0.2/lib/src.zip!/java.base/java/nio/channels/spi/AbstractInterruptibleChannel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1976">
-          <caret line="133" column="25" selection-start-line="133" selection-start-column="25" selection-end-line="133" selection-end-column="25" />
-          <folding>
-            <element signature="e#4168#4169#0" expanded="true" />
-            <element signature="e#4198#4199#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/Soft/Java/jdk-12.0.2/lib/src.zip!/java.base/sun/net/NetHooks.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -824,10 +846,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/ObjClassLayout.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/HPWrapperComputer.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/Computer$Adaptive.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/Example.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/HPComputer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/Computer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/DellComputer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-v/src/main/resources/META-INF/services/com.infuq.dubbo.spi.Computer">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
         </state>
       </provider>
     </entry>
