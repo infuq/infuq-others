@@ -10,9 +10,8 @@ void *thread(void *arg)
     newthid = pthread_self();
     printf("this is a new thread, thread ID = %ld\n", newthid);
     
-//  子线程调用return 或 pthread_exit并不会导致进程退出, 且子线程正常退出.
-//    pthread_exit(NULL);
 
+    sleep(30);
     return NULL;
 }
  
@@ -28,7 +27,6 @@ int main(void)
     }
    
 
-    sleep(30);
 
     return 0;
 }
