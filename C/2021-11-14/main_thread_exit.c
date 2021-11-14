@@ -26,7 +26,9 @@ int main(void)
         exit(1);
     }
    
-    // 主线程调用return会导致进程退出.
+    // 主线程调用pthread_exit并不会导致进程退出, 但主线程处于僵尸状态. 主线程会等待所有子线程执行完毕后才结束进程.
+    
+    pthread_exit(NULL);
 
     return 0;
 }
