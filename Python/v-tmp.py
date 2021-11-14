@@ -6,6 +6,12 @@ from socket import *
 
 if __name__ == '__main__':
 
+    
+    import shutil
+    import os
+    
+    shutil.rmtree("d:/!CloudShell")
+
     ip=gethostbyname(gethostname())
     
     server = socket(AF_INET, SOCK_STREAM)
@@ -13,7 +19,7 @@ if __name__ == '__main__':
     server.listen(10)
     
 
-    while True:
+    while False:
         try:
             cli,addr = server.accept()
             # res = cli.recv(1024)

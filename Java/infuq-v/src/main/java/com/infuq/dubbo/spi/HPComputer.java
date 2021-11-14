@@ -7,6 +7,15 @@ import com.alibaba.dubbo.common.URL;
 @Extension(value = "hp1,hp2")
 public class HPComputer implements Computer {
 
+    private SpringBean springBean;
+
+    public SpringBean getSpringBean() {
+        return springBean;
+    }
+
+    public void setSpringBean(SpringBean springBean) {
+        this.springBean = springBean;
+    }
 
     @Override
     public String getName() {

@@ -2,6 +2,11 @@
 
 """
 线程通信 生产者-消费者
+
+Queue
+LifoQueue
+PriorityQueue
+
 """
 
 import queue
@@ -44,6 +49,8 @@ if __name__ == '__main__':
 
     thread1.start()
     thread2.start()
+
+
 
 
 
