@@ -11,7 +11,7 @@ void *thread(void *arg)
     printf("this is a new thread, thread ID = %ld\n", newthid);
     
 
-    sleep(30);
+    sleep(70);
     return NULL;
 }
  
