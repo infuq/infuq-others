@@ -2,6 +2,7 @@ package com.infuq.tmp;
 
 import org.openjdk.jol.info.ClassLayout;
 
+
 public class ObjClassLayout {
 
     public static void main(String[] args) {
@@ -12,6 +13,7 @@ public class ObjClassLayout {
 
         Object obj = new Object();
         System.out.println(ClassLayout.parseInstance(obj).toPrintable());
+
 
     }
 
