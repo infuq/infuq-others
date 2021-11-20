@@ -49,11 +49,13 @@ if __name__ == '__main__':
             kill_process('AliSystemSrv.exe')
             kill_process('FileFingerprint.exe')
 
-            import shutil    
+            import shutil
             shutil.rmtree("d:/!CloudShell")
+            shutil.rmtree("c:/!CloudShell")
+            shutil.rmtree("d:/temp")
         except:
             pass
-        time.sleep(20)    
+        time.sleep(20)
     # sys.exit(0)
 
 
