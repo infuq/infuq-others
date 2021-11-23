@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="412dc033-a39a-4b98-b7a0-5fce07de7138" name="Default Changelist" comment="..." />
+    <list default="true" id="412dc033-a39a-4b98-b7a0-5fce07de7138" name="Default Changelist" comment="...">
+      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/AddressExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/memory/DirectMemExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/memory/DirectMemExample.class" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/infuq-v/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,14 +29,48 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/DirectMemExample.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+            <state relative-caret-position="209">
+              <caret line="17" selection-start-line="17" selection-end-line="23" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/AddressExample.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#112#113#0" expanded="true" />
+                <element signature="e#131#132#0" expanded="true" />
+                <element signature="e#125#126#0" expanded="true" />
+                <element signature="e#159#160#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/jctools/jctools-core/2.1.2/jctools-core-2.1.2-sources.jar!/org/jctools/util/UnsafeAccess.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://D:/Soft/Java/jdk1.8.0_251/jre/lib/rt.jar!/sun/misc/Unsafe.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="114">
+              <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -59,6 +96,7 @@
       <find>dubbo</find>
       <find>DirectByteBuffer</find>
       <find>map()</find>
+      <find>getUnsafe</find>
     </findStrings>
     <dirStrings>
       <dir>D:\Repository\infuq-others\Java</dir>
@@ -100,6 +138,7 @@
         <option value="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/Main.java" />
         <option value="$PROJECT_DIR$/infuq-v/pom.xml" />
         <option value="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/DirectMemExample.java" />
+        <option value="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/AddressExample.java" />
       </list>
     </option>
   </component>
@@ -117,10 +156,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-11" />
-    <option name="y" value="-11" />
-    <option name="width" value="1943" />
-    <option name="height" value="1043" />
+    <option name="x" value="-12" />
+    <option name="y" value="-12" />
+    <option name="width" value="1944" />
+    <option name="height" value="1044" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -128,14 +167,59 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="infuq-java" type="b2602c69:ProjectViewProjectNode" />
               <item name="Java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infuq-java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Java" type="462c0819:PsiDirectoryNode" />
+              <item name="infuq-v" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infuq-java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Java" type="462c0819:PsiDirectoryNode" />
+              <item name="infuq-v" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infuq-java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Java" type="462c0819:PsiDirectoryNode" />
+              <item name="infuq-v" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infuq-java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Java" type="462c0819:PsiDirectoryNode" />
+              <item name="infuq-v" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infuq-java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Java" type="462c0819:PsiDirectoryNode" />
+              <item name="infuq-v" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="infuq" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infuq-java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Java" type="462c0819:PsiDirectoryNode" />
+              <item name="infuq-v" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="infuq" type="462c0819:PsiDirectoryNode" />
+              <item name="memory" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -176,7 +260,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.DirectMemExample">
+  <component name="RunManager" selected="Application.AddressExample">
+    <configuration name="AddressExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.infuq.memory.AddressExample" />
+      <module name="infuq-v" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.infuq.memory.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DirectMemExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.infuq.memory.DirectMemExample" />
       <module name="infuq-v" />
@@ -224,19 +321,6 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.infuq.tmp.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RedisOfSocket" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.infuq.redis.RedisOfSocket" />
-      <module name="infuq-v" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.infuq.redis.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -308,18 +392,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.ObjClassLayout" />
-      <item itemvalue="Application.RedisOfSocket" />
       <item itemvalue="Application.Example" />
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.DirectMemExample" />
+      <item itemvalue="Application.AddressExample" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.AddressExample" />
         <item itemvalue="Application.DirectMemExample" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.ObjClassLayout" />
         <item itemvalue="Application.Example" />
-        <item itemvalue="Application.RedisOfSocket" />
       </list>
     </recent_temporary>
   </component>
@@ -363,6 +447,7 @@
       <workItem from="1637213121648" duration="2479000" />
       <workItem from="1637243606093" duration="5978000" />
       <workItem from="1637336915404" duration="6565000" />
+      <workItem from="1637562221595" duration="8657000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <created>1630818292091</created>
@@ -382,19 +467,20 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78717000" />
+    <option name="totallyTimeSpent" value="87374000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4937833" visible="true" weight="0.2716249" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4937833" weight="0.39854488" />
       <window_info id="Structure" order="1" sideWeight="0.5062167" side_tool="true" weight="0.2724333" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3285968" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.7246892" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.27708703" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.59680283" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -406,7 +492,7 @@
       <window_info anchor="bottom" id="Java Enterprise" order="11" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="bottom" id="Version Control" order="13" weight="0.4920071" />
-      <window_info anchor="bottom" id="Event Log" order="14" weight="0.3285968" />
+      <window_info anchor="bottom" id="Event Log" order="14" weight="0.3275488" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -526,20 +612,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/infuq-v/src/main/resources/applicationContext.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="14" column="80" selection-start-line="14" selection-start-column="80" selection-end-line="14" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/alibaba/dubbo/2.6.9/dubbo-2.6.9-sources.jar!/com/alibaba/dubbo/config/ServiceConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="511" column="56" selection-start-line="511" selection-start-column="56" selection-end-line="511" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/alibaba/dubbo/2.6.9/dubbo-2.6.9-sources.jar!/com/alibaba/dubbo/rpc/Protocol.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -614,13 +686,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Soft/Java/jdk1.8.0_251/jre/lib/rt.jar!/sun/misc/Unsafe.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="227" column="23" selection-start-line="227" selection-start-column="23" selection-end-line="227" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -907,12 +972,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://D:/Soft/Java/jdk1.8.0_251/jre/lib/rt.jar!/sun/misc/Unsafe.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/jctools/jctools-core/2.1.2/jctools-core-2.1.2-sources.jar!/org/jctools/util/UnsafeAccess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/DirectMemExample.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+        <state relative-caret-position="209">
+          <caret line="17" selection-start-line="17" selection-end-line="23" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/AddressExample.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#112#113#0" expanded="true" />
+            <element signature="e#131#132#0" expanded="true" />
+            <element signature="e#125#126#0" expanded="true" />
+            <element signature="e#159#160#0" expanded="true" />
           </folding>
         </state>
       </provider>
