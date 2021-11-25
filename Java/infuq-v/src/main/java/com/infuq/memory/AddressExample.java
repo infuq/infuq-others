@@ -1,12 +1,14 @@
 package com.infuq.memory;
 
 import org.jctools.util.UnsafeAccess;
+import org.openjdk.jol.vm.VM;
 import sun.misc.Unsafe;
 
 public class AddressExample {
 
 
-    private int value;
+
+    int value;
 
 
     private AddressExample() {
@@ -28,63 +30,31 @@ public class AddressExample {
         // more /proc/9940/smaps > smaps.txt
 
         /*
-        -Xms50M -Xmx50M = 51200KB
+        -Xms50M -Xmx50M
         -XX:MaxDirectMemorySize=32M
-        -XX:MetaspaceSize=12M   = 12288KB
+        -XX:MetaspaceSize=12M
         -XX:MaxMetaspaceSize=16M
         -XX:-UseCompressedClassPointers -XX:-UseCompressedOops
          */
 
+        System.out.println(VM.current().details());
+
         AddressExample addressExample = new AddressExample();
-        long heap = location(addressExample);
-        System.out.println("heap address: 0x" + Long.toHexString(heap));
+        long heap = VM.current().addressOf(addressExample);
+        System.out.println("heap address:\t 0x" + Long.toHexString(heap));
 
-        long metaspace = location(AddressExample.class);
-        System.out.println("metaspace address: 0x" + Long.toHexString(metaspace));
-
+        long metaspace = VM.current().addressOf(AddressExample.class);
+        System.out.println("metaspace address:\t 0x" + Long.toHexString(metaspace));
 
         Unsafe unsafe = UnsafeAccess.UNSAFE;
         long direct = unsafe.allocateMemory(30 * 1024 * 1024);
-        System.out.println("direct address: 0x" + Long.toHexString(direct));
+        System.out.println("direct address:\t 0x" + Long.toHexString(direct));
+
 
 
 //        Thread.sleep(3600*1000);
 
     }
-
-
-
-
-
-    private static long location(Object object) {
-
-        Unsafe unsafe = UnsafeAccess.UNSAFE;
-
-        Object[] array = new Object[] {object};
-
-        long baseOffset = unsafe.arrayBaseOffset(Object[].class);
-
-        int addressSize = unsafe.addressSize();
-
-        long location;
-
-        switch (addressSize) {
-            case 4:
-                location = unsafe.getInt(array, baseOffset);
-                break;
-            case 8:
-                location = unsafe.getLong(array, baseOffset);
-                break;
-            default:
-                throw new Error("unsupported address size: " + addressSize);
-        }
-
-        return (location);
-
-    }
-
-
-
 
 
 
