@@ -44,21 +44,23 @@ public class AddressExample {
         long heap = VM.current().addressOf(addressExample);
         System.out.println("heap address:\t 0x" + Long.toHexString(heap));
 
+        // Class对象处在堆空间
+        long metaspace = VM.current().addressOf(AddressExample.class);
+        System.out.println("heap address:\t 0x" + Long.toHexString(metaspace));
+
+
+        // 查看元空间地址
         System.out.println(ClassLayout.parseInstance(addressExample).toPrintable());
+        
+
+        // 直接内存
+        Unsafe unsafe = UnsafeAccess.UNSAFE;
+        long direct = unsafe.allocateMemory(30 * 1024 * 1024);
+        System.out.println("direct address:\t 0x" + Long.toHexString(direct));
 
 
 
-
-//        long metaspace = VM.current().addressOf(AddressExample.class);
-//        System.out.println("metaspace address:\t 0x" + Long.toHexString(metaspace));
-
-//        Unsafe unsafe = UnsafeAccess.UNSAFE;
-//        long direct = unsafe.allocateMemory(30 * 1024 * 1024);
-//        System.out.println("direct address:\t 0x" + Long.toHexString(direct));
-
-
-
-//        Thread.sleep(3600*1000);
+        Thread.sleep(3600*1000);
 
     }
 

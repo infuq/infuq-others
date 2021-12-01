@@ -2,51 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="412dc033-a39a-4b98-b7a0-5fce07de7138" name="Default Changelist" comment="...">
-      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/FileChannelExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/ExtendInstanceofExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/InstanceofExample.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/AddressExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/AddressExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/ExampleThread.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/META-INF/services/com.infuq.dubbo.spi.Computer" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/applicationContext.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dubbo/spi/Computer$Adaptive.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dubbo/spi/Computer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dubbo/spi/DellComputer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dubbo/spi/Example.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dubbo/spi/HPComputer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dubbo/spi/SpringBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dubbo/spi/WrapperComputer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/example/recycler/Book.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/example/recycler/Main$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/example/recycler/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/example/recycler/ThreadUseMoreRecycler$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/example/recycler/ThreadUseMoreRecycler$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/example/recycler/ThreadUseMoreRecycler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/memory/AddressExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/memory/DirectMemExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/netty/py/MyDecoder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/netty/py/MyModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/netty/py/Server$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/netty/py/Server.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/netty/py/ServerHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/redis/ClientInHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/redis/RedisOfNetty$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/redis/RedisOfNetty.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/redis/RedisOfSocket.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/spring/Book.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/spring/Computer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/spring/Example.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/spring/MyConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/spring/MyInstantiationAwareBeanPostProcessor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/thread/Example.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/FirstUniqueCharacter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/ListNode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/ListNodeExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/ObjClassLayout.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/SelectWakeUp.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/util/CommonUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/log4j2.properties" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/infuq-v/target/" />
@@ -72,93 +28,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/InstanceofExample.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/ExtendInstanceofExample.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="53" selection-start-line="2" selection-start-column="53" selection-end-line="2" selection-end-column="53" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/AddressExample.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="49" selection-start-line="49" selection-end-line="49" />
+            <state relative-caret-position="931">
+              <caret line="57" column="15" selection-start-line="57" selection-start-column="15" selection-end-line="57" selection-end-column="15" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#240#241#0" expanded="true" />
                 <element signature="e#264#265#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="561" column="17" selection-start-line="561" selection-start-column="17" selection-end-line="561" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/FileChannelExample.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/openjdk/jol/jol-core/0.9/jol-core-0.9-sources.jar!/org/openjdk/jol/vm/VM.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="57" column="28" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/openjdk/jol/jol-core/0.9/jol-core-0.9-sources.jar!/org/openjdk/jol/vm/VirtualMachine.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="28" column="17" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/jctools/jctools-core/2.1.2/jctools-core-2.1.2-sources.jar!/org/jctools/util/UnsafeAccess.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/DirectMemExample.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="703">
-              <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -269,6 +147,51 @@
             <path>
               <item name="infuq-java" type="b2602c69:ProjectViewProjectNode" />
               <item name="Java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infuq-java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Java" type="462c0819:PsiDirectoryNode" />
+              <item name="infuq-v" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infuq-java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Java" type="462c0819:PsiDirectoryNode" />
+              <item name="infuq-v" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infuq-java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Java" type="462c0819:PsiDirectoryNode" />
+              <item name="infuq-v" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infuq-java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Java" type="462c0819:PsiDirectoryNode" />
+              <item name="infuq-v" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infuq-java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Java" type="462c0819:PsiDirectoryNode" />
+              <item name="infuq-v" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="infuq" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infuq-java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Java" type="462c0819:PsiDirectoryNode" />
+              <item name="infuq-v" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="infuq" type="462c0819:PsiDirectoryNode" />
+              <item name="memory" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -507,7 +430,7 @@
       <workItem from="1638285172369" duration="1342000" />
       <workItem from="1638286594348" duration="2204000" />
       <workItem from="1638291910974" duration="3207000" />
-      <workItem from="1638295429004" duration="2553000" />
+      <workItem from="1638295429004" duration="2806000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <created>1630818292091</created>
@@ -527,7 +450,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="119765000" />
+    <option name="totallyTimeSpent" value="120018000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="687" extended-state="6" />
@@ -1064,8 +987,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/AddressExample.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="49" selection-start-line="49" selection-end-line="49" />
+        <state relative-caret-position="931">
+          <caret line="57" column="15" selection-start-line="57" selection-start-column="15" selection-end-line="57" selection-end-column="15" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#240#241#0" expanded="true" />
