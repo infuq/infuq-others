@@ -1,6 +1,7 @@
 package com.infuq.memory;
 
 import org.jctools.util.UnsafeAccess;
+import org.openjdk.jol.info.ClassLayout;
 import org.openjdk.jol.vm.VM;
 import sun.misc.Unsafe;
 
@@ -37,18 +38,23 @@ public class AddressExample {
         -XX:-UseCompressedClassPointers -XX:-UseCompressedOops
          */
 
-        System.out.println(VM.current().details());
+//        System.out.println(VM.current().details());
 
         AddressExample addressExample = new AddressExample();
         long heap = VM.current().addressOf(addressExample);
         System.out.println("heap address:\t 0x" + Long.toHexString(heap));
 
-        long metaspace = VM.current().addressOf(AddressExample.class);
-        System.out.println("metaspace address:\t 0x" + Long.toHexString(metaspace));
+        System.out.println(ClassLayout.parseInstance(addressExample).toPrintable());
 
-        Unsafe unsafe = UnsafeAccess.UNSAFE;
-        long direct = unsafe.allocateMemory(30 * 1024 * 1024);
-        System.out.println("direct address:\t 0x" + Long.toHexString(direct));
+
+
+
+//        long metaspace = VM.current().addressOf(AddressExample.class);
+//        System.out.println("metaspace address:\t 0x" + Long.toHexString(metaspace));
+
+//        Unsafe unsafe = UnsafeAccess.UNSAFE;
+//        long direct = unsafe.allocateMemory(30 * 1024 * 1024);
+//        System.out.println("direct address:\t 0x" + Long.toHexString(direct));
 
 
 
