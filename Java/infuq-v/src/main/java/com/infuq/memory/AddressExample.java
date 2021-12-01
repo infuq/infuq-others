@@ -30,6 +30,7 @@ public class AddressExample {
         // more /proc/9940/maps > maps.txt
         // more /proc/9940/smaps > smaps.txt
 
+
         /*
         -Xms50M -Xmx50M
         -XX:MaxDirectMemorySize=32M
@@ -45,8 +46,8 @@ public class AddressExample {
         System.out.println("heap address:\t 0x" + Long.toHexString(heap));
 
         // Class对象处在堆空间
-        long metaspace = VM.current().addressOf(AddressExample.class);
-        System.out.println("heap address:\t 0x" + Long.toHexString(metaspace));
+        long clazz = VM.current().addressOf(AddressExample.class);
+        System.out.println("clazz address:\t 0x" + Long.toHexString(clazz));
 
 
         // 查看元空间地址
@@ -60,7 +61,11 @@ public class AddressExample {
 
 
 
-        Thread.sleep(3600*1000);
+        while (true) {
+
+            Thread.sleep(5000);
+            System.out.println(addressExample.value);
+        }
 
     }
 
