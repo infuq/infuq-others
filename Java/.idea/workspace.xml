@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="412dc033-a39a-4b98-b7a0-5fce07de7138" name="Default Changelist" comment="...">
-      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/AddressExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/AddressExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/MapExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/pom.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/infuq-v/target/" />
@@ -28,16 +29,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/AddressExample.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="13">
-              <caret line="49" column="33" selection-start-line="49" selection-start-column="33" selection-end-line="49" selection-end-column="33" />
+            <state relative-caret-position="279">
+              <caret line="60" selection-start-line="60" selection-end-line="60" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#240#241#0" expanded="true" />
                 <element signature="e#264#265#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/MapExample.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="71" column="9" lean-forward="true" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/infuq-v/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1045">
+              <caret line="55" column="17" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="10659">
+              <caret line="561" column="17" selection-start-line="561" selection-start-column="17" selection-end-line="561" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -106,13 +137,14 @@
         <option value="$PROJECT_DIR$/2021-11-14/ObjectAddress.java" />
         <option value="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/Main.java" />
         <option value="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/DirectMemExample.java" />
-        <option value="$PROJECT_DIR$/infuq-v/pom.xml" />
         <option value="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/AddressExample2.java" />
         <option value="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/AddressExample1.java" />
         <option value="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/FileChannelExample.java" />
         <option value="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/ExtendInstanceofExample.java" />
         <option value="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/InstanceofExample.java" />
         <option value="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/AddressExample.java" />
+        <option value="$PROJECT_DIR$/infuq-v/pom.xml" />
+        <option value="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/MapExample.java" />
       </list>
     </option>
   </component>
@@ -140,7 +172,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -148,56 +179,12 @@
               <item name="infuq-java" type="b2602c69:ProjectViewProjectNode" />
               <item name="Java" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="infuq-java" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Java" type="462c0819:PsiDirectoryNode" />
-              <item name="infuq-v" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="infuq-java" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Java" type="462c0819:PsiDirectoryNode" />
-              <item name="infuq-v" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="infuq-java" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Java" type="462c0819:PsiDirectoryNode" />
-              <item name="infuq-v" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="infuq-java" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Java" type="462c0819:PsiDirectoryNode" />
-              <item name="infuq-v" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="infuq-java" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Java" type="462c0819:PsiDirectoryNode" />
-              <item name="infuq-v" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="infuq" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="infuq-java" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Java" type="462c0819:PsiDirectoryNode" />
-              <item name="infuq-v" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="infuq" type="462c0819:PsiDirectoryNode" />
-              <item name="memory" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -234,7 +221,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.AddressExample">
+  <component name="RunManager" selected="Application.MapExample">
     <configuration name="AddressExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.infuq.memory.AddressExample" />
       <module name="infuq-v" />
@@ -289,13 +276,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ObjClassLayout" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.infuq.tmp.ObjClassLayout" />
+    <configuration name="MapExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.infuq.memory.MapExample" />
       <module name="infuq-v" />
-      <option name="VM_PARAMETERS" value="-XX:+UseCompressedClassPointers" />
+      <option name="VM_PARAMETERS" value="-Xms50M -Xmx50M -XX:MaxDirectMemorySize=32M -XX:MetaspaceSize=12M -XX:MaxMetaspaceSize=16M -XX:-UseCompressedClassPointers -XX:-UseCompressedOops" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.infuq.tmp.*" />
+          <option name="PATTERN" value="com.infuq.memory.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -366,19 +353,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.ObjClassLayout" />
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.DirectMemExample" />
       <item itemvalue="Application.AddressExample" />
       <item itemvalue="Application.InstanceofExample" />
+      <item itemvalue="Application.MapExample" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MapExample" />
         <item itemvalue="Application.AddressExample" />
         <item itemvalue="Application.InstanceofExample" />
         <item itemvalue="Application.DirectMemExample" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.ObjClassLayout" />
       </list>
     </recent_temporary>
   </component>
@@ -431,7 +418,10 @@
       <workItem from="1638286594348" duration="2204000" />
       <workItem from="1638291910974" duration="3207000" />
       <workItem from="1638295429004" duration="2806000" />
-      <workItem from="1638327799725" duration="1532000" />
+      <workItem from="1638327799725" duration="2700000" />
+      <workItem from="1638340877299" duration="648000" />
+      <workItem from="1638364114553" duration="2303000" />
+      <workItem from="1638542342736" duration="3394000" />
     </task>
     <task id="LOCAL-00001" summary="...">
       <created>1630818292091</created>
@@ -451,20 +441,19 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="122492000" />
+    <option name="totallyTimeSpent" value="130005000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="687" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4937833" weight="0.2166532" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4937833" weight="0.22635408" />
       <window_info id="Structure" order="1" sideWeight="0.5062167" side_tool="true" weight="0.2724333" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3275488" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.48828828" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32612613" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.59680283" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -597,16 +586,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/2021-11-14/ObjectAddress.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/Soft/Java/jdk1.8.0_251/src.zip!/java/nio/MappedByteBuffer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
@@ -857,13 +836,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://D:/Soft/Java/jdk1.8.0_251/jre/lib/rt.jar!/sun/misc/Unsafe.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/openjdk/jol/jol-core/0.9/jol-core-0.9.jar!/org/openjdk/jol/vm/VM.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="301">
@@ -882,13 +854,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/infuq-v/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="129" lean-forward="true" selection-start-line="129" selection-end-line="129" />
         </state>
       </provider>
     </entry>
@@ -979,21 +944,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-v/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1045">
+          <caret line="55" column="17" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
+        <state relative-caret-position="10659">
           <caret line="561" column="17" selection-start-line="561" selection-start-column="17" selection-end-line="561" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/AddressExample.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13">
-          <caret line="49" column="33" selection-start-line="49" selection-start-column="33" selection-end-line="49" selection-end-column="33" />
+        <state relative-caret-position="279">
+          <caret line="60" selection-start-line="60" selection-end-line="60" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#240#241#0" expanded="true" />
             <element signature="e#264#265#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Soft/Java/jdk1.8.0_251/jre/lib/rt.jar!/sun/misc/Unsafe.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-184">
+          <caret line="197" column="23" selection-start-line="197" selection-start-column="23" selection-end-line="197" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/MapExample.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="71" column="9" lean-forward="true" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
