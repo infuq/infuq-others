@@ -6,6 +6,7 @@ import org.openjdk.jol.vm.VM;
 import sun.misc.Unsafe;
 
 import java.io.RandomAccessFile;
+import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 
@@ -58,7 +59,7 @@ public class MapExample {
         System.out.println(ClassLayout.parseInstance(addressExample).toPrintable());
         
 
-        // 直接内存
+        // 直接内存 通过反射方式获取unsafe方式不受 -XX:MaxDirectMemorySize 参数限制
         Unsafe unsafe = UnsafeAccess.UNSAFE;
         long direct = unsafe.allocateMemory(33 * 1024 * 1024);
         System.out.println("direct address:\t 0x" + Long.toHexString(direct));
@@ -70,6 +71,10 @@ public class MapExample {
             direct = direct + 1;
             i = i - 1;
         }
+
+
+
+        ByteBuffer byteBuffer = ByteBuffer.allocateDirect(33 * 1024 * 1024);
 
 
         RandomAccessFile f = new RandomAccessFile("D:\\tmp\\map.txt", "rw");
