@@ -74,7 +74,7 @@ public class MapExample {
 
 
 
-        ByteBuffer byteBuffer = ByteBuffer.allocateDirect(33 * 1024 * 1024);
+        ByteBuffer byteBuffer = ByteBuffer.allocateDirect(31 * 1024 * 1024);
 
 
         RandomAccessFile f = new RandomAccessFile("D:\\tmp\\map.txt", "rw");
