@@ -34,7 +34,7 @@
   </dependencyManagement>
 
   <dependencies>
-
+<!--
     <dependency>
       <groupId>com.infuq</groupId>
       <artifactId>infuq-facade</artifactId>
@@ -45,7 +45,7 @@
       <groupId>com.infuq</groupId>
       <artifactId>infuq-server</artifactId>
       <version>1.0-SNAPSHOT</version>
-    </dependency>
+    </dependency>-->
 
 
     <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->

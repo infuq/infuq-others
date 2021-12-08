@@ -59,25 +59,32 @@ public class MapExample {
         System.out.println(ClassLayout.parseInstance(addressExample).toPrintable());
         
 
-        // 直接内存 通过反射方式获取unsafe方式不受 -XX:MaxDirectMemorySize 参数限制
-        Unsafe unsafe = UnsafeAccess.UNSAFE;
-        long direct = unsafe.allocateMemory(33 * 1024 * 1024);
-        System.out.println("direct address:\t 0x" + Long.toHexString(direct));
+        // 直接内存 通过反射获取unsafe方式不受 -XX:MaxDirectMemorySize 参数限制
+        Unsafe unsafe = org.jctools.util.UnsafeAccess.UNSAFE;
+        long native_mem = unsafe.allocateMemory(33 * 1024 * 1024);
+        System.out.println("direct address:\t 0x" + Long.toHexString(native_mem));
         byte b = 1;
-        unsafe.putByte(direct, b);
+        unsafe.putByte(native_mem, b);
         int i = 33 * 1024 * 1024;
         while (i > 0) {
-            unsafe.putByte(direct, b);
-            direct = direct + 1;
+            unsafe.putByte(native_mem, b);
+            native_mem = native_mem + 1;
             i = i - 1;
         }
 
 
+        // 最大直接内存
+        System.out.println(sun.misc.VM.maxDirectMemory());
 
         ByteBuffer byteBuffer = ByteBuffer.allocateDirect(31 * 1024 * 1024);
+<<<<<<< HEAD
+=======
+        System.out.println(ClassLayout.parseInstance(byteBuffer).toPrintable());
+>>>>>>> 82ad7244f75bbd21fbf972490395fe400e552ab1
 
 
-        RandomAccessFile f = new RandomAccessFile("D:\\tmp\\map.txt", "rw");
+
+        RandomAccessFile f = new RandomAccessFile("/home/v-dev/tmp/map.txt", "rw");
         FileChannel channel = f.getChannel();
         MappedByteBuffer buf = channel.map(FileChannel.MapMode.READ_WRITE, 0, 5*1024*1024);
         byte[] q = new byte[5*1024*1024];
