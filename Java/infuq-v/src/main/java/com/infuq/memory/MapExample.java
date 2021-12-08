@@ -50,11 +50,25 @@ public class MapExample {
         long heap = VM.current().addressOf(addressExample);
         System.out.println("heap address:\t 0x" + Long.toHexString(heap));
 
+
+        MapExample _addressExample = new MapExample();
+        long _heap = VM.current().addressOf(_addressExample);
+        System.out.println("heap address:\t 0x" + Long.toHexString(_heap));
+
         // Class对象处在堆空间
         long clazz = VM.current().addressOf(MapExample.class);
         System.out.println("clazz address:\t 0x" + Long.toHexString(clazz));
 
 
+
+        Manager manager = new Manager();
+        manager.setMapExample(_addressExample);
+        long __heap = VM.current().addressOf(manager);
+        System.out.println("heap address:\t 0x" + Long.toHexString(__heap));
+
+
+
+/*
         // 查看元空间地址
         System.out.println(ClassLayout.parseInstance(addressExample).toPrintable());
         
@@ -77,29 +91,29 @@ public class MapExample {
         System.out.println(sun.misc.VM.maxDirectMemory());
 
         ByteBuffer byteBuffer = ByteBuffer.allocateDirect(31 * 1024 * 1024);
-<<<<<<< HEAD
-=======
         System.out.println(ClassLayout.parseInstance(byteBuffer).toPrintable());
->>>>>>> 82ad7244f75bbd21fbf972490395fe400e552ab1
 
+*/
 
-
+/*
         RandomAccessFile f = new RandomAccessFile("/home/v-dev/tmp/map.txt", "rw");
         FileChannel channel = f.getChannel();
         MappedByteBuffer buf = channel.map(FileChannel.MapMode.READ_WRITE, 0, 5*1024*1024);
         byte[] q = new byte[5*1024*1024];
         buf.put(q);
-
+*/
 
 //        f.close();
 //        channel.close();
 
+//
+//        while (true) {
+//
+//            Thread.sleep(5000);
+//            System.out.println(addressExample.value);
+//        }
 
-        while (true) {
-
-            Thread.sleep(5000);
-            System.out.println(addressExample.value);
-        }
+        System.in.read();
 
     }
 

@@ -10,9 +10,5 @@
         <module name="infuq-v" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="infuq-java" target="1.8" />
-      <module name="infuq-v" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
