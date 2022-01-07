@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-# -*- coding:utf-8 -*-
+# -*- coding:utf8 -*-
 
 
 from socket import *
@@ -10,13 +10,14 @@ if __name__ == '__main__':
     import shutil
     import os
     
-    shutil.rmtree("d:/!CloudShell")
+    # shutil.rmtree("d:/!CloudShell")
 
     ip=gethostbyname(gethostname())
+    print(ip)
     
-    server = socket(AF_INET, SOCK_STREAM)
-    server.bind((ip, 8081))
-    server.listen(10)
+    # server = socket(AF_INET, SOCK_STREAM)
+    # server.bind((ip, 8081))
+    # server.listen(10)
     
 
     while False:
