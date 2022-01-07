@@ -20,7 +20,7 @@ match -> <class 're.Match'>
 import re
 
 
-def invoke_1():
+def invoke_search():
     matcher = re.search(r'(?P<value>Py[^ ]*n)', 'this is a py PythoN language Python', re.I)
     print(type(matcher))  # <class 're.Match'>
 
@@ -31,7 +31,7 @@ def invoke_1():
         print('匹配错误')
 
 
-def invoke_4():
+def invoke_match():
     language = 'Java C C++ PythoN Shell'
     # 从字符串起始位置开始匹配
     matcher = re.match(r'^.*(?P<value>Python).*$', language, re.I)
@@ -47,14 +47,14 @@ def invoke_4():
         print('匹配错误')
 
 
-def invoke_2():
+def invoke_split():
     result = re.split(r'[,;]', 'C,C++,Java;Python')
     print(type(result))  # <class 'list'>
     print(result)
     print(result[1])
 
 
-def invoke_3():
+def invoke_sub():
     data = '2021-03-21'
     result = re.sub(r'(\d{4})-(\d{2})-(\d{2})', r'\2/\3/\1', data)
     print(type(result))  # <class 'str'>
@@ -75,12 +75,16 @@ def invoke_3():
     print(score)
 
 
-def invoke_5():
+def invoke_findall():
     language = 'Java C C++ Python Shell Py123n PY45mN'
     result = re.findall(r'Py[^ ]*n', language, re.IGNORECASE)
     print(type(result))  # <class 'list'>
     print(result)
 
+    content = '中国人，美国人你好|欧洲人，非洲人'
+    ret = re.findall(r'(?<=[,，^]).*?(?=人)', content, re.S)
+    print(ret)
+
 
 if __name__ == '__main__':
-    invoke_4()
+    invoke_findall()
