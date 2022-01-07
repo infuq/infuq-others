@@ -89,5 +89,6 @@ def invoke_findall():
     ret = re.findall(r'%s书' % (person), content, flags=re.I)
     print(ret)
 
+
 if __name__ == '__main__':
-    invoke_findall()
+    invoke_search()
