@@ -81,10 +81,13 @@ def invoke_findall():
     print(type(result))  # <class 'list'>
     print(result)
 
-    content = '中国人，美国人你好|欧洲人，非洲人'
-    ret = re.findall(r'(?<=[,，^]).*?(?=人)', content, re.S)
+    content = '英语书，数学书你好|物理书，生物书'
+    ret = re.findall(r'(?<=[,，^]).*?(?=书)', content, re.S)
     print(ret)
 
+    person = '数学'
+    ret = re.findall(r'%s书' % (person), content, flags=re.I)
+    print(ret)
 
 if __name__ == '__main__':
     invoke_findall()
