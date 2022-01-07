@@ -4,12 +4,33 @@
 pip install pymysql
 '''
 
+'''
+CREATE TABLE `t_order` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `order_id` int DEFAULT NULL,
+  `order_status` tinyint DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `t_order_detail` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `order_id` int DEFAULT NULL,
+  `product_name` varchar(100) DEFAULT NULL,
+  `create_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+'''
+
+
 
 import pymysql
 import random
 
 
-def insert():
+def insert_order():
     conn = pymysql.connect(host="localhost", port=3306, user="root", passwd="9527", db="test_2" )
     cursor=conn.cursor()
 
@@ -27,7 +48,7 @@ def insert():
     cursor.close()
 
 
-def insert2():
+def insert_order_detail():
     conn = pymysql.connect(host="localhost", port=3306, user="root", passwd="9527", db="test_2" )
     cursor=conn.cursor()
 
@@ -45,4 +66,4 @@ def insert2():
 
 
 if __name__ == '__main__':
-    insert2()
+    insert_order_detail()
