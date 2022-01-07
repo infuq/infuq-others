@@ -7,6 +7,7 @@ pip install aliyun-python-sdk-ecs
 pip install aliyun-python-sdk-ons
 '''
 
+import base64
 import json
 from aliyunsdkcore.client import AcsClient
 from aliyunsdkcore.acs_exception.exceptions import ClientException
@@ -19,7 +20,6 @@ from aliyunsdkons.request.v20190214.OnsMessageGetByMsgIdRequest import OnsMessag
 
 
 def get_message_by_msg_id():
-
 
     access_id=""
     access_key=""
@@ -40,8 +40,10 @@ def get_message_by_msg_id():
     response = client.do_action_with_exception(request)
     json_data = str(response, encoding='utf-8')
     message_obj = json.loads(json_data)
-    print(message_obj['Data']['Body'])
+    message_body = message_obj['Data']['Body']
 
+    message = str(base64.b64decode(message_body), encoding='utf-8')
+    print(message)
 
 
 if __name__ == '__main__':
