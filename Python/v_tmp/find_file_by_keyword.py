@@ -15,7 +15,7 @@ def dir(root, suffix):
         if not os.path.isfile(os.path.join(root, file)):
             continue
         # if suffix and os.path.splitext(file)[-1][1:] != suffix[1:]: # 如果指定了文件后缀则校验, 否则不校验
-        if suffix and file.endswith(suffix):
+        if suffix and not file.endswith(suffix):
             continue
         yield os.path.join(root, file)
 
