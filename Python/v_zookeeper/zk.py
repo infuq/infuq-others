@@ -23,7 +23,8 @@ def main():
         # node = zkc.get_children("/dubbo/com.infuq.facade.QueryUserInfoFacade/")
         # print(node)
 
-        node = zkc.get_children("/dubbo/com.infuq.facade.QueryUserInfoFacade/providers/")
+        provider = 'com.infuq.facade.QueryUserInfoFacade'
+        node = zkc.get_children('/dubbo/{}/providers'.format(provider))
         print(node)
         for v in node:
             print(parse.unquote(v))
