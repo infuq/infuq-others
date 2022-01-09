@@ -1,0 +1,22 @@
+﻿创建管道
+1.命令方式
+格式: mkfifo 管道名
+2.函数方式
+int mkfifo(const char *pathname, mode_t mode);
+man 3 mkfifo
+
+创建FIFO之后,可以使用open打开它,常见的文件IO函数都可用于FIFO,如close,read,write等.
+但不支持lseek()操作.
+
+
+描述:
+原型:
+#include <sys/types.h>       
+#include <sys/stat.h>
+int mkfifo(const char *pathname, mode_t mode);
+
+返回值:
+成功,返回0
+失败,返回-1,设置errno值
+
+参数:
