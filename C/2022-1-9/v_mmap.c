@@ -25,9 +25,9 @@ int main(int argc, const char *argv[])
 
 
     // 打印内容
-    printf("%s\n", (char *)ptr);
+   printf("%s\n", (char *)ptr);
 
-    sleep(60);
+    sleep(600);
 
 
     munmap(ptr, len);
