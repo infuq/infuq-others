@@ -20,8 +20,14 @@ int main(int argc, const char *argv[])
         perror("mmap error");
         exit(1);
     }
+
+    printf("%p\n", ptr);
+
+
     // 打印内容
-    printf("%s", (char *)ptr);
+    printf("%s\n", (char *)ptr);
+
+    sleep(60);
 
 
     munmap(ptr, len);
