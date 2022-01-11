@@ -44,12 +44,15 @@ def main():
 
         # 消费者信息
         consumers = zkc.get_children('/dubbo/{}/consumers'.format(service_name))
-        for _consumer in consumers:
-            consumer = parse.unquote(_consumer)
-            print('[ 消费者 ]->{}'.format(consumer))
-            # 获取消费者IP和端口
-            ip = consumer.split("/")[2].split(':')[0]
-            print('[ 消费者IP ]->{}'.format(ip))
+        with open('1.txt', 'a') as f:
+            for _consumer in consumers:
+                consumer = parse.unquote(_consumer)
+                # print('[ 消费者 ]->{}'.format(consumer))
+                f.write(consumer)
+                f.write('\n')
+                # 获取消费者IP
+                # ip = consumer.split("/")[2].split(':')[0]
+                # print('[ 消费者IP ]->{}'.format(ip))
 
 
 
