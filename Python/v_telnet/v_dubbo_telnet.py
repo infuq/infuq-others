@@ -15,36 +15,40 @@ class DubboTelnet(object):
         self.__read_timeout = 10
         self.__encoding = 'utf-8'
         self.__finish = 'dubbo>'
+        self.telnet = None
 
     def invoke(self, command):
-        print(command)
-        pass
         try:
-            telnet = telnetlib.Telnet(host=self.host, port=self.port, timeout=self.__connect_timeout)
+            if self.telnet is None:
+                self.telnet = telnetlib.Telnet(host=self.host, port=self.port, timeout=self.__connect_timeout)
         except socket.error as err:
             print("[host:%s port:%s] %s" % (self.host, self.port, err))
             return
 
-        # 触发Dubbo提示符
-        telnet.write(b'\n')
-        # 执行命令
-        telnet.read_until(self.__finish.encode(), timeout=self.__read_timeout)
-        telnet.write(command.encode() + b"\n")
-        # 获取结果
-        data = ''
-        while str(data).find(self.__finish) == -1:
-            data = telnet.read_very_eager()
-        data = data.decode().split("\n")[0]
-        telnet.close()
-        return data
+        self.telnet.write(b'\n')
+        self.telnet.read_until(self.__finish.encode(), timeout=self.__read_timeout)
+        self.telnet.write(command.encode() + b"\n")
+
+        recv = ''
+        while str(recv).find(self.__finish) == -1:
+            recv = self.telnet.read_very_eager()
+        recv = recv.split("\n")[0]            
+        # recv = recv.decode().split("\n")[0]       
+        return recv
+
+    def close(self):
+        self.telnet.close()
 
 
 def main(host='127.0.0.1', port=20880):
 
-    conn = DubboTelnet(host, port)
-    cmd = 'invoke ....'
-    ret = conn.invoke(cmd)
-    print(ret)
+    telnet = DubboTelnet(host, port)
+    with open('1.txt') as f:
+        for cmd in f.readlines():
+            if cmd:
+                ret = telnet.invoke(cmd)
+                print(ret)
+    telnet.close()
 
 
 if __name__ == "__main__":

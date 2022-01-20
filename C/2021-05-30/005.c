@@ -17,6 +17,7 @@ int main()
 
 
     // p1和p2指向的内容存储在内存的静态存储区
+    // p1和p2指向字符'a'的地址
     char *p1 = "abcdef";
     char *p2 = "abcdef";
    
