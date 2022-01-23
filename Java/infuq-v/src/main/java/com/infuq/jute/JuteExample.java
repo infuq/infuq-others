@@ -22,6 +22,7 @@ public class JuteExample {
         InputStream intputStream = new FileInputStream(new File(path));
 
 
+
         BinaryInputArchive archive = BinaryInputArchive.getArchive(intputStream);
         // tag的名字并不重要, 读取的顺序才是核心
         System.out.println(archive.readString("name"));
