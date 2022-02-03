@@ -5,17 +5,23 @@ def child():
     while i < 4:
         n = yield i
         print('child =>', n)
-        if i == 3:
+        if i == 2:
             return 100
         i += 1
 
 
 def parent():
     val = yield from child()
+
     print(val)
     n = yield 101
     print('parent =>', n)
+
     yield 202
+    print("y")
+    yield 102
+    i = 2 + 5
+    yield 103
 
 
 if __name__ == '__main__':
@@ -23,12 +29,12 @@ if __name__ == '__main__':
     t = parent()
     t.send(None)
     j = 0
-    while j < 4:
+    while j < 7:
         j += 1
         try:
             t.send(j)
         except StopIteration:
             print('抛出异常')
-            break
+            # break
 
 

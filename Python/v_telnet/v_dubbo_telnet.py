@@ -33,7 +33,7 @@ class DubboTelnet(object):
         while str(recv).find(self.__finish) == -1:
             recv = self.telnet.read_very_eager()
         recv = recv.split("\n")[0]            
-        # recv = recv.decode().split("\n")[0]       
+        # recv = recv.decode().split("\n")[0]
         return recv
 
     def close(self):

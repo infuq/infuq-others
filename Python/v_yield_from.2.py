@@ -26,5 +26,5 @@ def caller():
 if __name__ == '__main__':
     caller = caller()
     caller.send(None)
-    # print(caller.send(5))
+    print(caller.send(5))
 
