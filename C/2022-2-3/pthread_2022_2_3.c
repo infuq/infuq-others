@@ -36,3 +36,18 @@ int main()
 
     return 0;
 }
+
+/*
+
+[v-infuq: ~]# ps -Lf 337
+UID        PID    PPID     LWP    C    NLWP         STIME      TTY      STAT       TIME     CMD
+v-infuq    337     9       337    0    3            22:17      tty1     Sl         0:00     ./pthread_2022_2_3
+v-infuq    337     9       338    23   3            22:17      tty1     Rl         0:15     ./pthread_2022_2_3
+v-infuq    337     9       339    0    3            22:17      tty1     Sl         0:00     ./pthread_2022_2_3
+
+
+
+ */
+
+
+
