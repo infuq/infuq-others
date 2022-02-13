@@ -14,15 +14,15 @@ public class RedLockExample {
 
 
         Config config1 = new Config();
-        config1.useSingleServer().setAddress("redis://127.0.0.1:5378").setPassword("password").setDatabase(0);
+        config1.useSingleServer().setAddress("redis://192.168.0.1:6379").setPassword("password").setDatabase(0);
         RedissonClient redissonClient1 = Redisson.create(config1);
 
         Config config2 = new Config();
-        config2.useSingleServer().setAddress("redis://127.0.0.1:5379").setPassword("password").setDatabase(0);
+        config2.useSingleServer().setAddress("redis://192.168.0.2:6379").setPassword("password").setDatabase(0);
         RedissonClient redissonClient2 = Redisson.create(config2);
 
         Config config3 = new Config();
-        config3.useSingleServer().setAddress("redis://127.0.0.1:5380").setPassword("password").setDatabase(0);
+        config3.useSingleServer().setAddress("redis://192.168.0.3:6379").setPassword("password").setDatabase(0);
         RedissonClient redissonClient3 = Redisson.create(config3);
 
 
