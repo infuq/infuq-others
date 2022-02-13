@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a525345-a50f-4d7e-acc0-7ca7f20fe409" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/distributed/lock/JedisExample.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/distributed/lock/lock.lua" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/distributed/lock/lock.lua" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +137,7 @@
       <workItem from="1642851116484" duration="5328000" />
       <workItem from="1642945949289" duration="1498000" />
       <workItem from="1642989302635" duration="180000" />
-      <workItem from="1644763182826" duration="2610000" />
+      <workItem from="1644763182826" duration="3550000" />
     </task>
     <servers />
   </component>

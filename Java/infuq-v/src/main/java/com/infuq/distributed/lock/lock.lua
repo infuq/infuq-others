@@ -3,7 +3,7 @@
     "redis.call('expire', kEYS[1], ARGV[1]); " +  // 过期时间
     "return nil; " +
 "end; " +
-"if (redis.call('hexists', KEYS[1], ARGV[2]) == 1) then " +  // 判断锁key的Hash数据中是否包含客户端(自身)的ID
+"if (redis.call('hexists', KEYS[1], ARGV[2]) == 1) then " +  // 判断锁key的Hash数据结构中是否包含客户端(自身)的ID
     "redis.call('hincrby', KEYS[1], ARGV[2], 1); " + // 可重入
     "redis.call('pexpire', KEYS[1], ARGV[1]); " +
     "return nil; " +
