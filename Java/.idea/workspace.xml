@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a525345-a50f-4d7e-acc0-7ca7f20fe409" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dynamic/proxy/Example.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dynamic/proxy/MyServiceInterceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dynamic/proxy/RealService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spi/Computer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spi/ComputerExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spi/DellComputer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spi/HPComputer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/resources/META-INF/services/com.infuq.spi.Computer" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dynamic/proxy2/Engineer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dynamic/proxy2/JavaEngineer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dynamic/proxy2/MyProxyHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -87,7 +82,7 @@
       <recent name="com.infuq.spi" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Example">
+  <component name="RunManager" selected="Application.Example (1)">
     <configuration name="ComputerExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.infuq.spi.ComputerExample" />
       <module name="infuq-v" />
@@ -95,6 +90,19 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.infuq.spi.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Example (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.infuq.dynamic.proxy2.Example" />
+      <module name="infuq-v" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.infuq.dynamic.proxy2.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -147,9 +155,11 @@
       <item itemvalue="Application.ComputerExample" />
       <item itemvalue="Application.JuteExample" />
       <item itemvalue="Application.Example" />
+      <item itemvalue="Application.Example (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Example (1)" />
         <item itemvalue="Application.Example" />
         <item itemvalue="Application.ComputerExample" />
         <item itemvalue="Application.JuteExample" />
@@ -189,7 +199,7 @@
       <workItem from="1644804137759" duration="19000" />
       <workItem from="1644856887547" duration="9293000" />
       <workItem from="1644885924314" duration="12000" />
-      <workItem from="1645110109337" duration="1390000" />
+      <workItem from="1645110109337" duration="2271000" />
     </task>
     <servers />
   </component>
