@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a525345-a50f-4d7e-acc0-7ca7f20fe409" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dynamic/proxy/Example.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dynamic/proxy/MyServiceInterceptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dynamic/proxy/RealService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spi/Computer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spi/ComputerExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spi/DellComputer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spi/HPComputer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/resources/META-INF/services/com.infuq.spi.Computer" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/distributed/lock/lock.lua" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/distributed/lock/lock.lua" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +23,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -74,7 +82,39 @@
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
-  <component name="RunManager" selected="Application.JuteExample">
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.infuq.spi" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Example">
+    <configuration name="ComputerExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.infuq.spi.ComputerExample" />
+      <module name="infuq-v" />
+      <option name="VM_PARAMETERS" value="-Djdbc.drivers=com.mysql.cj.jdbc.Driver:com.alibaba.druid.proxy.DruidDriver -XX:+TraceClassLoading" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.infuq.spi.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Example" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.infuq.dynamic.proxy.Example" />
+      <module name="infuq-v" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.infuq.dynamic.proxy.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="JuteExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.infuq.jute.JuteExample" />
       <module name="infuq-v" />
@@ -102,8 +142,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.MapExample" />
+      <item itemvalue="Application.ComputerExample" />
+      <item itemvalue="Application.JuteExample" />
+      <item itemvalue="Application.Example" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Example" />
+        <item itemvalue="Application.ComputerExample" />
         <item itemvalue="Application.JuteExample" />
       </list>
     </recent_temporary>
@@ -138,6 +186,10 @@
       <workItem from="1642945949289" duration="1498000" />
       <workItem from="1642989302635" duration="180000" />
       <workItem from="1644763182826" duration="3550000" />
+      <workItem from="1644804137759" duration="19000" />
+      <workItem from="1644856887547" duration="9293000" />
+      <workItem from="1644885924314" duration="12000" />
+      <workItem from="1645110109337" duration="1390000" />
     </task>
     <servers />
   </component>
@@ -154,5 +206,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/../../../Soft/Java/jdk1.8.0_251/src.zip!/java/sql/DriverManager.java</url>
+          <line>100</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
