@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a525345-a50f-4d7e-acc0-7ca7f20fe409" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/rate/limiter/Counter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -184,7 +183,7 @@
       <workItem from="1644885924314" duration="12000" />
       <workItem from="1645110109337" duration="4053000" />
       <workItem from="1645115301900" duration="143000" />
-      <workItem from="1645196213895" duration="1170000" />
+      <workItem from="1645196213895" duration="1750000" />
     </task>
     <servers />
   </component>
