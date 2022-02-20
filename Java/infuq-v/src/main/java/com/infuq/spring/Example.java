@@ -11,11 +11,13 @@ public class Example {
                 new AnnotationConfigApplicationContext(MyConfig.class);
 
 
-        Computer bean = context.getBean(Computer.class);
+        Object v1 = context.getBean("&bookFactoryBean");
 
-        System.out.println(bean);
+        System.out.println(v1);
 
+        Object v2 = context.getBean("bookFactoryBean");
 
+        System.out.println(v2);
     }
 
 

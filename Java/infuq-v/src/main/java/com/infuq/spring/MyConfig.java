@@ -1,6 +1,7 @@
 package com.infuq.spring;
 
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -8,5 +9,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MyConfig {
 
+    @Bean
+    public BookFactoryBean bookFactoryBean() {
+        return new BookFactoryBean();
+    }
 
 }

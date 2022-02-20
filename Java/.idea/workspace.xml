@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a525345-a50f-4d7e-acc0-7ca7f20fe409" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spring/BookFactoryBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spring/Computer.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spring/Computer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spring/Example.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spring/Example.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spring/MyConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spring/MyConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spring/MyInstantiationAwareBeanPostProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spring/MyInstantiationAwareBeanPostProcessor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,11 +100,11 @@
       </method>
     </configuration>
     <configuration name="Example" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.infuq.dynamic.proxy.Example" />
+      <option name="MAIN_CLASS_NAME" value="com.infuq.spring.Example" />
       <module name="infuq-v" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.infuq.dynamic.proxy.*" />
+          <option name="PATTERN" value="com.infuq.spring.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -143,8 +148,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Example" />
-        <item itemvalue="Application.ComputerExample" />
         <item itemvalue="Application.JuteExample" />
+        <item itemvalue="Application.ComputerExample" />
       </list>
     </recent_temporary>
   </component>
@@ -184,6 +189,7 @@
       <workItem from="1645110109337" duration="4053000" />
       <workItem from="1645115301900" duration="143000" />
       <workItem from="1645196213895" duration="1750000" />
+      <workItem from="1645347256028" duration="5259000" />
     </task>
     <servers />
   </component>
@@ -213,6 +219,22 @@
           <url>jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/5.3.1/spring-aop-5.3.1-sources.jar!/org/springframework/aop/framework/DefaultAopProxyFactory.java</url>
           <line>59</line>
           <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spring/Example.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <condition expression="beanName.equals(&quot;bookFactoryBean&quot;)" language="JAVA" />
+          <url>jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/5.3.1/spring-beans-5.3.1-sources.jar!/org/springframework/beans/factory/support/DefaultListableBeanFactory.java</url>
+          <line>923</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spring/Example.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
