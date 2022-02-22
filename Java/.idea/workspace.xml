@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a525345-a50f-4d7e-acc0-7ca7f20fe409" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spring/BookFactoryBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spring/Computer.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spring/Computer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spring/Example.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spring/Example.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spring/MyConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spring/MyConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spring/MyInstantiationAwareBeanPostProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spring/MyInstantiationAwareBeanPostProcessor.java" afterDir="false" />
-    </list>
+    <list default="true" id="0a525345-a50f-4d7e-acc0-7ca7f20fe409" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -189,7 +182,7 @@
       <workItem from="1645110109337" duration="4053000" />
       <workItem from="1645115301900" duration="143000" />
       <workItem from="1645196213895" duration="1750000" />
-      <workItem from="1645347256028" duration="5259000" />
+      <workItem from="1645347256028" duration="5311000" />
     </task>
     <servers />
   </component>
