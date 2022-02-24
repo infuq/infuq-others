@@ -1,5 +1,6 @@
 package com.infuq.tmp;
 
+import java.lang.reflect.Method;
 import java.util.Scanner;
 
 public class ClassLoaderExample {
@@ -24,12 +25,30 @@ public class ClassLoaderExample {
          */
         String packageNamePath = scanner.next();
 
+        boolean resolve = false;
+        if (resolve) {
 
-        Class<?> clazz = myClassLoader.loadClass(packageNamePath);
-        if (clazz != null)
-            System.out.println(packageNamePath + "的类加载器是:" + clazz.getClassLoader());
+            Method method = ClassLoader.class.getDeclaredMethod("loadClass", String.class, boolean.class);
+            method.setAccessible(true);
+            Object clazz = method.invoke(myClassLoader, packageNamePath, Boolean.TRUE);
+
+            if (clazz != null)
+                System.out.println(packageNamePath + "的类加载器是:" + ((Class<?>)clazz).getClassLoader());
+        }
+        else {
+            Class<?> clazz = myClassLoader.loadClass(packageNamePath);
+            if (clazz != null)
+                System.out.println(packageNamePath + "的类加载器是:" + clazz.getClassLoader());
+
+//            clazz.newInstance();
+        }
+
 
         System.out.println("系统类加载器扫描文件路径:" + System.getProperty("java.class.path"));
+
+        // 不让进程退出. 使用Arthas工具连接目标JVM, 使用classloader命令查看一些信息
+        System.in.read();
+
 
 
 
