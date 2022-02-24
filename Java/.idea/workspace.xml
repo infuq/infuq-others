@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a525345-a50f-4d7e-acc0-7ca7f20fe409" name="Changes" comment="" />
+    <list default="true" id="0a525345-a50f-4d7e-acc0-7ca7f20fe409" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/ClassLoaderExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/MyClassLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/tmp/com/infuq/tmp/Main.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -77,7 +83,21 @@
       <recent name="com.infuq.spi" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Example">
+  <component name="RunManager" selected="Application.ClassLoaderExample">
+    <configuration name="ClassLoaderExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.infuq.tmp.ClassLoaderExample" />
+      <module name="infuq-v" />
+      <option name="VM_PARAMETERS" value="-classpath &quot;.;D:\Repository\infuq-others\Java\infuq-v\target\classes;D:\\Repository\\netty-netty-4.1.42.Final\\example\\target\\classes&quot;" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.infuq.tmp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ComputerExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.infuq.spi.ComputerExample" />
       <module name="infuq-v" />
@@ -137,12 +157,14 @@
       <item itemvalue="Application.ComputerExample" />
       <item itemvalue="Application.JuteExample" />
       <item itemvalue="Application.Example" />
+      <item itemvalue="Application.ClassLoaderExample" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ClassLoaderExample" />
+        <item itemvalue="Application.ComputerExample" />
         <item itemvalue="Application.Example" />
         <item itemvalue="Application.JuteExample" />
-        <item itemvalue="Application.ComputerExample" />
       </list>
     </recent_temporary>
   </component>
@@ -183,6 +205,7 @@
       <workItem from="1645115301900" duration="143000" />
       <workItem from="1645196213895" duration="1750000" />
       <workItem from="1645347256028" duration="5311000" />
+      <workItem from="1645712948997" duration="8260000" />
     </task>
     <servers />
   </component>
@@ -228,6 +251,11 @@
           <url>file://$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/spring/Example.java</url>
           <line>13</line>
           <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/../../../Soft/Java/jdk1.8.0_251/src.zip!/java/util/ServiceLoader.java</url>
+          <line>369</line>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
