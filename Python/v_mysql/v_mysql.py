@@ -1,10 +1,10 @@
 #! /usr/bin/env python
 
-'''
+"""
 pip install pymysql
-'''
+"""
 
-'''
+"""
 CREATE TABLE `t_order` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int DEFAULT NULL,
@@ -21,26 +21,23 @@ CREATE TABLE `t_order_detail` (
   `create_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
-
-'''
-
-
+"""
 
 import pymysql
 import random
 
 
 def insert_order():
-    conn = pymysql.connect(host="localhost", port=3306, user="root", passwd="9527", db="test_2" )
-    cursor=conn.cursor()
+    conn = pymysql.connect(host="localhost", port=3306, user="root", passwd="9527", db="db0")
+    cursor = conn.cursor()
 
-    for i in range(1,500000):
+    for i in range(1, 10000):
         
         user_id = random.randint(1, 500000)
         order_id = random.randint(1, 500000)
         order_status = random.randint(1, 3)
         param = (user_id, order_id, order_status)
-        sql="insert into t_order(user_id, order_id, order_status, create_time) values(%s, %s, %s, now())"
+        sql = "insert into t_order(user_id, order_id, order_status, create_time) values(%s, %s, %s, now())"
         cursor.execute(sql, param)
         conn.commit()
 
@@ -49,15 +46,15 @@ def insert_order():
 
 
 def insert_order_detail():
-    conn = pymysql.connect(host="localhost", port=3306, user="root", passwd="9527", db="test_2" )
-    cursor=conn.cursor()
+    conn = pymysql.connect(host="localhost", port=3306, user="root", passwd="9527", db="db0")
+    cursor = conn.cursor()
 
     for i in range(1,300000):
         
         order_id = random.randint(1, 500000)
         product_name = random.choice(('A', 'B', 'C', 'E', 'F'))
         param = (order_id, product_name)
-        sql="insert into t_order_detail(order_id, product_name, create_time) values(%s, %s, now())"
+        sql = "insert into t_order_detail(order_id, product_name, create_time) values(%s, %s, now())"
         cursor.execute(sql, param)
         conn.commit()
 
