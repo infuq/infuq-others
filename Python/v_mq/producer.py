@@ -35,12 +35,14 @@ def send():
 
     producer = mq_client.get_producer(instance_id, topic_name)
     
-    msg_count = 1
+    msg_count = 3
     try:
         for i in range(msg_count):
             msg = TopicMessage(message_body, message_tag)           
             msg.put_property("self_key", "self_value")  # 设置属性      
             msg.set_message_key(message_key)
+            # msg.set_sharding_key("")
+
             re_msg = producer.publish_message(msg)
             print("Publish Message Succeed. MessageID:%s, BodyMD5:%s" % (re_msg.message_id, re_msg.message_body_md5))
 

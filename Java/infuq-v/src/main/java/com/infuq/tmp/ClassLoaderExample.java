@@ -40,7 +40,7 @@ public class ClassLoaderExample {
             if (clazz != null)
                 System.out.println(packageNamePath + "的类加载器是:" + clazz.getClassLoader());
 
-//            clazz.newInstance();
+            clazz.newInstance();
         }
 
 
