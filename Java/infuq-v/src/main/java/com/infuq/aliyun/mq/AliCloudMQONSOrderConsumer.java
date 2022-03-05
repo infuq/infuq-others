@@ -25,7 +25,6 @@ public class AliCloudMQONSOrderConsumer {
         final String access_id = "";
         final String access_key = "";
 
-
         final String topic = "";
         final String group_id = "";
 
@@ -35,10 +34,11 @@ public class AliCloudMQONSOrderConsumer {
         properties.put(PropertyKeyConst.SecretKey, access_key);
         properties.put(PropertyKeyConst.NAMESRV_ADDR, host);
         properties.put(PropertyKeyConst.ConsumeThreadNums, "16");
-
         properties.put(PropertyKeyConst.SuspendTimeMillis, "100");
         properties.put(PropertyKeyConst.MaxReconsumeTimes, "1");
         properties.put(PropertyKeyConst.INSTANCE_ID, instance_id);
+        // 很重要属性
+        properties.put(PropertyKeyConst.ALLOCATE_MESSAGE_QUEUE_STRATEGY, PropertyKeyConst.ALLOCATE_MESSAGE_QUEUE_STRATEGY);
 
         OrderConsumer consumer = ONSFactory.createOrderedConsumer(properties);
 

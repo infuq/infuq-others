@@ -14,7 +14,7 @@ import java.util.List;
  * HTTP 协议客户端接入点
  *
  */
-public class AliCloudMQOrderConsumer {
+public class AliCloudMQHTTPOrderConsumer {
 
 
 
