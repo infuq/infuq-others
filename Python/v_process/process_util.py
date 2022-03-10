@@ -11,13 +11,13 @@ import sys
 import shutil
 
 
-def kill_process(name):
+def kill_process(killed_process):
     pids = psutil.pids()
     try:
         for pid in pids:
             p = psutil.Process(pid)
             process_name = p.name()
-            if name in process_name:
+            if process_name in killed_process:
                 print("Process name is: %s, pid is: %s" % (process_name, pid))
                 try:
                     import subprocess
@@ -33,6 +33,14 @@ def kill_process(name):
         pass
 
 
+def rm_file(files):
+    for file in files:
+        try:
+            shutil.rmtree(file)
+        except:
+            pass
+
+
 def all_process():
     for process in psutil.process_iter():
         print('{:>5} {:>40} {:<50}'.format(process.pid, process.name(), process.create_time()))
@@ -43,46 +51,16 @@ if __name__ == '__main__':
     while (True):
         
         try:
-            kill_process('AliedrSrv.exe')
+            kill_process(['AliedrSrv.exe','EntSafeSvr.exe','bfe_watch_dog.exe','OneAgent.exe','AliSystemSrv.exe','FileFingerprint.exe'])
         except:
             pass
+        
         try:
-            kill_process('EntSafeSvr.exe')
+            rm_file(["d:/!CloudShell", "d:/!CloudShell", "c:/!CloudShell", "c:/AliAVQuarantine", "d:/temp"])
         except:
             pass
-        try:
-            kill_process('bfe_watch_dog.exe')
-        except:
-            pass
-        try:
-            kill_process('OneAgent.exe')
-        except:
-            pass
-        try:
-            kill_process('AliSystemSrv.exe')
-        except:
-            pass
-        try:
-            kill_process('FileFingerprint.exe')
-        except:
-            pass
-        try:
-            shutil.rmtree("d:/!CloudShell")
-        except:
-            pass
-        try:
-            shutil.rmtree("c:/!CloudShell")
-        except:
-            pass
-        try:
-            shutil.rmtree("c:/AliAVQuarantine")
-        except:
-            pass
-        try:
-            shutil.rmtree("d:/temp")
-        except:
-            pass
-        time.sleep(20)
+        
+        time.sleep(3)
     # sys.exit(0)
 
 
