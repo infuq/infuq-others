@@ -8,7 +8,7 @@ pip install psutil
 import time
 import psutil
 import sys
-
+import shutil
 
 
 def kill_process(name):
@@ -28,7 +28,7 @@ def kill_process(name):
                 except OSError:
                     if child:
                         child.kill()
-                    print('没有此进程')
+                    print('Not found...')
     except:
         pass
 
@@ -41,17 +41,44 @@ def all_process():
 if __name__ == '__main__':
 
     while (True):
+        
         try:
             kill_process('AliedrSrv.exe')
+        except:
+            pass
+        try:
             kill_process('EntSafeSvr.exe')
+        except:
+            pass
+        try:
             kill_process('bfe_watch_dog.exe')
+        except:
+            pass
+        try:
             kill_process('OneAgent.exe')
+        except:
+            pass
+        try:
             kill_process('AliSystemSrv.exe')
+        except:
+            pass
+        try:
             kill_process('FileFingerprint.exe')
-
-            import shutil
+        except:
+            pass
+        try:
             shutil.rmtree("d:/!CloudShell")
+        except:
+            pass
+        try:
             shutil.rmtree("c:/!CloudShell")
+        except:
+            pass
+        try:
+            shutil.rmtree("c:/AliAVQuarantine")
+        except:
+            pass
+        try:
             shutil.rmtree("d:/temp")
         except:
             pass

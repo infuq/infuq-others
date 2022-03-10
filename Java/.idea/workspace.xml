@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a525345-a50f-4d7e-acc0-7ca7f20fe409" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/aliyun/mq/AliCloudMQONSOrderProducer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/cacheline/Example.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/cacheline/V1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/cacheline/V2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/cacheline/V3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/aliyun/mq/AliCloudMQONSOrderConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/aliyun/mq/AliCloudMQONSOrderConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/aliyun/mq/AliCloudMQOrderConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/aliyun/mq/AliCloudMQHTTPOrderConsumer.java" afterDir="false" />
-    </list>
+    <list default="true" id="0a525345-a50f-4d7e-acc0-7ca7f20fe409" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -169,6 +159,7 @@
       <workItem from="1646471663392" duration="58000" />
       <workItem from="1646498355180" duration="2125000" />
       <workItem from="1646504285576" duration="330000" />
+      <workItem from="1646505145354" duration="30000" />
     </task>
     <servers />
   </component>
