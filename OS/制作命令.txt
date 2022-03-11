@@ -1,5 +1,7 @@
 1.安装bochs
 sudo apt install bochs
+sudo apt install bochs-x
+
 2.配置bochsrc文件
 3.制作镜像
 [root@infuq /] bximage
@@ -11,6 +13,7 @@ sudo apt install bochs
 
 5.运行
 [root@infuq /] bochs -f bochsrc
+输入字符C
 切记:不要在Windows平台模拟运行.
 
 
