@@ -1,4 +1,5 @@
 1.安装bochs
+sudo apt install bochs
 2.配置bochsrc文件
 3.制作镜像
 [root@infuq /] bximage
