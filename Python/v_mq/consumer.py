@@ -26,13 +26,16 @@ from aliyunsdkcore.acs_exception.exceptions import ServerException
 # 消费消息
 def consume():
 
+    # 测试环境配置
     host = ""
     instance_id = ""
     access_id = ""
     access_key = ""
 
-
+    # 虽然这里发送HTTP请求, 但是这里使用的是TCP协议下的GID
     group_id = ""
+
+    # 如果是延时消息, 这里填写延时主题
     topic_name = ""
     message_tag = "" # 消息标签
 
@@ -45,7 +48,9 @@ def consume():
     while True:
         try:
             recv_msgs = consumer.consume_message_orderly(batch, wait_seconds)
+            # recv_msgs = consumer.consume_message(batch, wait_seconds)
             for msg in recv_msgs:
+                """
                 print("\tMessageId: %s, \n\tMessageBodyMD5: %s, \n\tNextConsumeTime: %s, \n\tConsumedTimes: %s, \n\tPublishTime: %s \n\tBody: %s \
                         \n\tReceiptHandle: %s \
                         \n\tProperties: %s, \n\tShardingKey: %s\n" % \
@@ -53,19 +58,24 @@ def consume():
                     msg.next_consume_time, msg.consumed_times,
                     msg.publish_time, msg.message_body,
                     msg.receipt_handle, msg.properties, msg.get_sharding_key()))
-
+                """
+                consumer.ack_message(msg.receipt_handle.split())
+                print(("========>Ack %s Message Succeed." % (msg.message_id)))
                 
         except MQExceptionBase as e:
             if e.type == "MessageNotExist":
-                print(("No new message! RequestId: %s" % e.req_id))                
+                # print(("No new message! RequestId: %s" % e.req_id))                
                 # continue
-                break
+                # break
+                time.sleep(5)
+                continue
 
             print(("Consume Message Fail! Exception:%s\n" % e))
             time.sleep(2)
             continue
 
         # ACK
+        """
         try:
             receipt_handle_list = [msg.receipt_handle for msg in recv_msgs]
             consumer.ack_message(receipt_handle_list)
@@ -77,10 +87,11 @@ def consume():
                     print(("\tErrorHandle:%s,ErrorCode:%s,ErrorMsg:%s" % \
                         (sub_error["ReceiptHandle"], sub_error["ErrorCode"], sub_error["ErrorMessage"])))
 
-        
+        """
 
 
 if __name__ == '__main__':
     consume()
+
 
 

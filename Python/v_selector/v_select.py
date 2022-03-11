@@ -47,19 +47,20 @@ class Server(object):
         client.setblocking(False)
         # 注册读事件 和 回调函数
         # 只要读缓冲区中有数据那么就会触发读事件 即便一次性没有读取完数据 那么也会继续触发读事件  [水平触发]
-        self.selector.register(client.fileno(), EVENT_READ,  (self.read_write, client))
+        self.selector.register(client.fileno(), EVENT_READ,  (self.read, client))
 
-    def read_write(self, key, mask):
+    def read(self, key, mask):
         if mask & EVENT_READ:  # 读事件
-            self.recv(key)
+            pass
         if mask & EVENT_WRITE:  # 写事件
-            self.send(key, '\r\nHello, Python\r\n')
+            pass
 
-    def recv(self, key):
         client = key.data[1]
         data = client.recv(1024)
         self.decoder.decode(data)
         self.send(key, '\r\nHello, World\r\n')
+
+       
 
     def send(self, key, msg):
         client = key.data[1]
