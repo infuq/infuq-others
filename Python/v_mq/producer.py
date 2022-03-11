@@ -18,7 +18,7 @@ from mq_http_sdk.mq_client import *
 
 def send():
 
-    host = ""  # 例如公网HTTP http://1841829814603902.mqrest.cn-yinchuan.aliyuncs.com
+    host = ""  # 例如公网HTTP http://18412321456402.mqrest.cn-yinchuan.aliyuncs.com
     access_id = ""
     access_key = ""
     instance_id = ""
