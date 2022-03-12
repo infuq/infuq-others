@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 # -*- coding:utf-8 -*-
 
 ''''
@@ -9,6 +9,7 @@ import os
 
 '''
 pip install you-get
+pip3 install you-get
 '''
 
 def download(url):
@@ -16,5 +17,5 @@ def download(url):
     
 
 if __name__ == '__main__':
-    url = "https://www.bilibili.com/video/BV1k64y1y7pg"
+    url = "https://www.bilibili.com/video/BV1HN41197Ko?spm_id_from=333.999.0.0"
     download(url)
