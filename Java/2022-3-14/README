@@ -1,0 +1,11 @@
+jni.h
+jni_md.h
+
+JNINativeMemory.java
+JNINativeMemory.h
+JNINativeMemory.c
+
+JNINativeMemory.o
+libjninativememory.so
+
+Test.java
