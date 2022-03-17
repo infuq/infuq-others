@@ -24,6 +24,17 @@ def main():
         # node = zkc.get_children('/dubbo')
         # print(node)
 
+        # 提供Dubbo接口数量
+        i = 0
+        node = zkc.get_children('/dubbo')
+        for v in node:
+            if 'keyword' in v:
+                i = i + 1            
+                print(v)
+        print("提供Dubbo接口数量:[%d]" % (i))
+
+
+
         service_name = 'com.infuq.facade.QueryUserInfoFacade'
 
         # node = zkc.get("/dubbo/{}/".format(service_name))
