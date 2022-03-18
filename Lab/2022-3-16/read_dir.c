@@ -8,6 +8,8 @@
 #include <sys/stat.h>
 #include <sys/syscall.h>
 
+
+
 #define handle_error(msg) \
        do { perror(msg); exit(EXIT_FAILURE); } while (0)
 
@@ -34,6 +36,7 @@ main(int argc, char *argv[])
        handle_error("open");
 
    for (;;) {
+//        nread = getdents(fd, buf, BUF_SIZE);
        nread = syscall(SYS_getdents, fd, buf, BUF_SIZE);
        if (nread == -1)
            handle_error("getdents");
