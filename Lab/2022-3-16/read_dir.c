@@ -45,8 +45,10 @@ main(int argc, char *argv[])
        printf("inode#              file type    d_reclen    d_off   d_name\n");
        for (long bpos = 0; bpos < nread;) {
            d = (struct linux_dirent *) (buf + bpos);
+           // inode
            printf("%18ld  ", d->d_ino);
            d_type = *(buf + bpos + d->d_reclen - 1);
+           // file_type
            printf("%-10s ", (d_type == DT_REG) ?  "regular" :
                             (d_type == DT_DIR) ?  "directory" :
                             (d_type == DT_FIFO) ? "FIFO" :
@@ -54,6 +56,7 @@ main(int argc, char *argv[])
                             (d_type == DT_LNK) ?  "symlink" :
                             (d_type == DT_BLK) ?  "block dev" :
                             (d_type == DT_CHR) ?  "char dev" : "???");
+           // file_size  offset  file_name
            printf("%4d %10jd       %s\n", d->d_reclen,
                    (intmax_t) d->d_off, d->d_name);
            bpos += d->d_reclen;

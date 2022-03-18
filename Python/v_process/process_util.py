@@ -51,12 +51,12 @@ if __name__ == '__main__':
     while (True):
         
         try:
-            kill_process(['AliedrSrv.exe','EntSafeSvr.exe','bfe_watch_dog.exe','OneAgent.exe','AliSystemSrv.exe','FileFingerprint.exe'])
+            kill_process(['time_sched.exe','watch_dog.exe','find_zombie.exe'])
         except:
             pass
         
         try:
-            rm_file(["d:/!CloudShell", "d:/!CloudShell", "c:/!CloudShell", "c:/AliAVQuarantine", "d:/temp"])
+            rm_file(["d:/Shell", "d:/t1", "d:/temp"])
         except:
             pass
         
