@@ -14,5 +14,4 @@ if __name__ == "__main__":
 
         # 杀死指定进程
         if p.name() in 'Symantec':
-            pass
             os.kill(pid, signal.SIGKILL)

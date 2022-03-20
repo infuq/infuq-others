@@ -34,7 +34,7 @@ int main()
     select(maxfd+1, &rset, NULL, NULL, NULL);
 #endif
 
-    if (FD_ISSET(lfd, &rset)
+    if (FD_ISSET(lfd, &rset))
     {
         int newfd = accept(lfd);   
     }
