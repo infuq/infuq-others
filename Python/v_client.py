@@ -32,7 +32,7 @@ if __name__ == '__main__':
     # data = pickle.dumps(dict(seria))
 
     data = json.dumps(dict(book)) # data是字符串类型
-    body = bytes(data, 'utf-8') # data是字节类型
+    body = bytes(data, 'utf-8') # body是字节类型
 
     body_len = len(body)
 
