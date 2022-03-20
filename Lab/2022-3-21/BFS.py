@@ -7,6 +7,7 @@
 辅助: 需要借助队列
 """
 
+# https://gitee.com/infuq/infuq-img/blob/master/img/graph.jpg
 graph = {	
 	"A": ["B", "C"],
 	"B": ["A", "C", "D"],
