@@ -1,7 +1,4 @@
 
----
-
-
 info tss
 info gdt
 info idt
@@ -14,8 +11,6 @@ sreg	查看段寄存器,gdt...
 xp 0x100000
 
 
-
----
 
 gcc -c -o main.o main.c
 ld main.o -Ttext 0xc0001500 -e main -o kernel.bin
