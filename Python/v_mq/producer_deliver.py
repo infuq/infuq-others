@@ -21,6 +21,8 @@ from aliyunsdkcore.acs_exception.exceptions import ServerException
 
 
 # 文档 https://help.aliyun.com/document_detail/255822.html
+#     https://help.aliyun.com/document_detail/29549.html
+
 
 # 发送消息
 def send():
@@ -52,7 +54,7 @@ def send():
                 msg.put_property("a", "i")
                 msg.set_message_key("MessageKey" + str(i))
 
-                # 延时时间
+                # 延时时间 最大可设置延迟40天投递
                 msg.set_start_deliver_time(int(round(time.time() * 1000)) + 10 * 1000)
                 
                 re_msg = producer.publish_message(msg)
