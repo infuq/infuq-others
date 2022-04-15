@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a525345-a50f-4d7e-acc0-7ca7f20fe409" name="Changes" comment="" />
+    <list default="true" id="0a525345-a50f-4d7e-acc0-7ca7f20fe409" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/AddressExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/AddressExample.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -77,11 +80,19 @@
       <recent name="D:\Repository\infuq-others\Java\infuq-v\src\main\java\com\infuq\aliyun\mq" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.infuq.memory" />
       <recent name="com.infuq.aliyun.mq" />
       <recent name="com.infuq.spi" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.AddressExample">
+    <configuration name="AddressExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.infuq.memory.AddressExample" />
+      <module name="infuq-v" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Example" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.infuq.cacheline.Example" />
       <module name="infuq-v" />
@@ -97,6 +108,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.AddressExample" />
         <item itemvalue="Application.Example" />
       </list>
     </recent_temporary>
