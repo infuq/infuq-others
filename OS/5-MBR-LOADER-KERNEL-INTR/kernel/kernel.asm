@@ -8,7 +8,7 @@ section .data
     global intr_entry_table
     intr_entry_table:
 
-        %macro VECTOR 2     ; VECTOR表示宏名, 2表示参数个数
+        %macro VECTOR 2         ; VECTOR表示宏名, 2表示参数个数
             section .text
                 intr%1entry:    ; 中断处理程序入口地址
 

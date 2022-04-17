@@ -33,7 +33,7 @@ SECTION MBR vstart=0x7c00
     mov eax, LOADER_START_SECTOR
     mov bx, LOADER_BASE_ADDR
     
-    ; 读取4个扇区
+    ; 读取4个扇区. 之所以要读取4个扇区,是因为我们把loader.bin文件写到4个扇区中了,具体查看`制作命令.txt`
     mov cx, 4
     call rd_disk_m_16
 

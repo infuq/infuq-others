@@ -2,32 +2,40 @@
 ; LOADER_BASE_ADDR equ 0x900
 SECTION LOADER vstart=0x900
 
+; 全局描述符表. 定义了4个段描述符,共占32个字节
 gdt:
-;0描述符
+	;第0描述符
+	;dd 表示定义4个字节
+	;每个段描述符大小是8字节
 	dd	0x00000000
 	dd	0x00000000
-;1描述符(4GB代码段描述符) 段基址=0x0 段界限单位=4K 段界限=0xfffff 段范围=4K * 0xfffff = 4GB
+	;第1描述符(4GB代码段描述符) 段基址=0x0 段界限单位=4K 段界限=0xfffff 段范围=4K * 0xfffff = 4GB
 	dd	0x0000ffff ; 低32位 00000000 00000000 11111111 11111111
 	dd	0x00cf9800 ; 高32位 00000000 11001111 10011000 00000000
-;2描述符(4GB数据段描述符) 段基址=0x0 段界限单位=4K 段界限=0xfffff  段范围=4K * 0xfffff = 4GB
+	;第2描述符(4GB数据段描述符) 段基址=0x0 段界限单位=4K 段界限=0xfffff  段范围=4K * 0xfffff = 4GB
 	dd	0x0000ffff ; 低32位 00000000 00000000 11111111 11111111
 	dd	0x00cf9200 ; 高32位 00000000 11001111 10010010 00000000
-;3描述符(28Kb的视频段描述符) 段基址=0x000b8000 段界限单位=4K 段界限=0x00007 段范围=4K * 0x00007 = 28Kb
+	;第3描述符(28Kb的视频段描述符) 段基址=0x000b8000 段界限单位=4K 段界限=0x00007 段范围=4K * 0x00007 = 28Kb
 	dd	0x80000007 ; 低32位 10000000 00000000 00000000 00000111
 	dd	0x00c0920b ; 高32位 00000000 11000000 10010010 00001011
 
+; gdt_ptr占6个字节, 这6个字节的内容会被加载到GDTR寄存器
 gdt_ptr:
 	dw $-gdt-1	;低16位表示表的最后一个字节的偏移(表的大小-1)
 	dd gdt			;高32位表示起始位置(GDT的物理地址)
 
 
+
+; 不占用字节空间
+; 选择子
 SELECTOR_CODE	equ	0x0001<<3	;SELECTOR_CODE = 8      每个描述符占用8字节,第0个描述符不使用,则代码段的描述符(即第1个描述符)需偏移8个字节
-SELECTOR_DATA	equ	0x0002<<3	;SELECTOR_DATA = 16    每个描述符占用8字节,第0个描述符不使用,则数据段的描述符(即第2个描述符)需偏移16个字节
+SELECTOR_DATA	equ	0x0002<<3	;SELECTOR_DATA = 16    	每个描述符占用8字节,第0个描述符不使用,则数据段的描述符(即第2个描述符)需偏移16个字节
 SELECTOR_VIDEO	equ	0x0003<<3 	;SELECTOR_VIDEO = 24    每个描述符占用8字节,第0个描述符不使用,则显存段的描述符(即第3个描述符)需偏移24个字节
 
 
 
-;进入32位
+; 以上共计 = 32 + 6 = 38 = 0x26字节 , 所以在mbr.asm文件的46行 = 0x900 + 0x26 = 0x926
+; 进入32位
 protect_mode:
 	; 1.加载GDT
 	lgdt [gdt_ptr]
@@ -42,7 +50,9 @@ protect_mode:
 	or eax,0x00000001
 	mov cr0,eax	
 	
-	jmp dword SELECTOR_CODE:main ; 刷新流水线
+	jmp dword SELECTOR_CODE:main 	; 刷新流水线
+									; 根据选择子SELECTOR_CODE从全局描述符表中找出对应的段描述符
+	
 	
 [bits 32]
 ;正式进入32位
@@ -107,7 +117,8 @@ main:
 	
 	lgdt [gdt_ptr]
 
-	jmp dword SELECTOR_CODE:main0 ; 刷新流水线
+	jmp dword SELECTOR_CODE:main0 		; 刷新流水线
+										; 根据选择子SELECTOR_CODE从全局描述符表中找出对应的段描述符
 
 main0:
 	; 保护模式(分页机制)下打印
@@ -132,8 +143,8 @@ main0:
 
 
 setup_page:
-;先把页目录占用的空间逐字清零
-	mov ecx,4096 ; 1024项 每项4字节 1024 * 4 = 4096
+	;先把页目录占用的空间(4K)逐字清零
+	mov ecx,4096 		; 1024项,每项4字节, 共计 1024 * 4 = 4096 字节
 	mov esi,0
 .clear_page_dir:
 	mov byte [PAGE_DIR_TABLE_POS + esi],0
@@ -142,12 +153,14 @@ setup_page:
 	
 ;开始创建页目录项(PDE)
 .create_pde:
-	mov eax,PAGE_DIR_TABLE_POS
+	mov eax,PAGE_DIR_TABLE_POS    ; 0x100000
 	add eax,0x1000
-	mov ebx,eax ; ebx = 0x101000 作为第一个页表的位置及属性
-	or eax,111b  ; 0x101007
-	mov [PAGE_DIR_TABLE_POS + 0x0],eax
-	mov [PAGE_DIR_TABLE_POS + 0xc00],eax
+	mov ebx,eax 		; ebx = 0x101000 作为第一个页表的位置及属性
+	
+	add eax,0x00000007 	; 或者 or eax,111b   即 eax = 0x101007					
+	mov [PAGE_DIR_TABLE_POS + 0x0],eax		; 即第1个页目录项存储第一个页表的地址
+	mov [PAGE_DIR_TABLE_POS + 0xc00],eax	; 0xc00 = 3072 , 每项4字节 , 则 3072 / 4 = 768
+											; 即第768个页目录项存储第一个页表的地址
 	sub eax,0x1000
 	mov [PAGE_DIR_TABLE_POS + 4 * 1023],eax
 
@@ -155,18 +168,19 @@ setup_page:
 	mov ecx,256
 	mov esi,0
 	mov edx,111b
-.create_pte:
-	mov [ebx + esi * 4],edx 		; ebx = 0x101000 作为第一个页表的位置及属性
-	add edx,0x1000
-	inc esi
+.create_pte:	; 此循环功能: 将低端1M内存分成256份,每份4K,每份的首地址逐个填充到第一个页表的0-256的页表项内
+	mov [ebx + esi * 4],edx 		; ebx = 0x101000 是第一个页表的位置及属性
+									; 每个页表项占用4个字节, 所以 esi * 4, esi从0开始递增
+	add edx, 0x1000					; 0x1000 = 4K
+	inc esi							; esi + 1, 即下次循环会指向第一个页表的下一个页表项
 	loop .create_pte
 	
-;创建内核其他页表的页目录项(PDE)
+;创建内核其他页表(769-1022项)的页目录项(PDE)       此段具体含义可以参考infuq-others\OS\创建页目录和页表.png 第一张图
 	mov eax,PAGE_DIR_TABLE_POS
-	add eax,0x2000
+	add eax,0x2000                ; 指向第2个页表
 	or eax,111b
 	mov ebx,PAGE_DIR_TABLE_POS
-	mov ecx,254
+	mov ecx,254               ; 共循环 1022 - 768 = 254 次
 	mov esi,769
 .create_kernel_pde:
 	mov [ebx + esi * 4],eax

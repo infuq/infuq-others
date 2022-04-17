@@ -41,10 +41,10 @@ SECTION MBR vstart=0x7c00
 	; LOADER_BASE_ADDR equ 0x900
     mov bx, LOADER_BASE_ADDR
     
-    ; 读取4个扇区
+    ; 读取4个扇区. 之所以要读取4个扇区,是因为我们把loader.bin文件写到4个扇区中了,具体查看`制作命令.txt`
     mov cx, 4
     call rd_disk_m_16
-
+    
     ; 直接跳到loader的(起始代码+0x26)位置处执行
     jmp LOADER_BASE_ADDR + 0x26
 

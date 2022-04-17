@@ -122,10 +122,10 @@ main0:
 	mov byte [gs:0x1f2],'.'
 
 
-    call kernel_init  ; 栈所在位置0xc0000900
+    call kernel_init  			; 栈所在位置0xc0000900
     
-	mov esp, 0xc009f000      ; 将内核栈的位置移动到0xc009f000处
-    jmp KERNEL_ENTRY_POINT   ; 0xc0001500
+	mov esp, 0xc009f000      	; 将内核栈的位置移动到0xc009f000处
+    jmp KERNEL_ENTRY_POINT   	; 0xc0001500
 
 
 

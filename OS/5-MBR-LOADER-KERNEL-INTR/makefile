@@ -15,15 +15,21 @@ kernel.bin: $(kernelfiles)
 
 	ld -m elf_i386 -Ttext 0xc0001500 -e main -o out/kernel.bin out/main.o out/print.o out/init.o out/interrupt.o out/kernel.o
 
+infuq-os.img:
+	bximage -q -hd=16M -mode=create -sectsize=512 -imgmode=flat infuq-os.img
 
-all: boot.bin kernel.bin
+all: infuq-os.img boot.bin kernel.bin
 	dd if=out/mbr.bin of=infuq-os.img bs=512 count=1 conv=notrunc
 	dd if=out/loader.bin of=infuq-os.img bs=512 count=4 seek=2  conv=notrunc
 	dd if=out/kernel.bin of=infuq-os.img bs=512 count=200 seek=9  conv=notrunc
+	
+run:
+	bochs
 
 
-.PHONY:clean
+.PHONY: clean
 clean:
 	@$(RM) ./out/*
+	@$(RM) *.img *.ini
 
 

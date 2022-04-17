@@ -1,5 +1,7 @@
 megs: 32
 
+#display_library: x, options="gui_debug"
+
 #romimage: file=/usr/local/share/bochs/BIOS-bochs-latest
 romimage: file=$BXSHARE/BIOS-bochs-latest
 #vgaromimage: file=/usr/local/share/bochs/VGABIOS-lgpl-latest
