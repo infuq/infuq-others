@@ -36,33 +36,34 @@ SELECTOR_VIDEO	equ	0x0003<<3 	;SELECTOR_VIDEO = 24    每个描述符占用8字�
 
 
 ; 以上共计 = 32 + 6 = 38 = 0x26字节 , 所以在mbr.asm文件的41行 = 0x900 + 0x26 = 0x926
-protect_mode:
-;进入32位
-	; 1.加载GDT
-	lgdt [gdtr_value]
+protected_mode:
+; 准备进入32位
 
-	; 2.打开A20
-	in al,0x92
-	or al,0000_0010b
-	out 0x92,al
-	cli
+	cli; disable interrupts
 
-	; 3.cr0第0位置1
-	mov eax,cr0
-	or eax,0x00000001
-	mov cr0,eax	
+	lgdt [gdtr_value]; load GDT register with start address of Global Descriptor Table
+
+	in al, 0x92
+	or al, 0000_0010b; Enable the A20 Line. 
+	out 0x92, al
+
+	mov eax, cr0
+	or al, 1; set PE (Protection Enable) bit in CR0 (Control Register 0)
+	mov cr0, eax
+
 	
 	jmp dword SELECTOR_CODE:main 	; 刷新流水线
 									; 根据选择子SELECTOR_CODE从全局描述符表中找出对应的段描述符
 	
 [bits 32]
-;正式进入32位
+; 正式进入32位
 main:
 	mov ax,SELECTOR_DATA
 	mov ds,ax
 	mov es,ax
+	mov fs,ax
 	mov ss,ax
-	mov esp,LOADER_STACK_TOP
+	mov esp,LOADER_STACK_TOP; 栈顶0x900
 	mov ax,SELECTOR_VIDEO
 	mov gs,ax
 
@@ -85,7 +86,7 @@ main:
 	mov byte [gs:0xc0],')'
 
 
-	; 以上代码中,段基址+偏移地址 得到的是物理地址.
+	; 以上代码中, `段基址+偏移地址`得到真实物理地址.
 
 
 	; 1.创建页表并初始化(页目录和页表)

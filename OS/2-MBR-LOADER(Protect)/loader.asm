@@ -19,11 +19,11 @@ gdt:
 	dd	0x80000007 ; 低32位 10000000 00000000 00000000 00000111
 	dd	0x00c0920b ; 高32位 00000000 11000000 10010010 00001011
 
-; gdtr_value占6个字节, 这6个字节的内容会被加载到GDTR寄存器
-gdtr_value:
-	dw	$-gdt-1	;低16位存储GDT的界限
+; gdtr占6个字节, 这6个字节的内容会被加载到GDTR寄存器
+gdtr:
+	dw 	$-gdt-1	;低16位存储GDT的界限
 				;dw 表示定义2个字节
-	dd	gdt		;高32位表示起始位置(GDT的物理地址)
+	dd 	gdt		;高32位表示起始位置(GDT的物理地址)
 				;dd 表示定义4个字节
 
 ; 不占字节
@@ -34,32 +34,34 @@ SELECTOR_VIDEO	equ	0x0003<<3 	;SELECTOR_VIDEO = 24    每个描述符占用8字�
 
 
 ; 以上共计 = 32 + 6 = 38 = 0x26字节 , 所以在mbr.asm文件的49行 = 0x900 + 0x26 = 0x926
-protect_mode:
-;进入32位
-	; 加载GDT
-	lgdt [gdtr_value]
-	; 打开A20
-	in al,0x92
-	or al,0000_0010b
-	out 0x92,al
-	cli
-	; cr0第0位置1
-	mov eax,cr0
-	or eax,0x00000001
-	mov cr0,eax
+protected_mode:
+; 准备进入32位
+
+	cli; disable interrupts
+
+	lgdt [gdtr]; load GDT register with start address of Global Descriptor Table
+
+	in al, 0x92
+	or al, 0000_0010b; Enable the A20 Line. 
+	out 0x92, al
+
+	mov eax, cr0
+	or al, 1; set PE (Protection Enable) bit in CR0 (Control Register 0)
+	mov cr0, eax
 	
 	jmp dword SELECTOR_CODE:main 	; 刷新流水线
 									; 根据选择子SELECTOR_CODE从全局描述符表中找出对应的段描述符
 	
 [bits 32]
-;正式进入32位
+; 正式进入32位
 main:
 	; 使用选择子初始化各段寄存器
 	mov ax,SELECTOR_DATA
 	mov ds,ax
 	mov es,ax
+	mov fs,ax
 	mov ss,ax
-	mov esp,LOADER_STACK_TOP
+	mov esp,LOADER_STACK_TOP; 栈顶0x900
 	mov ax,SELECTOR_VIDEO
 	mov gs,ax
 

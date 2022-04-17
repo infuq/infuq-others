@@ -24,7 +24,7 @@ print:
     mov al, [si]
     cmp al, 0
     jz .done
-    int 0x10
+    int 0x10; 实模式下的BIOS中断
     inc si
     jmp .next
 .done:

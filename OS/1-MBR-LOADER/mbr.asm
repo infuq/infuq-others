@@ -38,7 +38,7 @@ SECTION MBR vstart=0x7c00
 
     
 
-    ; 读取磁盘
+    ; 读取磁盘loader
     mov edi, 0x900  ; 读取到目标内存地址
     mov ecx, 0x2    ; 起始扇区
     mov bl, 1       ; 扇区数量

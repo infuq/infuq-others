@@ -36,74 +36,97 @@ SECTION MBR vstart=0x7c00
     mov byte [gs:0x08], 'A'
     mov byte [gs:0x09], 0xA4
 
-	; LOADER_START_SECTOR equ 0x2
-    mov eax, LOADER_START_SECTOR
-	; LOADER_BASE_ADDR equ 0x900
-    mov bx, LOADER_BASE_ADDR
-    
-    ; 读取4个扇区. 之所以要读取4个扇区,是因为我们把loader.bin文件写到4个扇区中了,具体查看`制作命令.txt`
-    mov cx, 4
-    call rd_disk_m_16
+
+    ; 读取磁盘loader
+    mov edi, 0x900  ; 读取到目标内存地址
+    mov ecx, 0x2    ; 起始扇区
+    mov bl, 4       ; 扇区数量. 读取4个扇区. 之所以要读取4个扇区,是因为我们把loader.bin文件写到4个扇区中了,具体查看`makefile`
+    call read_disk
     
     ; 直接跳到loader的(起始代码+0x26)位置处执行
     jmp LOADER_BASE_ADDR + 0x26
 
-;-----------------------------------------------------------
-; 读取磁盘的n个扇区,用于加载loader
-; eax保存从硬盘读取到的数据的保存地址, ebx为起始扇区, cx为读取的扇区数
-rd_disk_m_16:
-;-----------------------------------------------------------
 
-    mov esi, eax
-    mov di, cx
+; edi 读取到目标内存地址
+; ecx 存储起始扇区
+; bl  存储扇区数量
+read_disk:
 
-    mov dx, 0x1f2
+    
+    ; 设置读扇区的数量
+    mov dx, 0x1F2
+    mov al, bl
+    out dx, al
+
+    ; 起始扇区的前八位
+    mov dx, 0x1F3
+    mov al, cl
+    out dx, al
+    
+    ; 起始扇区的中八位
+    mov dx, 0x1F4
+    shr ecx, 8 ; ecx >> 8
     mov al, cl
     out dx, al
 
-    mov eax, esi
-
-    mov dx, 0x1f3
+    ; 起始扇区的高八位
+    mov dx, 0x1F5
+    shr ecx, 8 ; ecx >> 8
+    mov al, cl
     out dx, al
 
-    mov cl, 8
-    shr eax, cl
-    mov dx, 0x1f4
+    mov dx, 0x1F6
+    shr ecx, 8
+    and cl, 0b1111
+    mov al, 0b1110_0000; 操作主盘, LBA模式
+    or al, cl
     out dx, al
 
-    shr eax, cl
-    mov dx, 0x1f5
-    out dx, al
-
-    shr eax, cl
-    and al, 0x0f
-    or al, 0xe0
-    mov dx, 0x1f6
-    out dx, al
-
-    mov dx, 0x1f7
+    ; 设置读磁盘
+    mov dx, 0x1F7
     mov al, 0x20
     out dx, al
 
-.not_ready:
-    nop
-    in al, dx
-    and al, 0x88
-    cmp al, 0x08
-    jnz .not_ready
 
-    mov ax, di
-    mov dx, 256
-    mul dx
-    mov cx, ax
-    mov dx, 0x1f0
+    xor ecx, ecx; 将 ecx 清空
+    mov cl, bl; 读扇区的数量
 
-.go_on_read:
-    in ax, dx
-    mov [bx], ax
-    add bx, 2
-    loop .go_on_read
+    .read:
+        push cx
+        call .waits;等待数据准备完毕
+        call .reads;读取一个扇区
+        pop cx
+        loop .read
+
     ret
+
+
+    .waits:
+        mov dx, 0x1F7
+        .check
+            in al, dx
+            jmp $+2; nop 直接跳转到下一行
+            jmp $+2; 一点点延迟
+            jmp $+2
+            and al, 0b1000_1000; 取出第3位和第7位, 第3位表示数据是否准备完毕, 第7位表示磁盘是否繁忙
+            cmp al, 0b0000_1000; 如果相等则表示数据已准备完毕且磁盘不繁忙
+            jnz .check
+        ret
+
+    ; 读取一个扇区
+    .reads:
+        mov dx, 0x1F0
+        mov cx, 256; 一个扇区512字节, 即256字(1个字等于2个字节)
+        .readw:
+            in ax, dx; 将端口0x1F0数据读取到ax寄存器, 每次读取2个字节
+            mov [edi], ax
+            add edi, 2
+            loop .readw
+        ret
+
+
+
+
 
 times 510-($-$$) db 0
 db 0x55, 0xaa
