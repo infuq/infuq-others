@@ -36,72 +36,188 @@ SECTION MBR vstart=0x7c00
     mov byte [gs:0x08], 'A'
     mov byte [gs:0x09], 0xA4
 
-    mov eax, LOADER_START_SECTOR
-    mov bx, LOADER_BASE_ADDR
     
-    ; 读取1个扇区
-    mov cx, 1
-    call rd_disk_m_16
+
+    ; 读取磁盘
+    mov edi, 0x900  ; 读取到目标内存地址
+    mov ecx, 0x2    ; 起始扇区
+    mov bl, 1       ; 扇区数量
+    call read_disk
+
+    ; 写入磁盘
+    ; mov edi, 0x900  ; 读取目标内存地址数据
+    ; mov ecx, 0x1    ; 起始扇区
+    ; mov bl, 1       ; 扇区数量
+    ; call write_disk
+
+
 
     ; 直接跳到loader的起始代码执行
     jmp LOADER_BASE_ADDR
 
-;-----------------------------------------------------------
-; 读取磁盘的n个扇区,用于加载loader
-; eax保存从硬盘读取到的数据的保存地址, ebx为起始扇区, cx为读取的扇区数
-rd_disk_m_16:
-;-----------------------------------------------------------
 
-    mov esi, eax
-    mov di, cx
 
-    mov dx, 0x1f2
+
+
+; edi 读取到目标内存地址
+; ecx 存储起始扇区
+; bl  存储扇区数量
+read_disk:
+
+    
+    ; 设置读扇区的数量
+    mov dx, 0x1F2
+    mov al, bl
+    out dx, al
+
+    ; 起始扇区的前八位
+    mov dx, 0x1F3
+    mov al, cl
+    out dx, al
+    
+    ; 起始扇区的中八位
+    mov dx, 0x1F4
+    shr ecx, 8 ; ecx >> 8
     mov al, cl
     out dx, al
 
-    mov eax, esi
-
-    mov dx, 0x1f3
+    ; 起始扇区的高八位
+    mov dx, 0x1F5
+    shr ecx, 8 ; ecx >> 8
+    mov al, cl
     out dx, al
 
-    mov cl, 8
-    shr eax, cl
-    mov dx, 0x1f4
+    mov dx, 0x1F6
+    shr ecx, 8
+    and cl, 0b1111
+    mov al, 0b1110_0000; 操作主盘, LBA模式
+    or al, cl
     out dx, al
 
-    shr eax, cl
-    mov dx, 0x1f5
-    out dx, al
-
-    shr eax, cl
-    and al, 0x0f
-    or al, 0xe0
-    mov dx, 0x1f6
-    out dx, al
-
-    mov dx, 0x1f7
+    ; 设置读磁盘
+    mov dx, 0x1F7
     mov al, 0x20
     out dx, al
 
-.not_ready:
-    nop
-    in al, dx
-    and al, 0x88
-    cmp al, 0x08
-    jnz .not_ready
 
-    mov ax, di
-    mov dx, 256
-    mul dx
-    mov cx, ax
-    mov dx, 0x1f0
+    xor ecx, ecx; 将 ecx 清空
+    mov cl, bl; 读扇区的数量
 
-.go_on_read:
-    in ax, dx
-    mov [bx], ax
-    add bx, 2
-    loop .go_on_read
+    .read:
+        push cx
+        call .waits;等待数据准备完毕
+        call .reads;读取一个扇区
+        pop cx
+        loop .read
+
     ret
+
+
+    .waits:
+        mov dx, 0x1F7
+        .check
+            in al, dx
+            jmp $+2; nop 直接跳转到下一行
+            jmp $+2; 一点点延迟
+            jmp $+2
+            and al, 0b1000_1000; 取出第3位和第7位, 第3位表示数据是否准备完毕, 第7位表示磁盘是否繁忙
+            cmp al, 0b0000_1000; 如果相等则表示数据已准备完毕且磁盘不繁忙
+            jnz .check
+        ret
+
+    ; 读取一个扇区
+    .reads:
+        mov dx, 0x1F0
+        mov cx, 256; 一个扇区512字节, 即256字(1个字等于2个字节)
+        .readw:
+            in ax, dx; 将端口0x1F0数据读取到ax寄存器, 每次读取2个字节
+            mov [edi], ax
+            add edi, 2
+            loop .readw
+        ret
+
+
+
+
+; edi 写入到目标内存地址
+; ecx 存储起始扇区
+; bl  存储扇区数量
+write_disk:
+
+    
+    ; 设置写扇区的数量
+    mov dx, 0x1F2
+    mov al, bl
+    out dx, al
+
+    ; 起始扇区的前八位
+    mov dx, 0x1F3
+    mov al, cl
+    out dx, al
+    
+    ; 起始扇区的中八位
+    mov dx, 0x1F4
+    shr ecx, 8 ; ecx >> 8
+    mov al, cl
+    out dx, al
+
+    ; 起始扇区的高八位
+    mov dx, 0x1F5
+    shr ecx, 8 ; ecx >> 8
+    mov al, cl
+    out dx, al
+
+    mov dx, 0x1F6
+    shr ecx, 8
+    and cl, 0b1111
+    mov al, 0b1110_0000; 操作主盘, LBA模式
+    or al, cl
+    out dx, al
+
+    ; 设置写磁盘
+    mov dx, 0x1F7
+    mov al, 0x30
+    out dx, al
+
+
+    xor ecx, ecx; 将 ecx 清空
+    mov cl, bl; 写扇区的数量
+
+    .write:
+        push cx
+        call .writes; 写入一个扇区
+        call .waits; 等待数据操作完毕
+        pop cx
+        loop .write
+
+    ret
+
+
+    .waits:
+        mov dx, 0x1F7
+        .check
+            in al, dx
+            jmp $+2; nop 直接跳转到下一行
+            jmp $+2; 一点点延迟
+            jmp $+2
+            and al, 0b1000_0000; 取出第7位, 第7位表示磁盘是否繁忙
+            cmp al, 0b0000_0000; 如果相等则表示磁盘不繁忙
+            jnz .check
+        ret
+
+    ; 写入一个扇区
+    .writes:
+        mov dx, 0x1F0
+        mov cx, 256; 一个扇区512字节, 即256字(1个字等于2个字节)
+        .writew:
+            mov ax, [edi]
+            out dx, ax; 将ax寄存器数据写入端口0x1F0, 每次写入2个字节
+            add edi, 2
+            loop .writew
+        ret
+
+
+
 
 times 510-($-$$) db 0
 db 0x55, 0xaa

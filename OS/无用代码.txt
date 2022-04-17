@@ -1,0 +1,62 @@
+在1-MBR-LOADER中用于读取磁盘数据的代码, 目前已被其他代码替换
+
+; 读取磁盘方式一
+mov eax, LOADER_START_SECTOR; 起始扇区
+mov bx, LOADER_BASE_ADDR; 读取到目标内存地址
+mov cx, 1; 扇区数量
+call rd_disk_m_16
+
+; 读取磁盘的n个扇区,用于加载loader
+; eax保存从硬盘读取到的数据的保存地址, ebx为起始扇区, cx为读取的扇区数
+rd_disk_m_16:
+
+    mov esi, eax
+    mov di, cx
+
+    mov dx, 0x1f2
+    mov al, cl
+    out dx, al
+
+    mov eax, esi
+
+    mov dx, 0x1f3
+    out dx, al
+
+    mov cl, 8
+    shr eax, cl
+    mov dx, 0x1f4
+    out dx, al
+
+    shr eax, cl
+    mov dx, 0x1f5
+    out dx, al
+
+    shr eax, cl
+    and al, 0x0f
+    or al, 0xe0
+    mov dx, 0x1f6
+    out dx, al
+
+    mov dx, 0x1f7
+    mov al, 0x20
+    out dx, al
+
+.not_ready:
+    nop
+    in al, dx
+    and al, 0x88
+    cmp al, 0x08
+    jnz .not_ready
+
+    mov ax, di
+    mov dx, 256
+    mul dx
+    mov cx, ax
+    mov dx, 0x1f0
+
+.go_on_read:
+    in ax, dx
+    mov [bx], ax
+    add bx, 2
+    loop .go_on_read
+    ret
