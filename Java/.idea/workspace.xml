@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a525345-a50f-4d7e-acc0-7ca7f20fe409" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/AddressExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/memory/AddressExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/distributed/lock/JedisExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/distributed/lock/JedisExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/distributed/lock/RedissonLockExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/distributed/lock/RedissonLockExample.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +53,7 @@
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="alwaysUpdateSnapshots" value="true" />
-        <option name="mavenHome" value="$PROJECT_DIR$/../../../Soft/apache-maven-3.6.3" />
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../Soft/apache-maven-3.8.4" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -65,7 +67,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/aliyun/mq" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Facets" />
     <property name="project.structure.proportion" value="0.0" />
