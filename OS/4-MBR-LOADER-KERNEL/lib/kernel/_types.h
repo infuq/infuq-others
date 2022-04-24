@@ -1,8 +1,9 @@
 #ifndef INFUQ_TYPES_H
 #define INFUQ_TYPES_H
 
-#define EOF -1
-#define NULL 0
+#define EOF -1 // END OF FILE
+#define NULL ((void *) 0) // 空指针
+#define EOS '\0' // 字符串结尾标识
 
 #define bool _Bool
 #define true 1

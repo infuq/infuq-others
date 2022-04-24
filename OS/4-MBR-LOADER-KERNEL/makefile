@@ -1,5 +1,6 @@
 
 CFLAGS:= -m32
+CFLAGS+= -Qn 						# 去掉gcc版本信息
 CFLAGS+= -fno-builtin 				# 不需要gcc内置函数
 # CFLAGS+= -nostdinc 					# 不需要标准头文件
 CFLAGS+= -fno-pic 					# 不需要位置无关的代码

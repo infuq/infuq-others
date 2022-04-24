@@ -15,13 +15,6 @@
     <dubbo:protocol name="dubbo" port="20880" threads="200" threadpool="cached"  /><!-- telnet 127.0.0.1 20880 -->
 
 
-    <dubbo:service ref="queryUserInfoFacade" interface="com.infuq.facade.QueryUserInfoFacade" version="1.0.0" /><!-- generic="true"  -->
-    <dubbo:service ref="queryCarInfoFacade" interface="com.infuq.facade.QueryCarInfoFacade" version="1.0.0" />
-
-
-    <bean id="queryUserInfoFacade" class="com.infuq.facade.impl.QueryUserInfoFacadeImpl" />
-    <bean id="queryCarInfoFacade" class="com.infuq.facade.impl.QueryCarInfoFacadeImpl" />
-
 
 
     <bean id="dataSourceHikari" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
