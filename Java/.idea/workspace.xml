@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a525345-a50f-4d7e-acc0-7ca7f20fe409" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/Example.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/dubbo/spi/Example.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/infuq-v/src/main/resources/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/resources/applicationContext.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/target/classes/applicationContext.xml" afterDir="false" />
@@ -17,6 +19,10 @@
       <change beforePath="$PROJECT_DIR$/../OS/4-MBR-LOADER-KERNEL/makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../OS/4-MBR-LOADER-KERNEL/makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../OS/5-MBR-LOADER-KERNEL-INTR/boot/loader.asm" beforeDir="false" afterPath="$PROJECT_DIR$/../OS/5-MBR-LOADER-KERNEL-INTR/boot/loader.asm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../OS/创建页目录和页表.png" beforeDir="false" afterPath="$PROJECT_DIR$/../OS/创建页目录和页表.png" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/distributed/lock/JedisExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/distributed/lock/JedisExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/distributed/lock/RedissonLockExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/distributed/lock/RedissonLockExample.java" afterDir="false" />
+>>>>>>> 4754c14107b34e812c60a6cad17849f2ab34c38d
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +67,7 @@
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="alwaysUpdateSnapshots" value="true" />
-        <option name="mavenHome" value="$PROJECT_DIR$/../../../Soft/apache-maven-3.6.3" />
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../Soft/apache-maven-3.8.4" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -75,7 +81,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/aliyun/mq" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Facets" />
     <property name="project.structure.proportion" value="0.0" />

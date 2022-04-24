@@ -31,7 +31,7 @@ public class RedissonLockExample {
         config.useMasterSlaveServers().setMasterAddress("redis://192.168.0.1:6379").addSlaveAddress("redis://192.168.0.2:6379", "redis://192.168.0.3:6379");
 
         RedissonClient redissonClient = Redisson.create(config);
-        RLock redLock = redissonClient.getLock("myLock");// 获取锁实例
+        RLock redissonLock = redissonClient.getLock("myLock");// 获取锁实例
 
         try {
 
@@ -39,7 +39,7 @@ public class RedissonLockExample {
             long leaseTime = 5000;
             // waitTime 尝试获取锁的最大等待时间,超过这个值还未获取到锁,则获取锁失败
             // leaseTime 锁的过期时间,超过这个时间锁会自动失效(值应设置为大于业务处理的时间,确保在锁的有效期内业务能处理完成)
-            boolean isLock = redLock.tryLock(waitTime, leaseTime, TimeUnit.MILLISECONDS);
+            boolean isLock = redissonLock.tryLock(waitTime, leaseTime, TimeUnit.MILLISECONDS);
 
             if (isLock) {
                 // 获取到锁, 执行业务流程
@@ -49,7 +49,7 @@ public class RedissonLockExample {
 
         } finally {
             // 无论如何, 最后都要解锁
-            redLock.unlock();
+            redissonLock.unlock();
         }
 
 
