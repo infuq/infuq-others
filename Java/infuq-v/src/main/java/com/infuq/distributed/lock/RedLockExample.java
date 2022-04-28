@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 public class RedLockExample {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
 
         Config config1 = new Config();
@@ -36,19 +36,21 @@ public class RedLockExample {
 
         boolean isLock;
 
-        try {
+        isLock = redLock.tryLock(500, 30000, TimeUnit.MILLISECONDS);
+        if (isLock) {
 
-            isLock = redLock.tryLock(500, 30000, TimeUnit.MILLISECONDS);
-            if (isLock) {
+            try {
                 // 获取到锁, 执行业务流程
+
+            } catch (Exception e) {
+
+            } finally {
+                // 无论如何, 最后都要解锁
+                redLock.unlock();
             }
-
-        } catch (Exception e) {
-
-        } finally {
-            // 无论如何, 最后都要解锁
-            redLock.unlock();
         }
+
+
 
     }
 

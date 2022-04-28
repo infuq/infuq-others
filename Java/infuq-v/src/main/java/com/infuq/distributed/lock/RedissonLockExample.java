@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 public class RedissonLockExample {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
 
         Config config = new Config();
@@ -33,24 +33,24 @@ public class RedissonLockExample {
         RedissonClient redissonClient = Redisson.create(config);
         RLock redissonLock = redissonClient.getLock("myLock");// 获取锁实例
 
-        try {
+        long waitTime = 3000;
+        long leaseTime = 5000;
+        // waitTime 尝试获取锁的最大等待时间,超过这个值还未获取到锁,则获取锁失败
+        // leaseTime 锁的过期时间,超过这个时间锁会自动失效(值应设置为大于业务处理的时间,确保在锁的有效期内业务能处理完成)
+        boolean isLock = redissonLock.tryLock(waitTime, leaseTime, TimeUnit.MILLISECONDS);
 
-            long waitTime = 3000;
-            long leaseTime = 5000;
-            // waitTime 尝试获取锁的最大等待时间,超过这个值还未获取到锁,则获取锁失败
-            // leaseTime 锁的过期时间,超过这个时间锁会自动失效(值应设置为大于业务处理的时间,确保在锁的有效期内业务能处理完成)
-            boolean isLock = redissonLock.tryLock(waitTime, leaseTime, TimeUnit.MILLISECONDS);
+        if (isLock) {
 
-            if (isLock) {
+            try {
                 // 获取到锁, 执行业务流程
+            } catch (Exception e) {
+
+            } finally {
+                // 无论如何, 最后都要解锁
+                redissonLock.unlock();
             }
-
-        } catch (Exception e) {
-
-        } finally {
-            // 无论如何, 最后都要解锁
-            redissonLock.unlock();
         }
+
 
 
 
