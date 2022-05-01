@@ -5,8 +5,7 @@ import shutil
 
 
 if __name__ == '__main__':
-
-    shutil.rmtree("D:/t")
+    shutil.rmtree("C:/Program Files/1111")
 
 
 
