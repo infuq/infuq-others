@@ -5,18 +5,112 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f84c2bee-5401-4d2f-ab2e-a7d7015f73b5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/classloader/Child.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/classloader/ClassLoaderExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/classloader/Parent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../C/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/distributed/lock/RedLockExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/distributed/lock/RedLockExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/distributed/lock/RedissonLockExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/infuq-v/src/main/java/com/infuq/distributed/lock/RedissonLockExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/ExampleThread.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/META-INF/services/com.infuq.dubbo.spi.Computer" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/META-INF/services/com.infuq.spi.Computer" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/applicationContext.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/aliyun/mq/AliCloudMQHTTPOrderConsumer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/aliyun/mq/AliCloudMQONSOrderConsumer$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/aliyun/mq/AliCloudMQONSOrderConsumer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/aliyun/mq/AliCloudMQONSOrderProducer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/cacheline/Example$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/cacheline/Example$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/cacheline/Example$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/cacheline/Example$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/cacheline/Example.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/cacheline/V1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/cacheline/V2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/cacheline/V3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/distributed/lock/JedisExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/distributed/lock/RedLockExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/distributed/lock/RedissonLockExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dubbo/spi/Computer$Adaptive.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dubbo/spi/Computer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dubbo/spi/DellComputer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dubbo/spi/Example.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dubbo/spi/HPComputer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dubbo/spi/SpringBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dubbo/spi/WrapperComputer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dynamic/proxy/Example.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dynamic/proxy/MyServiceInterceptor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dynamic/proxy/RealService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dynamic/proxy2/Engineer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dynamic/proxy2/Example.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dynamic/proxy2/JavaEngineer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/dynamic/proxy2/MyProxyHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/example/recycler/Book.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/example/recycler/Main$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/example/recycler/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/example/recycler/ThreadUseMoreRecycler$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/example/recycler/ThreadUseMoreRecycler$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/example/recycler/ThreadUseMoreRecycler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/io/IOExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/jute/JuteExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/jute/Student.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/memory/AddressExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/memory/DirectMemExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/memory/FileChannelExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/memory/Manager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/memory/MapExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/netty/py/MyDecoder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/netty/py/MyModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/netty/py/Server$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/netty/py/Server.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/netty/py/ServerHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/oper/redis/Example.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/oper/redis/MyConfig$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/oper/redis/MyConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/oper/redis/RedisUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/rate/limiter/Counter$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/rate/limiter/Counter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/redis/ClientInHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/redis/RedisOfNetty$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/redis/RedisOfNetty.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/redis/RedisOfSocket.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/spi/Computer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/spi/ComputerExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/spi/DellComputer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/spi/HPComputer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/spring/Book.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/spring/BookFactoryBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/spring/Computer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/spring/Example.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/spring/MyConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/spring/MyInstantiationAwareBeanPostProcessor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/thread/Example.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/ClassLoaderExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/ExtendInstanceofExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/FirstUniqueCharacter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/InstanceofExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/ListNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/ListNodeExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/MyClassLoader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/ObjClassLayout.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/tmp/SelectWakeUp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/com/infuq/util/CommonUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/log4j2.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infuq-v/target/classes/redis.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Python/v_download/download_file_bilibili.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Python/v_download/download_file_bilibili.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -33,12 +127,20 @@
       </map>
     </option>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
+        <option name="alwaysUpdateSnapshots" value="true" />
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../Soft/apache-maven-3.6.3" />
         <option name="useMavenConfig" value="true" />
       </MavenGeneralSettings>
     </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
   </component>
   <component name="ProjectId" id="28OQyPG2Y8ipldnuQW0Jk8uZiS3" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -49,6 +151,79 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="ClassLoaderExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.infuq.classloader.ClassLoaderExample" />
+      <module name="infuq-v" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.infuq.classloader.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ClassLoaderExample" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f84c2bee-5401-4d2f-ab2e-a7d7015f73b5" name="Changes" comment="" />
+      <created>1651617308307</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1651617308307</updated>
+      <workItem from="1651617309518" duration="5835000" />
+      <workItem from="1651858512970" duration="47000" />
+      <workItem from="1652150084788" duration="300000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>jar://$PROJECT_DIR$/../../../Soft/Java/jdk1.8.0_202/src.zip!/java/util/concurrent/locks/AbstractQueuedSynchronizer.java</url>
+          <line>836</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+      <breakpoints-defaults>
+        <breakpoint suspend="THREAD" type="java-line" />
+      </breakpoints-defaults>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="java.util.concurrent.locks.AbstractQueuedSynchronizer$Node" memberName="next" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
 </project>
