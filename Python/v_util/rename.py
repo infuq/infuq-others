@@ -20,9 +20,11 @@ def batch_rename():
             continue
         if os.path.splitext(file)[-1][1:] == 'flv':
             file_name = os.path.splitext(file)[0]
-            file_name_1 = re.match(r'^.*(P.*)$', file_name).group(1)        
+
+            file_name_1 = re.match(r'^.*[(](P.*?)[)]?$', file_name).group(1)        
 
             new_file_name = file_name_1
+            print(new_file_name)
             os.rename(file, new_file_name + '.flv')
 
 
