@@ -33,7 +33,7 @@ def find_file_by_keyword(directory, keyword, suffix=None):
 if __name__ == '__main__':
     
     
-    directory = 'D:/Repository/infuq-others/Python/v_tmp/'
+    directory = 'D:/Repository/infuq-others/Python/t_tmp/'
     keyword = '8.8.8.8'
     suffix = '.py'
     # 查找指定目录下指定后缀文件包含指定关键字的文件
