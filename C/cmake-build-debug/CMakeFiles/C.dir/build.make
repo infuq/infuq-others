@@ -43,10 +43,10 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "D:\Soft\CLion 2021.3\bin\cmake\win\bin\cmake.exe"
+CMAKE_COMMAND = "D:\Soft\CLion 2021.3.2\bin\cmake\win\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "D:\Soft\CLion 2021.3\bin\cmake\win\bin\cmake.exe" -E rm -f
+RM = "D:\Soft\CLion 2021.3.2\bin\cmake\win\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -72,15 +72,15 @@ CMakeFiles/C.dir/network/_reactor.c.obj: CMakeFiles/C.dir/flags.make
 CMakeFiles/C.dir/network/_reactor.c.obj: ../network/_reactor.c
 CMakeFiles/C.dir/network/_reactor.c.obj: CMakeFiles/C.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Repository\infuq-others\C\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/C.dir/network/_reactor.c.obj"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/C.dir/network/_reactor.c.obj -MF CMakeFiles\C.dir\network\_reactor.c.obj.d -o CMakeFiles\C.dir\network\_reactor.c.obj -c D:\Repository\infuq-others\C\network\_reactor.c
+	"D:\Soft\CLion 2021.3.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/C.dir/network/_reactor.c.obj -MF CMakeFiles\C.dir\network\_reactor.c.obj.d -o CMakeFiles\C.dir\network\_reactor.c.obj -c D:\Repository\infuq-others\C\network\_reactor.c
 
 CMakeFiles/C.dir/network/_reactor.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/C.dir/network/_reactor.c.i"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\Repository\infuq-others\C\network\_reactor.c > CMakeFiles\C.dir\network\_reactor.c.i
+	"D:\Soft\CLion 2021.3.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\Repository\infuq-others\C\network\_reactor.c > CMakeFiles\C.dir\network\_reactor.c.i
 
 CMakeFiles/C.dir/network/_reactor.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/C.dir/network/_reactor.c.s"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Repository\infuq-others\C\network\_reactor.c -o CMakeFiles\C.dir\network\_reactor.c.s
+	"D:\Soft\CLion 2021.3.2\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Repository\infuq-others\C\network\_reactor.c -o CMakeFiles\C.dir\network\_reactor.c.s
 
 # Object files for target C
 C_OBJECTS = \

@@ -92,7 +92,7 @@ main:
 	or dword [ebx + 0x18 + 4], 0xc0000000
 	add dword [gdt_ptr + 2], 0xc0000000
 
-	add esp,0xc0000000    ; 栈所在位置0xc0000900
+	add esp,0xc0000000    ; add之后栈所在位置0xc0000900
 
 	
 	; 3.页目录表起始地址存入 cr3 寄存器
