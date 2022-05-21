@@ -68,7 +68,7 @@ void init_thread(struct task_struct *pthread, char *name, int priority)
 
     
     // 线程在内核态下使用的栈顶地址
-    pthread->self_kstack        = (uint32_t*)((uint32_t)pthread + PG_SIZE);
+    pthread->self_kstack        = (uint32_t*)((uint32_t)pthread + PG_SIZE); // 初始栈顶指针
     pthread->priority           = priority;
     pthread->ticks              = priority;
     pthread->elapsed_ticks      = 0;
@@ -86,12 +86,12 @@ struct task_struct *thread_start(char *name, int prio, thread_func func, void *a
     init_thread(thread, name, prio);
     thread_create(thread, func, arg);
 
-    /* 确保之前不在队列中 */
+    /* 确保之前不在就绪线程队列中 */
     ASSERT(!elem_find(&thread_ready_list, &thread->general_tag));
     /* 加入就绪线程队列 */
     list_append(&thread_ready_list, &thread->general_tag);
 
-    /* 确保之前不在队列中 */
+    /* 确保之前不在全部线程队列中 */
     ASSERT(!elem_find(&thread_all_list, &thread->all_list_tag));
     /* 加入全部线程队列 */
     list_append(&thread_all_list, &thread->all_list_tag);
@@ -105,7 +105,7 @@ static void make_main_thread()
     main_thread = running_thread();
     init_thread(main_thread, "main", 31);
 
-    /* main函数是当前线程,当前线程不在thread_ready_list中,
+    /* main函数是当前运行线程,当前运行线程不在thread_ready_list中,
     * 所以只将其加在thread_all_list中. */
     ASSERT(!elem_find(&thread_all_list, &main_thread->all_list_tag));
     list_append(&thread_all_list, &main_thread->all_list_tag);
@@ -123,12 +123,12 @@ void schedule()
     struct task_struct *cur = running_thread();
 
 
-    if (cur->status == TASK_RUNNING) // 若此线程只是CPU时间片到了,将其加入到就绪队列尾
+    if (cur->status == TASK_RUNNING) // 若当前线程只是CPU时间片到了,将其加入到就绪队列尾
     {
 
         ASSERT(!elem_find(&thread_ready_list, &cur->general_tag));
         list_append(&thread_ready_list, &cur->general_tag);
-        cur->ticks = cur->priority;     // 重新将当前线程的ticks再重置为其priority;
+        cur->ticks = cur->priority;     // 重新将当前线程的ticks重置为其priority;
         cur->status = TASK_READY;
     }
     else

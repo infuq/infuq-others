@@ -17,10 +17,22 @@ extern void intr_exit();
 void start_process(void *func)
 {
 
-    void            *function  = func;
-    struct task_struct  *cur       = running_thread();
+    void *function = func;
+    struct task_struct *cur = running_thread();
     
 
+    /**
+     *  +----+--
+     *  |    |   
+     *  |    | intr_stack
+     *  |    | 
+     *  +----+-- 
+     *  |    | 
+     *  |    | thread_stack
+     *  |    | 
+     *  +----+--
+     *
+     */
     // 进程在调用thread_create的时候,已经将栈指针指向了thread_stack的最低处.
     // 因此此处 '跨过' thread_stack空间, 让栈指针指向intr_stack的最低处.
     cur->self_kstack += sizeof(struct thread_stack);
@@ -32,12 +44,12 @@ void start_process(void *func)
     proc_intr_stack->gs      = 0;            /* 用户态用不上,直接初始为0 */
     proc_intr_stack->ds      = proc_intr_stack->es = proc_intr_stack->fs = SELECTOR_U_DATA;
     proc_intr_stack->eip     = function;     /* 待执行的用户程序地址 */
-    proc_intr_stack->cs      = SELECTOR_U_CODE;
+    proc_intr_stack->cs      = SELECTOR_U_CODE;  // RPL = 3
     proc_intr_stack->eflags  = (EFLAGS_IOPL_0 | EFLAGS_MBS | EFLAGS_IF_1);
     proc_intr_stack->esp     = (void *) ( (uint32_t) get_a_page( PF_USER, USER_STACK3_VADDR ) + PG_SIZE);
     proc_intr_stack->ss      = SELECTOR_U_DATA;
 
-
+    // 中断退出 (进程的首次执行是通过中断退出的方式)
     asm volatile ("movl %0, %%esp; jmp intr_exit" : : "g" (proc_intr_stack) : "memory");
 
 }
@@ -122,6 +134,7 @@ void create_user_vaddr_bitmap(struct task_struct *user_process)
 
 
 /* 创建用户进程 */
+// main.c 调用此方法
 void process_execute(void *func, char *name)
 {
     // 所有PCB都位于内核空间(包括用户进程的PCB)

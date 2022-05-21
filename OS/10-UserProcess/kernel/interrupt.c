@@ -35,6 +35,7 @@ char *intr_name[IDT_DESC_CNT];
 // 定义中断处理程序数组,在kernel.asm中定义的intrXXentry只是中断处理程序的入口,最终调用idt_table中的处理程序
 intr_handler idt_table[IDT_DESC_CNT];
 // 声明引用定义在kernel.asm中的中断处理函数入口数组
+// 在kernel.asm中已初始化48个中断处理函数
 extern intr_handler intr_entry_table[IDT_DESC_CNT];
 
 // 初始化可编程中断控制器 8259A
@@ -65,11 +66,11 @@ static void pic_init()
 //创建中断门描述符
 static void make_idt_desc(struct gate_desc *p_gdesc, uint8_t attr, intr_handler function)
 {
-    p_gdesc->func_offset_low_word = (uint32_t)function & 0x0000FFFF;
+    p_gdesc->func_offset_low_word = (uint32_t)function & 0x0000FFFF;    // 中断处理程序在目标段内的偏移量 31-16
     p_gdesc->selector = SELECTOR_K_CODE;
     p_gdesc->dcount = 0;
     p_gdesc->attribute = attr;
-    p_gdesc->func_offset_high_word = ((uint32_t)function & 0xFFFF0000) >> 16;
+    p_gdesc->func_offset_high_word = ((uint32_t)function & 0xFFFF0000) >> 16; // 中断处理程序在目标段内的偏移量 15-0
 }
 
 // 初始化中断(门)描述符表
@@ -204,7 +205,14 @@ enum intr_status intr_get_status()
 }
 
 
-// 完成有关中断到所有初始化工作
+/**
+ * 
+ * idt[i] -> intr_entry_table[i] -> idt_table[i]
+ * 
+ * 
+ * 
+ */
+// 完成有关中断的所有初始化工作
 void idt_init()
 {
     

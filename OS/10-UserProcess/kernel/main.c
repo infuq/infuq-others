@@ -33,6 +33,7 @@ int main()
     put_str("\n\n");
 
 
+    // 创建内核线程, 加入到队列中, 等待时钟中断调用它
     struct task_struct *thread1 = thread_start("k_thread_1", 10, k_thread_1, "[k_thread_1 ]");
     struct task_struct *thread2 = thread_start("k_thread_2", 16, k_thread_2, "[k_thread_2 ]");
     // 打印PCB地址
@@ -44,7 +45,8 @@ int main()
     put_str("\n\n");
 
     
-
+    // 创建用户进程, 加入到队列中, 等待时钟中断调用它
+    // 当时钟中断调用到用户进程时, 用户进程首先在内核态执行, 会向中断栈(intr_stack)中存储CS的RPL=3, 当中断返回时, 就会进入用户态 
     process_execute(u_process_1, "[u_process_1 ]");
     process_execute(u_process_2, "[u_process_2 ]");
 

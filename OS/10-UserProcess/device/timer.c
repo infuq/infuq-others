@@ -43,7 +43,7 @@ static void intr_timer_handler()
     
 
     if (cur_thread->ticks == 0)
-        schedule();
+        schedule(); // 方法内部会重置当前线程的ticks
     else
         cur_thread->ticks--;
 
@@ -57,7 +57,16 @@ void timer_init()
     
     /* 设置 8253 的定时周期,也就是发中断的周期 */ 
     frequency_set(CONTRER0_PORT, COUNTER0_NO, READ_WRITE_LATCH, COUNTER_MODE, COUNTER0_VALUE); 
+    
+
     register_handler(0x20, intr_timer_handler);
     
     put_str("timer_init done\n"); 
 }
+
+
+
+
+
+
+

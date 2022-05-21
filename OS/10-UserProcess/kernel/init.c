@@ -21,7 +21,7 @@ void init_all()
 	
 	main_thread_init();		// 初始化main线程
    
-   	timer_init();
+   	timer_init();			// 时钟中断
 
 	console_init();			// 初始化全局控制台锁
    	
