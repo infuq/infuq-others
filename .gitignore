@@ -1,6 +1,7 @@
 .DS_Store
 .vscode
 Java/.idea/
+OS/.idea/
 Java/.idea/workspace.xml
 Java/.idea/uiDesigner.xml
 Java/infuq-java.iml
