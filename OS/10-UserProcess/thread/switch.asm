@@ -1,8 +1,13 @@
 [bits 32]
 section .text
 global switch_to
+
+; 调用 switch_to(cur, next)
+
 switch_to:
-    ;栈中此处是返回地址
+    ; next
+    ; cur
+    ; 栈中此处是返回地址
     push esi
     push edi
     push ebx
@@ -14,7 +19,7 @@ switch_to:
                             ; 所以直接往thread开头处存4字节便可.
 
     ; 以上操作的是当前线程的内核线程栈, esp值被保存到cur->self_kstack
-    
+
 
 ;------------------  上面是备份当前线程的环境,下面是恢复下一个线程的环境  ----------------
    mov eax, [esp + 24]      ; 得到栈中的参数next, next = [esp + 24]

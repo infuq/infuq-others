@@ -80,14 +80,16 @@ void page_dir_activate(struct task_struct *p_thread)
 void process_activate(struct task_struct *p_thread)
 {
     ASSERT(p_thread != NULL);
-    /* 激活该进程或线程的页表 */
+
+    // 激活该进程或线程的页表
     page_dir_activate(p_thread);
 
-    /* 内核线程特权级本身就是0,处理器进入中断时并不会从tss中获取0特权级栈地址,故不需要更新esp0 */
+    // 内核线程特权级本身就是0,处理器进入中断时并不会从tss中获取0特权级栈地址,故不需要更新esp0
     if (p_thread->pgdir != NULL)
     {
-        /* 更新该进程的esp0,用于此进程被中断时保留上下文 */
-        // 比如A进程被中断时,CPU通过tss.esp0找到栈顶,从而保存上下文到A进程的栈中.
+        // 让tss.esp0指向p_thread的栈顶, 当p_thread进程被中断时将上下文信息保存到tss.esp0指向的栈顶
+        // CPU会通过tss.esp0找到p_thread的栈顶
+        // 这里说的栈, 是指内核栈, 而非用户栈
         update_tss_esp(p_thread);
     }
 
@@ -141,7 +143,7 @@ void process_execute(void *func, char *name)
     struct task_struct *thread = get_kernel_pages(1);
     
     init_thread(thread, name, default_prio);
-    thread_create(thread, start_process, func);
+    thread_create(thread, start_process, func); // start_process函数内部会构造中断场景, 模拟从中断返回
 
     create_user_vaddr_bitmap(thread);
     thread->pgdir = create_page_dir();

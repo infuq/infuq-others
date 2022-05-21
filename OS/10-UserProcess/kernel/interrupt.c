@@ -209,6 +209,8 @@ enum intr_status intr_get_status()
  * 
  * idt[i] -> intr_entry_table[i] -> idt_table[i]
  * 
+ * intr_entry_table[i] 负责中断栈的入栈和出栈, 具体代码在kernel.asm
+ * idt_table[i] 表示具体的中断处理函数, 时钟中断的处理逻辑在timer.c和switch.asm
  * 
  * 
  */

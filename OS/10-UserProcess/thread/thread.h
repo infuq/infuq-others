@@ -69,12 +69,12 @@ struct thread_stack
     uint32_t edi;
     uint32_t esi;
 
-    // 线程第一次执行时,eip指向待调用的函数kernel_thread 其它时候,eip是指向switch_to的返回地址
+    // 线程/进程第一次被调度上CPU时,eip指向待调用的函数kernel_thread
+    // 其它时候,eip是指向switch_to的返回地址
     void (*eip) (thread_func *func, void *func_arg);
     
-    /*****   以下仅供第一次被调度上cpu时使用   ****/
-    // 参数unused_ret只为占位置充数为返回地址
-    void (*unused_retaddr);
+    /*****   以下仅线程/进程第一次被调度上CPU时使用   *****/
+    void (*unused_retaddr); // 参数unused_retaddr只为占位置充数为返回地址
     thread_func *function; // 由kernel_thread所调用的函数名
     void *func_arg; // 由kernel_thread所调用的函数所需的参数
 };
