@@ -36,7 +36,8 @@ static void thread_finish()
     put_str(" finish.\n");
 
     list_remove(&cur->general_tag);
-    cur->status = TASK_WAITING;
+    cur->status = TASK_FINISH;
+    
     intr_disable(); 
     schedule();
 }

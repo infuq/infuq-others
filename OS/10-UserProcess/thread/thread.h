@@ -19,7 +19,8 @@ enum task_status
     TASK_BLOCKED,
     TASK_WAITING,
     TASK_HANGING,
-    TASK_DIED
+    TASK_DIED,
+    TASK_FINISH
 };
 
 

@@ -74,7 +74,13 @@ void u_process_2()
 
 void k_thread_1(void *arg)
 {
-
+	int i = 3;
+	while (i-- > 0)
+	{
+		console_put_str("k_thread_1 i=");
+		console_put_int(i);
+		console_put_str("\n");
+	}
 
 }
 
@@ -82,12 +88,11 @@ void k_thread_1(void *arg)
 void k_thread_2(void *arg)
 {
 
-	char *pArg = arg;
-	
-	while (1)
+	int i = 3;
+	while (i-- > 0)
 	{
-		console_put_str(pArg);
-		console_put_int(var_2);
+		console_put_str("k_thread_2 i=");
+		console_put_int(i);
 		console_put_str("\n");
 	}
 
