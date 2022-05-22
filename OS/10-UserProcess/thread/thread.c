@@ -28,6 +28,8 @@ struct task_struct *running_thread()
 
 static void thread_finish()
 {
+    
+    intr_disable(); 
     struct task_struct *cur = running_thread();
 
     char *name = cur->name;
@@ -38,8 +40,8 @@ static void thread_finish()
     list_remove(&cur->general_tag);
     cur->status = TASK_FINISH;
     
-    intr_disable(); 
-    schedule();
+//    schedule();
+    intr_enable();
 }
 
 
