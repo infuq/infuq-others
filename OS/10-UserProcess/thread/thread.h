@@ -74,7 +74,7 @@ struct thread_stack
     void (*eip) (thread_func *func, void *func_arg);
     
     /*****   以下仅线程/进程第一次被调度上CPU时使用   *****/
-    void (*unused_retaddr); // 参数unused_retaddr只为占位置充数为返回地址
+    void (*unused_retaddr)(void); // 参数unused_retaddr只为占位置充数为返回地址
     thread_func *function; // 由kernel_thread所调用的函数名
     void *func_arg; // 由kernel_thread所调用的函数所需的参数
 };

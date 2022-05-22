@@ -26,6 +26,18 @@ struct task_struct *running_thread()
     return (struct task_struct *)(esp & 0xfffff000);
 }
 
+static void thread_finish()
+{
+    struct task_struct *cur = running_thread();
+
+    char name[16] = cur->name;
+
+    put_str(name);
+    put_str(" finish.\n");
+
+
+}
+
 
 // 由 kernel_thread 去执行 func(arg)
 static void kernel_thread(thread_func *func, void *arg)
@@ -52,6 +64,10 @@ void thread_create(struct task_struct *pthread, thread_func function, void *func
     kthread_stack->function = function;
     kthread_stack->func_arg = func_arg;
     kthread_stack->ebp = kthread_stack->ebx = kthread_stack->esi = kthread_stack->edi = 0;
+
+    ; 
+    kthread_stack->unused_retaddr = thread_finish;
+
 }
 
 
