@@ -34,3 +34,9 @@ switch_to:
    pop esi
    ret                      ; 返回到上面switch_to下面的那句注释的返回地址,
                             ; 未由中断进入,第一次执行时会返回到kernel_thread
+
+                            ; ret 将栈顶的4字节数据弹出到寄存器eip, 同时esp自加4
+
+
+
+
