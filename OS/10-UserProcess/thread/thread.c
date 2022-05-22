@@ -37,8 +37,18 @@ static void thread_finish()
     console_put_str(name);
     put_str(" finish.\n");
 
+
+    put_int(list_len(thread_ready_list));
+    put_str("---");
+    put_int(list_len(thread_all_list));
+
     list_remove(&cur->general_tag);
     cur->status = TASK_FINISH;
+
+    put_int(list_len(thread_ready_list));
+    put_str("---");
+    put_int(list_len(thread_all_list));
+
     
 //    schedule();
     intr_enable();
