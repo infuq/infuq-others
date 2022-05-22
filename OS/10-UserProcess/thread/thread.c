@@ -30,12 +30,15 @@ static void thread_finish()
 {
     struct task_struct *cur = running_thread();
 
-    char name[16] = cur->name;
+    char *name = cur->name;
 
-    put_str(name);
+    console_put_str(name);
     put_str(" finish.\n");
 
-
+    list_remove(&cur->general_tag);
+    cur->status = TASK_WAITING;
+    intr_disable(); 
+    schedule();
 }
 
 
@@ -65,7 +68,6 @@ void thread_create(struct task_struct *pthread, thread_func function, void *func
     kthread_stack->func_arg = func_arg;
     kthread_stack->ebp = kthread_stack->ebx = kthread_stack->esi = kthread_stack->edi = 0;
 
-    ; 
     kthread_stack->unused_retaddr = thread_finish;
 
 }

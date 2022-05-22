@@ -37,18 +37,18 @@ int main()
     struct task_struct *thread1 = thread_start("k_thread_1", 10, k_thread_1, "[k_thread_1 ]");
     struct task_struct *thread2 = thread_start("k_thread_2", 16, k_thread_2, "[k_thread_2 ]");
     // 打印PCB地址
-    put_str("thread1 vaddr = 0x");
-    put_int((uint32_t)(void *)thread1);
-    put_str("\n");
-    put_str("thread2 vaddr = 0x");
-    put_int((uint32_t)(void *)thread2);
-    put_str("\n\n");
+    //put_str("thread1 vaddr = 0x");
+    //put_int((uint32_t)(void *)thread1);
+    //put_str("\n");
+    //put_str("thread2 vaddr = 0x");
+    //put_int((uint32_t)(void *)thread2);
+    //put_str("\n\n");
 
     
     // 创建用户进程, 加入到队列中, 等待时钟中断调用它
     // 当时钟中断调用到用户进程时, 用户进程首先在内核态执行, 会向中断栈(intr_stack)中存储CS的RPL=3, 当中断返回时, 就会进入用户态 
-    process_execute(u_process_1, "[u_process_1 ]");
-    process_execute(u_process_2, "[u_process_2 ]");
+    //process_execute(u_process_1, "[u_process_1 ]");
+    //process_execute(u_process_2, "[u_process_2 ]");
 
 	intr_enable();
     
@@ -60,10 +60,6 @@ int main()
 
 void u_process_1()
 {
-	while (1)
-	{
-		var_1++;
-	}
 }
 
 void u_process_2()
@@ -79,14 +75,6 @@ void u_process_2()
 void k_thread_1(void *arg)
 {
 
-	char *pArg = arg;
-	while (1)
-	{
-		console_put_str(pArg);
-		console_put_int(var_1);
-		console_put_str("\n");
-	}
-	
 
 }
 
