@@ -32,25 +32,10 @@ static void thread_finish()
     intr_disable(); 
     struct task_struct *cur = running_thread();
 
-    char *name = cur->name;
-
-    console_put_str(name);
-    put_str(" finish.\n");
-
-
-    put_int(list_len(thread_ready_list));
-    put_str("---");
-    put_int(list_len(thread_all_list));
-
-    list_remove(&cur->general_tag);
     cur->status = TASK_FINISH;
-
-    put_int(list_len(thread_ready_list));
-    put_str("---");
-    put_int(list_len(thread_all_list));
-
+    list_remove(&cur->general_tag);
     
-//    schedule();
+    schedule();
     intr_enable();
 }
 
@@ -153,6 +138,9 @@ void schedule()
 
     struct task_struct *cur = running_thread();
 
+    char *name = cur->name;
+    console_put_str(name);
+    console_put_str(" schedule...\n");
 
     if (cur->status == TASK_RUNNING) // 若当前线程只是CPU时间片到了,将其加入到就绪队列尾
     {
@@ -164,6 +152,7 @@ void schedule()
     }
     else
     {
+        console_put_str(" else...\n");
         /* 若此线程需要某事件发生后才能继续上CPU运行,不需要将其加入队列,因为当前线程不在就绪队列中 */
     }
 
@@ -173,7 +162,9 @@ void schedule()
     struct task_struct *next = elem2entry(struct task_struct, general_tag, thread_tag);
     next->status = TASK_RUNNING;
 
-    
+    char *v = next->name;
+    console_put_str(v);
+    console_put_str(" next.....");
 
     // 激活任务页表等
     process_activate(next);

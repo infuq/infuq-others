@@ -34,8 +34,8 @@ int main()
 
 
     // 创建内核线程, 加入到队列中, 等待时钟中断调用它
-    struct task_struct *thread1 = thread_start("k_thread_1", 10, k_thread_1, "[k_thread_1 ]");
-    struct task_struct *thread2 = thread_start("k_thread_2", 3, k_thread_2, "[k_thread_2 ]");
+    struct task_struct *thread1 = thread_start("k_thread_1", 5, k_thread_1, "[k_thread_1 ]");
+    struct task_struct *thread2 = thread_start("k_thread_2", 7, k_thread_2, "[k_thread_2 ]");
     // 打印PCB地址
     //put_str("thread1 vaddr = 0x");
     //put_int((uint32_t)(void *)thread1);
@@ -88,8 +88,8 @@ void k_thread_1(void *arg)
 void k_thread_2(void *arg)
 {
 
-	int j = 3;
-	while (j-- > 0)
+	int j = 5;
+    while (j-- > 0)
 	{
 		console_put_str("k_thread_2 j=");
 		console_put_int(j);
