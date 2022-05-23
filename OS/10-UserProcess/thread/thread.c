@@ -26,6 +26,17 @@ struct task_struct *running_thread()
     return (struct task_struct *)(esp & 0xfffff000);
 }
 
+// 线程结束
+void thread_finish()
+{
+    intr_disable();
+    
+    struct task_struct *cur = running_thread();
+    cur->status = TASK_FINISH;
+
+    schedule();
+
+}
 
 // 由 kernel_thread 去执行 func(arg)
 static void kernel_thread(thread_func *func, void *arg)
@@ -52,6 +63,9 @@ void thread_create(struct task_struct *pthread, thread_func function, void *func
     kthread_stack->function = function;
     kthread_stack->func_arg = func_arg;
     kthread_stack->ebp = kthread_stack->ebx = kthread_stack->esi = kthread_stack->edi = 0;
+
+    // 根据对内核栈的理解, 增加一个线程结束的逻辑
+    kthread_stack->unused_retaddr = thread_finish;
 }
 
 
