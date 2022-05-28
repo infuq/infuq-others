@@ -40,7 +40,7 @@ struct tss
 static struct tss tss;
 
 
-/* 更新TSS中esp0字段的值为pthread的0级线 */
+/* 更新TSS中esp0字段的值为pthread的0级栈 */
 void update_tss_esp(struct task_struct *pthread)
 {
     // 进程A即将被调度到CPU执行时, 这里将esp0指向进程A的PCB的最高处
