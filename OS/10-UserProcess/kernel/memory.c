@@ -18,8 +18,8 @@
 struct pool
 {
     struct bitmap pool_bitmap;
-    uint32_t phy_addr_start; //本内存池管理的物理内存起始
-    uint32_t pool_size;
+    uint32_t phy_addr_start; //本内存池管理的物理内存起始地址
+    uint32_t pool_size; // 本内存池字节容量
     struct lock lock; // 申请内存时互斥
 };
 
@@ -255,13 +255,15 @@ uint32_t addr_v2p(uint32_t vaddr)
 
 
 // 初始化内存池
+// all_mem = 32M
 static void mem_pool_init(uint32_t all_mem)
 {
     put_str("   memory_init_start\n"); 
 
     uint32_t page_table_size = PG_SIZE * 256;
-    uint32_t used_mem = page_table_size + 0x100000; // 低端1M内存 + 页表大小
-    uint32_t free_mem = all_mem - used_mem;
+    uint32_t used_mem = page_table_size + 0x100000; // 低端1M内存 + 页目录和页表大小(1M) = 2M
+    
+    uint32_t free_mem = all_mem - used_mem; // 30M
     uint16_t all_free_pages = free_mem / PG_SIZE;
 
     uint16_t kernel_free_pages = all_free_pages / 2; // 用户和内核各分一半的可用内存
@@ -325,7 +327,7 @@ void mem_init()
 {
 
     // uint32_t mem_bytes_total = (*(uint32_t*)(0xb00));
-    uint32_t mem_bytes_total = 32 * 1024 * 1024;
+    uint32_t mem_bytes_total = 32 * 1024 * 1024; // 手动设置32M
     mem_pool_init(mem_bytes_total);
 
 

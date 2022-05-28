@@ -4,6 +4,7 @@
 #include "bitmap.h"
 #include "list.h"
 
+// 内存池标记
 enum pool_flags
 {
     PF_KERNEL = 1,  // 内核内存池
@@ -20,7 +21,9 @@ enum pool_flags
 // 虚拟地址池,用于虚拟地址管理
 struct virtual_addr
 {
+    // 虚拟地址用到的位图结构,用于记录哪些虚拟地址被占用了. 以页为单位
     struct bitmap vaddr_bitmap;
+    // 虚拟起始地址
     uint32_t vaddr_start;
 };
 
