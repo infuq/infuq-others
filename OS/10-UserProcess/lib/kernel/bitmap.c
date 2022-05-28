@@ -5,7 +5,7 @@
 #include "interrupt.h" 
 
 
-// 位图初始化,把每一位都设置为0
+// 初始化btmp位图, 把每一位都设置为0
 void bitmap_init(struct bitmap *btmp)
 {
     memset(btmp->bits, 0, btmp->btmp_bytes_len);
@@ -26,7 +26,7 @@ int bitmap_scan(struct bitmap *btmp, uint32_t cnt)
 {
     uint32_t idx_byte = 0;
     
-    // 逐个字节比较
+    // 逐个字节比较, 找到第一个不全为11111111b的字节.
     while ((0xff == btmp->bits[idx_byte]) && (idx_byte < btmp->btmp_bytes_len))
     {
         idx_byte++;
@@ -82,18 +82,19 @@ int bitmap_scan(struct bitmap *btmp, uint32_t cnt)
 }
 
 
-// 将位图btmp的bit_idx位设置为value
+// 将位图btmp的bit_idx位设置为value{0|1}
 void bitmap_set(struct bitmap *btmp, uint32_t bit_idx, int8_t value) {
     uint32_t byte_idx = bit_idx / 8;
     uint32_t bit_odd = bit_idx % 8;
     
+    // 若value为1
     if (value)
     {
-        // value为1
         btmp->bits[byte_idx] |= (1 << bit_odd);
     }
+    // 若value为0 
     else
-    {
+    {   
         btmp->bits[byte_idx] &= ~(1 << bit_odd);
     }
 }
