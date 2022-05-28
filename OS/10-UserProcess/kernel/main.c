@@ -16,8 +16,8 @@ void k_thread_2(void *);
 void u_process_1();
 void u_process_2();
 
-int var_1 = 0;
-int var_2 = 0;
+uint32_t var_1 = 0;
+uint32_t var_2 = 0;
 
 int main()
 {
@@ -47,8 +47,8 @@ int main()
     
     // 创建用户进程, 加入到队列中, 等待时钟中断调用它
     // 当时钟中断调用到用户进程时, 用户进程首先在内核态执行, 会向中断栈(intr_stack)中存储CS的RPL=3, 当中断返回时, 就会进入用户态 
-    //process_execute(u_process_1, "[u_process_1 ]");
-    //process_execute(u_process_2, "[u_process_2 ]");
+    process_execute(u_process_1, "[u_process_1 ]");
+    process_execute(u_process_2, "[u_process_2 ]");
 
 	intr_enable();
     
@@ -85,7 +85,9 @@ void k_thread_1(void *arg)
 	{
 		// console_put_str(pArg);
 		// console_put_int(var_1);
-		console_put_str("k_thread_1\n");
+		console_put_str("k_thread_1 = ");
+		console_put_int(var_1);
+		console_put_str("\n");
 	}
 	
 
@@ -99,9 +101,9 @@ void k_thread_2(void *arg)
 	uint32_t i = 5;
 	while (i-- > 0)
 	{
-		// console_put_str(pArg);
-		// console_put_int(var_2);
-		console_put_str("k_thread_2\n");
+		console_put_str("k_thread_2 = ");
+		console_put_int(var_2);
+		console_put_str("\n");
 	}
 
 }
