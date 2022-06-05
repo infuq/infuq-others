@@ -13,8 +13,10 @@ if __name__ == '__main__':
     print(q)
     print(a)
 
-
-
+    arr = ['I', 'love', 'python']
+    print(*arr, sep=",") # I,love,python
+    k = ','.join(arr) # I,love,python
+    
 
 
 
