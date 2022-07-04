@@ -2,25 +2,6 @@
 # -*- coding: UTF-8 -*-
 
 
-print(100+200)
-print('\n')
-print('A','B',100+200)
-print('i\'am "OK"')
-print(r'\\无需转义\\')
-
-
-name = input('please input your name:')
-print(name)
-
-# True  False  and  or  not
-print(True)
-print(False)
-print(True and True)
-print(True and False)
-print(True or False)
-print(not False)
-
-
 print(10 / 3) # 3.3333333333333335   除
 print(10 // 3) # 3  整除
 print(10 % 3) # 1   取余
@@ -38,39 +19,6 @@ print(len(b'ABC'))
 print('Hi,%s, you have $%d.' % ('Tom', 100))
 print('rate: %d%%' % 7)
 print('Hi,{0},you have {1:.2f}%'.format('Tom', 17.125))
-
-
-language=['C','Java','Python']
-print(language)
-print(len(language)) # 3
-print(language[1]) # Java
-print(language[-1]) # Python
-print(language[-2]) # Java
-print(language.append('Shell')) # 尾部追加Shell
-print(language.insert(1,'C++')) # 下标1插入C++,结果变成['C', 'C++', 'Java', 'Python', 'Shell']
-print(language.pop()) # 弹出Shell,结果变成['C', 'C++', 'Java', 'Python']
-print(language.pop(1)) # 弹出下标1的C++,结果变成['C', 'Java', 'Python']
-language[1]='Android' # 下标1赋值Android,结果变成['C', 'Android', 'Python']
-language=['Apple',123,True]
-language=['English','Math',['Java','Python']]
-language=('C','Java','Python')
-
-count = 10
-if count >= 20:
-	print('A')
-	print('B')
-elif count >= 10:
-	print('C')
-	print('D')
-else:
-	print('D')
-
-
-sum = 0
-for c in range(5): # 0 1 2 3 4
-	sum = sum + c
-
-print(sum)
 
 
 dict = {'name':'Libai','School':'Nanjing','Email':'xxx@gmail.com'}
@@ -92,11 +40,7 @@ for i,value in enumerate(['A','B','C']):
 
 for key,value in [('A','A1'),('B','B1'),(3,31)]:
 	print(key,value)
-	
-n = 10
-while n >= 3:
-	print(n)
-	n = n -1
+
 
 # break
 # continue
@@ -150,28 +94,6 @@ def _abs(i):
 		return -i	
 
 
-def _add(i, j):
-	i = i+3
-	j = j+6
-	return i,j
-
-
-m,n = _add(2,9)
-print(m,n)
-r = _add(2,9)
-print(r)		
-
-
-def info(name,address,year=2018,city='Wuxi'):
-	print('name',name)
-	print('address',address)
-	print('year',year)
-	print('city',city)
-
-
-print(info('Libai','Jiangsu'))
-print(info('Libai','Jiangsu',2020))
-print(info('Libai','Jiangsu',city='Nanjing'))
 
 
 # 可变参数
