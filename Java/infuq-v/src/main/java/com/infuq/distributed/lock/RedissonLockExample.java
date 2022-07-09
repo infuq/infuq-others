@@ -16,7 +16,7 @@ public class RedissonLockExample {
         Config config = new Config();
 
         // 单机模式
-        config.useSingleServer().setAddress("redis://192.168.0.1:6379");
+        config.useSingleServer().setAddress("redis://192.168.0.1:6379").setPassword("password");
 
         // 哨兵模式
         config.useSentinelServers().addSentinelAddress("redis://192.168.0.1:26379", "redis://192.168.0.2:26379", "redis://192.168.0.3:26379").setMasterName("masterName");
@@ -31,7 +31,7 @@ public class RedissonLockExample {
         config.useMasterSlaveServers().setMasterAddress("redis://192.168.0.1:6379").addSlaveAddress("redis://192.168.0.2:6379", "redis://192.168.0.3:6379");
 
         RedissonClient redissonClient = Redisson.create(config);
-        RLock redissonLock = redissonClient.getLock("myLock");// 获取锁实例
+        RLock redissonLock = redissonClient.getLock("lock:userId:" + "3278137219371");// 获取锁实例
 
         long waitTime = 3000;
         long leaseTime = 5000;
