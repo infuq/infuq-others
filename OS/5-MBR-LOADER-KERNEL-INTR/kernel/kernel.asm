@@ -12,8 +12,8 @@ section .data
             section .text
                 intr%1entry:    ; 中断处理程序入口地址
 
-                    ; 会被压入到0xc009f000位置的中断栈,在这之前,CPU已经压入了一些其他寄存器内容
-                    %2
+                    ; 会被压入到0xc009f000位置的中断栈,在这之前,CPU已经压入了一些其他寄存器内容(SS,ESP,EFLAGS,CS,EIP,ERROR_CODE)
+                    %2            
                     push ds
                     push es
                     push fs
@@ -25,7 +25,7 @@ section .data
                     out 0xa0,al
                     out 0x20,al
                     
-                    push %1
+                    push %1         ; 压入中断向量号 VEC_NO
                     call [idt_table + %1 * 4] ; 调用实际中断处理程序
                     jmp intr_exit
                 
@@ -36,13 +36,13 @@ section .data
 section .text
     global intr_exit
     intr_exit:
-        add esp,4
-        popad
+        add esp,4       ; 跨过中断向量号 VEC_NO  ,  与28行对应
+        popad           ; 与21行对应
         pop gs
         pop fs
         pop es
         pop ds
-        add esp,4
+        add esp,4   ; 跨过ERROR_CODE
         iretd
 
 
