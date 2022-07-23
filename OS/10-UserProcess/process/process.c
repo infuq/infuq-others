@@ -34,7 +34,7 @@ void start_process(void *func)
      *
      */
     // 进程在调用thread_create的时候,已经将栈指针指向了thread_stack的最低处.
-    // 因此此处 '跨过' thread_stack空间, 让栈指针指向intr_stack的最低处.
+    // 因此此处 '跨过' thread_stack空间, 让cur->self_kstack指向intr_stack的最低处.
     cur->self_kstack += sizeof(struct thread_stack);
 
 
