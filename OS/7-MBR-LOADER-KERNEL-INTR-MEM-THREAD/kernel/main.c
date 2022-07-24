@@ -37,7 +37,7 @@ int main(void)
     // https://gitee.com/infuq/infuq-img/blob/master/img/Snipaste_2021-06-18_08-00-38.png
 	while (1)
 	{
-		put_str("[thread_main ]");
+//		put_str("[thread_main ]");
 	}
 
 	return 0;
@@ -49,7 +49,7 @@ void k_thread_1(void *arg)
 	char *pArg = arg;
 	while (1)
 	{
-		put_str(pArg);
+//		put_str(pArg);
 	}
 }
 void k_thread_2(void *arg)
@@ -57,6 +57,6 @@ void k_thread_2(void *arg)
 	char *pArg = arg;
 	while (1)
 	{
-		put_str(pArg);
+//		put_str(pArg);
 	}
 }

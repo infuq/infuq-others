@@ -28,6 +28,8 @@ all: boot.bin kernel.bin
 	dd if=out/loader.bin of=infuq-os.img bs=512 count=4 seek=2  conv=notrunc
 	dd if=out/kernel.bin of=infuq-os.img bs=512 count=200 seek=9  conv=notrunc
 
+run:
+	bochs
 
 .PHONY:clean
 clean:

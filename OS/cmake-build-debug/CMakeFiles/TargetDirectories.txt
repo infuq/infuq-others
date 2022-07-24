@@ -1,0 +1,3 @@
+D:/Repository/infuq-others/OS/cmake-build-debug/CMakeFiles/OS.dir
+D:/Repository/infuq-others/OS/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/Repository/infuq-others/OS/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -45,6 +45,7 @@ static void *vaddr_get(enum pool_flags pf, uint32_t pg_cnt)
         {
             bitmap_set(&kernel_vaddr.vaddr_bitmap, bit_idx_start + cnt++, 1);
         }
+        // kernel_vaddr.vaddr_start = 0xC0100000
         vaddr_start = kernel_vaddr.vaddr_start + bit_idx_start * PG_SIZE;
     }
     else // 用户内存池
@@ -140,10 +141,7 @@ void *malloc_page(enum pool_flags pf, uint32_t pg_cnt)
     // 2 通过 palloc 在物理内存池中申请物理页
     // 3 通过 page_table_add 将以上得到的虚拟地址和物理地址在页表中完成映射
     void *vaddr_start = vaddr_get(pf, pg_cnt);
-    if (vaddr_start == NULL)
-    {
-        return NULL;
-    }
+    if (vaddr_start == NULL) return NULL;
 
     uint32_t vaddr = (uint32_t)vaddr_start;
     uint32_t cnt = pg_cnt;
@@ -165,12 +163,14 @@ void *malloc_page(enum pool_flags pf, uint32_t pg_cnt)
 }
 
 
-// 从内核物理内存池中申请1页内存,成功返回虚拟地址,失败NULL.
+// 从内核物理内存池中申请pg_cnt页内存,成功返回虚拟地址,失败NULL.
 void *get_kernel_pages(uint32_t pg_cnt)
 {
     lock_acquire(&kernel_pool.lock);
-    
-    void *vaddr =  malloc_page(PF_KERNEL, pg_cnt);
+
+    // 申请内存
+    void *vaddr = malloc_page(PF_KERNEL, pg_cnt);
+
     if (vaddr != NULL) {    // 若分配的地址不为空,将页框清0后返回
         memset(vaddr, 0, pg_cnt * PG_SIZE);
     }
