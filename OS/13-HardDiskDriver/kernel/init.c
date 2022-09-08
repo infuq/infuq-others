@@ -7,6 +7,7 @@
 #include "console.h"
 #include "keyboard.h"
 #include "tss.h"
+#include "ide.h"
 
 
 // 负责初始化所有模块
@@ -28,6 +29,8 @@ void init_all()
    	keyboard_init();		// 键盘初始化
    	
    	tss_init();				// TSS初始化
+
+	ide_init();	     		// 初始化硬盘
 
 
 	
