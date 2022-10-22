@@ -34,7 +34,8 @@ kernel.bin: $(kernelfiles)
 
 
 all: boot.bin kernel.bin
-	bximage -q -hd=16M -mode=create -sectsize=512 -imgmode=flat infuq-os.img
+# 	bximage -q -hd=16M -mode=create -sectsize=512 -imgmode=flat infuq-os.img
+	bximage -q -hd -mode=flat -size=16M infuq-os.img
 	dd if=out/mbr.bin of=infuq-os.img bs=512 count=1 conv=notrunc
 	dd if=out/loader.bin of=infuq-os.img bs=512 count=4 seek=2  conv=notrunc
 	dd if=out/kernel.bin of=infuq-os.img bs=512 count=200 seek=9  conv=notrunc
