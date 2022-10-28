@@ -4,6 +4,11 @@
 import time
 
 
+'''
+Python获取秒级时间戳与毫秒级时间戳文章 https://blog.csdn.net/pengjunlee/article/details/102719877
+
+'''
+
 def t():
 
     print(time.strftime('%Y', time.localtime()))  # 获取完整年份      2022
