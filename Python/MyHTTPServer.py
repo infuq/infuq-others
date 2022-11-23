@@ -1,3 +1,6 @@
+#! /usr/bin/env python
+# -*- coding:utf-8 -*-
+
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import json
 
@@ -28,3 +31,6 @@ if __name__ == '__main__':
     server = HTTPServer(host, Request)
     print("Starting server, listen at: %s:%s" % host)
     server.serve_forever()
+
+
+

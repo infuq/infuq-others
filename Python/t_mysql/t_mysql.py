@@ -28,7 +28,7 @@ import random
 
 
 def insert_order():
-    conn = pymysql.connect(host="localhost", port=3306, user="root", passwd="9527", db="db0")
+    conn = pymysql.connect(host="172.27.95.222", port=3306, user="root", passwd="9527", db="db0")
     cursor = conn.cursor()
 
     for i in range(1, 10000):
@@ -46,15 +46,16 @@ def insert_order():
 
 
 def insert_order_detail():
-    conn = pymysql.connect(host="localhost", port=3306, user="root", passwd="9527", db="db0")
+    conn = pymysql.connect(host="172.27.89.214", port=3306, user="root", passwd="9527", db="db0")
     cursor = conn.cursor()
 
-    for i in range(1,300000):
+    for i in range(1,200000):
         
         order_id = random.randint(1, 500000)
         product_name = random.choice(('A', 'B', 'C', 'E', 'F'))
-        param = (order_id, product_name)
-        sql = "insert into t_order_detail(order_id, product_name, create_time) values(%s, %s, now())"
+        create_date = random.choice(('2022-11-14 00:12:22', '2022-11-13 00:12:22', '2022-10-26 00:12:22', '2022-11-14 00:12:22', '2022-09-11 00:12:22', '2022-10-18 00:12:22'))
+        param = (order_id, product_name, create_date)
+        sql = "insert into t_order_detail(order_id, product_name, create_date) values(%s, %s, %s)"
         cursor.execute(sql, param)
         conn.commit()
 
@@ -63,4 +64,5 @@ def insert_order_detail():
 
 
 if __name__ == '__main__':
+    # insert_order()
     insert_order_detail()
