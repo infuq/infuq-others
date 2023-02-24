@@ -17,5 +17,5 @@ def download(url):
     
 
 if __name__ == '__main__':
-    url = "https://www.bilibili.com/video/BV12b4y167Mb?p=1"
+    url = "https://www.bilibili.com/video/BV1e24y1z7eJ/?p=8&spm_id_from=333.1007.top_right_bar_window_history.content.click&vd_source=62ebf7db76a5df92c9081b0f4659902d"
     download(url)
