@@ -2,7 +2,7 @@
 %.bin: boot/%.asm
 	nasm -I boot/include/ $^ -f bin -o out/$@	
 
-bootfiles = mbr.bin loader.bin
+bootfiles = boot.bin loader.bin
 boot.bin: $(bootfiles)
 
 kernelfiles = kernel/main.c
@@ -24,7 +24,7 @@ kernel.bin: $(kernelfiles)
 
 
 all: boot.bin kernel.bin
-	dd if=out/mbr.bin of=infuq-os.img bs=512 count=1 conv=notrunc
+	dd if=out/boot.bin of=infuq-os.img bs=512 count=1 conv=notrunc
 	dd if=out/loader.bin of=infuq-os.img bs=512 count=4 seek=2  conv=notrunc
 	dd if=out/kernel.bin of=infuq-os.img bs=512 count=200 seek=9  conv=notrunc
 
