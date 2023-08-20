@@ -23,7 +23,7 @@ def get_message_by_msg_id():
 
     access_id=""
     access_key=""
-    instance_id = ""
+    instance_id = "http://MQ_INST_1106705442396860_BXXINmp6.cn-hangzhou.mq-internal.aliyuncs.com:8080"
     region = "cn-shanghai"
 
     topic_name = ""

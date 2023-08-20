@@ -24,7 +24,7 @@ from aliyunsdkcore.acs_exception.exceptions import ServerException
 #     https://help.aliyun.com/document_detail/29549.html
 
 
-# 发送消息
+# 发送延时消息
 def send():
 
     # 测试环境配置
