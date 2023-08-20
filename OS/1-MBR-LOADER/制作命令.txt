@@ -11,11 +11,11 @@ sudo apt install bochs-x
 
 4.制作操作系统
 建议在Ubuntu16-32bit环境下执行
-nasm mbr.asm -f bin -o out/mbr.bin
+nasm boot.asm -f bin -o out/boot.bin
 nasm loader.asm -f bin -o out/loader.bin
 
 
-dd if=out/mbr.bin of=infuq-os.img bs=512 count=1 conv=notrunc
+dd if=out/boot.bin of=infuq-os.img bs=512 count=1 conv=notrunc
 dd if=out/loader.bin of=infuq-os.img bs=512 count=4 seek=2  conv=notrunc
 
 
