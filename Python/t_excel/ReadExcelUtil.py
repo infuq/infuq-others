@@ -22,7 +22,7 @@ class ReadExcelUtil(Iterable):
         self.suffix = os.path.splitext(self.filename)[-1][1:].lower()# xls xlsx
 
         if self.suffix == 'xlsx':
-            self.workbook = openpyxl.load_workbook(self.filename)
+            self.workbook = openpyxl.load_workbook(self.filename, data_only=True)
             self.sheetnames = self.workbook.sheetnames# Sheet1 Sheet2 Sheet3...
             self.sheet = self.workbook[self.sheetnames[0]]# 根据名称默认读取第一个Sheet
 

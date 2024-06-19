@@ -30,6 +30,8 @@ import random
 def insert_order():
     conn = pymysql.connect(host="172.27.95.222", port=3306, user="root", passwd="9527", db="db0")
     cursor = conn.cursor()
+    cursor = conn.cursor(cursor=pymysql.cursors.DictCursor) # 得到的数据会以{'字段':数据}形式输出
+
 
     for i in range(1, 10000):
         
