@@ -2,11 +2,13 @@ package main
 
 import "fmt"
 
-func main() {
+func increment(p *int) {
+	*p = *p + 1
+}
 
-	fmt.Println("11111")
-	var m = make([]int, 128 * 1024 * 1024)
-	fmt.Println("22222")
-	fmt.Println(m[0])
+func main() {
+	i := 10
+	increment(&i)
+	fmt.Print(i)
 
 }

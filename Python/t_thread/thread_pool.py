@@ -15,16 +15,16 @@ def invoke(times):
     # time.sleep(times)
     # print("{} invoke success".format(threading.currentThread().getName()))  # My_0 invoke success
 
-    response = requests.get('http://localhost:58081/local/updateById?id=3')
+    response = requests.get('http://localhost:58081/local/doSleep')
 
     return times + 3
 
 
 if __name__ == '__main__':
-    executor = ThreadPoolExecutor(max_workers=15, thread_name_prefix='My')
+    executor = ThreadPoolExecutor(max_workers=30, thread_name_prefix='My')
 
     while True:
-        time.sleep(3)
+        time.sleep(2)
         # 这个返回值task很重要.   submit方法非阻塞
         task = executor.submit(invoke, (3))
         
