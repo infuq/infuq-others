@@ -2,6 +2,7 @@
 
 import openpyxl
 import datetime
+import re
 
 
 class WriteXlsxUtil(object):
@@ -20,10 +21,18 @@ class WriteXlsxUtil(object):
         self.row += 1
         for index in range(1, len(content) + 1):  # index = column
             v = str(content[index - 1])
-            if v.isdigit():
-                self.sheet.cell(self.row, index).value = v.zfill(len(v))
+
+            digit = re.match(r'^\d+(\.\d+)?$', v, re.I)
+            if digit:
+                self.sheet.cell(self.row, index, value=v.zfill(len(v))).data_type = "int"
             else:
-                self.sheet.cell(self.row, index).value = v
+                self.sheet.cell(self.row, index, value=v)
+
+            #
+            # if v.isdigit():
+            #     self.sheet.cell(self.row, index).value = v.zfill(len(v))
+            # else:
+            #     self.sheet.cell(self.row, index).value = v
 
     # 保存文件
     def save(self):
