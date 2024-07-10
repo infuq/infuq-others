@@ -4,7 +4,7 @@ import asyncio
 import threading
 import time
 import dis
-
+import inspect
 
 async def mock():
     print('2', threading.current_thread().name)
