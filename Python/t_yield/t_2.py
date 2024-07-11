@@ -21,8 +21,10 @@ def foo():
     """
     yield "generator"
 
+
 def bar():
     print('-function-')
+
 
 def main():
 
