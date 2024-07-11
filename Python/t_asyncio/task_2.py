@@ -5,30 +5,18 @@ import threading
 import time
 import dis
 import inspect
-from objprint import op
-
 
 async def mock():
     print('2', threading.current_thread().name)
+    # await asyncio.sleep(3) # 向 EventLoop 中的 _scheduled 添加一个任务
 
+    # 执行完成之后, 会向 _ready 中添加一个任务(Task.task_wakeup)
     return "模拟"
-
-
-def _task_finish_cb(ret):
-    print('3', threading.current_thread().name)
-    print('_task_finish_cb', ret)
-    frame = inspect.currentframe()
-    op(
-        frame,
-        honor_existing=False,
-        depth=2
-    )
 
 
 async def main():
     print('1', threading.current_thread().name)
-    task = asyncio.create_task(mock())
-    task.add_done_callback(_task_finish_cb)
+    task = asyncio.create_task(mock()) # 向 EventLoop 中的_ready 添加一个任务
 
     ret = await task
     print('main#', ret)
@@ -36,5 +24,6 @@ async def main():
 
 if __name__ == '__main__':
 
-    asyncio.run(main())
+    # asyncio.run(main())
 
+    print(dis.dis(main))
