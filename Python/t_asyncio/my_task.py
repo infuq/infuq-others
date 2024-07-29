@@ -13,9 +13,11 @@ async def mock():
     # 执行完成之后, 会向 _ready 中添加一个任务(Task.task_wakeup)
     return "模拟"
 
+
 def _task_finish_cb(ret):
     print('3', threading.current_thread().name)
     print('_task_finish_cb', ret)
+
 
 async def main():
     print('1', threading.current_thread().name)

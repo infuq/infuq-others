@@ -8,6 +8,7 @@ https://www.yuque.com/infuq/others/dbxoeg#eayJa
 https://docs.python.org/2/library/dis.html
 """
 
+
 def foo():
     print('上一个', inspect.currentframe().f_back)
     print('当前', inspect.currentframe())
@@ -21,8 +22,10 @@ def foo():
     """
     yield "generator"
 
+
 def bar():
     print('-function-')
+
 
 def main():
 
