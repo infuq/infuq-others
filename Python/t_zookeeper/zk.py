@@ -71,10 +71,28 @@ def main():
         zkc.stop()
     except Exception as err:
         print(err)
- 
+
+
+def i():
+    host = "121.43.180.176"
+    port = "2181"
+    timeout = 100
+    zkc = KazooClient(hosts=host + ':' + port, timeout=timeout)
+    zkc.start()
+
+    print('[ zk状态 ]->{}'.format(zkc.state))
+
+    node = zkc.get_children('/')
+    print(node)
+
  
 if __name__ == "__main__":
     try:
-        main()
+        # main()
+        i()
     finally:
         sys.exit()
+
+
+
+
