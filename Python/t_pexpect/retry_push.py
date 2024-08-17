@@ -9,47 +9,69 @@ import pexpect
 import os
 import sys
 
-j = 1
-def _retry_push():
-    global j
-    print('invoke retry_push %s' % j)
-    j = j + 1
+time = 1
+username = 'infuq'
+password = 'qwert#123'
 
-    username = 'infuq'
-    password = 'qwert#123'
 
-    spawner = pexpect.spawn('git push')
+def retry():
+    global time
+    print('invoke retry %s time' % time)
+    time = time + 1
+
+    # 执行拉取
+    spawner = pexpect.spawn('git push', encoding='utf-8')
+    spawner.logfile = sys.stdout
+
     try:
-        i = spawner.expect(['Username']) # ,timeout = 10
+        i = spawner.expect(['Everything up-to-date', 'Username']) # ,timeout = 10
+
+        # 不需要输入用户名和密码的场景
         if i == 0:
-            print('input username: ', username)
+            spawner.close()
+            return
+
+        # 需要输入用户名和密码的场景
+        elif i == 1:
+            # 输入用户名
             spawner.sendline(username)
             i = spawner.expect(['Password']) # ,timeout = 10
             if i == 0:
                 # 输入密码
-                print('input password: ', password)
                 spawner.sendline(password)
                 i = spawner.expect(pexpect.EOF)
                 if i == 0:
-                    print(spawner.before.decode().strip())
+                    spawner.close()
+
+                    status = spawner.status
+                    exit_status = spawner.exitstatus
+                    signal_status = spawner.signalstatus
+                    # 正常退出场景
+                    if exit_status == 0:                        
+                        return
+                    else:
+                        # 异常退出场景, 重试
+                        retry()
                 else:
-                    # 重试
-                    _retry_push()
+                    # 异常退出场景, 重试
+                    retry()
             else:
-                # 重试
-                _retry_push()
+                # 未出现输入密码的提示, 重试
+                retry()
         else:
-            # 重试
-            _retry_push()
-    except Exception as e:
-        _retry_push()
+            # 未出现输入用户名的提示, 重试
+            retry()
+    except Exception:
+        # 出现异常, 重试
+        retry()
 
 
 def main():
+    # 进入到仓库目录
     os.chdir('/mnt/d/Repository/infuq-others')
     os.system('git add .')
     os.system('git commit -m "update"')
-    _retry_push()
+    retry()
 
 
 if __name__ == '__main__':
