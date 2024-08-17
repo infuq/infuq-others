@@ -12,4 +12,3 @@ vue
 
 OS - 自制操作系统
 
-www.infuq.com
