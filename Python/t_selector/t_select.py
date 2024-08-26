@@ -37,7 +37,7 @@ class Server(object):
         self.server.listen(50)
         self.server.setblocking(False)
         # 注册ACCEPT事件 和 回调函数
-        self.selector.register(self.server.fileno(), EVENT_READ, (self.connected, self.server))
+        key = self.selector.register(self.server.fileno(), EVENT_READ, (self.connected, self.server))
         self.loop()
 
     # 处理ACCEPT事件
