@@ -1,0 +1,2 @@
+consumer://10.223.0.49/com.infuq.facade.UserFacade?application=infuq-dubbo-consumer&category=consumers&check=false&dubbo=2.6.2&interface=com.infuq.facade.UserFacade&methods=update&pid=560&revision=1.0.0-SNAPSHOT&side=consumer&timestamp=1727068563771
+consumer://10.223.0.49/com.infuq.facade.UserFacade?application=infuq-dubbo-consumer&category=consumers&check=false&dubbo=2.6.2&interface=com.infuq.facade.UserFacade&methods=update&pid=560&revision=1.0.0-SNAPSHOT&side=consumer&timestamp=1727068563771
