@@ -7,13 +7,13 @@ import time
 
 
 def t():
-    conn = pymysql.connect(host="172.21.126.201", port=3306, user="root", passwd="9527", db="db0")
+    conn = pymysql.connect(host="192.168.10.26", port=3306, user="root", passwd="9527", db="db0")
     cursor = conn.cursor()
     cursor = conn.cursor(cursor=pymysql.cursors.DictCursor) # 得到的数据会以{'字段':数据}形式输出
 
+    sql = """
 
-
-    sql = "SELECT * FROM t_1"
+    """
     cursor.execute(sql)
     res = cursor.fetchall()
     print(res)
