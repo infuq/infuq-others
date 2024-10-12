@@ -23,7 +23,7 @@ def cat(uri):
 if __name__ == '__main__':
 
     # cat('_all/_search?pretty')
-    cat('_search?pretty')
+    # cat('_search?pretty')
     # cat('_cluster/health?pretty')
     # cat('_cluster/health?level=indices&pretty')
 
@@ -64,6 +64,7 @@ if __name__ == '__main__':
     # cat('_cat/aliases/{alias}')
     # 查看集群各节点内部不同类型的threadpool的统计信息
     # cat('_cat/thread_pool')
+    cat('_cat/thread_pool/write?v&h=node_name,name,active,rejected,completed')
     # 查看集群各个节点上的plugin信息
     # cat('_cat/plugins')
     # 查看当前集群各个节点的fielddata内存使用情况
