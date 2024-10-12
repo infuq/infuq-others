@@ -11,15 +11,15 @@ from elasticsearch import Elasticsearch
 host = '192.168.10.25'
 port = 9200
 
-def create_index():
+def create_doc(index):
     es = Elasticsearch([{'host': host, 'port': port}])
-
-    index = 'example_1_index'
-
-    res = es.indices.create(index=index)
+    doc = {'title': 'Python Elasticsearch Guide', 'content': 'This is a beginner\'s guide...'}
+    res = es.index(index=index, body=doc)
     print('响应', res)
 
 
 if __name__ == '__main__':
-    create_index()
+
+    index = 'search_foo'
+    create_doc()
 

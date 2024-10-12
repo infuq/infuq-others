@@ -4,6 +4,8 @@
 """
 pip install elasticsearch
 pip3 install elasticsearch==7.14.0
+
+在 Kibana 中执行 GET _cat/health
 """
 
 import requests
@@ -39,7 +41,7 @@ if __name__ == '__main__':
     # cat('_cat/nodes')
     # cat('_nodes/stats?pretty')
     # 查看集群中所有index的详细信息
-    # cat('_cat/indices')
+    cat('_cat/indices')
     # 查看集群中指定index的详细信息
     # cat('_cat/indices/{index}')
     # 查看各index的segment详细信息,包括segment名, 所属shard, 内存(磁盘)占用大小, 是否刷盘
@@ -64,7 +66,7 @@ if __name__ == '__main__':
     # cat('_cat/aliases/{alias}')
     # 查看集群各节点内部不同类型的threadpool的统计信息
     # cat('_cat/thread_pool')
-    cat('_cat/thread_pool/write?v&h=node_name,name,active,rejected,completed')
+    # cat('_cat/thread_pool/write?v&h=node_name,name,active,rejected,completed')
     # 查看集群各个节点上的plugin信息
     # cat('_cat/plugins')
     # 查看当前集群各个节点的fielddata内存使用情况
