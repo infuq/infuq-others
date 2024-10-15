@@ -171,26 +171,6 @@ it = map(str, [1, 2, 3, 4, 5, 6, 7, 8, 9])
 print(list(it))
 
 
-with open('./info.txt','r') as f:
-	info = f.read()
-	print(info)
-
-with open('./info.txt','r') as f:
-	info = f.read(3)
-	print(info)	
-	info = f.read(3)
-	print(info)
-
-with open('./info.txt','r') as f:
-	for line in f.readlines():
-		print(line.strip())
-		
-# 读取二进制文件
-f = open('./info.jpg','rb')
-
-
-f = open('./info.txt','r',encoding='GBK')
-
 print('''第一行
 第二行
 第三行''')
