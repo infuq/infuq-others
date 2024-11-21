@@ -25,14 +25,4 @@ response = requests.get('https://www.infuq.com/', params=params, headers=headers
 
 
 if __name__ == '__main__':
-    i = 1
-    for i in range(14):
-        try:
-            #response = requests.get('http://localhost:58081/local/selectLanguage', timeout=(1, 3))
-            #response = requests.get('http://localhost:58081/local/checkConn', timeout=(1, 3))
-            response = requests.get('http://localhost:58081/local/updateById?id=3')
-
-            print(i, response)
-            
-        except Exception as e:
-            print(e)
+    pass
