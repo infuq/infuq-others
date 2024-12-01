@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    font-size: 15px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.content {
+    margin: 50px auto;
+    width: 95%;
+    min-height: 160px;
+}
+a {
+    color: blue;
+    text-decoration: none;
+}
+
+.icon-link {
+    display: inline-block;
+    display: inline-table;
+    position: relative;
+    bottom: 1.5px;
+}
+
+
+.el-dialog__title {
+    font-size: 16px;
+}
+.el-dialog__body {
+    padding-top: 15px;
+}
+
+button.el-button.el-button--text {
+    padding: 0px 0px
+}

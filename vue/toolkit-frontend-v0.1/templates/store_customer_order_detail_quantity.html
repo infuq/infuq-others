@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>杂货柜-订货退货明细数量</title>
+    <link href="../r/libs/font-awesome/4.0.3/css/font-awesome.min.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="../r/element-ui@2.15.2/index.css" rel="stylesheet" />
+    <link href="../r/css/common.css" rel="stylesheet" />
+
+    <script src="../r/vue@2.6.14/vue.js"></script>
+    <script src="../r/element-ui@2.15.2/index.js"></script>
+    <script src="../r/axios@0.21.1/axios.min.js"></script>
+    <script src="../r/js/route.js"></script>
+
+    <style>
+        .el-step__title.is-process {
+            font-size: 15px;
+        }
+
+        .el-divider__text.is-left {
+            color: #FA8919;
+            font-weight: bold;
+        }
+
+        .el-input__inner {
+            border-radius: 0 4px 4px 0;
+        }
+        .el-select {
+            vertical-align: middle;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div id="app" style="margin-top: 5%;">
+
+    <section class="content clearfix">
+        <div>
+            <div class="el-backtop" style="right: 40px; top: 130px;"><el-link  type="primary" :href="'/'" :underline="false" target="_blank"><i class="el-icon-s-home"></i></el-link></div>
+
+            <el-divider content-position="right">{{env}}环境</el-divider>
+            <el-form :inline="true" class="demo-form-inline">
+
+                <div>
+                    <el-input v-model="businessNo" placeholder="DH-230804-000002 或 399576908800966656" clearable @clear="clearBusinessNo" style="width: 600px;">
+                        <template slot="prepend">订货单号或订货单ID</template>
+                    </el-input>
+                    <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px;">
+                        <el-button type="primary" @click="onSubmit(1)">查询</el-button>
+                    </div>
+                </div>
+                <div>
+                    <el-input v-model="returnNo" placeholder="TH-201129-000001 或 341223246802579456" clearable @clear="clearReturnNo" style="width: 600px;">
+                        <template slot="prepend">退货单号或退货单ID</template>
+                    </el-input>
+                    <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px;">
+                        <el-button type="primary" @click="onSubmit(2)">查询</el-button>
+                    </div>
+                </div>
+
+                <!-- 结果 -->
+                <div style="margin-top: 15px;">
+
+                    <!-- 操作结果 -->
+                    <div style="margin-top: 10px;">
+
+                        <!-- 订货明细 -->
+                        <span v-if="has_data">
+                            <el-divider content-position="left">订货明细数量({{show_businessNo}})</el-divider>
+                        </span>
+                        <span v-else>
+                            <el-divider content-position="left">订货明细数量</el-divider>
+                        </span>
+                        <div style="margin-left: 40px; font-weight: 500; font-size: 14px;">
+                            <template>
+                                <el-table :data="scodList" border style="width: 95%" :row-style="{ height: 10+'px'}" :cell-style="{padding:0+'px'}"> <!-- height="250" -->
+                                    <el-table-column
+                                            type="selection"
+                                            width="55">
+                                    </el-table-column>
+                                    <el-table-column fixed label="序号" type="index" width="50"></el-table-column>
+                                    <el-table-column prop="goodsNo" label="商品编码" max-width="100" :show-overflow-tooltip="true"></el-table-column>
+                                    <el-table-column prop="goodsName" label="商品名称" max-width="180" :show-overflow-tooltip="true"></el-table-column>
+                                    <el-table-column prop="orderQuantity" label="订货数量" width="100"></el-table-column>
+
+                                    <el-table-column label="出库" align="center">
+                                        <el-table-column prop="processedQuantity" width="110">
+                                            <template slot-scope="scope" slot="header">
+                                                <span style="color: #df3327;">已出库数</span>
+                                            </template>
+                                        </el-table-column>
+                                        <el-table-column prop="processingQuantity" width="110">
+                                            <template slot-scope="scope" slot="header">
+                                                <span style="color: #df3327;">出库中数</span>
+                                            </template>
+                                        </el-table-column>
+                                    </el-table-column>
+                                    <el-table-column label="发货" align="center">
+                                        <el-table-column prop="deliveredQuantity" width="110">
+                                            <template slot-scope="scope" slot="header">
+                                                <span style="color: #0ca5e6;">已发货数</span>
+                                            </template>
+                                        </el-table-column>
+                                        <el-table-column prop="deliveringQuantity" width="110">
+                                            <template slot-scope="scope" slot="header">
+                                                <span style="color: #0ca5e6;">发货中数</span>
+                                            </template>
+                                        </el-table-column>
+                                    </el-table-column>
+
+                                    <el-table-column label="退货" align="center">
+                                        <el-table-column prop="returnedQuantity" width="110">
+                                            <template slot-scope="scope" slot="header">
+                                                <span style="color: #dc0e49;">已退货数</span>
+                                            </template>
+                                        </el-table-column>
+                                        <el-table-column prop="returningQuantity" width="110">
+                                            <template slot-scope="scope" slot="header">
+                                                <span style="color: #dc0e49;">退货中数</span>
+                                            </template>
+                                        </el-table-column>
+                                    </el-table-column>
+
+                                    <el-table-column label="套餐商品" width="100" align="center">
+                                        <template slot-scope="scope">
+                                            <span v-if="scope.row.isSetMeal == 1">
+                                                <svg t="1691468608589" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4016" width="16" height="16"><path d="M414.245926 751.028148l437.57037-453.12c7.300741-7.49037 7.111111-19.531852-0.474074-26.832593-7.49037-7.300741-19.531852-7.111111-26.832593 0.474074L398.506667 712.722963 199.111111 513.327407c-7.395556-7.395556-19.437037-7.395556-26.832593 0l0 0c-7.395556 7.395556-7.395556 19.437037 0 26.832593l212.574815 212.574815c6.731852 6.731852 17.161481 7.300741 24.557037 1.896296C411.211852 753.682963 412.823704 752.545185 414.245926 751.028148z" fill="#d4237a" p-id="4017"></path></svg>
+                                            </span>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column prop="subQuantity" label="套餐比例" width="100" align="center"></el-table-column>
+                                    <el-table-column prop="customerOrderDetailsId" label="订货明细ID" ></el-table-column>
+                                </el-table>
+                            </template>
+                        </div>
+
+                        <!-- 退货单 -->
+                        <span v-for="sro in sroList">
+                            <span v-if="has_data">
+                                <el-divider content-position="left">退货单({{sro.returnOrderNo}})</el-divider>
+                            </span>
+                            <span v-else>
+                                <el-divider content-position="left">退货单</el-divider>
+                            </span>
+                            <div style="margin-left: 40px; font-weight: 500; font-size: 14px;">
+                                <template>
+                                    <el-table :data="sro.srodList" border style="width: 80%" :row-style="{ height: 10+'px'}" :cell-style="{padding:0+'px'}"> <!-- height="250" -->
+                                        <el-table-column type="selection" width="55"></el-table-column>
+                                        <el-table-column fixed label="序号" type="index" width="50"></el-table-column>
+                                        <el-table-column prop="goodsNo" label="商品编码" max-width="100" :show-overflow-tooltip="true"></el-table-column>
+                                        <el-table-column prop="goodsName" label="商品名称" max-width="180" :show-overflow-tooltip="true"></el-table-column>
+                                        <el-table-column prop="returnQuantity" label="退货数量" width="100"></el-table-column>
+                                        <el-table-column prop="processingQuantity" label="退货中数" width="100"></el-table-column>
+
+                                        <el-table-column label="已退数量" align="center">
+                                            <el-table-column prop="waitOutReturnQuantity" width="110">
+                                                <template slot-scope="scope" slot="header">
+                                                    <span >待出库退货数</span>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column prop="alreadyOutReturnQuantity" width="110">
+                                                <template slot-scope="scope" slot="header">
+                                                    <span >已出库退货数</span>
+                                                </template>
+                                            </el-table-column>
+                                        </el-table-column>
+                                        <el-table-column prop="customerOrderDetailsId" label="订货明细ID" ></el-table-column>
+                                        <el-table-column prop="returnOrderDetailsId" label="退货明细ID" ></el-table-column>
+                                    </el-table>
+                                </template>
+                            </div>
+
+                        </span>
+                    </div>
+                </div>
+            </el-form>
+        </div>
+    </section>
+
+</div>
+
+<script type="text/javascript">
+
+        var host = window.host
+        var _env = window.env
+
+        var Main = {
+            data: function() {
+                return {
+                    env: _env,
+
+                    has_data: false,
+
+                    businessNo: '',
+                    returnNo: '',
+                    show_businessNo: '',
+
+                    scodList: [],
+                    sroList: [],
+                }
+            },
+            created: function () {
+            },
+            methods: {
+                // 查询
+                onSubmit(type) {
+
+                    _returnNo = this.returnNo
+                    _businessNo = this.businessNo
+
+                    if (type == 1) {
+                        if (!this.businessNo) {
+                            this.$message({
+                                message: '订货单号为空',
+                                type: 'warning'
+                            });
+                            return;
+                        }
+/*
+                        var success = this.businessNo.search(/^DH-\d{6}-\d{6}$/g)
+                        if (success != 0) {
+                            this.$message({
+                              message: '订货单号不合法',
+                              type: 'warning'
+                            });
+                            return;
+                        }*/
+                        _returnNo = ''
+                    }
+                    if (type == 2) {
+                        if (!this.returnNo) {
+                            this.$message({
+                                message: '退货单号为空',
+                                type: 'warning'
+                            });
+                            return;
+                        }
+/*
+                        var success = this.returnNo.search(/^TH-\d{6}-\d{6}$/g)
+                        if (success != 0) {
+                            this.$message({
+                              message: '退货单号不合法',
+                              type: 'warning'
+                            });
+                            return;
+                        }*/
+                        _businessNo = ''
+                    }
+                    this.has_data = false
+                    axios({
+                        url: host + '/scod/store_customer_order_detail_quantity',
+                        method: 'GET',
+                        params: {
+                            businessNo: _businessNo,
+                            returnNo: _returnNo
+                        },
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (response.data.storeCustomerOrderDetailsList) {
+                            this.show_businessNo = response.data.customerOrderNo
+                            // 订货单明细
+                            this.scodList = response.data.storeCustomerOrderDetailsList
+                            // 多个退货单的退货明细
+                            this.sroList = response.data.storeReturnOrderList
+                            this.has_data = true
+                        } else {
+                            this.$message({
+                                message: '未查询到数据',
+                                type: 'warning'
+                            });
+                            this.scodList = []
+                            this.sroList = []
+                        }
+                    }, error => {
+                        this.$message({
+                          message: '查询失败',
+                          type: 'warning'
+                        });
+                        this.scodList = []
+                        this.sroList = []
+                    })
+                },
+
+                clearBusinessNo() {
+                    this.businessNo = ''
+                    this.returnNo = ''
+                    this.has_data = false
+                    this.scodList = []
+                    this.sroList = []
+                },
+                clearReturnNo() {
+                    this.clearBusinessNo()
+                },
+
+                copy(data) {
+                    let url = data;
+                    let oInput = document.createElement('textarea');
+                    oInput.value = url;
+                    document.body.appendChild(oInput);
+                    oInput.select(); // 选择对象
+
+                    document.execCommand("Copy"); // 执行浏览器复制命令
+                    this.$message({
+                        message: '复制成功',
+                        type: 'success'
+                    });
+                    oInput.remove()
+                },
+
+
+            }
+        }
+        var Ctor = Vue.extend(Main)
+        new Ctor().$mount('#app')
+
+    </script>
+</body>
+</html>

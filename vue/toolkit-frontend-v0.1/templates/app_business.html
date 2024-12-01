@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>杂货柜-应用和应用业务</title>
+    <link href="../r/libs/font-awesome/4.0.3/css/font-awesome.min.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="../r/element-ui@2.15.2/index.css" rel="stylesheet" />
+    <link href="../r/css/common.css" rel="stylesheet" />
+
+    <script src="../r/vue@2.6.14/vue.js"></script>
+    <script src="../r/element-ui@2.15.2/index.js"></script>
+    <script src="../r/axios@0.21.1/axios.min.js"></script>
+    <script src="../r/js/route.js"></script>
+
+    <style>
+        .el-step__title.is-process {
+            font-size: 15px;
+        }
+
+        .el-divider__text.is-left {
+            color: #FA8919;
+            font-weight: bold;
+        }
+
+        .el-input__inner {
+            border-radius: 0 4px 4px 0;
+        }
+        .el-select {
+            vertical-align: middle;
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+<div id="app" style="margin-top: 5%;">
+
+    <section class="content clearfix">
+        <div>
+            <div class="el-backtop" style="right: 40px; top: 130px;"><el-link  type="primary" :href="'/'" :underline="false" target="_blank"><i class="el-icon-s-home"></i></el-link></div>
+
+            <el-divider content-position="right">{{env}}环境</el-divider>
+            <el-form :inline="true" class="demo-form-inline">
+                <!--
+                <el-form-item label="">
+                    <el-input v-model="condition.customerOrderNo" placeholder="订货单号" clearable></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit">查询</el-button>
+                </el-form-item>
+-->
+                <!-- 结果 -->
+                <div style="margin-top: 15px;">
+
+                    <!-- 应用 -->
+                    <div style="margin-top: 10px;">
+                        <el-divider content-position="left">平台应用</el-divider>
+
+                        <div style="margin-left: 40px; font-weight: 500; font-size: 14px;">
+                            <template>
+                                <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px;">
+                                    <div style="display: inline-block;
+                                        background-color: rgb(245, 247, 250);
+                                        color: rgb(144, 147, 153);
+                                        border: 1px solid rgb(220, 223, 230);
+                                        border-radius: 4px 0px 0px 4px;
+                                        height: 40px;
+                                        width: 50px;
+                                        vertical-align: middle;
+                                        text-align: center;
+                                        margin-top: auto;
+                                        margin-right: -6px;
+                                        padding-top: 9px;
+                                        font-size: 14px;">
+                                        平台
+                                    </div>
+
+                                    <el-select v-model="selectPlatformCode" placeholder="请选择平台" @change="selectPlatform(selectPlatformCode)" filterable>
+                                        <el-option v-for="item in PlatformOptions" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                                    </el-select>
+                                </div>
+
+
+                                <div style="margin-top: 10px;">
+                                    <el-table :data="AppList" border style="width: 100%" :row-style="{ height: 10+'px'}" :cell-style="{padding:0+'px'}"> <!-- height="250" -->
+                                        <el-table-column prop="platformName" label="平台名称" width="180"></el-table-column>
+                                        <el-table-column label="应用名称" width="180">
+                                            <template slot-scope="scope">
+                                                <el-button @click="handleAppNameClick(scope.row)" type="text" >{{scope.row.appName}}</el-button> <!-- size="small" -->
+                                            </template>
+                                        </el-table-column>
+                                        <el-table-column sortable prop="appCode" label="应用编码" width="120"></el-table-column>
+                                        <el-table-column prop="enterpriseName" label="企业名称" width="250"></el-table-column>
+                                        <el-table-column sortable :sort-method="sortStatus" align="center" label="状态" width="80">
+                                            <template slot-scope="scope">
+                                            <span v-if="scope.row.appStatus == 1">
+                                                启用
+                                            </span>
+                                                <span v-else>
+                                                <span style="color: red;">禁用</span>
+                                            </span>
+                                            </template>
+
+                                        </el-table-column>
+                                        <el-table-column align="center" prop="createTime" label="创建时间" width="200"></el-table-column>
+                                        <el-table-column sortable :sort-method="sortDeleteStatus" align="center" label="已删除" width="100">
+                                            <template slot-scope="scope">
+                                            <span v-if="scope.row.isDelete == 1">
+                                                <span style="color: red;">是</span>
+                                            </span>
+                                                <span v-else>
+                                                否
+                                            </span>
+                                            </template>
+                                        </el-table-column>
+                                        <el-table-column prop="extension" label="扩展信息" :show-overflow-tooltip="true"></el-table-column>
+                                    </el-table>
+                                </div>
+                            </template>
+
+                            <div class="third_link">
+                                <el-dialog :title="'[ ' + appName + ' ]'" :visible.sync="App_dialogVisible" :show-close="false" width="30%" ><!--    -->
+                                    <template>
+
+
+                                    </template>
+                                </el-dialog>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <!-- 平台业务 -->
+                    <div style="margin-top: 10px;">
+                        <el-divider content-position="left">应用业务</el-divider>
+
+                        <div style="margin-left: 40px; font-weight: 500; font-size: 14px;">
+                            <template>
+                                <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px;">
+                                    <div style="display: inline-block;
+                                        background-color: rgb(245, 247, 250);
+                                        color: rgb(144, 147, 153);
+                                        border: 1px solid rgb(220, 223, 230);
+                                        border-radius: 4px 0px 0px 4px;
+                                        height: 40px;
+                                        width: 50px;
+                                        vertical-align: middle;
+                                        text-align: center;
+                                        margin-top: auto;
+                                        margin-right: -6px;
+                                        padding-top: 9px;
+                                        font-size: 14px;">
+                                        应用
+                                    </div>
+
+                                    <el-select v-model="selectAppCode" placeholder="请选择应用" @change="selectApp(selectAppCode)" filterable >
+                                        <el-option v-for="item in AppOptions" :key="item.value" :label="item.label" :value="item.value" ></el-option>
+                                    </el-select>
+                                </div>
+
+
+                                <span style="display: inline; margin-left: 15px;" v-if="total_app_business > 0">
+                                    <el-tag size="small">{{ total_app_business }}</el-tag>
+                                </span>
+
+                            </template>
+
+                            <div style="margin-top: 10px;" v-loading="loading">
+                                <template>
+                                    <el-table :data="appBusinessList" border style="width: 100%" :row-style="appBusinessRowStyle" :cell-style="{padding:0+'px'}"> <!-- height="250" -->
+                                        <el-table-column fixed prop="businessName" label="业务名称" min-width="120" :show-overflow-tooltip="true"></el-table-column>
+                                        <el-table-column prop="platformBusinessCode" label="平台业务编码" width="140"></el-table-column>
+                                        <el-table-column prop="businessType" label="程序员编码(旧)" width="130"></el-table-column>
+                                        <el-table-column prop="businessOperationType" label="程序员编码(新)" width="130"></el-table-column>
+                                        <el-table-column prop="appCode" label="应用编码" width="100"></el-table-column>
+                                        <el-table-column prop="appName" label="应用名称" min-width="120" :show-overflow-tooltip="true"></el-table-column>
+                                        <el-table-column prop="platformCode" label="平台编码" width="100"></el-table-column>
+                                        <el-table-column prop="platformName" label="平台名称" min-width="120" :show-overflow-tooltip="true"></el-table-column>
+                                        <el-table-column prop="enterpriseCode" label="企业编码" min-width="120" :show-overflow-tooltip="true"></el-table-column>
+                                        <el-table-column prop="enterpriseName" label="企业名称" min-width="120" :show-overflow-tooltip="true"></el-table-column>
+
+                                        <el-table-column sortable :sort-method="sortBusinessStatus" align="center" label="状态" width="120">
+                                            <template slot-scope="scope">
+                                                <span v-if="scope.row.status == 0">
+                                                    <span style="color: red;">禁用</span>
+                                                </span>
+                                                <span v-else>
+                                                    启用
+                                                </span>
+                                            </template>
+
+                                        </el-table-column>
+                                        <el-table-column sortable :sort-method="sortDeleteStatus" align="center" label="已删除" width="100">
+                                            <template slot-scope="scope">
+                                                <span v-if="scope.row.del == 1">
+                                                    <span style="color: red;">是</span>
+                                                </span>
+                                                <span v-else>
+                                                    否
+                                                </span>
+                                            </template>
+                                        </el-table-column>
+
+                                        <el-table-column fixed="right" label="操作" >
+                                            <template slot-scope="scope">
+                                                <span v-if="scope.row.status == 0">
+                                                    <el-button @click="enableAppBusiness(scope.row)" type="text" >启用</el-button>
+                                                </span>
+                                                <span v-else>
+                                                    <el-button @click="disableAppBusiness(scope.row)" type="text" >禁用</el-button>
+                                                </span>
+                                            </template>
+                                        </el-table-column>
+
+                                    </el-table>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </el-form>
+        </div>
+
+
+
+    </section>
+
+</div>
+
+<script type="text/javascript">
+
+        var host = window.host
+        var _env = window.env
+
+        var Main = {
+            data: function() {
+                return {
+                    env: _env,
+                    selectPlatformCode: '',
+                    selectAppCode: '',
+                    PlatformOptions: [],
+                    AppOptions: [],
+
+                    App_dialogVisible: false,
+                    appName: '',
+
+                    AppList: [],
+
+                    appBusinessList: [],
+                    total_app_business: 0,
+
+
+                    UsePlatformBusiness_dialogVisible: false,
+                    UsePlatformBusinessList: [],
+
+                    PlatformName_dialogVisible: false,
+
+
+                    loading: false,
+                }
+            },
+            created: function () {
+                // 查询所有平台
+                axios({
+                    url: host + '/ab/getAllPlatform',
+                    method: 'GET',
+                    params: { },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    PlatformList = response.data
+                    if (PlatformList) {
+                        for (i = 0; i < PlatformList.length; i++) {
+                            label = PlatformList[i]['platformName']
+                            value = PlatformList[i]['platformCode']
+                            this.PlatformOptions.push({'label': label, 'value': value})
+                        }
+                        // 默认选择第一个平台
+                        this.selectPlatformCode = PlatformList[0]['platformCode']
+                        this.getAppByPlatformCode()
+                    }
+                }, error => {
+                    this.$message({
+                      message: '查询平台失败',
+                      type: 'warning'
+                    });
+                    console.log(error.message)
+                })
+
+
+                // 查询所有应用
+                axios({
+                    url: host + '/ab/getAllApp',
+                    method: 'GET',
+                    params: { },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    AppList = response.data
+                    if (AppList) {
+                        for (i = 0; i < AppList.length; i++) {
+                            label = AppList[i]['appName']
+                            value = AppList[i]['appCode']
+                            this.AppOptions.push({'label': label, 'value': value})
+                        }
+                    }
+                }, error => {
+                    this.$message({
+                      message: '查询应用失败',
+                      type: 'warning'
+                    });
+                })
+
+            },
+            methods: {
+
+                getAppByPlatformCode() {
+                    this.AppList = []
+                    axios({
+                        url: host + '/ab/getAppByPlatformCode',
+                        method: 'GET',
+                        params: {
+                            platformCode: this.selectPlatformCode
+                        },
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        this.AppList = response.data
+                    }, error => {
+                        this.$message({
+                          message: '查询应用失败',
+                          type: 'warning'
+                        });
+                    })
+                },
+
+
+                // 选择平台
+                selectPlatform(platformCode) {
+                    this.selectPlatformCode = platformCode
+                    this.getAppByPlatformCode()
+                },
+                handleAppNameClick(row) {
+                    this.appName = row.appName
+                    this.App_dialogVisible = true
+                },
+
+
+                // 选择应用
+                selectApp(appCode) {
+                    this.appBusinessList = []
+                    this.total_app_business = 0
+                    this.selectAppCode = appCode
+
+                    this.loading = true
+
+                    axios({
+                        url: host + '/ab/getAllAppBusiness',
+                        method: 'GET',
+                        params: {
+                            appCode: this.selectAppCode,
+                        },
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+
+                        if (response.data && response.data.length > 0) {
+                            this.appBusinessList = response.data
+                            this.total_app_business = response.data.length
+                        }
+                        this.loading = false
+                    }, error => {
+                        this.$message({
+                            message: '查询应用业务失败',
+                            type: 'warning'
+                        });
+                        this.loading = false
+                    })
+                },
+
+                appBusinessRowStyle({row, column, rowIndex, columnIndex}) {
+                    if (row.isCallback == 1) {
+                        return {
+                            background: 'rgb(225 222 235)',
+                            height: 10+'px'
+                        }
+                    }
+
+                    return {height: 10+'px'}
+                },
+
+
+                handlePlatformBusinessClick(row) {
+
+                },
+
+                sortStatus(a, b) {
+                    if (a.appStatus > b.appStatus) {
+                        return -1
+                    }
+                },
+                sortBusinessStatus(a, b) {
+                    if (a.status > b.status) {
+                        return -1
+                    }
+                },
+                sortDeleteStatus(a, b) {
+                    if (a.isDelete > b.isDelete) {
+                        return -1
+                    }
+                },
+                // 启用应用业务
+                enableAppBusiness(row) {
+
+                    this.$confirm('确定启用?', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning',
+                        showClose: false
+                    }).then(() => {
+
+                        axios({
+                            url: host + '/ab/enableAppBusiness',
+                            method: 'GET',
+                            params: {
+                                appBusinessId: row.appBusinessId
+                            },
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            }
+                        })
+                        .then(response => {
+                            this.selectApp(this.selectAppCode);
+                            this.$message({
+                                message: '启用成功',
+                                type: 'success'
+                            });
+                        }, error => {
+                            this.$message({
+                                message: '启用失败',
+                                type: 'warning'
+                            });
+                        })
+                    }).catch(() => {
+                        /*
+                        this.$message({
+                            type: 'info',
+                            message: '已取消删除'
+                        });
+                        */
+                    });
+
+
+
+                },
+                // 禁用应用业务
+                disableAppBusiness(row) {
+                    this.$confirm('确定禁用?', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning',
+                        showClose: false
+                    }).then(() => {
+
+                        axios({
+                            url: host + '/ab/disableAppBusiness',
+                            method: 'GET',
+                            params: {
+                                appBusinessId: row.appBusinessId,
+                            },
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            }
+                        })
+                        .then(response => {
+                            this.selectApp(this.selectAppCode);
+                            this.$message({
+                                message: '禁用成功',
+                                type: 'success'
+                            });
+                        }, error => {
+                            this.$message({
+                                message: '禁用失败',
+                                type: 'warning'
+                            });
+                        })
+                    }).catch(() => {
+                        /*
+                        this.$message({
+                            type: 'info',
+                            message: '已取消删除'
+                        });
+                        */
+                    });
+
+                },
+
+
+            }
+        }
+        var Ctor = Vue.extend(Main)
+        new Ctor().$mount('#app')
+
+    </script>
+</body>
+</html>

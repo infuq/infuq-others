@@ -1,0 +1,1183 @@
+<template>
+  <div>
+    <section class="content clearfix" style="width: 97%;">
+      <div class="el-backtop" style="right: 40px; top: 130px;">
+        <el-link type="primary" :href="'/'" :underline="false" target="_blank"><i class="el-icon-s-home"></i></el-link>
+      </div>
+      <el-divider content-position="right">{{ env }}环境</el-divider>
+
+
+      <el-form :inline="true" class="demo-form-inline">
+
+
+        <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px;">
+          <div style="display: inline-block;
+              background-color: rgb(245, 247, 250);
+              color: rgb(144, 147, 153);
+              border: 1px solid rgb(220, 223, 230);
+              border-radius: 4px 0px 0px 4px;
+              height: 40px;
+              width: 50px;
+              vertical-align: middle;
+              text-align: center;
+              margin-top: auto;
+              margin-right: -6px;
+              padding-top: 9px;
+              font-size: 14px;">
+            企业
+          </div>
+          <el-select v-model="select_enterprise" placeholder="请选择企业" @change="selectEnterprise(select_enterprise)"
+                     filterable clearable @clear="clearEnterprise" disabled>
+            <el-option v-for="item in EnterpriseOptions" :key="item.value" :label="item.label"
+                       :value="item.value"></el-option>
+          </el-select>
+        </div>
+
+
+        <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px; margin-left: 5px;">
+          <div style="display: inline-block;
+              background-color: rgb(245, 247, 250);
+              color: rgb(144, 147, 153);
+              border: 1px solid rgb(220, 223, 230);
+              border-radius: 4px 0px 0px 4px;
+              height: 40px;
+              width: 50px;
+              vertical-align: middle;
+              text-align: center;
+              margin-top: auto;
+              margin-right: -6px;
+              padding-top: 9px;
+              font-size: 14px;">
+            仓库
+          </div>
+          <el-select v-model="select_warehouse" placeholder="请选择仓库" filterable clearable @clear="clearWarehouse">
+            <el-option v-for="item in WarehouseOptions" :key="item.value" :label="item.label"
+                       :value="item.value"></el-option>
+          </el-select>
+        </div>
+
+
+        <div>
+          <el-input v-model="thirdNo" placeholder="CK-240606-001696,TH-240606-000002" clearable @clear="clearThirdNo"
+                    style="width: 500px;">
+            <template slot="prepend">三方单号或业务单号</template>
+          </el-input>
+          <!--
+          <el-input v-model="businessNo" placeholder="业务单号" clearable @clear="clearBusinessNo" style="width: 380px;">
+              <template slot="prepend">业务单号</template>
+          </el-input>
+-->
+
+          <el-input v-model="recordCode" placeholder="AIRPVdRi5whF240322113216199" clearable @clear="clearRecordCode"
+                    style="width: 380px; margin-left: 5px;">
+            <template slot="prepend">记录编码</template>
+          </el-input>
+        </div>
+
+        <div>
+          <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px;">
+            <div style="display: inline-block;
+              background-color: rgb(245, 247, 250);
+              color: rgb(144, 147, 153);
+              border: 1px solid rgb(220, 223, 230);
+              border-radius: 4px 0px 0px 4px;
+              height: 40px;
+              width: 50px;
+              vertical-align: middle;
+              text-align: center;
+              margin-top: auto;
+              margin-right: -6px;
+              padding-top: 9px;
+              font-size: 14px;">
+              来源
+            </div>
+
+            <el-select v-model="select_platform" placeholder="请选择来源平台" @change="selectPlatform(select_platform)"
+                       filterable clearable @clear="clearPlatform">
+              <el-option v-for="item in PlatformOptions" :key="item.value" :label="item.label"
+                         :value="item.value"></el-option>
+            </el-select>
+          </div>
+
+          <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px; margin-left: 5px;">
+            <div style="display: inline-block;
+              background-color: rgb(245, 247, 250);
+              color: rgb(144, 147, 153);
+              border: 1px solid rgb(220, 223, 230);
+              border-radius: 4px 0px 0px 4px;
+              height: 40px;
+              width: 50px;
+              vertical-align: middle;
+              text-align: center;
+              margin-top: auto;
+              margin-right: -6px;
+              padding-top: 9px;
+              font-size: 14px;">
+              类型
+            </div>
+
+            <el-select v-model="select_receiveType" placeholder="请选择接收类型"
+                       @change="selectReceiveType(select_receiveType)" filterable clearable @clear="clearReceiveType">
+              <el-option v-for="item in ReceiveTypeOptions" :key="item.value" :label="item.label"
+                         :value="item.value"></el-option>
+            </el-select>
+          </div>
+
+
+          <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px; margin-left: 5px;">
+            <div style="display: inline-block;
+              background-color: rgb(245, 247, 250);
+              color: rgb(144, 147, 153);
+              border: 1px solid rgb(220, 223, 230);
+              border-radius: 4px 0px 0px 4px;
+              height: 40px;
+              width: 50px;
+              vertical-align: middle;
+              text-align: center;
+              margin-top: auto;
+              margin-right: -6px;
+              padding-top: 9px;
+              font-size: 14px;">
+              状态
+            </div>
+
+            <el-select v-model="select_receiveStatus" placeholder="请选择状态"
+                       @change="selectReceiveStatus(select_receiveStatus)" filterable clearable
+                       @clear="clearReceiveStatus">
+              <el-option v-for="item in ReceiveStatusOptions" :key="item.value" :label="item.label"
+                         :value="item.value"></el-option>
+            </el-select>
+          </div>
+        </div>
+
+        <div>
+          <el-input v-model="receiveBeginTime" placeholder="2023-03-21 09:01:00" clearable
+                    @clear="clearReceiveBeginTime" style="width: 300px;">
+            <template slot="prepend">起时间</template>
+          </el-input>
+          <el-input v-model="receiveEndTime" placeholder="2023-03-21 18:12:20" clearable @clear="clearReceiveEndTime"
+                    style="width: 300px; margin-left: 5px;">
+            <template slot="prepend">止时间</template>
+          </el-input>
+          <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px; margin-left: 5px;">
+            <el-button type="primary" @click="onSubmit(-1)">查询</el-button>
+          </div>
+        </div>
+
+
+        <!-- 结果 -->
+        <div style="margin-top: 15px;">
+
+          <!-- 接收结果 -->
+          <div style="margin-top: 10px;" v-loading="loading">
+            <el-divider content-position="left">对接平台接收记录</el-divider>
+
+            <div style="font-weight: 500; font-size: 14px;"> <!-- margin-left: 40px;  -->
+              <template>
+                <el-table :data="receiveList" border style="width: 100%" :row-style="{ height: 10+'px'}"
+                          :cell-style="{padding:0+'px'}" highlight-current-row @current-change="handleTableChange">
+                  <!-- height="250" -->
+                  <el-table-column fixed label="序号" type="index" width="50">
+                    <template slot-scope="scope">
+                                  <span v-if="scope.row.receiveStatusName == '处理失败'">
+                                      <span style="color: red;">{{ scope.$index + 1 }}</span>
+                                  </span>
+                      <span v-else>
+                                      {{ scope.$index + 1 }}
+                                  </span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column prop="warehouseName" label="仓库名称" max-width="50"
+                                   :show-overflow-tooltip="true"></el-table-column>
+                  <el-table-column label="三方单号" max-width="150" :show-overflow-tooltip="true">
+                    <template slot-scope="scope" v-if="scope.row.thirdNo != null && scope.row.thirdNo != ''">
+                                  <span>
+                                      <i @click="copy(scope.row.thirdNo)" class="el-icon-document-copy"></i>&nbsp;&nbsp;{{ scope.row.thirdNo }}
+                                  </span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column label="业务单号" max-width="150" :show-overflow-tooltip="true">
+                    <template slot-scope="scope" v-if="scope.row.businessNo != null && scope.row.businessNo != ''">
+                                  <span>
+                                      <i @click="copy(scope.row.businessNo)" class="el-icon-document-copy"></i>&nbsp;&nbsp;{{ scope.row.businessNo }}
+                                  </span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column prop="receivePlatformName" label="来源平台" width="100"
+                                   :show-overflow-tooltip="true"></el-table-column>
+                  <el-table-column prop="receiveTypeName" label="接收类型" max-width="150"
+                                   :show-overflow-tooltip="true"></el-table-column>
+                  <el-table-column label="接收状态" width="120"> <!-- sortable :sort-method="sortReceiveStatus"  -->
+                    <template slot-scope="scope">
+                                  <span v-if="scope.row.receiveStatusName == '处理失败'">
+                                      <span style="color: red;">{{ scope.row.receiveStatusName }}</span>
+                                  </span>
+                      <span v-else-if="scope.row.receiveStatusName == '处理成功'">
+                                      <span style="color: green;">{{ scope.row.receiveStatusName }}</span>
+                                  </span>
+                      <span v-else-if="scope.row.receiveStatusName == '无需处理'">
+                                      <span style="color: #d7b10d;">{{ scope.row.receiveStatusName }}</span>
+                                  </span>
+                      <span v-else>
+                                      {{ scope.row.receiveStatusName }}
+                                  </span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column prop="autoRetryNum" label="重试次数" width="90"></el-table-column>
+                  <el-table-column label="是否回调" width="100" align="center">
+                    <template slot-scope="scope">
+                                  <span v-if="scope.row.isCallback == 1">
+                                      <svg t="1691468608589" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                           xmlns="http://www.w3.org/2000/svg" p-id="4016" width="16" height="16"><path
+                                          d="M414.245926 751.028148l437.57037-453.12c7.300741-7.49037 7.111111-19.531852-0.474074-26.832593-7.49037-7.300741-19.531852-7.111111-26.832593 0.474074L398.506667 712.722963 199.111111 513.327407c-7.395556-7.395556-19.437037-7.395556-26.832593 0l0 0c-7.395556 7.395556-7.395556 19.437037 0 26.832593l212.574815 212.574815c6.731852 6.731852 17.161481 7.300741 24.557037 1.896296C411.211852 753.682963 412.823704 752.545185 414.245926 751.028148z"
+                                          fill="#d4237a" p-id="4017"></path></svg>
+                                  </span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column prop="createTime" label="创建时间" width="200"></el-table-column>
+                  <el-table-column prop="updateTime" label="更新时间" width="200"></el-table-column>
+                  <el-table-column fixed="right" label="操作" min-width="90">
+                    <template slot-scope="scope">
+                      <el-button @click="handleReceiveDetailClick(scope.row)" type="text">详情</el-button>
+                      <span v-if="scope.row.hasPushRecord != 0">
+                                      <el-dropdown @command="handleCommand($event, scope.row)">
+                                          <span class="el-dropdown-link"
+                                                style="margin-left: 5px; color: #409EFF;">其他操作</span>
+                                          <el-dropdown-menu slot="dropdown">
+                                              <span v-if="scope.row.hasPushRecord > 0">
+                                                  <el-dropdown-item command="a"
+                                                                    icon="el-icon-view">查看推送成功记录({{ scope.row.hasPushRecord }})</el-dropdown-item>
+                                              </span>
+                                              <span v-if="scope.row.hasPushRecord < 0">
+                                                  <el-dropdown-item command="b"
+                                                                    icon="el-icon-view">查看推送失败记录({{ scope.row.hasPushRecord * -1 }})</el-dropdown-item>
+                                              </span>
+                                          </el-dropdown-menu>
+                                      </el-dropdown>
+                                  </span>
+                      <span v-if="scope.row.receiveStatusName == '处理失败'">
+                                      <el-button @click="handleReceiveRetryClick(scope.row)" type="text"
+                                                 style="margin-left: 5px; color: #409EFF;">重试</el-button>
+                                  </span>
+                    </template>
+                  </el-table-column>
+                </el-table>
+              </template>
+
+              <!-- 接收记录详情 -->
+              <el-dialog :title="'[' + DETAIL_INDEX + '][ ' + Record_Body_Title + ' ] 内容体'"
+                         :visible.sync="Record_Body_dialogVisible" :show-close="false" width="50%">
+
+                <div style="display: block; margin: 5px 0;">
+                  <label style="display: inline-block; text-align: right;">[ 记录编码 ]</label><label>&nbsp;&nbsp;&nbsp;{{ receiveRecord.apiRecordCode }}</label>&nbsp;&nbsp;<i
+                    @click="copy(receiveRecord.apiRecordCode)" class="el-icon-document-copy"></i>
+                </div>
+                <div style="display: block; margin: 5px 0;">
+                  <label style="display: inline-block; text-align: right;">[ 链路追踪 ]</label>
+                  <router-link :to="{path: '/select_trace', query:{traceId: receiveRecord.traceId}}" target="_blank" style="margin-left: 5px;">
+                    <span class="icon-link" style="display: inline-block;top: 1px;">{{ receiveRecord.traceId }}</span>
+                  </router-link>
+                  <span v-if="receiveRecord.traceId != null && receiveRecord.traceId != ''">
+                    <i @click="copy(receiveRecord.traceId)" class="el-icon-document-copy"></i>
+                  </span>
+                </div>
+                <div style="display: block; margin: 5px 0;">
+                  <label style="display: inline-block; text-align: right;">[ 执行语句 ]</label>
+                  <span>
+                              &nbsp;&nbsp;SQL&nbsp;&nbsp;<i @click="copy(receiveRecord.sql)"
+                                                            class="el-icon-document-copy"></i>
+                          </span>
+                </div>
+                <div style="display: block; margin: 5px 0;">
+                  <label style="display: inline-block; text-align: right;">[ 接收应用 ]</label><label>&nbsp;&nbsp;&nbsp;{{ receiveRecord.receiveAppName }}</label>
+                </div>
+                <div style="display: block; margin: 5px 0;">
+                  <label style="display: inline-block; text-align: right; color: #e6a23c;">[ 接收内容 ]</label><label>&nbsp;&nbsp;&nbsp;{{ receiveRecord.receiveBody }}</label>
+                  <span v-if="receiveRecord.receiveBody != null && receiveRecord.receiveBody != ''">
+                              &nbsp;&nbsp;<i @click="copy(receiveRecord.receiveBody)" class="el-icon-document-copy"></i>
+                          </span>
+                </div>
+                <div style="display: block; margin: 5px 0;">
+                  <label style="display: inline-block; text-align: right; color: #e6a23c;">[ 错误原因 ]</label><label>&nbsp;&nbsp;&nbsp;{{ receiveRecord.errorBody }}</label>
+                </div>
+                <div style="display: block; margin: 5px 0;">
+                  <label style="display: inline-block; text-align: right; color: #e6a23c;">[ 扩展内容 ]</label><label>&nbsp;&nbsp;&nbsp;{{ receiveRecord.extraBody }}</label>
+                </div>
+              </el-dialog>
+
+              <!-- 推送记录 -->
+              <el-dialog :title="'[' + DETAIL_INDEX + '][ ' + Record_Body_Title + ' ] 推送记录'"
+                         :visible.sync="Push_Record_Body_dialogVisible" :show-close="false" width="100%">
+
+                <el-table :data="pushRecordList" border style="width: 100%" :row-style="{ height: 10+'px'}"
+                          :cell-style="{padding:0+'px'}"> <!-- height="250" -->
+                  <el-table-column fixed label="序号" type="index" width="50"></el-table-column>
+                  <el-table-column prop="warehouseName" label="仓库名称" max-width="50"
+                                   :show-overflow-tooltip="true"></el-table-column>
+                  <el-table-column prop="businessNo" label="业务单号" max-width="150"
+                                   :show-overflow-tooltip="true"></el-table-column>
+                  <el-table-column prop="thirdNo" label="三方单号" max-width="150"
+                                   :show-overflow-tooltip="true"></el-table-column>
+                  <el-table-column prop="pushPlatformName" label="目标平台" max-width="50"
+                                   :show-overflow-tooltip="true"></el-table-column>
+                  <el-table-column prop="pushAppName" label="推送应用" max-width="50"
+                                   :show-overflow-tooltip="true"></el-table-column>
+                  <el-table-column prop="ent" label="ENT码" max-width="150"
+                                   :show-overflow-tooltip="true"></el-table-column>
+                  <el-table-column prop="pushTypeName" label="推送类型" max-width="50"
+                                   :show-overflow-tooltip="true"></el-table-column>
+                  <el-table-column label="推送状态" max-width="50" :show-overflow-tooltip="true">
+                    <template slot-scope="scope">
+                                  <span v-if="scope.row.pushStatusName === '推送失败'">
+                                      <span style="color: red;">{{ scope.row.pushStatusName }}</span>
+                                  </span>
+                      <span v-else-if="scope.row.pushStatusName === '推送成功'">
+                                      <span style="color: green;">{{ scope.row.pushStatusName }}</span>
+                                  </span>
+                      <span v-else>
+                                      {{ scope.row.pushStatusName }}
+                                  </span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column prop="autoRetryNum" label="重试次数" width="90"></el-table-column>
+                  <el-table-column prop="createTime" label="创建时间" width="200"></el-table-column>
+                  <el-table-column prop="updateTime" label="更新时间" width="200"></el-table-column>
+                  <el-table-column fixed="right" label="操作" width="100">
+                    <template slot-scope="scope">
+                      <el-button @click="handlePushDetailClick(scope.row)" type="text">详情</el-button>
+                      <span v-if="scope.row.pushStatusName === '推送失败'">
+                                      <el-button @click="handlePushRetryClick(scope.row)" type="text"
+                                                 style="margin-left: 5px;">重推</el-button>
+                                  </span>
+                    </template>
+                  </el-table-column>
+
+                </el-table>
+
+
+              </el-dialog>
+
+              <!-- 推送记录详情 -->
+              <el-dialog :title="'[' + PUSH_DETAIL_INDEX + '][ ' + Push_Detail_Record_Body_Title + ' ] 内容体'"
+                         :visible.sync="Push_Detail_Record_Body_dialogVisible" :show-close="false" width="50%">
+                <div style="display: block; margin: 5px 0;">
+                  <label style="display: inline-block; text-align: right;">[ 记录编码 ]</label><label>&nbsp;&nbsp;&nbsp;{{ pushRecord.apiRecordCode }}</label>&nbsp;&nbsp;<i
+                    @click="copy(pushRecord.apiRecordCode)" class="el-icon-document-copy"></i>
+                </div>
+                <div style="display: block; margin: 5px 0;">
+                  <label style="display: inline-block; text-align: right;">[ 链路追踪 ]</label>
+                  <router-link :to="{path: '/select_trace', query:{traceId: pushRecord.traceId}}" target="_blank" style="margin-left: 5px;">
+                    <span class="icon-link" style="display: inline-block;top: 1px;">{{ pushRecord.traceId }}</span>
+                  </router-link>
+                  <span v-if="pushRecord.traceId != null && pushRecord.traceId != ''">
+                    <i @click="copy(pushRecord.traceId)" class="el-icon-document-copy"></i>
+                  </span>
+                </div>
+                <div style="display: block; margin: 5px 0;">
+                  <label style="display: inline-block; text-align: right;">[ 执行语句 ]</label>
+                  <span>
+                              &nbsp;&nbsp;SQL&nbsp;&nbsp;<i @click="copy(pushRecord.sql)"
+                                                            class="el-icon-document-copy"></i>
+                          </span>
+                </div>
+                <div style="display: block; margin: 5px 0;">
+                  <label style="display: inline-block; text-align: right; color: #e6a23c;">[ 推送内容 ]</label><label>&nbsp;&nbsp;&nbsp;{{ pushRecord.pushBody }}</label>
+                  <span v-if="pushRecord.pushBody != null && pushRecord.pushBody != ''">
+                              &nbsp;&nbsp;<i @click="copy(pushRecord.pushBody)" class="el-icon-document-copy"></i>
+                          </span>
+                </div>
+                <div style="display: block; margin: 5px 0;">
+                  <label style="display: inline-block; text-align: right; color: #e6a23c;">[ 响应内容 ]</label><label>&nbsp;&nbsp;&nbsp;{{ pushRecord.responseBody }}</label>
+                </div>
+                <div style="display: block; margin: 5px 0;">
+                  <label style="display: inline-block; text-align: right; color: #e6a23c;">[ 异常内容 ]</label><label>&nbsp;&nbsp;&nbsp;{{ pushRecord.errorBody }}</label>
+                </div>
+              </el-dialog>
+
+
+            </div>
+          </div>
+
+          <div style="text-align: center; margin-top: 10px;">
+            <el-pagination
+                background
+                layout="prev, pager, next"
+                :current-page.sync="curPage"
+                :total="total" @current-change="handleCurrentChange">
+            </el-pagination>
+          </div>
+
+        </div>
+
+
+      </el-form>
+
+    </section>
+  </div>
+
+</template>
+
+<script>
+
+import Config from '@/assets/js/route.js'
+import axios from 'axios';
+
+export default {
+  name: "PlatformReceiveRecord",
+  data() {
+
+    return {
+      env: Config.env,
+      host: Config.host,
+
+      select_enterprise: '',
+      select_warehouse: '',
+      select_platform: '',
+
+      select_receiveType: '',
+      select_receiveStatus: '',
+      EnterpriseOptions: [],
+      WarehouseOptions: [],
+      PlatformOptions: [
+        {
+          label: 'WMS3.0',
+          value: 'APP-00002'
+        },
+        {
+          label: 'OMS3.0',
+          value: 'APP-00006'
+        },
+        {
+          label: '畅捷通',
+          value: 'APP-00009'
+        },
+        {
+          label: '绝配',
+          value: 'APP-00008'
+        },
+        {
+          label: '用友',
+          value: 'APP-00013'
+        },
+        {
+          label: '金蝶',
+          value: 'APP-00011'
+        },
+        {
+          label: '蜀海',
+          value: 'APP-00003'
+        },
+        {
+          label: '伟添',
+          value: 'APP-00005'
+        },
+        {
+          label: '银豹',
+          value: 'APP-00010'
+        }
+
+      ],
+
+      ReceiveTypeOptions: [
+        {
+          label: '供应商',
+          value: '60,3010',
+        },
+        {
+          label: '供应商商品',
+          value: '61,3011',
+        },
+        {
+          label: '商家/货主',
+          value: '1,3000',
+        },
+        {
+          label: '门店/收获人',
+          value: '2,24,3001',
+        },
+        {
+          label: '商品',
+          value: '3,23,3002,3003',
+        },
+
+
+        {
+          label: '订货单',
+          value: '4,100,303,25,26,35,36',
+        },
+        {
+          label: '销售出库单',
+          value: '52,12,13,101',
+        },
+
+        {
+          label: '退货单',
+          value: '5,54,55,50,14,15,27,37,38,3006',
+        },
+        {
+          label: '销退入库单',
+          value: '51,53',
+        },
+
+
+        {
+          label: '采购单',
+          value: '6,901,7,2000,39,40,41',
+        },
+        {
+          label: '采购入库单',
+          value: '46,16,17,18,301,28,47,3009',
+        },
+        {
+          label: '采退单',
+          value: '2100,42,43,44,45',
+        },
+        {
+          label: '采退出库单',
+          value: '49,20,21,302,29,48',
+        },
+        {
+          label: '发货单',
+          value: '11,211,3004,3005',
+        },
+        {
+          label: '调拨单',
+          value: '8',
+        },
+        {
+          label: '盘点单',
+          value: '9',
+        },
+        {
+          label: '报损单',
+          value: '10',
+        },
+
+        {
+          label: '库存',
+          value: '56,57,58,59,22,3007,3008',
+        },
+
+      ],
+      ReceiveStatusOptions: [
+        {
+          label: '创建成功',
+          value: '2'
+        },
+        {
+          label: '处理成功',
+          value: '3'
+        },
+        {
+          label: '处理失败',
+          value: '93'
+        },
+        {
+          label: '无需处理',
+          value: '95'
+        }
+      ],
+      businessNo: '',
+      thirdNo: '',
+      recordCode: '',
+
+      receiveBeginTime: this.dateFormat() + " 00:00:00",
+      receiveEndTime: this.dateFormat() + " 23:59:59",
+
+
+      receiveList: [],
+
+      loading: false,
+
+      total: 0,
+      curPage: 1,
+
+      Record_Body_Title: '',
+      Record_Body_dialogVisible: false,
+      Push_Record_Body_dialogVisible: false,
+      receiveRecord: {
+        receiveBody: '',
+        errorBody: '',
+        extraBody: ''
+      },
+      pushRecordList: [],
+
+      Push_Detail_Record_Body_Title: '',
+      Push_Detail_Record_Body_dialogVisible: false,
+      pushRecord: {
+        pushBody: '',
+        responseBody: '',
+        errorBody: ''
+      },
+
+      DETAIL_INDEX: '',
+      PUSH_DETAIL_INDEX: '',
+
+      currentRow: null,
+
+
+    }
+  },
+
+  created: function () {
+
+    // 获取所有企业
+    /*
+    axios({
+        url: host + '/tools/getAllEnterprise',
+        method: 'GET',
+        params: { },
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => {
+        console.log(response.data);
+        EnterpriseList = response.data
+
+        for (i = 0; i < EnterpriseList.length; i++) {
+            label = EnterpriseList[i]['enterpriseName']
+            value = EnterpriseList[i]['enterpriseCode']
+            this.EnterpriseOptions.push({'label': label, 'value': value})
+        }
+
+    }, error => {
+        this.$message({
+          message: '查询企业失败',
+          type: 'warning'
+        });
+        console.log(error.message)
+    })
+    */
+
+
+    // 获取所有仓库
+    axios({
+      url: this.host + '/toolkit/tools/getAllWarehouse',
+      method: 'GET',
+      params: {},
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => {
+      if (response.data['code'] && response.data['code'] === 1126) {
+        this.$router.push("/login")
+        return
+      }
+
+      let WarehouseList = response.data
+
+      for (let i = 0; i < WarehouseList.length; i++) {
+        let label = WarehouseList[i]['warehouseName']
+        let value = WarehouseList[i]['warehouseCode']
+        this.WarehouseOptions.push({'label': label, 'value': value})
+      }
+
+    }, error => {
+      console.log(error)
+      this.$message({
+        message: '查询仓库失败',
+        type: 'warning'
+      });
+    })
+
+    this.selectPlatform('')
+
+  },
+  methods: {
+    handleCommand(command, row) {
+      if (command === 'a') {
+        this.handleHasPushRecordClick(row)
+      } else if (command === 'b') {
+        this.handleHasPushRecordClick(row)
+      }
+    },
+    // 查询
+    onSubmit(curPage) {
+      let select_enterprise = this.select_enterprise
+
+      this.receiveList = []
+      if (curPage === -1) {
+        this.curPage = 1
+      }
+      this.total = 0
+      this.loading = true
+      axios({
+        url: this.host + '/toolkit/ab/getPlatformReceiveRecord',
+        method: 'POST',
+        data: {
+          enterpriseCode: this.select_enterprise,
+          warehouseCode: this.select_warehouse,
+          platformNo: this.select_platform,
+
+          receiveType: this.select_receiveType,
+          receiveStatus: this.select_receiveStatus,
+          recordCode: this.recordCode,
+          thirdNo: this.thirdNo,
+          businessNo: this.businessNo,
+          receiveBeginTime: this.receiveBeginTime,
+          receiveEndTime: this.receiveEndTime,
+          curPage: this.curPage
+        },
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.data['code'] && response.data['code'] === 1126) {
+          this.$router.push("/login")
+          return
+        }
+
+        if (response.data.total === 0) {
+          this.loading = false
+          this.$message({
+            message: '未查询到数据',
+            type: 'warning'
+          });
+          this.curPage = 1
+          this.total = 0
+          return
+        }
+
+        this.receiveList = response.data.receiveRecordList
+        this.total = response.data.total
+        this.curPage = curPage
+        this.loading = false
+      }, error => {
+        console.log(error)
+        this.loading = false
+        this.$message({
+          message: '查询失败',
+          type: 'warning'
+        });
+
+        this.curPage = 1
+        this.total = 0
+        this.receiveList = []
+      })
+
+    },
+
+    handleTableChange(val) {
+      this.currentRow = val;
+    },
+
+    // 选择企业
+    selectEnterprise(enterprise) {
+
+      if (!enterprise) {
+        this.$message({
+          message: '请选择企业',
+          type: 'warning'
+        });
+        return;
+      }
+      this.select_enterprise = enterprise
+      this.select_warehouse = ''
+      this.WarehouseOptions = []
+      this.warehouse = {}
+      this.receiveList = []
+      this.total = 0
+      this.curPage = 1
+
+      // 查询企业下的仓库
+      axios({
+        url: this.host + '/toolkit/tools/getWarehouse',
+        method: 'GET',
+        params: {
+          enterpriseCode: enterprise
+        },
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.data['code'] && response.data['code'] === 1126) {
+          this.$router.push("/login")
+          return
+        }
+
+        if (!response.data) {
+          this.$message({
+            message: '未查询仓库数据',
+            type: 'warning'
+          });
+        }
+
+        let WarehouseList = response.data
+        if (WarehouseList.length > 0) {
+          for (let i = 0; i < WarehouseList.length; i++) {
+            let label = WarehouseList[i]['warehouseName']
+            let value = WarehouseList[i]['warehouseCode']
+            this.WarehouseOptions.push({'label': label, 'value': value})
+          }
+        }
+      }, error => {
+        this.$message({
+          message: '查询失败',
+          type: 'warning'
+        });
+        console.log(error.message)
+      })
+
+    },
+    // 选择仓库
+    selectWarehouse(warehouse) {
+
+    },
+    // 选择平台
+    selectPlatform(platform) {
+      this.select_platform = platform
+
+    },
+
+    selectReceiveType(receiveType) {
+      this.select_receiveType = receiveType
+    },
+    selectReceiveStatus(receiveStatus) {
+      this.select_receiveStatus = receiveStatus
+    },
+    clearEnterprise() {
+      this.select_enterprise = ''
+      this.select_warehouse = ''
+      this.WarehouseOptions = []
+    },
+    clearWarehouse() {
+      this.select_warehouse = ''
+    },
+    clearRecordCode() {
+      this.recordCode = ''
+    },
+    clearThirdNo() {
+      this.thirdNo = ''
+    },
+    clearBusinessNo() {
+      this.businessNo = ''
+    },
+    clearPlatform() {
+      this.select_platform = ''
+    },
+
+    clearReceiveType() {
+      this.select_receiveType = ''
+    },
+    clearReceiveStatus() {
+      this.select_receiveType = ''
+    },
+    clearReceiveBeginTime() {
+      this.receiveBeginTime = ''
+    },
+    clearReceiveEndTime() {
+      this.receiveEndTime = ''
+    },
+    handleReceiveDetailClick(row) {
+      if (row.thirdNo) {
+        this.Record_Body_Title = row.thirdNo
+      } else {
+        this.Record_Body_Title = row.businessNo
+      }
+      this.DETAIL_INDEX = row.index
+
+      this.receiveRecord = {}
+
+      axios({
+        url: this.host + '/toolkit/ab/getReceiveRecordDetail',
+        method: 'GET',
+        params: {
+          recordCode: row.recordCode
+        },
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.data['code'] && response.data['code'] === 1126) {
+          this.$router.push("/login")
+          return
+        }
+
+        this.receiveRecord = response.data
+        this.Record_Body_dialogVisible = true
+      }, error => {
+        console.log(error)
+        this.$message({
+          message: '查询接收记录失败',
+          type: 'warning'
+        });
+      })
+    },
+    handleCurrentChange(current_page) {
+      this.curPage = current_page
+      this.onSubmit(current_page)
+    },
+    sortReceiveStatus(a, b) {
+      if (a.receiveStatus > b.receiveStatus) {
+        return -1
+      }
+    },
+    handleReceiveRetryClick(row) {
+
+      axios({
+        url: this.host + '/toolkit/ab/retryReceiveRecord',
+        method: 'GET',
+        params: {
+          recordCode: row.recordCode
+        },
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.data['code'] && response.data['code'] === 1126) {
+          this.$router.push("/login")
+          return
+        }
+
+        if (response.data) {
+          this.$message({
+            message: response.data,
+            type: 'warning'
+          });
+        } else {
+          this.$message({
+            message: '重试完成',
+            type: 'success'
+          });
+        }
+
+      }, error => {
+        console.log(error)
+        this.$message({
+          message: '重试失败',
+          type: 'warning'
+        });
+      })
+    },
+
+    // 查询推送记录
+    handleHasPushRecordClick(row) {
+      if (row.thirdNo) {
+        this.Record_Body_Title = row.thirdNo
+      } else {
+        this.Record_Body_Title = row.businessNo
+      }
+      this.DETAIL_INDEX = row.index
+
+      this.pushRecordList = []
+
+      axios({
+        url: this.host + '/toolkit/ab/getPushRecordList',
+        method: 'GET',
+        params: {
+          receiveRecordCode: row.recordCode
+        },
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.data['code'] && response.data['code'] === 1126) {
+          this.$router.push("/login")
+          return
+        }
+
+        this.pushRecordList = response.data
+        this.Push_Record_Body_dialogVisible = true
+      }, error => {
+        console.log(error)
+        this.$message({
+          message: '查询推送记录失败',
+          type: 'warning'
+        });
+      })
+    },
+    handlePushRetryClick(row) {
+
+      axios({
+        url: this.host + '/toolkit/ab/retryPushRecord',
+        method: 'GET',
+        params: {
+          recordCode: row.recordCode
+        },
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.data['code'] && response.data['code'] === 1126) {
+          this.$router.push("/login")
+          return
+        }
+
+        if (response.data) {
+          this.$message({
+            message: response.data,
+            type: 'warning'
+          });
+        } else {
+          this.$message({
+            message: '重试完成',
+            type: 'success'
+          });
+        }
+      }, error => {
+        console.log(error)
+        this.$message({
+          message: '重试失败',
+          type: 'warning'
+        });
+      })
+    },
+    // 查看推送详情
+    handlePushDetailClick(row) {
+
+      this.Push_Record_Body_dialogVisible = true
+      if (row.businessNo) {
+        this.Push_Detail_Record_Body_Title = row.businessNo
+      } else {
+        this.Push_Detail_Record_Body_Title = row.thirdNo
+      }
+
+      this.PUSH_DETAIL_INDEX = row.index
+
+      this.pushRecord = {}
+
+      axios({
+        url: this.host + '/toolkit/ab/getPushRecordDetail',
+        method: 'GET',
+        params: {
+          recordCode: row.recordCode
+        },
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.data['code'] && response.data['code'] === 1126) {
+          this.$router.push("/login")
+          return
+        }
+
+        this.pushRecord = response.data
+        this.Push_Detail_Record_Body_dialogVisible = true
+      }, error => {
+        console.log(error)
+        this.$message({
+          message: '查询推送记录失败',
+          type: 'warning'
+        });
+      })
+    },
+    // 当前日期格式化
+    dateFormat() {
+      let date = new Date()
+      let year = date.getFullYear()
+      let month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1
+      let day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+      return year + '-' + month + '-' + day
+    },
+    copy(data) {
+
+      if (data.includes(':')) {
+        try {
+          const obj = JSON.parse(data)
+          if (obj.hasOwnProperty('body')) {
+            const _obj = JSON.parse(obj.body)
+            obj.body = _obj
+          }
+          if (obj.hasOwnProperty('requestBody')) {
+            try {
+              const _obj = JSON.parse(obj.requestBody)
+              obj.requestBody = _obj
+              if (obj.requestBody.hasOwnProperty('requestBody')) {
+                const _obj = JSON.parse(obj.requestBody.requestBody)
+                obj.requestBody.requestBody = _obj
+              }
+            } catch (err) {
+              console.log(err)
+            }
+          }
+
+          data = JSON.stringify(obj)
+        } catch (err) {
+          console.log(err)
+        }
+      }
+
+
+      let url = data;
+      let oInput = document.createElement('textarea');
+      oInput.value = url;
+      document.body.appendChild(oInput);
+      oInput.select(); // 选择对象
+
+      document.execCommand("Copy"); // 执行浏览器复制命令
+      this.$message({
+        message: '复制成功',
+        type: 'success'
+      });
+      oInput.remove()
+    }
+
+
+  }
+
+}
+</script>
+
+
+<style>
+@import '@/assets/css/common.css';
+
+.el-link.el-link--primary {
+  color: #0000FF;
+}
+
+a {
+  color: #0000FF;
+  text-decoration: none;
+}
+
+.icon-link {
+  display: inline-table;
+  position: relative;
+  bottom: 1.5px;
+  font-size: 15px;
+  margin-left: 7px;
+  margin-right: 7px;
+}
+
+.el-link.el-link--default {
+  color: #0000FF;
+}
+
+.el-step__title.is-process {
+  font-size: 15px;
+}
+
+.el-divider__text.is-left {
+  color: #FA8919;
+  font-weight: bold;
+}
+
+.el-table .warning-row {
+  background: #FFFFBB;
+}
+
+pre {
+  font-family: Microsoft YaHei;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+</style>

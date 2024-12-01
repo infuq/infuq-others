@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>杂货柜-补推</title>
+    <link href="../r/libs/font-awesome/4.0.3/css/font-awesome.min.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="../r/element-ui@2.15.2/index.css" rel="stylesheet" />
+    <link href="../r/css/common.css" rel="stylesheet" />
+
+    <script src="../r/vue@2.6.14/vue.js"></script>
+    <script src="../r/element-ui@2.15.2/index.js"></script>
+    <script src="../r/axios@0.21.1/axios.min.js"></script>
+    <script src="../r/js/route.js"></script>
+
+    <style>
+        .el-step__title.is-process {
+            font-size: 15px;
+        }
+
+        .el-divider__text.is-left {
+            color: #FA8919;
+            font-weight: bold;
+        }
+
+        .el-input__inner {
+            border-radius: 0 4px 4px 0;
+        }
+        .el-select {
+            vertical-align: middle;
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+<div id="app" style="margin-top: 5%;">
+
+    <section class="content clearfix" style="width: 65%;">
+        <div>
+            <div class="el-backtop" style="right: 40px; top: 130px;"><el-link  type="primary" :href="'/'" :underline="false" target="_blank"><i class="el-icon-s-home"></i></el-link></div>
+
+            <el-divider content-position="right">{{env}}环境</el-divider>
+            <div style="margin-top: 15px;">
+                <!-- 补推 -->
+                <div style="margin-top: 10px;">
+                    <el-divider content-position="left">补推</el-divider>
+
+                    <!-- 第零个 -->
+                    <el-form :inline="true" class="demo-form-inline">
+                        <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px;">
+                            <div style="display: inline-block;
+                                background-color: rgb(245, 247, 250);
+                                color: rgb(144, 147, 153);
+                                border: 1px solid rgb(220, 223, 230);
+                                border-radius: 4px 0px 0px 4px;
+                                height: 40px;
+                                width: 100px;
+                                vertical-align: middle;
+                                text-align: center;
+                                margin-top: auto;
+                                margin-right: -6px;
+                                padding-top: 9px;
+                                font-size: 14px;">
+                                目标平台
+                            </div>
+                            <el-select clearable v-model="platform0" placeholder="请选择目标平台" @change="selectPlatform0(platform0)">
+                                <el-option v-for="item in PlatformOptions0" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                            </el-select>
+                        </div>
+                        <el-input v-model="orderNo" placeholder="DH-230821-000955" clearable  style="width: 350px;">
+                            <template slot="prepend">单号</template>
+                        </el-input>
+                        <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px;">
+                            <el-button type="primary" @click="onSubmit0">从仓配系统补推[ DH单据创建 ]</el-button>
+                        </div>
+                    </el-form>
+
+                    <!-- 第一个 -->
+                    <el-form :inline="true" class="demo-form-inline">
+                        <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px;">
+                            <div style="display: inline-block;
+                                background-color: rgb(245, 247, 250);
+                                color: rgb(144, 147, 153);
+                                border: 1px solid rgb(220, 223, 230);
+                                border-radius: 4px 0px 0px 4px;
+                                height: 40px;
+                                width: 100px;
+                                vertical-align: middle;
+                                text-align: center;
+                                margin-top: auto;
+                                margin-right: -6px;
+                                padding-top: 9px;
+                                font-size: 14px;">
+                                目标平台
+                            </div>
+                            <el-select clearable v-model="platform1" placeholder="请选择目标平台" @change="selectPlatform1(platform1)">
+                                <el-option v-for="item in PlatformOptions1" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                            </el-select>
+                        </div>
+                        <el-input v-model="orderNo5" placeholder="DH-230821-000955" clearable  style="width: 350px;">
+                            <template slot="prepend">单号</template>
+                        </el-input>
+                        <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px;">
+                            <el-button type="primary" @click="onSubmit1(0)">从仓配系统补推[ DH单据完结 ]</el-button>
+                        </div>
+                    </el-form>
+
+                    <!-- 第二个 -->
+                    <el-form :inline="true" class="demo-form-inline">
+                        <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px;">
+                            <div style="display: inline-block;
+                                background-color: rgb(245, 247, 250);
+                                color: rgb(144, 147, 153);
+                                border: 1px solid rgb(220, 223, 230);
+                                border-radius: 4px 0px 0px 4px;
+                                height: 40px;
+                                width: 100px;
+                                vertical-align: middle;
+                                text-align: center;
+                                margin-top: auto;
+                                margin-right: -6px;
+                                padding-top: 9px;
+                                font-size: 14px;">
+                                目标平台
+                            </div>
+                            <el-select clearable v-model="platform2" placeholder="请选择目标平台" @change="selectPlatform2(platform2)">
+                                <el-option v-for="item in PlatformOptions2" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                            </el-select>
+                        </div>
+                        <el-input v-model="orderNo6" placeholder="DH-230821-000955" clearable  style="width: 350px;">
+                            <template slot="prepend">单号</template>
+                        </el-input>
+                        <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px;">
+                            <el-button type="primary" @click="onSubmit1(1)">从仓配系统补推[ DH单据完结 ](会删除之前的完结推送记录)</el-button>
+                        </div>
+                    </el-form>
+
+                    <!-- 第三个 -->
+                    <el-form :inline="true" class="demo-form-inline">
+
+                        <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px;">
+                            <div style="display: inline-block;
+                                background-color: rgb(245, 247, 250);
+                                color: rgb(144, 147, 153);
+                                border: 1px solid rgb(220, 223, 230);
+                                border-radius: 4px 0px 0px 4px;
+                                height: 40px;
+                                width: 100px;
+                                vertical-align: middle;
+                                text-align: center;
+                                margin-top: auto;
+                                margin-right: -6px;
+                                padding-top: 9px;
+                                font-size: 14px;">
+                                目标平台
+                            </div>
+
+                            <el-select clearable v-model="platform3" placeholder="请选择目标平台" @change="selectPlatform3(platform3)">
+                                <el-option v-for="item in PlatformOptions3" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                            </el-select>
+                        </div>
+                        <el-input v-model="customerOrderCode1" placeholder="DW0LEOND20230821092533796" clearable  style="width: 350px;">
+                            <template slot="prepend">单号</template>
+                        </el-input>
+                        <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px;">
+                            <el-button type="primary" @click="onSubmit3">从仓配系统补推[ DW单据创建 ]</el-button>
+                        </div>
+                    </el-form>
+
+                    <!-- 第四个 -->
+                    <el-form :inline="true" class="demo-form-inline">
+
+                        <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px;">
+                            <div style="display: inline-block;
+                                background-color: rgb(245, 247, 250);
+                                color: rgb(144, 147, 153);
+                                border: 1px solid rgb(220, 223, 230);
+                                border-radius: 4px 0px 0px 4px;
+                                height: 40px;
+                                width: 100px;
+                                vertical-align: middle;
+                                text-align: center;
+                                margin-top: auto;
+                                margin-right: -6px;
+                                padding-top: 9px;
+                                font-size: 14px;">
+                                目标平台
+                            </div>
+
+                            <el-select clearable v-model="platform4" placeholder="请选择目标平台" @change="selectPlatform4(platform4)">
+                                <el-option v-for="item in PlatformOptions4" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                            </el-select>
+                        </div>
+                        <el-input v-model="customerOrderCode2" placeholder="DC20240527133410084285268" clearable  style="width: 350px;">
+                            <template slot="prepend">单号</template>
+                        </el-input>
+                        <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px;">
+                            <el-button type="primary" @click="onSubmit4">从订单系统补推[ DW单据创建 ]</el-button>
+                        </div>
+                    </el-form>
+
+
+                    <!-- 第五个 -->
+                    <el-form :inline="true" class="demo-form-inline">
+
+                        <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px;">
+                            <div style="display: inline-block;
+                                background-color: rgb(245, 247, 250);
+                                color: rgb(144, 147, 153);
+                                border: 1px solid rgb(220, 223, 230);
+                                border-radius: 4px 0px 0px 4px;
+                                height: 40px;
+                                width: 100px;
+                                vertical-align: middle;
+                                text-align: center;
+                                margin-top: auto;
+                                margin-right: -6px;
+                                padding-top: 9px;
+                                font-size: 14px;">
+                                目标平台
+                            </div>
+
+                            <el-select clearable v-model="platform5" placeholder="请选择目标平台" @change="selectPlatform5(platform5)">
+                                <el-option v-for="item in PlatformOptions5" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                            </el-select>
+                        </div>
+                        <el-input v-model="beginTime" placeholder="2023-03-21 09:01:00" clearable @clear="clearBeginTime" style="width: 300px;">
+                            <template slot="prepend">起时间</template>
+                        </el-input>
+                        <el-input v-model="endTime" placeholder="2023-03-21 18:12:20" clearable @clear="clearEndTime" style="width: 300px;">
+                            <template slot="prepend">止时间</template>
+                        </el-input>
+                        <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px;">
+                            <el-button type="primary" @click="onSubmit5"  disabled>补推</el-button>
+                        </div>
+                    </el-form>
+
+                    <!-- 第六个 -->
+                    <el-form :inline="true" class="demo-form-inline">
+                        <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px;">
+                            <div style="display: inline-block;
+                                background-color: rgb(245, 247, 250);
+                                color: rgb(144, 147, 153);
+                                border: 1px solid rgb(220, 223, 230);
+                                border-radius: 4px 0px 0px 4px;
+                                height: 40px;
+                                width: 100px;
+                                vertical-align: middle;
+                                text-align: center;
+                                margin-top: auto;
+                                margin-right: -6px;
+                                padding-top: 9px;
+                                font-size: 14px;">
+                                目标平台
+                            </div>
+
+                            <el-select clearable v-model="platform6" placeholder="请选择目标平台" @change="selectPlatform6(platform6)">
+                                <el-option v-for="item in PlatformOptions6" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                            </el-select>
+                        </div>
+                        <el-input v-model="sendOrderNo" placeholder="FH-230821-001596" clearable  style="width: 350px;">
+                            <template slot="prepend">单号</template>
+                        </el-input>
+                        <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px;">
+                            <el-button type="primary" @click="onSubmit6">从仓配系统补推[ FH单据创建 ](已发货的发货单)</el-button>
+                        </div>
+                    </el-form>
+
+                    <el-alert title="说明" type="warning" style="width: 26%;">
+                        <template slot='title'>
+                            <div>说明</div>
+                            <div>1. 将没有推送的单据推送到指定的平台</div>
+                            <div>2. 补推密码校验成功才可以执行补推操作</div>
+                            <div>3. 补推密码的设置请前往: 首页 -> 其他 -> 设置补推密码</div>
+                        </template>
+                    </el-alert>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</div>
+
+<script type="text/javascript">
+
+        var host = window.host
+        var _env = window.env
+
+        var Main = {
+            data: function() {
+                return {
+                    env: _env,
+
+                    beginTime: this.dateFormat() + " 00:00:00",
+                    endTime: this.dateFormat() + " 23:59:59",
+
+                    PlatformOptions0: [
+                        {
+                            label: '开放平台',
+                            value: 'APP-00007'
+                        }
+                    ],
+                    PlatformOptions1: [
+                        {
+                            label: '开放平台',
+                            value: 'APP-00007'
+                        }
+                    ],
+                    PlatformOptions2: [
+                        {
+                            label: '开放平台',
+                            value: 'APP-00007'
+                        }
+                    ],
+                    PlatformOptions3: [
+                        {
+                            label: '开放平台',
+                            value: 'APP-00007'
+                        }
+                    ],
+                    PlatformOptions4: [
+                        {
+                            label: '开放平台',
+                            value: 'APP-00007'
+                        }
+                    ],
+                    PlatformOptions5: [
+                        {
+                            label: '开放平台',
+                            value: 'APP-00007'
+                        }
+                    ],
+                    PlatformOptions6: [
+                        {
+                            label: '开放平台',
+                            value: '1'
+                        },
+                        {
+                            label: 'OMS3.0',
+                            value: '2'
+                        },
+                        {
+                            label: 'OMS3.0 + 开放平台',
+                            value: '3'
+                        }
+                    ],
+                    platform0: '',
+                    platform1: '',
+                    platform2: '',
+                    platform3: '',
+                    platform4: '',
+                    platform5: '',
+                    platform6: '',
+                    orderNo: '',
+                    orderNo5: '',
+                    orderNo6: '',
+                    customerOrderCode1: '',
+                    customerOrderCode2: '',
+                    sendOrderNo: ''
+
+                }
+            },
+            created: function () {
+
+            },
+            methods: {
+                // DH提交
+                onSubmit0() {
+                    if (!this.platform0) {
+                        this.$message({
+                          message: '目标平台为空',
+                          type: 'warning'
+                        });
+                        return;
+                    }
+
+                    if (!this.orderNo) {
+                        this.$message({
+                          message: '单号为空',
+                          type: 'warning'
+                        });
+                        return;
+                    }
+
+                    var success = this.orderNo.search(/^DH-\d{6}-\d{6}$/g)
+                    if (success == 0) {
+
+                        this.$prompt('请输入补推密码', '提示', {
+                            confirmButtonText: '确定',
+                            cancelButtonText: '取消',
+                            inputType: 'password',
+                        }).then(({ value }) => {
+                            axios({
+                                url: host + '/setting_password/checkPassword',
+                                method: 'POST',
+                                data: {
+                                    password2: value,
+                                },
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/json'
+                                }
+                            })
+                            .then(response => {
+                                if (response.data) {
+                                    this.$message({
+                                        message: response.data,
+                                        type: 'warning'
+                                    });
+                                } else {
+                                    axios({
+                                        url: host + '/manual/sco/syncStoreCustomerOrder',
+                                        method: 'GET',
+                                        params: {
+                                            customerOrderNo: this.orderNo,
+                                            platformNo: this.platform0
+                                        },
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'Accept': 'application/json'
+                                        }
+                                    })
+                                    .then(response => {
+                                        if (response.data) {
+                                            this.$message({
+                                              message: response.data,
+                                              type: 'warning'
+                                            });
+                                        } else {
+                                            this.$message({
+                                              message: '补推成功',
+                                              type: 'success'
+                                            });
+                                        }
+
+                                    }, error => {
+                                        this.$message({
+                                          message: '补推失败',
+                                          type: 'warning'
+                                        });
+                                    })
+                                }
+                            }, error => { })
+                        }).catch(() => { });
+
+
+                    } else {
+                        this.$message({
+                          message: '单号格式不正确',
+                          type: 'warning'
+                        });
+                    }
+
+                },
+
+
+                // DH完结提交
+                onSubmit1(type) {
+                    platform = ''
+                    orderNo = ''
+                    if (type == 0) {
+                        if (!this.platform1) {
+                            this.$message({
+                              message: '目标平台为空',
+                              type: 'warning'
+                            });
+                            return;
+                        }
+                        platform = this.platform1
+
+                        if (!this.orderNo5) {
+                            this.$message({
+                              message: '单号为空',
+                              type: 'warning'
+                            });
+                            return;
+                        }
+
+                        orderNo = this.orderNo5
+                    }
+
+                    if (type == 1) {
+                        if (!this.platform2) {
+                            this.$message({
+                              message: '目标平台为空',
+                              type: 'warning'
+                            });
+                            return;
+                        }
+
+                        platform = this.platform2
+
+                        if (!this.orderNo6) {
+                            this.$message({
+                              message: '单号为空',
+                              type: 'warning'
+                            });
+                            return;
+                        }
+
+                        orderNo = this.orderNo6
+                    }
+
+                    var success = orderNo.search(/^DH-\d{6}-\d{6}$/g)
+                    if (success == 0) {
+
+                        this.$prompt('请输入补推密码', '提示', {
+                            confirmButtonText: '确定',
+                            cancelButtonText: '取消',
+                            inputType: 'password',
+                        }).then(({ value }) => {
+                            axios({
+                                url: host + '/setting_password/checkPassword',
+                                method: 'POST',
+                                data: {
+                                    password2: value,
+                                },
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/json'
+                                }
+                            })
+                            .then(response => {
+                                if (response.data) {
+                                    this.$message({
+                                        message: response.data,
+                                        type: 'warning'
+                                    });
+                                } else {
+                                    axios({
+                                        url: host + '/manual/sco/syncStoreCustomerOrderFinish',
+                                        method: 'GET',
+                                        params: {
+                                            customerOrderNo: orderNo,
+                                            platformNo: platform,
+                                            type: type
+                                        },
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'Accept': 'application/json'
+                                        }
+                                    })
+                                    .then(response => {
+                                        if (response.data) {
+                                            this.$message({
+                                              message: response.data,
+                                              type: 'warning'
+                                            });
+                                        } else {
+                                            this.$message({
+                                              message: '补推成功',
+                                              type: 'success'
+                                            });
+                                        }
+
+                                    }, error => {
+                                        this.$message({
+                                          message: '补推失败',
+                                          type: 'warning'
+                                        });
+                                    })
+
+                                }
+                            }, error => { })
+                        }).catch(() => { });
+                    } else {
+                        this.$message({
+                          message: '单号格式不正确',
+                          type: 'warning'
+                        });
+                    }
+
+                },
+
+                // DW提交
+                onSubmit3() {
+                    if (!this.platform3) {
+                        this.$message({
+                          message: '目标平台为空',
+                          type: 'warning'
+                        });
+                        return;
+                    }
+
+                    if (!this.customerOrderCode1) {
+                        this.$message({
+                          message: '单号为空',
+                          type: 'warning'
+                        });
+                        return;
+                    }
+
+                    var success = this.customerOrderCode1.search(/^DW.*$/g)
+                    if (success == 0) {
+                        this.$prompt('请输入补推密码', '提示', {
+                            confirmButtonText: '确定',
+                            cancelButtonText: '取消',
+                            inputType: 'password',
+                        }).then(({ value }) => {
+                            axios({
+                                url: host + '/setting_password/checkPassword',
+                                method: 'POST',
+                                data: {
+                                    password2: value,
+                                },
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/json'
+                                }
+                            })
+                            .then(response => {
+                                if (response.data) {
+                                    this.$message({
+                                        message: response.data,
+                                        type: 'warning'
+                                    });
+                                } else {
+                                    axios({
+                                        url: host + '/manual/sco/syncStoreCustomerOrder',
+                                        method: 'GET',
+                                        params: {
+                                            customerOrderCode: this.customerOrderCode1,
+                                            platformNo: this.platform3
+                                        },
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'Accept': 'application/json'
+                                        }
+                                    })
+                                    .then(response => {
+                                        if (response.data) {
+                                            this.$message({
+                                              message: response.data,
+                                              type: 'warning'
+                                            });
+                                        } else {
+                                            this.$message({
+                                              message: '补推成功',
+                                              type: 'success'
+                                            });
+                                        }
+
+                                    }, error => {
+                                        this.$message({
+                                          message: '补推失败',
+                                          type: 'warning'
+                                        });
+                                    })
+                                }
+                            }, error => { })
+                        }).catch(() => { });
+                    } else {
+                        this.$message({
+                          message: '单号格式不正确',
+                          type: 'warning'
+                        });
+                    }
+
+                },
+
+                // DW提交
+                onSubmit4() {
+                    if (!this.platform4) {
+                        this.$message({
+                          message: '目标平台为空',
+                          type: 'warning'
+                        });
+                        return;
+                    }
+
+                    if (!this.customerOrderCode2) {
+                        this.$message({
+                          message: '单号为空',
+                          type: 'warning'
+                        });
+                        return;
+                    }
+
+                    var success = this.customerOrderCode2.search(/^DC.*$/g)
+                    if (success == 0) {
+                        this.$prompt('请输入补推密码', '提示', {
+                            confirmButtonText: '确定',
+                            cancelButtonText: '取消',
+                            inputType: 'password',
+                        }).then(({ value }) => {
+                            axios({
+                                url: host + '/setting_password/checkPassword',
+                                method: 'POST',
+                                data: {
+                                    password2: value,
+                                },
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/json'
+                                }
+                            })
+                            .then(response => {
+                                if (response.data) {
+                                    this.$message({
+                                        message: response.data,
+                                        type: 'warning'
+                                    });
+                                } else {
+                                    axios({
+                                        url: host + '/manual/sco/syncStoreCustomerOrderFromOMS',
+                                        method: 'GET',
+                                        params: {
+                                            customerOrderCode: this.customerOrderCode2,
+                                            platformNo: this.platform4
+                                        },
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'Accept': 'application/json'
+                                        }
+                                    })
+                                    .then(response => {
+                                        if (response.data) {
+                                            this.$message({
+                                              message: response.data,
+                                              type: 'warning'
+                                            });
+                                        } else {
+                                            this.$message({
+                                              message: '补推成功',
+                                              type: 'success'
+                                            });
+                                        }
+
+                                    }, error => {
+                                        this.$message({
+                                          message: '补推失败',
+                                          type: 'warning'
+                                        });
+                                    })
+                                }
+                            }, error => { })
+                        }).catch(() => { });
+                    } else {
+                        this.$message({
+                          message: '单号格式不正确',
+                          type: 'warning'
+                        });
+                    }
+
+                },
+                // 时间范围提交
+                onSubmit5() {
+                    if (!this.platform5) {
+                        this.$message({
+                          message: '目标平台为空',
+                          type: 'warning'
+                        });
+                        return;
+                    }
+
+                    if (!this.beginTime || !this.endTime) {
+                        this.$message({
+                          message: '起止时间不能为空',
+                          type: 'warning'
+                        });
+                        return;
+                    }
+                    if (this.beginTime) {
+                        var success = this.beginTime.search(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/g)
+                        if (success != 0) {
+                            this.$message({
+                              message: '开始时间格式不正确',
+                              type: 'warning'
+                            });
+                            return;
+                        }
+                    }
+
+                    if (this.endTime) {
+                        var success = this.endTime.search(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/g)
+                        if (success != 0) {
+                            this.$message({
+                              message: '结束时间格式不正确',
+                              type: 'warning'
+                            });
+                            return;
+                        }
+                    }
+
+
+                    if (success == 0) {
+
+                        this.$prompt('请输入补推密码', '提示', {
+                            confirmButtonText: '确定',
+                            cancelButtonText: '取消',
+                            inputType: 'password',
+                        }).then(({ value }) => {
+                            axios({
+                                url: host + '/setting_password/checkPassword',
+                                method: 'POST',
+                                data: {
+                                    password2: value,
+                                },
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/json'
+                                }
+                            })
+                            .then(response => {
+                                if (response.data) {
+                                    this.$message({
+                                        message: response.data,
+                                        type: 'warning'
+                                    });
+                                } else {
+                                    axios({
+                                        url: host + '/manual/sco/syncStoreCustomerOrderByTime',
+                                        method: 'GET',
+                                        params: {
+                                            beginTime: this.beginTime,
+                                            endTime: this.endTime,
+                                            platformNo: this.platform5
+                                        },
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'Accept': 'application/json'
+                                        }
+                                    })
+                                    .then(response => {
+                                        if (response.data) {
+                                            this.$message({
+                                              message: response.data,
+                                              type: 'warning'
+                                            });
+                                        } else {
+                                            this.$message({
+                                              message: '补推成功',
+                                              type: 'success'
+                                            });
+                                        }
+
+                                    }, error => {
+                                        this.$message({
+                                          message: '补推失败',
+                                          type: 'warning'
+                                        });
+                                    })
+                                }
+                            }, error => { })
+                        }).catch(() => { });
+                    } else {
+                        this.$message({
+                          message: '单号格式不正确',
+                          type: 'warning'
+                        });
+                    }
+
+                },
+                selectPlatform(value) {
+                    this.platform = value
+                },
+                selectPlatform1(value) {
+                    this.platform1 = value
+                },
+                selectPlatform2(value) {
+                    this.platform2 = value
+                },
+                selectPlatform3(value) {
+                    this.platform3 = value
+                },
+                selectPlatform4(value) {
+                    this.platform4 = value
+                },
+                selectPlatform5(value) {
+                    this.platform5 = value
+                },
+                selectPlatform6(value) {
+                    this.platform6 = value
+                },
+                clearBeginTime() {
+                    this.beginTime = ''
+                },
+                clearEndTime() {
+                    this.endTime = ''
+                },
+                // 发货单提交
+                onSubmit6() {
+                    if (!this.platform6) {
+                        this.$message({
+                          message: '目标平台为空',
+                          type: 'warning'
+                        });
+                        return;
+                    }
+
+                    if (!this.sendOrderNo) {
+                        this.$message({
+                          message: '单号为空',
+                          type: 'warning'
+                        });
+                        return;
+                    }
+
+                    var success = this.sendOrderNo.search(/^FH-\d{6}-\d{6}$/g)
+                    if (success == 0) {
+
+                        this.$prompt('请输入补推密码', '提示', {
+                            confirmButtonText: '确定',
+                            cancelButtonText: '取消',
+                            inputType: 'password',
+                        }).then(({ value }) => {
+                            axios({
+                                url: host + '/setting_password/checkPassword',
+                                method: 'POST',
+                                data: {
+                                    password2: value,
+                                },
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/json'
+                                }
+                            })
+                            .then(response => {
+                                if (response.data) {
+                                    this.$message({
+                                        message: response.data,
+                                        type: 'warning'
+                                    });
+                                } else {
+                                    axios({
+                                        url: host + '/manual/sco/syncStoreSendOrderToThird',
+                                        method: 'GET',
+                                        params: {
+                                            sendOrderNo: this.sendOrderNo,
+                                            platformNumber: this.platform6
+                                        },
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'Accept': 'application/json'
+                                        }
+                                    })
+                                    .then(response => {
+                                        if (response.data) {
+                                            this.$message({
+                                              message: response.data,
+                                              type: 'warning'
+                                            });
+                                        } else {
+                                            this.$message({
+                                              message: '补推成功',
+                                              type: 'success'
+                                            });
+                                        }
+
+                                    }, error => {
+                                        this.$message({
+                                          message: '补推失败',
+                                          type: 'warning'
+                                        });
+                                    })
+                                }
+                            }, error => { })
+                        }).catch(() => { });
+                    } else {
+                        this.$message({
+                          message: '单号格式不正确',
+                          type: 'warning'
+                        });
+                    }
+                },
+
+                // 当前日期格式化
+                dateFormat() {
+                    var date = new Date()
+                    var year = date.getFullYear()
+                    var month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1
+                    var day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+                    return year + '-' +month + '-' + day
+                },
+
+
+
+            }
+        }
+        var Ctor = Vue.extend(Main)
+        new Ctor().$mount('#app')
+
+    </script>
+</body>
+</html>

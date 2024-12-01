@@ -1,0 +1,606 @@
+<template>
+  <div>
+    <section class="content clearfix" style="width: 97%;">
+      <div class="el-backtop" style="right: 40px; top: 130px;">
+        <el-link type="primary" :href="'/'" :underline="false" target="_blank"><i class="el-icon-s-home"></i></el-link>
+      </div>
+      <el-divider content-position="right">{{ env }}环境</el-divider>
+
+
+      <el-form :inline="true" class="demo-form-inline">
+
+        <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px;">
+
+          <div style="display: inline-block;
+                          background-color: rgb(245, 247, 250);
+                          color: rgb(144, 147, 153);
+                          border: 1px solid rgb(220, 223, 230);
+                          border-radius: 4px 0px 0px 4px;
+                          height: 40px;
+                          width: 50px;
+                          vertical-align: middle;
+                          text-align: center;
+                          margin-top: auto;
+                          margin-right: -6px;
+                          padding-top: 9px;
+                          font-size: 14px;">
+            企业
+          </div>
+
+          <el-select v-model="select_enterprise" placeholder="请选择企业" @change="selectEnterprise(select_enterprise)"
+                     filterable clearable @clear="clearEnterprise" disabled>
+            <el-option v-for="item in EnterpriseOptions" :key="item.value" :label="item.label"
+                       :value="item.value"></el-option>
+          </el-select>
+        </div>
+
+        <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px; margin-left: 5px;">
+          <div style="display: inline-block;
+                          background-color: rgb(245, 247, 250);
+                          color: rgb(144, 147, 153);
+                          border: 1px solid rgb(220, 223, 230);
+                          border-radius: 4px 0px 0px 4px;
+                          height: 40px;
+                          width: 50px;
+                          vertical-align: middle;
+                          text-align: center;
+                          margin-top: auto;
+                          margin-right: -6px;
+                          padding-top: 9px;
+                          font-size: 14px;">
+            应用
+          </div>
+
+          <el-select v-model="select_app" placeholder="请选择应用" filterable clearable @clear="clearApp">
+            <el-option v-for="item in AppOptions" :key="item.value" :label="item.label" :value="item.value"></el-option>
+          </el-select>
+        </div>
+
+        <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px; margin-left: 5px;">
+          <div style="display: inline-block;
+                          background-color: rgb(245, 247, 250);
+                          color: rgb(144, 147, 153);
+                          border: 1px solid rgb(220, 223, 230);
+                          border-radius: 4px 0px 0px 4px;
+                          height: 40px;
+                          width: 50px;
+                          vertical-align: middle;
+                          text-align: center;
+                          margin-top: auto;
+                          margin-right: -6px;
+                          padding-top: 9px;
+                          font-size: 14px;">
+            类型
+          </div>
+
+          <el-select v-model="select_type" placeholder="请选择类型" filterable clearable @clear="clearType">
+            <el-option v-for="item in TypeOptions" :key="item.value" :label="item.label"
+                       :value="item.value"></el-option>
+          </el-select>
+        </div>
+
+        <el-input v-model="keyword" placeholder="业务或三方" clearable @clear="clearKeyword"
+                  style="width: 300px; margin-left: 5px;">
+          <template slot="prepend">关键字</template>
+        </el-input>
+
+        <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px; margin-left: 5px;">
+          <el-button type="primary" @click="onSubmit(-1)">查询</el-button>
+        </div>
+
+
+        <!-- 结果 -->
+        <div style="margin-top: 15px;">
+
+          <!-- 结果 -->
+          <div style="margin-top: 10px;" v-loading="loading">
+            <el-divider content-position="left">结果</el-divider>
+
+            <div style="margin-left: 40px; font-weight: 500; font-size: 14px;">
+              <template>
+                <el-table :data="appRelationList" border style="width: 100%" :row-style="{ height: 10+'px'}"
+                          :cell-style="{padding:0+'px'}"> <!-- height="250" -->
+                  <el-table-column fixed label="序号" type="index" width="50"></el-table-column>
+                  <el-table-column prop="appName" label="应用名称" min-width="100"
+                                   :show-overflow-tooltip="true"></el-table-column>
+                  <el-table-column prop="enterpriseName" label="企业名称" min-width="100"
+                                   :show-overflow-tooltip="true"></el-table-column>
+                  <el-table-column prop="appRelationBusinessTypeDesc" label="数据类型" min-width="100"
+                                   :show-overflow-tooltip="true"></el-table-column>
+                  <el-table-column prop="warehouseCode" label="仓库编码" min-width="100"
+                                   :show-overflow-tooltip="true"></el-table-column>
+
+                  <el-table-column prop="relationName" label="业务名称" min-width="100"
+                                   :show-overflow-tooltip="true"></el-table-column>
+                  <el-table-column prop="relationNo" label="业务编码" min-width="100"
+                                   :show-overflow-tooltip="true"></el-table-column>
+
+                  <el-table-column prop="thirdNo" :label="labelName" min-width="100"
+                                   :show-overflow-tooltip="true"></el-table-column>
+                  <el-table-column prop="thirdName" label="三方名称" min-width="100"
+                                   :show-overflow-tooltip="true"></el-table-column>
+                  <el-table-column label="已删除" width="100" align="center">
+                    <template slot-scope="scope">
+                                  <span v-if="scope.row.isDelete == 1">
+                                      <svg t="1691468608589" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                           xmlns="http://www.w3.org/2000/svg" p-id="4016" width="16" height="16"><path
+                                          d="M414.245926 751.028148l437.57037-453.12c7.300741-7.49037 7.111111-19.531852-0.474074-26.832593-7.49037-7.300741-19.531852-7.111111-26.832593 0.474074L398.506667 712.722963 199.111111 513.327407c-7.395556-7.395556-19.437037-7.395556-26.832593 0l0 0c-7.395556 7.395556-7.395556 19.437037 0 26.832593l212.574815 212.574815c6.731852 6.731852 17.161481 7.300741 24.557037 1.896296C411.211852 753.682963 412.823704 752.545185 414.245926 751.028148z"
+                                          fill="#d4237a" p-id="4017"></path></svg>
+                                  </span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column prop="createTimeStr" label="创建时间" width="200"></el-table-column>
+                  <el-table-column prop="updateTimeStr" label="更新时间" width="200"></el-table-column>
+                  <el-table-column fixed="right" label="操作">
+                    <template slot-scope="scope">
+                      <el-button @click="handleDetailClick(scope.row)" type="text">详情</el-button>
+                      <el-button @click="handleDeleteClick(scope.row)" type="text">删除</el-button>
+                    </template>
+                  </el-table-column>
+                </el-table>
+              </template>
+
+
+            </div>
+          </div>
+
+          <div style="text-align: center; margin-top: 10px;">
+            <el-pagination
+                background
+                layout="prev, pager, next"
+                :current-page.sync="curPage"
+                :total="total" @current-change="handleCurrentChange">
+            </el-pagination>
+          </div>
+
+        </div>
+
+
+      </el-form>
+
+    </section>
+  </div>
+
+</template>
+
+<script>
+
+import Config from '@/assets/js/route.js'
+import axios from 'axios';
+
+export default {
+  name: "AppRelation",
+  data() {
+
+    return {
+      env: Config.env,
+      host: Config.host,
+      select_enterprise: '',
+      select_app: '',
+      select_type: '',
+      keyword: '',
+
+      EnterpriseOptions: [],
+      AppOptions: [],
+      TypeOptions: [
+        {
+          label: '仓库商品',
+          value: '1'
+        },
+        {
+          label: '仓库货主商品',
+          value: '2'
+        },
+        {
+          label: '仓库',
+          value: '10'
+        },
+        {
+          label: '品牌',
+          value: '60'
+        },
+        {
+          label: '货主',
+          value: '30'
+        },
+        {
+          label: '客户',
+          value: '40'
+        },
+        {
+          label: '供应商',
+          value: '50'
+        },
+        {
+          label: '门店分组',
+          value: '70'
+        },
+        {
+          label: '门店项目',
+          value: '80'
+        },
+        {
+          label: '商品分类',
+          value: '90'
+        },
+        {
+          label: '商品单位',
+          value: '100'
+        },
+        {
+          label: '物流公司',
+          value: '110'
+        },
+        {
+          label: '操作人',
+          value: '120'
+        },
+      ],
+
+      loading: false,
+      appRelationList: [],
+      changeTitle: false,
+      labelName: '三方编码',
+
+      total: 0,
+      curPage: 1,
+
+    }
+  },
+
+  created: function () {
+
+    // 获取所有企业
+    axios({
+      url: this.host + '/toolkit/tools/getAllEnterprise',
+      method: 'GET',
+      params: {},
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => {
+      if (response.data['code'] && response.data['code'] === 1126) {
+        this.$router.push("/login")
+        return
+      }
+
+      let EnterpriseList = response.data
+
+      for (let i = 0; i < EnterpriseList.length; i++) {
+        let label = EnterpriseList[i]['enterpriseName']
+        let value = EnterpriseList[i]['enterpriseCode']
+        this.EnterpriseOptions.push({'label': label, 'value': value})
+      }
+
+    }, error => {
+      console.log(error)
+      this.$message({
+        message: '查询企业失败',
+        type: 'warning'
+      });
+    })
+
+    // 查询所有应用
+    axios({
+      url: this.host + '/toolkit/ab/getAllApp',
+      method: 'GET',
+      params: {},
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => {
+      if (response.data['code'] && response.data['code'] === 1126) {
+        this.$router.push("/login")
+        return
+      }
+
+      let AppList = response.data
+      if (AppList) {
+        for (let i = 0; i < AppList.length; i++) {
+          let label = AppList[i]['appName']
+          let value = AppList[i]['appCode']
+          this.AppOptions.push({'label': label, 'value': value})
+        }
+      }
+    }, error => {
+      console.log(error)
+      this.$message({
+        message: '查询应用失败',
+        type: 'warning'
+      });
+    })
+  },
+  methods: {
+    // 查询
+    onSubmit(curPage) {
+      this.appRelationList = []
+      this.changeTitle = false
+      if (this.select_type && this.select_type === '30') {
+        this.changeTitle = true
+        this.labelName = 'ENT码'
+      } else {
+        this.labelName = '三方编码'
+      }
+
+      if (curPage === -1) {
+        this.curPage = 1
+      }
+      this.loading = true
+      axios({
+        url: this.host + '/toolkit/ab/getAppRelation',
+        method: 'POST',
+        data: {
+          enterpriseCode: this.select_enterprise,
+          appCode: this.select_app,
+          type: this.select_type,
+          keyword: this.keyword,
+          curPage: this.curPage
+        },
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.data['code'] && response.data['code'] === 1126) {
+          this.$router.push("/login")
+          return
+        }
+
+        if (response.data.total === 0) {
+          this.loading = false
+          this.$message({
+            message: '未查询到数据',
+            type: 'warning'
+          });
+          this.curPage = 1
+          this.total = 0
+          return
+        }
+
+        this.appRelationList = response.data.appRelationList
+        this.total = response.data.total
+        this.loading = false
+      }, error => {
+        console.log(error)
+        this.loading = false
+        this.$message({
+          message: '查询失败',
+          type: 'warning'
+        });
+
+        this.curPage = 1
+        this.total = 0
+        this.appRelationList = []
+      })
+
+    },
+
+    // 选择企业
+    selectEnterprise(enterprise) {
+
+      if (!enterprise) {
+        this.$message({
+          message: '请选择企业',
+          type: 'warning'
+        });
+        return;
+      }
+      this.select_enterprise = enterprise
+      this.select_app = ''
+      this.AppOptions = []
+
+      this.appRelationList = []
+      this.total = 0
+      this.curPage = 1
+
+
+      // 查询所有应用
+      axios({
+        url: this.host + '/toolkit/ab/getAllAppByEnterprise',
+        method: 'GET',
+        params: {
+          enterpriseCode: enterprise
+        },
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.data['code'] && response.data['code'] === 1126) {
+          this.$router.push("/login")
+          return
+        }
+        let AppList = response.data
+        if (AppList) {
+          for (let i = 0; i < AppList.length; i++) {
+            let label = AppList[i]['appName']
+            let value = AppList[i]['appCode']
+            this.AppOptions.push({'label': label, 'value': value})
+          }
+        }
+      }, error => {
+        console.log(error)
+        this.$message({
+          message: '查询应用失败',
+          type: 'warning'
+        });
+      })
+
+
+    },
+
+
+    clearEnterprise() {
+      this.select_enterprise = ''
+      this.select_app = ''
+      this.AppOptions = []
+
+      // 查询所有应用
+      axios({
+        url: this.host + '/toolkit/ab/getAllApp',
+        method: 'GET',
+        params: {},
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.data['code'] && response.data['code'] === 1126) {
+          this.$router.push("/login")
+          return
+        }
+        let AppList = response.data
+        if (AppList) {
+          for (let i = 0; i < AppList.length; i++) {
+            let label = AppList[i]['appName']
+            let value = AppList[i]['appCode']
+            this.AppOptions.push({'label': label, 'value': value})
+          }
+        }
+      }, error => {
+        console.log(error)
+        this.$message({
+          message: '查询应用失败',
+          type: 'warning'
+        });
+      })
+
+    },
+
+
+    // 删除
+    handleDeleteClick(row) {
+      this.$confirm('确定删除?', '业务编码[ ' + row.relationNo + ' ]', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+        showClose: false
+      }).then(() => {
+        axios({
+          url: this.host + '/toolkit/ab/delete',
+          method: 'GET',
+          params: {
+            appRelationId: row.appRelationId,
+          },
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
+        })
+        .then(response => {
+          if (response.data['code'] && response.data['code'] === 1126) {
+            this.$router.push("/login")
+            return
+          }
+          if (response.data === 0) {
+            this.$message({
+              message: '删除成功',
+              type: 'success'
+            });
+          } else {
+            this.$message({
+              message: '删除失败',
+              type: 'warning'
+            });
+          }
+        }, error => {
+          console.log(error)
+          this.$message({
+            message: '删除失败',
+            type: 'warning'
+          });
+        })
+      }).catch(() => {
+      });
+
+    },
+
+    clearApp() {
+      this.select_app = ''
+    },
+    clearType() {
+      this.select_type = ''
+    },
+    clearKeyword() {
+      this.keyword = ''
+    },
+
+    handleCurrentChange(current_page) {
+      this.curPage = current_page
+      this.onSubmit(current_page)
+    },
+    copy(data) {
+      let url = data;
+      let oInput = document.createElement('textarea');
+      oInput.value = url;
+      document.body.appendChild(oInput);
+      oInput.select(); // 选择对象
+
+      document.execCommand("Copy"); // 执行浏览器复制命令
+      this.$message({
+        message: '复制成功',
+        type: 'success'
+      });
+      oInput.remove()
+    },
+
+    handleDetailClick(row) {
+      this.$message({
+        message: '暂未实现',
+        type: 'warning'
+      });
+    },
+
+
+  }
+
+
+}
+</script>
+
+<style>
+@import '@/assets/css/common.css';
+
+.el-link.el-link--primary {
+  color: #0000FF;
+}
+
+.icon-link {
+  display: inline-table;
+  position: relative;
+  bottom: 1.5px;
+  font-size: 15px;
+  margin-left: 7px;
+  margin-right: 7px;
+}
+
+.el-link.el-link--default {
+  color: #0000FF;
+}
+
+.el-step__title.is-process {
+  font-size: 15px;
+}
+
+.el-divider__text.is-left {
+  color: #FA8919;
+  font-weight: bold;
+}
+
+.el-table .warning-row {
+  background: #FFFFBB;
+}
+
+pre {
+  font-family: Microsoft YaHei;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+</style>

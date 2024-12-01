@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>杂货柜-门店</title>
+    <link href="../r/libs/font-awesome/4.0.3/css/font-awesome.min.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="../r/element-ui@2.15.2/index.css" rel="stylesheet"/>
+    <link href="../r/css/common.css" rel="stylesheet"/>
+
+    <script src="../r/vue@2.6.14/vue.js"></script>
+    <script src="../r/element-ui@2.15.2/index.js"></script>
+    <script src="../r/axios@0.21.1/axios.min.js"></script>
+    <script src="../r/js/route.js"></script>
+
+    <style>
+        .el-step__title.is-process {
+            font-size: 15px;
+        }
+
+        .el-divider__text.is-left {
+            color: #FA8919;
+            font-weight: bold;
+        }
+
+        .el-input__inner {
+            border-radius: 0 4px 4px 0;
+        }
+
+        .el-select {
+            vertical-align: middle;
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+<div id="app" style="margin-top: 5%;">
+
+    <section class="content clearfix">
+        <div>
+            <div class="el-backtop" style="right: 40px; top: 130px;">
+                <el-link type="primary" :href="'/'" :underline="false" target="_blank"><i class="el-icon-s-home"></i>
+                </el-link>
+            </div>
+
+            <el-divider content-position="right">{{env}}环境</el-divider>
+            <el-form :inline="true" class="demo-form-inline">
+
+                <el-input v-model="shopName" placeholder="百基拉无锡仓宜兴官林店" clearable @clear="clearShopName"
+                          style="width: 350px;">
+                    <template slot="prepend">门店名称</template>
+                </el-input>
+                <el-input v-model="shopNo" placeholder="SLA2M3SU1670395283931 或 C0167796200100" clearable
+                          @clear="clearShopNo" style="width: 450px;">
+                    <template slot="prepend">门店编码</template>
+                </el-input>
+                <el-button type="primary" @click="onSubmit(-1)">查询</el-button>
+
+                <!-- 结果 -->
+                <div style="margin-top: 15px;">
+
+                    <!-- 操作结果 -->
+                    <div style="margin-top: 10px;" v-loading="loading">
+                        <el-divider content-position="left">清分系统门店</el-divider>
+
+                        <div style="margin-left: 40px; font-weight: 500; font-size: 14px;">
+                            <template>
+                                <el-table :data="shopAccountList" border style="width: 100%"
+                                          :row-style="{ height: 10+'px'}" :cell-style="{padding:0+'px'}">
+                                    <!-- height="250" -->
+                                    <el-table-column fixed label="序号" type="index" width="50">
+                                        <template slot-scope="scope">
+                                            {{scope.$index + 1}}
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column fixed label="门店名称" min-width="100"
+                                                     :show-overflow-tooltip="true">
+                                        <template slot-scope="scope">
+                                            <el-button @click="handleDetailClick(scope.row)" type="text">
+                                                {{ scope.row.shopAccountName }}
+                                            </el-button>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column prop="otherCode" label="门店编号" max-width="150"
+                                                     :show-overflow-tooltip="true"></el-table-column>
+                                    <el-table-column prop="otherCode" label="门店编码" max-width="150"
+                                                     :show-overflow-tooltip="true"></el-table-column>
+                                    <el-table-column prop="brandName" label="品牌" max-width="150"
+                                                     :show-overflow-tooltip="true"></el-table-column>
+
+
+                                    <el-table-column label="状态" width="120">
+                                        <template slot-scope="scope">
+                                            <span v-if="scope.row.status == 0">
+                                                <span style="color: red;">禁用</span>
+                                            </span>
+                                            <span v-else>
+                                                启用
+                                            </span>
+                                        </template>
+                                    </el-table-column>
+
+                                    <el-table-column prop="createTimeStr" label="创建时间"
+                                                     width="200"></el-table-column>
+                                    <el-table-column prop="updateTimeStr" label="更新时间"
+                                                     width="200"></el-table-column>
+
+                                </el-table>
+                            </template>
+
+
+                            <el-dialog :title="'[ ' + TITLE + ' ] 详情'" :visible.sync="DETAIL_dialogVisible"
+                                       :show-close="false" width="50%">
+                                <div style="display: block; margin: 5px 0;">
+                                    <label style="display: inline-block; text-align: right;">[ 门店名称 ]</label><label>&nbsp;&nbsp;&nbsp;{{shopAccountDetail.shopAccountVO.shopAccountName}}</label>
+                                </div>
+                                <div style="display: block; margin: 5px 0;">
+                                    <label style="display: inline-block; text-align: right;">[ 门店地址 ]</label><label>&nbsp;&nbsp;&nbsp;{{shopAccountDetail.shopAccountVO.shopAddress}}</label>
+                                </div>
+                                <div style="display: block; margin: 5px 0;">
+                                    <label style="display: inline-block; text-align: right;">[ 门店编号 ]</label><label>&nbsp;&nbsp;&nbsp;{{shopAccountDetail.shopAccountVO.otherCode}}</label>
+                                </div>
+                                <div style="display: block; margin: 5px 0;">
+                                    <label style="display: inline-block; text-align: right;">[ 门店编码 ]</label><label>&nbsp;&nbsp;&nbsp;{{shopAccountDetail.shopAccountVO.otherCode}}</label>
+                                </div>
+                                <div style="display: block; margin: 5px 0;">
+                                    <label style="display: inline-block; text-align: right;">[ 归属品牌 ]</label><label>&nbsp;&nbsp;&nbsp;{{shopAccountDetail.shopAccountVO.brandName}}</label>
+                                </div>
+                                <div style="display: block; margin: 5px 0;">
+                                    <label style="display: inline-block; text-align: right;">[ 门店状态 ]</label>
+                                    <span v-if="shopAccountDetail.shopAccountVO.status == 0">
+                                        <span style="color: red;">&nbsp;&nbsp;禁用</span>
+                                    </span>
+                                    <span v-if="shopAccountDetail.shopAccountVO.status == 1">
+                                        <span>&nbsp;&nbsp;启用</span>
+                                    </span>
+                                </div>
+
+                            </el-dialog>
+
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 10px;">
+                        <el-pagination
+                                background
+                                layout="prev, pager, next"
+                                :current-page.sync="curPage"
+                                :total="total" @current-change="handleCurrentChange">
+                        </el-pagination>
+                    </div>
+
+                </div>
+
+
+            </el-form>
+        </div>
+
+
+    </section>
+
+</div>
+
+<script type="text/javascript">
+
+var host = window.host
+var _env = window.env
+
+var Main = {
+    data: function () {
+        return {
+            env: _env,
+
+            loading: false,
+
+            shopName: '',
+            shopNo: '',
+
+            shopAccountList: [],
+
+            total: 0,
+            curPage: 1,
+
+            TITLE: '',
+            DETAIL_dialogVisible: false,
+            shopAccountDetail: {
+                shopAccountVO: {}
+            },
+
+
+        }
+    },
+    created: function () {
+
+        //this.onSubmit(1)
+
+    },
+    methods: {
+        // 查询
+        onSubmit(curPage) {
+
+            if (curPage == -1) {
+                this.curPage = 1
+            }
+            this.total = 0
+            this.loading = true
+            axios({
+                url: host + '/shopAccount/selectShopAccountPage',
+                method: 'POST',
+                data: {
+                    shopName: this.shopName,
+                    shopNo: this.shopNo,
+                    curPage: this.curPage
+                },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (response.data.total == 0) {
+                        this.loading = false
+                        this.$message({
+                            message: '未查询到数据',
+                            type: 'warning'
+                        });
+                        this.curPage = 1
+                        this.total = 0
+                        return
+                    }
+
+                    this.shopAccountList = response.data.shopAccountList
+                    this.total = response.data.total
+                    this.curPage = curPage
+                    this.loading = false
+                }, error => {
+                    this.loading = false
+                    this.$message({
+                        message: '查询失败',
+                        type: 'warning'
+                    });
+
+                    this.curPage = 1
+                    this.total = 0
+                    this.shopAccountList = []
+                })
+
+        },
+
+        handleDetailClick(row) {
+            this.TITLE = row.shopAccountName
+            axios({
+                url: host + '/shopAccount/selectShopAccountDetail',
+                method: 'GET',
+                params: {
+                    shopAccountId: row.shopAccountIdStr
+                },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+                .then(response => {
+                    this.shopAccountDetail = response.data
+                    this.DETAIL_dialogVisible = true
+                }, error => {
+                    this.$message({
+                        message: '查询门店详情失败',
+                        type: 'warning'
+                    });
+                })
+        },
+
+        handleCurrentChange(current_page) {
+            this.curPage = current_page
+            this.onSubmit(current_page)
+        },
+
+        clearShopName() {
+            this.shopName = ''
+        },
+        clearShopNo() {
+            this.shopNo = ''
+        },
+        // 当前日期格式化
+        dateFormat() {
+            var date = new Date()
+            var year = date.getFullYear()
+            var month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1
+            var day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+            return year + '-' + month + '-' + day
+        },
+
+        copy(data) {
+            let url = data;
+            let oInput = document.createElement('textarea');
+            oInput.value = url;
+            document.body.appendChild(oInput);
+            oInput.select(); // 选择对象
+
+            document.execCommand("Copy"); // 执行浏览器复制命令
+            this.$message({
+                message: '复制成功',
+                type: 'success'
+            });
+            oInput.remove()
+        },
+
+
+    }
+}
+var Ctor = Vue.extend(Main)
+new Ctor().$mount('#app')
+
+</script>
+</body>
+</html>

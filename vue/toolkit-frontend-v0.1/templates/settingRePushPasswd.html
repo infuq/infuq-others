@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title>杂货柜-设置补推密码</title>
+        <link href="../r/libs/font-awesome/4.0.3/css/font-awesome.min.css" media="screen" rel="stylesheet" type="text/css" />
+        <link href="../r/element-ui@2.15.2/index.css" rel="stylesheet" />
+        <link href="../r/css/common.css" rel="stylesheet" />
+
+        <script src="../r/vue@2.6.14/vue.js"></script>
+        <script src="../r/element-ui@2.15.2/index.js"></script>
+        <script src="../r/axios@0.21.1/axios.min.js"></script>
+        <script src="../r/js/route.js"></script>
+
+        <style>
+
+            html,body {
+                height: 90%;
+            }
+
+        </style>
+
+    </head>
+    <body>
+
+        <div id="app" style="margin-top: 5%;">
+
+            <section class="content clearfix" style="width: 55%;">
+                <div> <!-- style="border-top: 1px solid #eee; padding-top: 15px;" -->
+                    <div class="el-backtop" style="right: 40px; top: 130px;"><el-link  type="primary" :href="'/'" :underline="false" target="_blank"><i class="el-icon-s-home"></i></el-link></div>
+
+                    <el-divider content-position="right">{{env}}环境</el-divider>
+                    <div style="margin-top: 25px;">
+
+                        <el-form label-width="100px" class="demo-ruleForm">
+                            <div>
+                                <el-input placeholder="请输入补推密码" v-model="password" show-password></el-input>
+                            </div>
+                            <div style="margin-top: 5px;">
+                                <el-button type="primary" @click="confirm()">确认</el-button>
+                            </div>
+
+                        </el-form>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div style="width: 100%; bottom: 100px;">
+
+            <div style="border-top: 1px solid #eee; margin-left: 15%; margin-right: 15%; padding-top: 10px; text-align: center;">
+                Copyright &copy; 2023-2024 白洞-杂货柜
+            </div>
+        </div>
+
+
+
+
+        <script type="text/javascript">
+
+        var host = window.host
+        var _env = window.env
+
+        var Main = {
+            data: function() {
+                return {
+                    env: _env,
+
+                    password: ''
+                }
+            },
+            created: function () {
+
+            },
+            methods: {
+                confirm() {
+                    if (!this.password) {
+                        this.$message({
+                            message: '请输入补推密码',
+                            type: 'warning'
+                        });
+                        return;
+                    }
+                    this.$prompt('请输入权限账号', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        inputType: 'password',
+                    }).then(({ value }) => {
+                        axios({
+                            url: host + '/setting_password/settingPassword',
+                            method: 'POST',
+                            data: {
+                                password1: value,
+                                password2: this.password,
+                            },
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            }
+                        })
+                        .then(response => {
+                            if (response.data) {
+                                this.$message({
+                                    message: response.data,
+                                    type: 'warning'
+                                });
+                            } else {
+                                this.$message({
+                                    message: '补推密码设置成功',
+                                    type: 'success'
+                                });
+                            }
+                        }, error => {
+                        })
+                    }).catch(() => {
+
+                    });
+                },
+            }
+        }
+        var Ctor = Vue.extend(Main)
+        new Ctor().$mount('#app')
+
+    </script>
+
+    </body>
+</html>

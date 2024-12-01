@@ -1,0 +1,301 @@
+<template>
+  <div>
+    <section class="content clearfix" style="width: 97%;">
+      <div class="el-backtop" style="right: 40px; top: 130px;">
+        <el-link type="primary" :href="'/'" :underline="false" target="_blank"><i class="el-icon-s-home"></i></el-link>
+      </div>
+      <el-divider content-position="right">{{ env }}环境</el-divider>
+
+
+      <el-form :inline="true" class="demo-form-inline">
+
+        <div>
+          <el-input v-model="ownerName1" placeholder="货主名称" clearable @clear="clearOwnerName1"
+                    style="width: 400px;">
+            <template slot="prepend">商品在不同仓库的库存</template>
+          </el-input>
+          <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px; margin-left: 5px;">
+            <el-button type="primary" @click="onSubmit1(-1)">查询</el-button>
+          </div>
+        </div>
+        <div>
+          <el-input v-model="ownerName2" placeholder="货主名称或货主ID" clearable @clear="clearOwnerName2"
+                    style="width: 300px;">
+            <template slot="prepend">商品的库存</template>
+          </el-input>
+          <div style="display: inline-block; margin-top: 3px; margin-bottom: 3px; margin-left: 5px;">
+            <el-button type="primary" @click="onSubmit2(-1)">查询</el-button>
+          </div>
+        </div>
+        <div style="margin-top: 5px;">
+          <span v-if="totalStock > 0" style="color: #FA8919;">[ 总库存 ] {{ totalStock }}</span>
+        </div>
+        <div>
+          <span v-if="totalStock > 0" style="color: #FA8919;">[ SQL ] &nbsp;<i @click="copy(sql)"
+                                                                               class="el-icon-document-copy"></i></span>
+        </div>
+
+        <!-- 结果 -->
+        <div style="margin-top: 15px;">
+
+          <!-- 结果 -->
+          <div style="margin-top: 10px;" v-loading="loading">
+            <el-divider content-position="left" v-if="cur_type == 0">结果</el-divider>
+            <el-divider content-position="left" v-if="cur_type == 1">商品在不同仓库的库存结果</el-divider>
+            <el-divider content-position="left" v-if="cur_type == 2">商品的库存结果</el-divider>
+
+            <div style="margin-left: 40px; font-weight: 500; font-size: 14px;">
+              <template>
+                <el-table :data="stockList" border style="width: 70%" :row-style="{ height: 10+'px'}"
+                          :cell-style="{padding:0+'px'}"> <!-- height="250" -->
+                  <el-table-column fixed label="序号" type="index" width="50"></el-table-column>
+                  <el-table-column fixed prop="goodsName" label="商品名称" min-width="150"
+                                   :show-overflow-tooltip="true"></el-table-column>
+                  <el-table-column prop="ownerName" label="货主" min-width="150"
+                                   :show-overflow-tooltip="true"></el-table-column>
+                  <span v-if="cur_type == 1">
+                              <el-table-column prop="warehouseName" label="仓库名称" min-width="150"
+                                               :show-overflow-tooltip="true"></el-table-column>
+                          </span>
+                  <el-table-column prop="availableQuantity" label="可用库存"></el-table-column>
+                </el-table>
+              </template>
+            </div>
+          </div>
+
+          <div style="text-align: center; margin-top: 10px;">
+            <el-pagination
+                background
+                layout="prev, pager, next"
+                :current-page.sync="curPage"
+                :total="total" @current-change="handleCurrentChange">
+            </el-pagination>
+          </div>
+        </div>
+      </el-form>
+
+    </section>
+  </div>
+
+</template>
+
+<script>
+
+import Config from '@/assets/js/route.js'
+import axios from 'axios';
+
+export default {
+  name: "OwnerStockHistory",
+  data() {
+
+    return {
+      env: Config.env,
+      host: Config.host,
+
+      ownerName1: '',
+      ownerName2: '',
+      stockList: [],
+
+      loading: false,
+
+      total: 0,
+      curPage: 1,
+
+      cur_type: 0,
+      totalStock: 0,
+      sql: '',
+    }
+  },
+
+  created: function () {
+  },
+  methods: {
+    // 查询
+    onSubmit1(curPage) {
+      this.sql = ''
+      this.cur_type = 1
+      this.totalStock = 0
+      if (curPage === -1) {
+        this.curPage = 1
+      }
+      this.loading = true
+      axios({
+        url: this.host + '/toolkit/tools/ownerStockHistory',
+        method: 'GET',
+        params: {
+          ownerName: this.ownerName1,
+          type: 1,
+          curPage: this.curPage
+        },
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      })
+          .then(response => {
+            if (response.data['code'] && response.data['code'] === 1126) {
+              this.$router.push("/login")
+              return
+            }
+
+            if (response.data.total === 0) {
+              this.loading = false
+              this.$message({
+                message: '未查询到数据',
+                type: 'warning'
+              });
+              this.curPage = 1
+              this.total = 0
+              return
+            }
+
+            this.stockList = response.data.stockList
+            this.total = response.data.total
+            this.loading = false
+            this.totalStock = response.data.totalStock
+            this.sql = response.data.sql
+          }, error => {
+            console.log(error)
+            this.loading = false
+            this.$message({
+              message: '查询失败',
+              type: 'warning'
+            });
+
+            this.curPage = 1
+            this.total = 0
+            this.stockList = []
+            this.totalStock = 0
+          })
+    },
+
+    // 查询
+    onSubmit2(curPage) {
+      this.sql = ''
+      this.cur_type = 2
+      this.totalStock = 0
+      if (curPage === -1) {
+        this.curPage = 1
+      }
+      this.loading = true
+      axios({
+        url: this.host + '/toolkit/tools/ownerStockHistory',
+        method: 'GET',
+        params: {
+          ownerName: this.ownerName2,
+          type: 2,
+          curPage: this.curPage
+        },
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.data['code'] && response.data['code'] === 1126) {
+          this.$router.push("/login")
+          return
+        }
+
+        if (response.data.total === 0) {
+          this.loading = false
+          this.$message({
+            message: '未查询到数据',
+            type: 'warning'
+          });
+          this.curPage = 1
+          this.total = 0
+          return
+        }
+
+        this.stockList = response.data.stockList
+        this.total = response.data.total
+        this.loading = false
+        this.totalStock = response.data.totalStock
+        this.sql = response.data.sql
+      }, error => {
+        console.log(error)
+        this.loading = false
+        this.$message({
+          message: '查询失败',
+          type: 'warning'
+        });
+
+        this.curPage = 1
+        this.total = 0
+        this.stockList = []
+        this.totalStock = 0
+      })
+    },
+
+    clearOwnerName1() {
+      this.ownerName1 = ''
+    },
+    clearOwnerName2() {
+      this.ownerName2 = ''
+    },
+    handleCurrentChange(current_page) {
+      this.curPage = current_page
+      if (this.cur_type === 1) {
+        this.onSubmit1(current_page)
+      } else if (this.cur_type === 2) {
+        this.onSubmit2(current_page)
+      }
+    },
+    copy(data) {
+      let url = data;
+      let oInput = document.createElement('textarea');
+      oInput.value = url;
+      document.body.appendChild(oInput);
+      oInput.select(); // 选择对象
+      document.execCommand("Copy"); // 执行浏览器复制命令
+      this.$message({
+        message: '复制成功',
+        type: 'success'
+      });
+      oInput.remove()
+    },
+
+  }
+}
+</script>
+
+<style>
+@import '@/assets/css/common.css';
+
+.el-link.el-link--primary {
+  color: #0000FF;
+}
+
+.icon-link {
+  display: inline-table;
+  position: relative;
+  bottom: 1.5px;
+  font-size: 15px;
+  margin-left: 7px;
+  margin-right: 7px;
+}
+
+.el-link.el-link--default {
+  color: #0000FF;
+}
+
+.el-step__title.is-process {
+  font-size: 15px;
+}
+
+.el-divider__text.is-left {
+  color: #FA8919;
+  font-weight: bold;
+}
+
+.el-table .warning-row {
+  background: #FFFFBB;
+}
+
+pre {
+  font-family: Microsoft YaHei;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+</style>

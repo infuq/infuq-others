@@ -1,0 +1,115 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>杂货柜-登录页</title>
+    <link href="../r/libs/font-awesome/4.0.3/css/font-awesome.min.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="../r/element-ui@2.15.2/index.css" rel="stylesheet" />
+
+    <script src="../r/vue@2.6.14/vue.js"></script>
+    <script src="../r/element-ui@2.15.2/index.js"></script>
+    <script src="../r/axios@0.21.1/axios.min.js"></script>
+    <script src="../r/js/route.js"></script>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        .main {
+            margin: 0 auto;
+            background: #FFFFFF;
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            margin-left: -190px;
+        }
+
+        .input-content {
+            width: 100%;
+            height: 120px;
+        }
+        .input-content input {
+            width: 100%;
+            height: 40px;
+            border: 1px solid #dad9d6;
+            background: #ffffff;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .enter-btn {
+            width: 350px;
+            height: 40px;
+            color: #fff;
+            background: #0bc5de;
+            line-height: 40px;
+            text-align: center;
+            border: 0px;
+        }
+        .enter-btn:hover {
+            cursor:pointer;
+            background: #1db5c9;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div id="app" style="margin-top: 5%;">
+
+        <section style="width: 55%; margin: 0 auto;">
+            <div>
+                <el-divider content-position="right">{{env}}环境</el-divider>
+
+
+                <div class="main" style="margin-top: 25px; border: 1px solid #eee; padding: 15px;">
+                    <form class="login-form" method="post" novalidate >
+                        <div class="input-content">
+                            <div>
+                                <input type="text" autocomplete="off" placeholder="账 号" name="username" required />
+                            </div>
+
+                            <div style="margin-top: 16px">
+                                <input type="password" autocomplete="off" placeholder="密 码" name="password" required maxlength="32" />
+                            </div>
+                        </div>
+
+                        <div style="text-align: center">
+                            <button type="submit" class="enter-btn">登 录</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <div style="width: 100%; bottom: 100px; position: absolute;">
+        <div style="border-top: 1px solid #eee; margin-left: 15%; margin-right: 15%; padding-top: 10px; padding-bottom: 10px; text-align: center;">
+            Copyright &copy; 2023-2024 白洞-杂货柜
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+        var host = window.host
+        var _env = window.env
+
+        var Main = {
+            data: function() {
+                return {
+                    env: _env,
+                }
+            },
+            created: function () {
+            },
+            methods: {
+
+            }
+        }
+        var Ctor = Vue.extend(Main)
+        new Ctor().$mount('#app')
+    </script>
+</body>
+</html>
