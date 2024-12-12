@@ -8,8 +8,8 @@ def live():
 
     # 获取AccessToken
     # 文档 https://developers.weixin.qq.com/doc/channels/API/windowproduct/getaccesstoken.html
-    appId = 'wxxxx'
-    secret = 'xxx'
+    appId = 'appId'
+    secret = 'secret'
     url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s' % (appId, secret)
     response = requests.get(url)
     access_token = eval(response.text)['access_token']

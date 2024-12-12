@@ -36,7 +36,7 @@ def conn_mysql():
 
 def query_1981():
 
-    url = "https://www.mca.gov.cn/mzsj/tjbz/a/201713/201708040959.html"
+    url = "https://www.mca.gov.cn/mzsj/tjbz/a/201713/201708041004.html"
     response = requests.get(url)
     response.encoding = 'utf-8'
 
@@ -84,16 +84,16 @@ def handle_1981():
 
         # 省
         if level == 1:
-            # pass
-            handle_province(code, name, cursor, conn)
+            pass
+            # handle_province(code, name, cursor, conn)
         # 地级市
         elif level == 2:
             pass
             # handle_city(code, name, cursor, conn)
         # 区
         elif level == 3:
-            pass
-            # handle_region(code, name, cursor, conn)
+            # pass
+            handle_region(code, name, cursor, conn)
 
 
 # 例如河北省 130000

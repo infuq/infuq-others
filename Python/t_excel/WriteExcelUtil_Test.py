@@ -22,7 +22,12 @@ if __name__ == '__main__':
 
     if 1 < 0:
         writebook = WriteXlsxUtil()
-        content = ('张三', 25, '江苏', '310198276189023145')
+        writebook.column_width('A', 30)
+        writebook.column_width('B', 30)
+        writebook.column_width('C', 15)
+        writebook.column_width('D', 30)
+        
+        content = ('张三', 25, '江苏', {'value': '310198276189023145', 'color': 'FF0000'})
         writebook.write(content)
         writebook.save()
             

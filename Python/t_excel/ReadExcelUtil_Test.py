@@ -9,7 +9,7 @@ from ReadExcelUtil import ReadExcelUtil
 
 if __name__ == '__main__':
 
-    if 1 < 0:
+    if -1 < 0:
         file = r'D:\Repository\infuq-others\Python\resources\data_test.xls'
         file = re.sub(r"\\", '/', file) # \ -> /
         rows = ReadExcelUtil(file)

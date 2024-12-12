@@ -35,9 +35,9 @@ response = requests.get('https://www.infuq.com/', params=params, headers=headers
 
 
 
-# with open('1.html', 'w', encoding='utf-8') as f:
-#     f.write(response.content.decode('utf-8'))
-#
+with open('1.html', 'w', encoding='utf-8') as f:
+    f.write(response.content.decode('utf-8'))
+
 
 
 if __name__ == '__main__':
