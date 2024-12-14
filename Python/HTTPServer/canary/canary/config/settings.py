@@ -11,13 +11,6 @@ class BaseConfig:
 # 开发环境
 class DevelopmentConfig(BaseConfig):
     DEBUG = True
-    # 默认数据源
-    SQLALCHEMY_DATABASE_URI = 'mysql://<用户名>:<密码>@rm-xxx.mysql.rds.aliyuncs.com:3306/db0'
-    # 多数据源
-    SQLALCHEMY_BINDS = {
-        'db1': 'mysql://<用户名>:<密码>@rm-xxx.mysql.rds.aliyuncs.com:3306:3306/db1',
-        'db2': 'mysql://<用户名>:<密码>@rm-xxx.mysql.rds.aliyuncs.com:3306:3306/db2'
-    }
 
 
 # 测试环境
@@ -28,6 +21,14 @@ class TestingConfig(BaseConfig):
 # 生产环境
 class ProductionConfig(BaseConfig):
     DEBUG = False
+
+    # 默认数据源
+    SQLALCHEMY_DATABASE_URI = 'mysql://ro_guest:9527#RDS@rm-bp18623422m8o2n7x1o.mysql.rds.aliyuncs.com/db1'
+    # 多数据源
+    SQLALCHEMY_BINDS = {
+        'db1': 'mysql://ro_guest:9527#RDS@rm-bp18623422m8o2n7x1o.mysql.rds.aliyuncs.com/db1',
+        'db2': 'mysql://ro_guest:9527#RDS@rm-bp18623422m8o2n7x1o.mysql.rds.aliyuncs.com/db2'
+    }
 
 
 environment_config = {

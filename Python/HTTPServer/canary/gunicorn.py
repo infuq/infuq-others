@@ -3,10 +3,12 @@
 workers = 4
 # 指定每个工作者的线程数
 threads = 2
-# 监听内网端口58081
-bind = '0.0.0.0:58081'
+# 监听内网端口8080
+bind = '0.0.0.0:8080'
 # 设置守护进程,将进程交给supervisor管理
 daemon = 'false'
+# 超时时间
+timeout = 120
 # 工作模式协程
 worker_class = 'gevent'
 # worker_class = 'sync'
