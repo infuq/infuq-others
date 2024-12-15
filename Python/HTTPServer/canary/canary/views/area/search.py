@@ -35,7 +35,14 @@ def search_by_code(keyword, curPage):
     areaList = []
     if total > 0:
         sql = "SELECT `code`,short_name,`name`,`level` FROM area WHERE code LIKE '%s' GROUP BY `code`,short_name,`name`,`level` LIMIT %s, %s"
-    sql = sql % ('%' + keyword + '%', (curPage - 1) * 10, 10)
+        sql = sql % ('%' + keyword + '%', (curPage - 1) * 10, 10)
+    else:
+        response = {
+            'areaList': areaList,
+            'total': total
+        }
+
+        return jsonify(response)
 
     sql = text(sql)
     cursor = db.session.execute(statement=sql, params={
@@ -76,7 +83,14 @@ def search_by_short_name(keyword, curPage):
     areaList = []
     if total > 0:
         sql = "SELECT `code`,short_name,`name`,`level` FROM area WHERE short_name LIKE '%s' GROUP BY `code`,short_name,`name`,`level` LIMIT %s, %s"
-    sql = sql % ('%' + keyword + '%', (curPage - 1) * 10, 10)
+        sql = sql % (('%' + keyword + '%'), (curPage - 1) * 10, 10)
+    else:
+        response = {
+            'areaList': areaList,
+            'total': total
+        }
+
+        return jsonify(response)
 
     sql = text(sql)
     cursor = db.session.execute(statement=sql, params={
@@ -144,5 +158,4 @@ def tree():
         data = f.read()
         data = data.replace("'", "\"")
         return json.loads(data)
-
 
